@@ -31,6 +31,8 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
 	private Services.VolumeControl volume_control;
 
+	private Notify.Notification notification;
+
 	// TODO make configurable
 	double max_volume = 1.0;
 
@@ -41,11 +43,14 @@ public class Sound.Indicator : Wingpanel.Indicator {
 				display_name: _("Sound"),
 				description:_("The sound indicator"));
 		this.visible = true;
-		volume_control = new Services.VolumeControl ();
-		volume_control.volume_changed.connect (on_volume_change);
-		volume_control.mic_volume_changed.connect (on_mic_volume_change);
-		volume_control.notify["mute"].connect (on_mute_change);
-		volume_control.notify["micMute"].connect (on_mic_mute_change);
+		this.volume_control = new Services.VolumeControl ();
+		this.volume_control.volume_changed.connect (on_volume_change);
+		this.volume_control.mic_volume_changed.connect (on_mic_volume_change);
+		this.volume_control.notify["mute"].connect (on_mute_change);
+		this.volume_control.notify["micMute"].connect (on_mic_mute_change);
+		Notify.init ("wingpanel-indicator-sound");
+		this.notification = new Notify.Notification ("indicator-sound", "", "");
+		this.notification.set_hint ("x-canonical-private-synchronous", new Variant.string ("indicator-sound"));
 	}
 
 	private void on_volume_change (double volume) {
@@ -111,6 +116,28 @@ public class Sound.Indicator : Wingpanel.Indicator {
 				}
 				double v = this.volume_control.get_volume () + volume_step_percentage * dir;
 				this.volume_control.set_volume (v.clamp (0.0, this.max_volume));
+				if (this.notification != null && v >= -0.05 && v <= (this.max_volume + 0.05)) {
+					string icon;
+					if (v <= 0.0)
+						icon = "notification-audio-volume-off";
+					else if (v <= 0.3)
+						icon = "notification-audio-volume-low";
+					else if (v <= 0.7)
+						icon = "notification-audio-volume-medium";
+					else
+						icon = "notification-audio-volume-high";
+
+					this.notification.update ("indicator-sound", "", icon);
+					this.notification.set_hint ("value", new Variant.int32 (
+						((int32) (this.max_volume * 100 * v / this.max_volume)).
+							clamp (-1, ((int)this.max_volume * 100) + 1)));
+					try {
+						this.notification.show ();
+					}
+					catch (Error e) {
+						warning ("unable to show notification: %s", e.message);
+					}
+				}
 				return Gdk.EVENT_STOP;
 			});
 		}
