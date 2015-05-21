@@ -145,7 +145,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
 		return panel_icon;
 	}
 
-	public override Gtk.Widget get_widget () {
+	public override Gtk.Widget? get_widget () {
 		if (main_grid == null) {
 			int position = 0;
 			main_grid = new Gtk.Grid ();
