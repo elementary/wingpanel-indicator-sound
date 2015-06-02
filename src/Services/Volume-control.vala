@@ -23,8 +23,7 @@ using PulseAudio;
 [CCode(cname="pa_cvolume_set", cheader_filename = "pulse/volume.h")]
 extern unowned PulseAudio.CVolume? vol_set (PulseAudio.CVolume? cv, uint channels, PulseAudio.Volume v);
 
-public class Services.VolumeControl : Object
-{
+public class Sound.Services.VolumeControl : Object {
 	/* this is static to ensure it being freed after @context (loop does not have ref counting) */
 	private static PulseAudio.GLibMainLoop loop;
 
@@ -51,8 +50,7 @@ public class Services.VolumeControl : Object
 	/** true when a microphone is active **/
 	public bool active_mic { get; private set; default = false; }
 
-	public VolumeControl ()
-	{
+	public VolumeControl () {
 		if (loop == null)
 			loop = new PulseAudio.GLibMainLoop ();
 
@@ -62,8 +60,7 @@ public class Services.VolumeControl : Object
 		this.reconnect_to_pulse ();
 	}
 
-	~VolumeControl ()
-	{
+	~VolumeControl () {
 		if (_reconnect_timer != 0) {
 			Source.remove (_reconnect_timer);
 			_reconnect_timer = 0;
@@ -72,10 +69,8 @@ public class Services.VolumeControl : Object
 	}
 
 	/* PulseAudio logic*/
-	private void context_events_cb (Context c, Context.SubscriptionEventType t, uint32 index)
-	{
-		switch (t & Context.SubscriptionEventType.FACILITY_MASK)
-		{
+	private void context_events_cb (Context c, Context.SubscriptionEventType t, uint32 index) {
+		switch (t & Context.SubscriptionEventType.FACILITY_MASK) {
 			case Context.SubscriptionEventType.SINK:
 				update_sink ();
 				break;
@@ -85,8 +80,7 @@ public class Services.VolumeControl : Object
 				break;
 
 			case Context.SubscriptionEventType.SOURCE_OUTPUT:
-				switch (t & Context.SubscriptionEventType.TYPE_MASK)
-				{
+				switch (t & Context.SubscriptionEventType.TYPE_MASK) {
 					case Context.SubscriptionEventType.NEW:
 						c.get_source_output_info (index, source_output_info_cb);
 						break;
@@ -99,57 +93,48 @@ public class Services.VolumeControl : Object
 		}
 	}
 
-	private void sink_info_cb_for_props (Context c, SinkInfo? i, int eol)
-	{
+	private void sink_info_cb_for_props (Context c, SinkInfo? i, int eol) {
 		if (i == null)
 			return;
 
-		if (_mute != (bool)i.mute)
-		{
+		if (_mute != (bool)i.mute) {
 			_mute = (bool)i.mute;
 			this.notify_property ("mute");
 		}
 
 		var playing = (i.state == PulseAudio.SinkState.RUNNING);
-		if (_is_playing != playing)
-		{
+		if (_is_playing != playing) {
 			_is_playing = playing;
 			this.notify_property ("is-playing");
 		}
 
-		if (_volume != volume_to_double (i.volume.values[0]))
-		{
+		if (_volume != volume_to_double (i.volume.values[0])) {
 			_volume = volume_to_double (i.volume.values[0]);
 			volume_changed (_volume);
 		}
 	}
 
-	private void source_info_cb (Context c, SourceInfo? i, int eol)
-	{
+	private void source_info_cb (Context c, SourceInfo? i, int eol) {
 		if (i == null)
 			return;
-		if (_mute_mic != (bool)i.mute)
-		{
+		if (_mute_mic != (bool)i.mute) {
 			_mute_mic = (bool)i.mute;
 			this.notify_property ("micMute");
 		}
 
-		if (_mic_volume != volume_to_double (i.volume.values[0]))
-		{
+		if (_mic_volume != volume_to_double (i.volume.values[0])) {
 			_mic_volume = volume_to_double (i.volume.values[0]);
 			mic_volume_changed (_mic_volume);
 		}
 	}
 
-	private void server_info_cb_for_props (Context c, ServerInfo? i)
-	{
+	private void server_info_cb_for_props (Context c, ServerInfo? i) {
 		if (i == null)
 			return;
 		context.get_sink_info_by_name (i.default_sink_name, sink_info_cb_for_props);
 	}
 
-	private void update_sink ()
-	{
+	private void update_sink () {
 		context.get_server_info (server_info_cb_for_props);
 	}
 
@@ -158,13 +143,11 @@ public class Services.VolumeControl : Object
 			context.get_source_info_by_name (i.default_source_name, source_info_cb);
 	}
 
-	private void update_source ()
-	{
+	private void update_source () {
 		context.get_server_info (update_source_get_server_info_cb);
 	}
 
-	private void source_output_info_cb (Context c, SourceOutputInfo? i, int eol)
-	{
+	private void source_output_info_cb (Context c, SourceOutputInfo? i, int eol) {
 		if (i == null)
 			return;
 
@@ -173,8 +156,7 @@ public class Services.VolumeControl : Object
 			this.active_mic = true;
 	}
 
-	private void context_state_callback (Context c)
-	{
+	private void context_state_callback (Context c) {
 		switch (c.get_state ()) {
 			case Context.State.READY:
 				c.subscribe (PulseAudio.Context.SubscriptionMask.SINK |
@@ -198,15 +180,13 @@ public class Services.VolumeControl : Object
 		}
 	}
 
-	bool reconnect_timeout ()
-	{
+	bool reconnect_timeout () {
 		_reconnect_timer = 0;
 		reconnect_to_pulse ();
-		return false; // G_SOURCE_REMOVE
+		return false;
 	}
 
-	void reconnect_to_pulse ()
-	{
+	void reconnect_to_pulse () {
 		if (this.ready) {
 			this.context.disconnect ();
 			this.context = null;
@@ -214,8 +194,8 @@ public class Services.VolumeControl : Object
 		}
 
 		var props = new Proplist ();
-		props.sets (Proplist.PROP_APPLICATION_NAME, "Ubuntu Audio Settings");
-		props.sets (Proplist.PROP_APPLICATION_ID, "com.canonical.settings.sound");
+		props.sets (Proplist.PROP_APPLICATION_NAME, "Elementary Audio Settings");
+		props.sets (Proplist.PROP_APPLICATION_ID, "wingpanel.settings.sound");
 		props.sets (Proplist.PROP_APPLICATION_ICON_NAME, "multimedia-volume-control");
 		props.sets (Proplist.PROP_APPLICATION_VERSION, "0.1");
 
@@ -237,8 +217,7 @@ public class Services.VolumeControl : Object
 	}
 
 	/* Mute operations */
-	bool set_mute_internal (bool mute)
-	{
+	bool set_mute_internal (bool mute) {
 		return_val_if_fail (context.get_state () == Context.State.READY, false);
 
 		if (_mute != mute) {
@@ -252,20 +231,16 @@ public class Services.VolumeControl : Object
 		}
 	}
 
-	public void set_mute (bool mute)
-	{
+	public void set_mute (bool mute) {
 		set_mute_internal (mute);
 	}
 
-	public void toggle_mute ()
-	{
+	public void toggle_mute () {
 		this.set_mute (!this._mute);
 	}
 
-	public bool mute
-	{
-		get
-		{
+	public bool mute {
+		get {
 			return this._mute;
 		}
 	}
@@ -281,8 +256,7 @@ public class Services.VolumeControl : Object
 	}
 
 	/* Mute operations */
-	bool set_mic_mute_internal (bool m)
-	{
+	bool set_mic_mute_internal (bool m) {
 		return_val_if_fail (context.get_state () == Context.State.READY, false);
 
 		if (_mute_mic != m) {
@@ -296,53 +270,43 @@ public class Services.VolumeControl : Object
 		}
 	}
 
-	public void set_mic_mute (bool m)
-	{
+	public void set_mic_mute (bool m) {
 		set_mic_mute_internal (m);
 	}
 
-	public void toggle_mic_mute ()
-	{
+	public void toggle_mic_mute () {
 		this.set_mic_mute (!this._mute_mic);
 	}
 
-	public bool micMute
-	{
-		get
-		{
+	public bool micMute {
+		get {
 			return this._mute_mic;
 		}
 	}
 
-	public bool is_playing
-	{
-		get
-		{
+	public bool is_playing {
+		get {
 			return this._is_playing;
 		}
 	}
 
 	/* Volume operations */
-	private static PulseAudio.Volume double_to_volume (double vol)
-	{
+	private static PulseAudio.Volume double_to_volume (double vol) {
 		double tmp = (double)(PulseAudio.Volume.NORM - PulseAudio.Volume.MUTED) * vol;
 		return (PulseAudio.Volume)tmp + PulseAudio.Volume.MUTED;
 	}
 
-	private static double volume_to_double (PulseAudio.Volume vol)
-	{
+	private static double volume_to_double (PulseAudio.Volume vol) {
 		double tmp = (double)(vol - PulseAudio.Volume.MUTED);
 		return tmp / (double)(PulseAudio.Volume.NORM - PulseAudio.Volume.MUTED);
 	}
 
-	private void set_volume_success_cb (Context c, int success)
-	{
+	private void set_volume_success_cb (Context c, int success) {
 		if ((bool)success)
 			volume_changed (_volume);
 	}
 
-	private void sink_info_set_volume_cb (Context c, SinkInfo? i, int eol)
-	{
+	private void sink_info_set_volume_cb (Context c, SinkInfo? i, int eol) {
 		if (i == null)
 			return;
 
@@ -350,8 +314,7 @@ public class Services.VolumeControl : Object
 		c.set_sink_volume_by_index (i.index, cvol, set_volume_success_cb);
 	}
 
-	private void server_info_cb_for_set_volume (Context c, ServerInfo? i)
-	{
+	private void server_info_cb_for_set_volume (Context c, ServerInfo? i) {
 		if (i == null)
 		{
 			warning ("Could not get PulseAudio server info");
@@ -361,8 +324,7 @@ public class Services.VolumeControl : Object
 		context.get_sink_info_by_name (i.default_sink_name, sink_info_set_volume_cb);
 	}
 
-	bool set_volume_internal (double volume)
-	{
+	bool set_volume_internal (double volume) {
 		return_val_if_fail (context.get_state () == Context.State.READY, false);
 
 		if (_volume != volume) {
@@ -374,14 +336,12 @@ public class Services.VolumeControl : Object
 		}
 	}
 
-	public void set_volume (double volume)
-	{
+	public void set_volume (double volume) {
 		if (set_volume_internal (volume))
 			start_local_volume_timer();
 	}
 
-	void set_mic_volume_success_cb (Context c, int success)
-	{
+	void set_mic_volume_success_cb (Context c, int success) {
 		if ((bool)success)
 			mic_volume_changed (_mic_volume);
 	}
@@ -394,8 +354,7 @@ public class Services.VolumeControl : Object
 		}
 	}
 
-	public void set_mic_volume (double volume)
-	{
+	public void set_mic_volume (double volume) {
 		return_if_fail (context.get_state () == Context.State.READY);
 
 		_mic_volume = volume;
@@ -403,18 +362,15 @@ public class Services.VolumeControl : Object
 		context.get_server_info (set_mic_volume_get_server_info_cb);
 	}
 
-	public double get_volume ()
-	{
+	public double get_volume () {
 		return _volume;
 	}
 
-	public double get_mic_volume ()
-	{
+	public double get_mic_volume () {
 		return _mic_volume;
 	}
 
-	private void start_local_volume_timer()
-	{
+	private void start_local_volume_timer() {
 		if (_local_volume_timer == 0) {
 			_local_volume_timer = Timeout.add_seconds (1, local_volume_changed_timeout);
 		} else {
@@ -422,22 +378,20 @@ public class Services.VolumeControl : Object
 		}
 	}
 
-	private void stop_local_volume_timer()
-	{
+	private void stop_local_volume_timer() {
 		if (_local_volume_timer != 0) {
 			Source.remove (_local_volume_timer);
 			_local_volume_timer = 0;
 		}
 	}
 
-	bool local_volume_changed_timeout()
-	{
+	bool local_volume_changed_timeout() {
 		_local_volume_timer = 0;
 		if (_send_next_local_volume) {
 			_send_next_local_volume = false;
 			start_local_volume_timer ();
 		}
-		return false; // G_SOURCE_REMOVE
+		return false;
 	}
 
 }

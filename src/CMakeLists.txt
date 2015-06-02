@@ -16,6 +16,9 @@ vala_precompile (VALA_C ${CMAKE_PROJECT_NAME}
   Indicator.vala
   Widgets/PanelIcon.vala
   Widgets/IndicatorScale.vala
+  Widgets/MprisGui.vala
+  Widgets/MprisWidget.vala
+  Services/MprisClient.vala
   Services/Volume-control.vala
   ${CMAKE_CURRENT_BINARY_DIR}/config.vala
 PACKAGES

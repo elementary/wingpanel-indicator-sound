@@ -31,6 +31,8 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
 	private Services.VolumeControl volume_control;
 
+	private Wingpanel.Widgets.IndicatorSeparator first_seperator;
+
 	private Notify.Notification notification;
 
 	// TODO make configurable
@@ -40,7 +42,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
 	public Indicator () {
 		Object (code_name: Wingpanel.Indicator.SOUND,
-				display_name: _("Sound"),
+				display_name: _("Indicator Sound"),
 				description:_("The sound indicator"));
 		this.visible = true;
 		this.volume_control = new Services.VolumeControl ();
@@ -92,6 +94,20 @@ public class Sound.Indicator : Wingpanel.Indicator {
 		} else {
 			panel_icon.set_icon ("audio-volume-high-panel");
 		}
+	}
+
+	private void update_volume_icon () {
+		string icon;
+		var v = volume_scale.get_scale ().get_value ();
+		if (v <= 0.0)
+			icon = "audio-volume-muted-symbolic";
+		else if (v <= 0.3)
+			icon = "audio-volume-low-symbolic";
+		else if (v <= 0.7)
+			icon = "audio-volume-medium-symbolic";
+		else
+			icon = "audio-volume-high-symbolic";
+		volume_scale.set_icon (icon);
 	}
 
 	public override Gtk.Widget get_display_widget () {
@@ -150,32 +166,65 @@ public class Sound.Indicator : Wingpanel.Indicator {
 			int position = 0;
 			main_grid = new Gtk.Grid ();
 
-			volume_scale = new Widgets.IndicatorScale ("audio-speakers-symbolic", true, 0.0, max_volume, 0.01);
+			var mpris = new Widgets.MprisWidget ();
+			mpris.refresh.connect (() => {
+				close ();
+			});
+
+			mpris.child_count_changed.connect ((count) => {
+				if (count > 0) {
+					first_seperator.no_show_all = false;
+					first_seperator.show ();
+				} else {
+					first_seperator.no_show_all = true;
+					first_seperator.hide ();
+				}
+			});
+
+			main_grid.attach (mpris, 0, position++, 1, 1);
+
+			first_seperator = new Wingpanel.Widgets.IndicatorSeparator ();
+			first_seperator.no_show_all = true;
+
+			main_grid.attach (first_seperator, 0, position++, 1, 1);
+
+			volume_scale = new Widgets.IndicatorScale ("audio-volume-high-symbolic", true, 0.0, max_volume, 0.01);
+			volume_scale.margin_start = 12;
 
 			volume_scale.get_switch ().active = volume_control.mute;
 			volume_scale.get_switch ().notify["active"].connect (() => {
 				if (volume_scale.get_switch ().active) {
 					volume_control.set_mute (false);
+					volume_scale.get_image ().set_sensitive (true);
 				} else {
 					volume_control.set_mute (true);
+					volume_scale.get_image ().set_sensitive (false);
 				}
 			});
 
 			volume_scale.get_scale ().value_changed.connect (() => {
 				volume_control.set_volume (volume_scale.get_scale ().get_value ());
+				update_volume_icon ();
 			});
+
+			volume_scale.get_scale ().set_value (volume_control.get_volume ());
+
+			update_volume_icon ();
 
 			main_grid.attach (volume_scale, 0, position++, 1, 1);
 
 			main_grid.attach (new Wingpanel.Widgets.IndicatorSeparator (), 0, position++, 1, 1);
 
 			mic_scale = new Widgets.IndicatorScale ("audio-input-microphone-symbolic", true, 0.0, 1.0, 0.01);
+			mic_scale.margin_start = 12;
 
 			mic_scale.get_switch ().notify["active"].connect (() => {
 				if (mic_scale.get_switch ().active) {
 					volume_control.set_mic_mute (false);
+					mic_scale.get_image ().set_sensitive (true);
 				} else {
 					volume_control.set_mic_mute (true);
+					mic_scale.get_image ().set_sensitive (false);
 				}
 			});
 
@@ -185,13 +234,11 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
 			main_grid.attach (mic_scale, 0, position++, 1, 1);
 
-
 			main_grid.attach (new Wingpanel.Widgets.IndicatorSeparator (), 0, position++, 1, 1);
 
-			settings_button = new Wingpanel.Widgets.IndicatorButton (_("Audio Settings..."));
+			settings_button = new Wingpanel.Widgets.IndicatorButton (_("Audio Settings…"));
 			settings_button.clicked.connect (() => {
 				show_settings ();
-				this.close ();
 			});
 
 			main_grid.attach (settings_button, 0, position++, 1, 1);

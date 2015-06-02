@@ -18,7 +18,7 @@
 public class Sound.Widgets.PanelIcon : Gtk.Image {
 
 	public PanelIcon () {
-		set_from_icon_name ("audio-output-none", Gtk.IconSize.LARGE_TOOLBAR);
+		this.set_icon ("audio-output-none");
 	}
 
 	public void set_icon (string icon) {

@@ -24,12 +24,9 @@ public class Sound.Widgets.IndicatorScale : Gtk.Grid {
 		this.hexpand = true;
 		this.margin_top = 6;
 		this.margin_bottom = 3;
-		this.margin_start = 6;
-		this.margin_end = 6;
 
-		image = new Gtk.Image.from_icon_name (icon, Gtk.IconSize.LARGE_TOOLBAR);
+		image = new Gtk.Image.from_icon_name (icon, Gtk.IconSize.DIALOG);
 		image.halign = Gtk.Align.START;
-		image.margin_start = 6;
 
 		this.attach (image, 0, 0, 1, 1);
 
@@ -43,17 +40,20 @@ public class Sound.Widgets.IndicatorScale : Gtk.Grid {
 		switch_widget.active = active;
 		switch_widget.halign = Gtk.Align.END;
 		switch_widget.margin_start = 12;
+		switch_widget.margin_end = 0;
 
 		this.attach (switch_widget, 2, 0, 1, 1);
 
 		this.get_style_context ().add_class ("indicator-switch");
 	}
 
-	public void set_icon (string icon) {
-		image.set_from_icon_name (icon, Gtk.IconSize.LARGE_TOOLBAR);
+	public Gtk.Image get_image () {
+		return image;
 	}
 
-	// TODO: Add get_caption () method when that markup-stuff is away
+	public void set_icon (string icon) {
+		image.set_from_icon_name (icon, Gtk.IconSize.DIALOG);
+	}
 
 	public void set_active (bool active) {
 		switch_widget.set_active (active);
