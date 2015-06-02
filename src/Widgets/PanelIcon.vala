@@ -17,13 +17,13 @@
 
 public class Sound.Widgets.PanelIcon : Gtk.Image {
 
-	public PanelIcon () {
-		this.set_icon ("audio-output-none");
-	}
+    public PanelIcon () {
+        this.set_icon ("audio-output-none");
+    }
 
-	public void set_icon (string icon) {
-		set_from_icon_name (icon, Gtk.IconSize.LARGE_TOOLBAR);
-	}
+    public void set_icon (string icon) {
+        set_from_icon_name (icon, Gtk.IconSize.LARGE_TOOLBAR);
+    }
 
 
 

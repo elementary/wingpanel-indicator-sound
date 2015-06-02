@@ -16,7 +16,6 @@ public class Sound.Widgets.MprisWidget : Gtk.Box
     Services.DBusImpl impl;
 
     HashTable<string,ClientWidget> ifaces;
-    public signal void refresh ();
     public signal void child_count_changed (int count);
 
     public MprisWidget() {
@@ -40,9 +39,6 @@ public class Sound.Widgets.MprisWidget : Gtk.Box
      */
     void add_iface(string name, Services.MprisClient iface) {
         ClientWidget widg = new ClientWidget(iface);
-        widg.refresh.connect (() => {
-            refresh ();
-        });
         widg.show_all();
         pack_start(widg, false, false, 0);
         ifaces.insert(name, widg);

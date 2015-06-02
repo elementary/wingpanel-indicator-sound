@@ -16,58 +16,57 @@
  */
 
 public class Sound.Widgets.IndicatorScale : Gtk.Grid {
-	private Gtk.Image image;
-	private Gtk.Switch switch_widget;
-	private Gtk.Scale scale_widget;
+    private Gtk.Image image;
+    private Gtk.Switch switch_widget;
+    private Gtk.Scale scale_widget;
 
-	public IndicatorScale (string icon, bool active = false, double min, double max, double step) {
-		this.hexpand = true;
-		this.margin_top = 6;
-		this.margin_bottom = 3;
+    public IndicatorScale (string icon, bool active = false, double min, double max, double step) {
+        this.hexpand = true;
 
-		image = new Gtk.Image.from_icon_name (icon, Gtk.IconSize.DIALOG);
-		image.halign = Gtk.Align.START;
+        image = new Gtk.Image.from_icon_name (icon, Gtk.IconSize.DIALOG);
+        image.halign = Gtk.Align.START;
 
-		this.attach (image, 0, 0, 1, 1);
+        this.attach (image, 0, 0, 1, 1);
 
-		scale_widget = new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL, min, max, step);
-		scale_widget.margin_start = 12;
-		scale_widget.set_size_request (175, -1);
-		scale_widget.set_draw_value (false);
-		this.attach (scale_widget, 1, 0, 1, 1);
+        scale_widget = new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL, min, max, step);
+        scale_widget.margin_start = 6;
+        scale_widget.set_size_request (175, -1);
+        scale_widget.set_draw_value (false);
+        scale_widget.hexpand = true;
+        this.attach (scale_widget, 1, 0, 1, 1);
 
-		switch_widget = new Gtk.Switch ();
-		switch_widget.active = active;
-		switch_widget.halign = Gtk.Align.END;
-		switch_widget.margin_start = 12;
-		switch_widget.margin_end = 0;
+        switch_widget = new Gtk.Switch ();
+        switch_widget.active = active;
+        switch_widget.halign = Gtk.Align.END;
+        switch_widget.margin_start = 6;
+        switch_widget.margin_end = 0;
 
-		this.attach (switch_widget, 2, 0, 1, 1);
+        this.attach (switch_widget, 2, 0, 1, 1);
 
-		this.get_style_context ().add_class ("indicator-switch");
-	}
+        this.get_style_context ().add_class ("indicator-switch");
+    }
 
-	public Gtk.Image get_image () {
-		return image;
-	}
+    public Gtk.Image get_image () {
+        return image;
+    }
 
-	public void set_icon (string icon) {
-		image.set_from_icon_name (icon, Gtk.IconSize.DIALOG);
-	}
+    public void set_icon (string icon) {
+        image.set_from_icon_name (icon, Gtk.IconSize.DIALOG);
+    }
 
-	public void set_active (bool active) {
-		switch_widget.set_active (active);
-	}
+    public void set_active (bool active) {
+        switch_widget.set_active (active);
+    }
 
-	public bool get_active () {
-		return switch_widget.get_active ();
-	}
+    public bool get_active () {
+        return switch_widget.get_active ();
+    }
 
-	public Gtk.Switch get_switch () {
-		return switch_widget;
-	}
+    public Gtk.Switch get_switch () {
+        return switch_widget;
+    }
 
-	public Gtk.Scale get_scale () {
-		return scale_widget;
-	}
+    public Gtk.Scale get_scale () {
+        return scale_widget;
+    }
 }
