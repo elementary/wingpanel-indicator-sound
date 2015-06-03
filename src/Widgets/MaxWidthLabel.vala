@@ -20,6 +20,8 @@ public class MaxWidthLabel : Gtk.Label {
 
     public MaxWidthLabel(int max_width) {
         this.max_width = max_width;
+        // Fix this when on gtk 3.16
+        this.set("xalign", 0);
     }
 
     public override void get_preferred_width (out int minimum_width, out int natural_width) {
