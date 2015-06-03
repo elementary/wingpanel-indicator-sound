@@ -15,18 +15,19 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class Sound.Widgets.IndicatorScale : Gtk.Grid {
+public class Sound.Widgets.Scale : Gtk.Grid {
     private Gtk.Image image;
     private Gtk.Switch switch_widget;
     private Gtk.Scale scale_widget;
 
-    public IndicatorScale (string icon, bool active = false, double min, double max, double step) {
+    public Scale (string icon, bool active = false, double min, double max, double step) {
         this.hexpand = true;
-
+        var image_box = new Gtk.EventBox ();
         image = new Gtk.Image.from_icon_name (icon, Gtk.IconSize.DIALOG);
-        image.halign = Gtk.Align.START;
+        image_box.halign = Gtk.Align.START;
+        image_box.add (image);
 
-        this.attach (image, 0, 0, 1, 1);
+        this.attach (image_box, 0, 0, 1, 1);
 
         scale_widget = new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL, min, max, step);
         scale_widget.margin_start = 6;
@@ -44,6 +45,20 @@ public class Sound.Widgets.IndicatorScale : Gtk.Grid {
         this.attach (switch_widget, 2, 0, 1, 1);
 
         this.get_style_context ().add_class ("indicator-switch");
+
+        this.add_events (Gdk.EventMask.SCROLL_MASK);
+        image_box.add_events (Gdk.EventMask.SCROLL_MASK);
+        switch_widget.add_events (Gdk.EventMask.SCROLL_MASK);
+        // delegate all scroll events to the scale
+        this.scroll_event.connect (on_scroll);
+        image_box.scroll_event.connect (on_scroll);
+        switch_widget.scroll_event.connect (on_scroll);
+    }
+
+    private bool on_scroll (Gdk.EventScroll event) {
+        scale_widget.scroll_event (event);
+
+        return Gdk.EVENT_STOP;
     }
 
     public Gtk.Image get_image () {

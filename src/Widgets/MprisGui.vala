@@ -8,14 +8,15 @@
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
+ * (at your option) any later version.
  */
 
 const int ICON_SIZE = 48;
+const int MAX_WIDTH_TITLE = 200;
 
 /**
  * A ClientWidget is simply used to control and display information in a two-way
- * fashion with an underlying MPRIS provider  (MediaPlayer2)
+ * fashion with an underlying MPRIS provider (MediaPlayer2)
  * It is "designed" to be self contained and added to a large UI, enabling multiple
  * MPRIS clients to be controlled with multiple widgets
  */
@@ -28,8 +29,9 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
     Gtk.Button prev_btn;
     Gtk.Button play_btn;
     Gtk.Button next_btn;
+    DesktopAppInfo? ainfo;
     Icon? app_icon = null;
-    string app_name = _("Not available");
+    string app_name = _("Music player");
     Cancellable load_remote_art_cancel;
 
     /**
@@ -48,7 +50,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
         var player_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
 
         if  (client.player.desktop_entry != "") {
-            var ainfo = new DesktopAppInfo (client.player.desktop_entry + ".desktop");
+            ainfo = new DesktopAppInfo (client.player.desktop_entry + ".desktop");
             if  (ainfo != null) {
                 app_icon = ainfo.get_icon ();
                 background = new Gtk.Image.from_gicon (app_icon, Gtk.IconSize.DIALOG);
@@ -64,29 +66,45 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
 
         background.margin_start = 6;
         background.margin_end = 6;
+        background.can_focus = true;
+        var background_box = new Gtk.EventBox ();
+        background_box.add_events (Gdk.EventMask.BUTTON_PRESS_MASK);
+        background_box.button_press_event.connect ((e) => {
+            try {
+                if (client.player.can_raise) {
+                    client.player.raise ();
+                } else if (ainfo != null) {
+                    ainfo.launch (null, null);
+                }
+            } catch  (Error e) {
+                warning ("Could not launch player");
+            }
 
-        player_box.pack_start (background, false, false, 0);
+            return Gdk.EVENT_STOP;
+        });
+        background_box.add (background);
+        player_box.pack_start (background_box, false, false, 0);
 
         var titles = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
         titles.set_valign (Gtk.Align.CENTER);
-        title_label = new Gtk.Label ("");
+        title_label = new MaxWidthLabel (MAX_WIDTH_TITLE);
         title_label.set_use_markup (true);
         title_label.set_line_wrap (true);
         title_label.set_line_wrap_mode (Pango.WrapMode.WORD);
+        title_label.set_ellipsize (Pango.EllipsizeMode.END);
         title_label.halign = Gtk.Align.START;
         titles.pack_start (title_label, false, false, 0);
-        artist_label =  new Gtk.Label ("");
+        artist_label = new MaxWidthLabel (MAX_WIDTH_TITLE);
         artist_label.set_line_wrap (true);
         artist_label.set_line_wrap_mode (Pango.WrapMode.WORD);
+        artist_label.set_ellipsize (Pango.EllipsizeMode.END);
         artist_label.halign = Gtk.Align.START;
         titles.pack_start (artist_label, false, false, 0);
         player_box.pack_start (titles, false, false, 0);
 
         var controls = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
 
-        var btn = new Gtk.Button.from_icon_name ("media-seek-backward-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
-        btn.set_sensitive (false);
-        btn.set_relief (Gtk.ReliefStyle.NONE);
+        var btn = make_control_button ("media-seek-backward-symbolic");
         prev_btn = btn;
         btn.clicked.connect (()=> {
             Idle.add (()=> {
@@ -94,7 +112,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
                     try {
                         client.player.previous ();
                     } catch  (Error e) {
-                        warning  ("Could not go to previous track: %s", e.message);
+                        warning ("Could not go to previous track: %s", e.message);
                     }
                 }
                 return false;
@@ -102,9 +120,9 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
         });
         controls.pack_start (btn, false, false, 0);
 
-        btn = new Gtk.Button.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
+        btn = make_control_button ("media-playback-start-symbolic");
+        btn.set_sensitive (true);
         play_btn = btn;
-        btn.set_relief (Gtk.ReliefStyle.NONE);
         btn.clicked.connect (()=> {
             Idle.add (()=> {
                 try {
@@ -117,9 +135,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
         });
         controls.pack_start (btn, false, false, 0);
 
-        btn = new Gtk.Button.from_icon_name ("media-seek-forward-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
-        btn.set_sensitive (false);
-        btn.set_relief  (Gtk.ReliefStyle.NONE);
+        btn = make_control_button ("media-seek-forward-symbolic");
         next_btn = btn;
         btn.clicked.connect (()=> {
             Idle.add (()=> {
@@ -171,6 +187,26 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
 
         player_revealer.add (player_box);
         pack_start (player_revealer);
+    }
+
+    private Gtk.Button make_control_button (string icon) {
+        var btn = new Gtk.Button.from_icon_name (icon, Gtk.IconSize.LARGE_TOOLBAR);
+        btn.set_can_focus (false);
+        btn.set_sensitive (false);
+        btn.set_relief (Gtk.ReliefStyle.NONE);
+        btn.enter_notify_event.connect ((e) => {
+            btn.can_focus = true;
+            btn.grab_focus ();
+
+            return Gdk.EVENT_STOP;
+        });
+        btn.leave_notify_event.connect ((e) => {
+            btn.can_focus = false;
+            background.grab_focus ();
+
+            return Gdk.EVENT_STOP;
+        });
+        return btn;
     }
 
     /**
