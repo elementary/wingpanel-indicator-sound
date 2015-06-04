@@ -309,6 +309,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
         var offset_y = mask_offset + 1;
         size = size - mask_size_offset;
 
+        var input = pixbuf.scale_simple (size, size, Gdk.InterpType.BILINEAR);
         var surface = new Cairo.ImageSurface (Cairo.Format.ARGB32, mask_size, mask_size);
         var cr = new Cairo.Context (surface);
 
@@ -316,7 +317,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
             offset_x, offset_y, size, size, 4);
         cr.clip ();
 
-        Gdk.cairo_set_source_pixbuf (cr, pixbuf, offset_x, offset_y);
+        Gdk.cairo_set_source_pixbuf (cr, input, offset_x, offset_y);
         cr.paint ();
 
         cr.reset_clip ();
