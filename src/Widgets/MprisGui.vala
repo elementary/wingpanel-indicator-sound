@@ -60,7 +60,6 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
         }
         if  (app_icon == null) {
             app_icon = new ThemedIcon ("emblem-music-symbolic");
-            background.set_from_icon_name ("emblem-music-symbolic", Gtk.IconSize.DIALOG);
         }
                 
         background = new Gtk.Image.from_gicon (app_icon, Gtk.IconSize.DIALOG);
