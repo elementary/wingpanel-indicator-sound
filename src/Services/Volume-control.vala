@@ -33,6 +33,7 @@ public class Sound.Services.VolumeControl : Object {
     private bool   _mute = true;
     private bool   _mute_mic = true;
     private bool   _is_playing = false;
+    private bool   _is_listening = false;
     private double _volume = 0.0;
     private double _mic_volume = 0.0;
 
@@ -121,6 +122,12 @@ public class Sound.Services.VolumeControl : Object {
         if (_mute_mic != (bool)i.mute) {
             _mute_mic = (bool)i.mute;
             this.notify_property ("micMute");
+        }
+
+        var listening = (i.state == PulseAudio.SourceState.RUNNING);
+        if (_is_listening != listening) {
+            _is_listening = listening;
+            this.notify_property ("is-listening");
         }
 
         if (_mic_volume != volume_to_double (i.volume.values[0])) {
@@ -287,6 +294,12 @@ public class Sound.Services.VolumeControl : Object {
     public bool is_playing {
         get {
             return this._is_playing;
+        }
+    }
+
+    public bool is_listening {
+        get {
+            return this._is_listening;
         }
     }
 

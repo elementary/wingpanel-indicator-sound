@@ -37,6 +37,9 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
     private Notify.Notification notification;
 
+    bool mute_blocks_sound = false;
+    uint sound_was_blocked_timeout_id;
+
     // TODO make configurable
     double max_volume = 1.0;
 
@@ -52,9 +55,18 @@ public class Sound.Indicator : Wingpanel.Indicator {
         this.volume_control.mic_volume_changed.connect (on_mic_volume_change);
         this.volume_control.notify["mute"].connect (on_mute_change);
         this.volume_control.notify["micMute"].connect (on_mic_mute_change);
+        this.volume_control.notify["is-playing"].connect(on_is_playing_change);
+        this.volume_control.notify["is-listening"].connect(update_mic_visibility);
         Notify.init ("wingpanel-indicator-sound");
         this.notification = new Notify.Notification ("indicator-sound", "", "");
         this.notification.set_hint ("x-canonical-private-synchronous", new Variant.string ("indicator-sound"));
+    }
+
+    ~Indicator () {
+        if (this.sound_was_blocked_timeout_id > 0) {
+            Source.remove (this.sound_was_blocked_timeout_id);
+            this.sound_was_blocked_timeout_id = 0;
+        }
     }
 
     private void on_volume_change (double volume) {
@@ -69,7 +81,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
     private void on_mute_change () {
         volume_scale.get_switch ().active = !volume_control.mute;
         if (volume_control.mute) {
-            panel_icon.set_icon ("audio-volume-muted-panel");
+            update_panel_icon (volume_control.get_volume ());
             volume_scale.get_scale ().set_sensitive (false);
         } else {
             update_panel_icon (volume_control.get_volume ());
@@ -86,15 +98,52 @@ public class Sound.Indicator : Wingpanel.Indicator {
         }
     }
 
-    private void update_panel_icon (double volume) {
-        if (volume <= 0 || volume_control.mute) {
-            panel_icon.set_icon ("audio-volume-low-zero-panel");
-        } else if (volume <= 0.3) {
-            panel_icon.set_icon ("audio-volume-low-panel");
-        } else if (volume <= 0.7) {
-            panel_icon.set_icon ("audio-volume-medium-panel");
+    private void on_is_playing_change () {
+        if (!this.volume_control.mute) {
+            this.mute_blocks_sound = false;
+            return;
+        }
+        if (this.volume_control.is_playing) {
+            this.mute_blocks_sound = true;
+        } else if (this.mute_blocks_sound) {
+            /* Continue to show the blocking icon five seconds after a player has tried to play something */
+            if (this.sound_was_blocked_timeout_id > 0)
+                Source.remove (this.sound_was_blocked_timeout_id);
+
+            this.sound_was_blocked_timeout_id = Timeout.add_seconds (5, () => {
+                this.mute_blocks_sound = false;
+                this.sound_was_blocked_timeout_id = 0;
+                this.update_panel_icon (volume_control.get_volume ());
+                return false;
+            });
+        }
+
+        this.update_panel_icon (volume_control.get_volume ());
+    }
+
+    private void update_mic_visibility () {
+        if (this.volume_control.is_listening) {
+            mic_scale.no_show_all = false;
+            mic_scale.show_all();
+            mic_seperator.no_show_all = false;
+            mic_seperator.show ();
         } else {
-            panel_icon.set_icon ("audio-volume-high-panel");
+            mic_scale.no_show_all = true;
+            mic_scale.hide();
+            mic_seperator.no_show_all = true;
+            mic_seperator.hide ();
+        }
+    }
+
+    private void update_panel_icon (double volume) {
+        if (volume <= 0 || this.volume_control.mute) {
+            panel_icon.set_icon (this.mute_blocks_sound ? "audio-volume-muted-blocking-symbolic" : "audio-volume-muted-symbolic");
+        } else if (volume <= 0.3) {
+            panel_icon.set_icon ("audio-volume-low-symbolic");
+        } else if (volume <= 0.7) {
+            panel_icon.set_icon ("audio-volume-medium-symbolic");
+        } else {
+            panel_icon.set_icon ("audio-volume-high-symbolic");
         }
     }
 
@@ -110,20 +159,6 @@ public class Sound.Indicator : Wingpanel.Indicator {
         else
             icon = "audio-volume-high-symbolic";
         volume_scale.set_icon (icon);
-    }
-
-    private void update_mic_visibility () {
-        // if (volume_control.active_mic) {
-            mic_scale.no_show_all = false;
-            mic_scale.show_all();
-            mic_seperator.no_show_all = false;
-            mic_seperator.show ();
-        // } else {
-        //     mic_scale.no_show_all = true;
-        //     mic_scale.hide();
-        //     mic_seperator.no_show_all = true;
-        //     mic_seperator.hide ();
-        // }
     }
 
     private void on_volume_switch_change () {
@@ -255,8 +290,6 @@ public class Sound.Indicator : Wingpanel.Indicator {
             mic_scale.get_scale ().value_changed.connect (() => {
                 volume_control.set_mic_volume (mic_scale.get_scale ().get_value ());
             });
-
-            volume_control.notify["active_mic"].connect (update_mic_visibility);
 
             main_grid.attach (mic_scale, 0, position++, 1, 1);
 
