@@ -70,9 +70,18 @@ public class Sound.Widgets.MprisWidget : Gtk.Box
             /* Search for existing players (launched prior to our start) */
             foreach (var name in names) {
                 if (name.has_prefix("org.mpris.MediaPlayer2.")) {
-                    var iface = new_iface(name);
-                    if (iface != null) {
-                        add_iface(name, iface);
+                    bool add = true;
+                    foreach (string name2 in ifaces.get_keys ()) {
+                        // skip if already a interface is present.
+                        // some version of vlc register two
+                        if (name2.has_prefix (name) || name.has_prefix (name2))
+                            add = false;
+                    }
+                    if (add) {
+                        var iface = new_iface(name);
+                        if (iface != null) {
+                            add_iface(name, iface);
+                        }
                     }
                 }
             }

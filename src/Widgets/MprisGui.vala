@@ -69,22 +69,11 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
         background.can_focus = true;
         var background_box = new Gtk.EventBox ();
         background_box.add_events (Gdk.EventMask.BUTTON_PRESS_MASK);
-        background_box.button_press_event.connect ((e) => {
-            try {
-                if (client.player.can_raise) {
-                    client.player.raise ();
-                } else if (ainfo != null) {
-                    ainfo.launch (null, null);
-                }
-            } catch  (Error e) {
-                warning ("Could not launch player");
-            }
-
-            return Gdk.EVENT_STOP;
-        });
+        background_box.button_press_event.connect (raise_player);
         background_box.add (background);
         player_box.pack_start (background_box, false, false, 0);
 
+        var titles_events = new Gtk.EventBox ();
         var titles = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
         titles.set_valign (Gtk.Align.CENTER);
         title_label = new MaxWidthLabel (MAX_WIDTH_TITLE);
@@ -100,7 +89,9 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
         artist_label.set_ellipsize (Pango.EllipsizeMode.END);
         artist_label.halign = Gtk.Align.START;
         titles.pack_start (artist_label, false, false, 0);
-        player_box.pack_start (titles, false, false, 0);
+        titles_events.add (titles);
+        player_box.pack_start (titles_events, false, false, 0);
+        titles_events.button_press_event.connect (raise_player);
 
         var controls = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
 
@@ -189,6 +180,20 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
         pack_start (player_revealer);
     }
 
+    private bool raise_player (Gdk.EventButton event) {
+        try {
+            if (client.player.can_raise) {
+                client.player.raise ();
+            } else if (ainfo != null) {
+                ainfo.launch (null, null);
+            }
+        } catch  (Error e) {
+            warning ("Could not launch player");
+        }
+
+        return Gdk.EVENT_STOP;
+    }
+
     private Gtk.Button make_control_button (string icon) {
         var btn = new Gtk.Button.from_icon_name (icon, Gtk.IconSize.LARGE_TOOLBAR);
         btn.set_can_focus (false);
@@ -231,7 +236,6 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
         prev_btn.set_sensitive (client.player.can_go_previous);
         next_btn.set_sensitive (client.player.can_go_next);
     }
-
 
     /**
      * Utility, handle updating the album art
@@ -286,12 +290,12 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
         } else {
            title = app_name;
         }
-        title_label.set_markup ("<b>%s</b>".printf (title));
+        title_label.set_markup ("<b>%s</b>".printf (Markup.escape_text (title)));
 
         if  ("xesam:artist" in client.player.metadata && client.player.metadata["xesam:artist"].is_of_type (VariantType.STRING_ARRAY)) {
             /* get_strv causes a segfault from multiple free's on vala's side. */
             string[] artists = client.player.metadata["xesam:artist"].dup_strv ();
-            artist_label.set_text (_("by ")+string.joinv (", ", artists));
+            artist_label.set_text (Markup.escape_text (_("by ")+string.joinv (", ", artists)));
         } else {
             if  (client.player.playback_status == "Playing")
                 artist_label.set_text (_("Unknown Title"));
