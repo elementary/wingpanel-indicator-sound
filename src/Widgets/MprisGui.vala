@@ -49,11 +49,11 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
         player_revealer.reveal_child = true;
         var player_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
 
+        background = new Gtk.Image.from_gicon (app_icon, Gtk.IconSize.DIALOG);
         if  (client.player.desktop_entry != "") {
             ainfo = new DesktopAppInfo (client.player.desktop_entry + ".desktop");
             if  (ainfo != null) {
                 app_icon = ainfo.get_icon ();
-                background = new Gtk.Image.from_gicon (app_icon, Gtk.IconSize.DIALOG);
                 app_name = ainfo.get_display_name ();
                 if  (app_name == "")
                     app_name = ainfo.get_name ();
