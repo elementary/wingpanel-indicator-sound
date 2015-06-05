@@ -53,7 +53,6 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
             ainfo = new DesktopAppInfo (client.player.desktop_entry + ".desktop");
             if  (ainfo != null) {
                 app_icon = ainfo.get_icon ();
-                background = new Gtk.Image.from_gicon (app_icon, Gtk.IconSize.DIALOG);
                 app_name = ainfo.get_display_name ();
                 if  (app_name == "")
                     app_name = ainfo.get_name ();
@@ -61,8 +60,9 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
         }
         if  (app_icon == null) {
             app_icon = new ThemedIcon ("emblem-music-symbolic");
-            background.set_from_icon_name ("emblem-music-symbolic", Gtk.IconSize.DIALOG);
         }
+                
+        background = new Gtk.Image.from_gicon (app_icon, Gtk.IconSize.DIALOG);
 
         background.margin_start = 6;
         background.margin_end = 6;
