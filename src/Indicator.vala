@@ -251,6 +251,10 @@ public class Sound.Indicator : Wingpanel.Indicator {
                 }
             });
 
+            mpris.close.connect (() => {
+                close ();
+            });
+
             main_grid.attach (mpris, 0, position++, 1, 1);
 
             first_seperator = new Wingpanel.Widgets.IndicatorSeparator ();

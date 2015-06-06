@@ -33,6 +33,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
     Icon? app_icon = null;
     string app_name = _("Music player");
     Cancellable load_remote_art_cancel;
+    public signal void close ();
 
     /**
      * Create a new ClientWidget
@@ -61,7 +62,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
         if  (app_icon == null) {
             app_icon = new ThemedIcon ("emblem-music-symbolic");
         }
-                
+
         background = new Gtk.Image.from_gicon (app_icon, Gtk.IconSize.DIALOG);
 
         background.margin_start = 6;
@@ -182,6 +183,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
 
     private bool raise_player (Gdk.EventButton event) {
         try {
+            close ();
             if (client.player.can_raise) {
                 client.player.raise ();
             } else if (ainfo != null) {
