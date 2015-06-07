@@ -29,7 +29,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
     private Wingpanel.Widgets.IndicatorButton settings_button;
 
-    private Services.VolumeControl volume_control;
+    private Services.VolumeControlPulse volume_control;
 
     private Wingpanel.Widgets.IndicatorSeparator first_seperator;
 
@@ -50,9 +50,9 @@ public class Sound.Indicator : Wingpanel.Indicator {
                 display_name: _("Indicator Sound"),
                 description:_("The sound indicator"));
         this.visible = true;
-        this.volume_control = new Services.VolumeControl ();
-        this.volume_control.volume_changed.connect (on_volume_change);
-        this.volume_control.mic_volume_changed.connect (on_mic_volume_change);
+        this.volume_control = new Services.VolumeControlPulse ();
+        this.volume_control.notify["volume"].connect (on_volume_change);
+        this.volume_control.notify["mic-volume"].connect (on_mic_volume_change);
         this.volume_control.notify["mute"].connect (on_mute_change);
         this.volume_control.notify["micMute"].connect (on_mic_mute_change);
         this.volume_control.notify["is-playing"].connect(on_is_playing_change);
@@ -69,22 +69,24 @@ public class Sound.Indicator : Wingpanel.Indicator {
         }
     }
 
-    private void on_volume_change (double volume) {
+    private void on_volume_change () {
+        var volume = volume_control.volume.volume;
         volume_scale.get_scale ().set_value (volume);
         update_panel_icon (volume);
     }
 
-    private void on_mic_volume_change (double volume) {
+    private void on_mic_volume_change () {
+        var volume = volume_control.mic_volume;
         mic_scale.get_scale ().set_value (volume);
     }
 
     private void on_mute_change () {
         volume_scale.get_switch ().active = !volume_control.mute;
         if (volume_control.mute) {
-            update_panel_icon (volume_control.get_volume ());
+            update_panel_icon (volume_control.volume.volume);
             volume_scale.get_scale ().set_sensitive (false);
         } else {
-            update_panel_icon (volume_control.get_volume ());
+            update_panel_icon (volume_control.volume.volume);
             volume_scale.get_scale ().set_sensitive (true);
         }
     }
@@ -113,12 +115,12 @@ public class Sound.Indicator : Wingpanel.Indicator {
             this.sound_was_blocked_timeout_id = Timeout.add_seconds (5, () => {
                 this.mute_blocks_sound = false;
                 this.sound_was_blocked_timeout_id = 0;
-                this.update_panel_icon (volume_control.get_volume ());
+                this.update_panel_icon (volume_control.volume.volume);
                 return false;
             });
         }
 
-        this.update_panel_icon (volume_control.get_volume ());
+        this.update_panel_icon (volume_control.volume.volume);
     }
 
     private void update_mic_visibility () {
@@ -201,8 +203,12 @@ public class Sound.Indicator : Wingpanel.Indicator {
                 } else if (e.direction == Gdk.ScrollDirection.DOWN) {
                     dir = -1;
                 }
-                double v = this.volume_control.get_volume () + volume_step_percentage * dir;
-                this.volume_control.set_volume (v.clamp (0.0, this.max_volume));
+                double v = this.volume_control.volume.volume + volume_step_percentage * dir;
+                var vol = new Services.VolumeControl.Volume();
+                vol.volume = v.clamp (0.0, this.max_volume);
+                vol.reason = Services.VolumeControl.VolumeReasons.USER_KEYPRESS;
+                this.volume_control.volume = vol;
+
                 if (this.notification != null && v >= -0.05 && v <= (this.max_volume + 0.05)) {
                     string icon;
                     if (v <= 0.0)
@@ -228,7 +234,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
                 return Gdk.EVENT_STOP;
             });
-            update_panel_icon (volume_control.get_volume ());
+            update_panel_icon (volume_control.volume.volume);
         }
 
         return panel_icon;
@@ -271,11 +277,14 @@ public class Sound.Indicator : Wingpanel.Indicator {
             volume_scale.get_switch ().notify["active"].connect (on_volume_switch_change);
 
             volume_scale.get_scale ().value_changed.connect (() => {
-                volume_control.set_volume (volume_scale.get_scale ().get_value ());
+                var vol = new Services.VolumeControl.Volume();
+                vol.volume = volume_scale.get_scale ().get_value ();
+                vol.reason = Services.VolumeControl.VolumeReasons.USER_KEYPRESS;
+                this.volume_control.volume = vol;
                 update_volume_icon ();
             });
 
-            volume_scale.get_scale ().set_value (volume_control.get_volume ());
+            volume_scale.get_scale ().set_value (volume_control.volume.volume);
 
             update_volume_icon ();
 
@@ -292,7 +301,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
             mic_scale.get_switch ().notify["active"].connect (on_mic_switch_change);
 
             mic_scale.get_scale ().value_changed.connect (() => {
-                volume_control.set_mic_volume (mic_scale.get_scale ().get_value ());
+                volume_control.mic_volume = mic_scale.get_scale ().get_value ();
             });
 
             main_grid.attach (mic_scale, 0, position++, 1, 1);
