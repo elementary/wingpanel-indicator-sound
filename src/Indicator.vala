@@ -37,10 +37,11 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
     private Notify.Notification notification;
 
+    private Services.Settings settings;
+
     bool mute_blocks_sound = false;
     uint sound_was_blocked_timeout_id;
 
-    // TODO make configurable
     double max_volume = 1.0;
 
     const double volume_step_percentage = 0.06;
@@ -60,6 +61,9 @@ public class Sound.Indicator : Wingpanel.Indicator {
         Notify.init ("wingpanel-indicator-sound");
         this.notification = new Notify.Notification ("indicator-sound", "", "");
         this.notification.set_hint ("x-canonical-private-synchronous", new Variant.string ("indicator-sound"));
+
+        this.settings = new Services.Settings ();
+        settings.notify["max-volume"].connect (set_max_volume);
     }
 
     ~Indicator () {
@@ -69,8 +73,19 @@ public class Sound.Indicator : Wingpanel.Indicator {
         }
     }
 
+    private void set_max_volume () {
+        var max = settings.max_volume / 100;
+        // we do not allow more than 11db over the NORM volume
+        var cap_volume = (double)PulseAudio.Volume.sw_from_dB(11.0) / PulseAudio.Volume.NORM;
+        if (max > cap_volume)
+            max = cap_volume;
+
+        this.max_volume = max;
+        on_volume_change ();
+    }
+
     private void on_volume_change () {
-        var volume = volume_control.volume.volume;
+        var volume = volume_control.volume.volume / this.max_volume;
         volume_scale.get_scale ().set_value (volume);
         update_panel_icon (volume);
     }
@@ -222,8 +237,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
                     this.notification.update ("indicator-sound", "", icon);
                     this.notification.set_hint ("value", new Variant.int32 (
-                        ((int32) (this.max_volume * 100 * v / this.max_volume)).
-                            clamp (-1, ((int)this.max_volume * 100) + 1)));
+                        (int32)Math.round(volume_control.volume.volume / this.max_volume * 100.0)));
                     try {
                         this.notification.show ();
                     }
@@ -278,7 +292,8 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
             volume_scale.get_scale ().value_changed.connect (() => {
                 var vol = new Services.VolumeControl.Volume();
-                vol.volume = volume_scale.get_scale ().get_value ();
+                var v = volume_scale.get_scale ().get_value () * this.max_volume;
+                vol.volume = v.clamp (0.0, this.max_volume);
                 vol.reason = Services.VolumeControl.VolumeReasons.USER_KEYPRESS;
                 this.volume_control.volume = vol;
                 update_volume_icon ();
@@ -287,6 +302,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
             volume_scale.get_scale ().set_value (volume_control.volume.volume);
 
             update_volume_icon ();
+            set_max_volume ();
 
             main_grid.attach (volume_scale, 0, position++, 1, 1);
 

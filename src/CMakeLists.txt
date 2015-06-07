@@ -20,6 +20,7 @@ vala_precompile (VALA_C ${CMAKE_PROJECT_NAME}
   Widgets/MprisGui.vala
   Widgets/MprisWidget.vala
   Services/MprisClient.vala
+  Services/Settings.vala
   Services/Volume-control.vala
   ${CMAKE_CURRENT_BINARY_DIR}/config.vala
 PACKAGES

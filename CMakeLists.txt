@@ -36,3 +36,6 @@ file (GLOB resources "${CMAKE_CURRENT_SOURCE_DIR}/data/*")
 
 # Code
 add_subdirectory(src)
+
+# GSettings schema
+add_subdirectory (schemas)

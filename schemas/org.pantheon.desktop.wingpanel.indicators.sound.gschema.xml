@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+    <schema path="/org/pantheon/desktop/wingpanel/indicators/sound/" id="org.pantheon.desktop.wingpanel.indicators.sound" gettext-domain="sound-indicator">
+        <key type="d" name="max-volume">
+            <default>100</default>
+            <range min="1" max="160"/>
+            <summary>Define the maximum volume in %.</summary>
+            <description>With this value you can customize the volume range. So if e.g. your speaker reach their max. tolerated volume at 20%, you can set the max volume to 20% and the sound indicator will adapt to this.</description>
+        </key>
+    </schema>
+</schemalist>
