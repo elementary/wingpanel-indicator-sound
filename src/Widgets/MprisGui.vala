@@ -297,7 +297,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
         if  ("xesam:artist" in client.player.metadata && client.player.metadata["xesam:artist"].is_of_type (VariantType.STRING_ARRAY)) {
             /* get_strv causes a segfault from multiple free's on vala's side. */
             string[] artists = client.player.metadata["xesam:artist"].dup_strv ();
-            artist_label.set_text (Markup.escape_text (_("by ")+string.joinv (", ", artists)));
+            artist_label.set_text (_("by ")+string.joinv (", ", artists));
         } else {
             if  (client.player.playback_status == "Playing")
                 artist_label.set_text (_("Unknown Title"));
