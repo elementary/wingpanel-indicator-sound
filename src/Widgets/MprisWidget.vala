@@ -11,15 +11,16 @@
  * (at your option) any later version.
  */
 
-public class Sound.Widgets.MprisWidget : Gtk.Box
-{
+public class Sound.Widgets.MprisWidget : Gtk.Box {
     Services.DBusImpl impl;
 
+    AppInfo default_music;
+    ClientWidget default_widget;
     HashTable<string,ClientWidget> ifaces;
     public signal void child_count_changed (int count);
     public signal void close ();
 
-    public MprisWidget() {
+    public MprisWidget(Services.Settings settings) {
         Object (orientation: Gtk.Orientation.VERTICAL, spacing: 1);
 
         ifaces = new HashTable<string,ClientWidget>(str_hash, str_equal);
@@ -28,6 +29,13 @@ public class Sound.Widgets.MprisWidget : Gtk.Box
             setup_dbus();
             return false;
         });
+        default_music = AppInfo.get_default_for_type ("audio/x-vorbis+ogg", false);
+        default_widget = new ClientWidget.default (default_music, settings);
+        default_widget.close.connect (() => {
+            close ();
+        });
+        default_widget.show_all();
+        pack_start(default_widget, false, false, 0);
 
         show_all();
     }
@@ -38,15 +46,19 @@ public class Sound.Widgets.MprisWidget : Gtk.Box
      * @param name DBUS name (object path)
      * @param iface The constructed MprisClient instance
      */
-    void add_iface(string name, Services.MprisClient iface) {
-        ClientWidget widg = new ClientWidget(iface);
-        widg.close.connect (() => {
-            close ();
-        });
-        widg.show_all();
-        pack_start(widg, false, false, 0);
-        ifaces.insert(name, widg);
-        child_count_changed ((int) ifaces.length);
+    void add_iface (string name, Services.MprisClient iface) {
+        if (iface.player.desktop_entry == default_music.get_id ().replace (".desktop","")) {
+            default_widget.set_client (name, iface);
+        } else {
+            ClientWidget widg = new ClientWidget (iface);
+            widg.close.connect (() => {
+                close ();
+            });
+            widg.show_all();
+            pack_start(widg, false, false, 0);
+            ifaces.insert(name, widg);
+            child_count_changed ((int) ifaces.length);
+        }
     }
 
     /**
@@ -55,11 +67,15 @@ public class Sound.Widgets.MprisWidget : Gtk.Box
      * @param name DBUS name to remove handler for
      */
     void destroy_iface(string name) {
-        var widg = ifaces[name];
-        if (widg  != null) {
-            remove(widg);
-            ifaces.remove(name);
-            child_count_changed ((int) ifaces.length);
+        if (default_widget.mpris_name == name) {
+            default_widget.remove_client ();
+        } else {
+            var widg = ifaces[name];
+            if (widg  != null) {
+                remove(widg);
+                ifaces.remove(name);
+                child_count_changed ((int) ifaces.length);
+            }
         }
     }
 

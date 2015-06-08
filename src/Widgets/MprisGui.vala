@@ -21,15 +21,22 @@ const int MAX_WIDTH_TITLE = 200;
  * MPRIS clients to be controlled with multiple widgets
  */
 public class Sound.Widgets.ClientWidget : Gtk.Box {
+    private const string SEPERATOR =  "||";
+    private const string NOT_PLAYING = _("Not currently playing");
+
+    public string mpris_name = "";
+
     Gtk.Revealer player_revealer;
     Gtk.Image? background = null;
-    Services.MprisClient client;
+    Services.MprisClient? client = null;
+    Services.Settings settings;
+
     Gtk.Label title_label;
     Gtk.Label artist_label;
     Gtk.Button prev_btn;
     Gtk.Button play_btn;
     Gtk.Button next_btn;
-    DesktopAppInfo? ainfo;
+    AppInfo? ainfo;
     Icon? app_icon = null;
     string app_name = _("Music player");
     Cancellable load_remote_art_cancel;
@@ -46,10 +53,6 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
         this.client = client;
         load_remote_art_cancel = new Cancellable ();
 
-        player_revealer = new Gtk.Revealer ();
-        player_revealer.reveal_child = true;
-        var player_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
-
         if  (client.player.desktop_entry != "") {
             ainfo = new DesktopAppInfo (client.player.desktop_entry + ".desktop");
             if  (ainfo != null) {
@@ -62,6 +65,43 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
         if  (app_icon == null) {
             app_icon = new ThemedIcon ("emblem-music-symbolic");
         }
+
+        create_ui ();
+    }
+
+    /**
+     * Create a new ClientWidget
+     *
+     * @param client The underlying MprisClient instance to use
+     */
+    public ClientWidget.default (AppInfo info, Services.Settings settings) {
+        Object (orientation: Gtk.Orientation.VERTICAL, spacing: 0);
+
+        this.client = null;
+        this.settings = settings;
+        load_remote_art_cancel = new Cancellable ();
+
+        ainfo = info;
+        app_icon = ainfo.get_icon ();
+        app_name = ainfo.get_display_name ();
+
+        create_ui ();
+        if (settings.last_title != "") {
+            string[] title = settings.last_title.split (SEPERATOR);
+            if (title.length == 2) {
+                title_label.set_markup ("<b>%s</b>".printf (Markup.escape_text (title[0])));
+                artist_label.set_text (title[1]);
+                return;
+            }
+        }
+        title_label.set_markup ("<b>%s</b>".printf (Markup.escape_text (app_name)));
+        artist_label.set_text (NOT_PLAYING);
+    }
+
+    private void create_ui () {
+        player_revealer = new Gtk.Revealer ();
+        player_revealer.reveal_child = true;
+        var player_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
 
         background = new Gtk.Image.from_gicon (app_icon, Gtk.IconSize.DIALOG);
 
@@ -118,7 +158,10 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
         btn.clicked.connect (()=> {
             Idle.add (()=> {
                 try {
-                    client.player.play_pause ();
+                    if (client != null)
+                        client.player.play_pause ();
+                    else
+                        ainfo.launch (null, null);
                 } catch  (Error e) {
                     warning ("Could not play/pause: %s", e.message);
                 }
@@ -149,10 +192,44 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
 
         player_box.pack_end (controls, false, false, 0);
 
-        update_from_meta ();
-        update_play_status ();
-        update_controls ();
 
+        if (client != null) {
+            connect_to_client ();
+            update_play_status ();
+            update_from_meta ();
+            update_controls ();
+        }
+
+        player_revealer.add (player_box);
+        pack_start (player_revealer);
+    }
+
+    public void set_client (string name, Services.MprisClient client) {
+        this.mpris_name = name;
+        this.client = client;
+        connect_to_client ();
+        update_play_status ();
+        update_from_meta ();
+        update_controls ();
+        Idle.add (()=> {
+            try {
+                client.player.play_pause ();
+            } catch  (Error e) {
+                warning ("Could not play/pause: %s", e.message);
+            }
+            return false;
+        });
+    }
+
+    public void remove_client () {
+        this.client = null;
+        (play_btn.get_image () as Gtk.Image).set_from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
+        prev_btn.set_sensitive (false);
+        next_btn.set_sensitive (false);
+        settings.last_title = "%s%s%s".printf (title_label.get_text (), SEPERATOR, artist_label.get_text ());
+    }
+
+    private void connect_to_client () {
         client.prop.properties_changed.connect ((i,p,inv)=> {
             if  (i == "org.mpris.MediaPlayer2.Player") {
                 /* Handle mediaplayer2 iface */
@@ -176,15 +253,12 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
                 });
             }
         });
-
-        player_revealer.add (player_box);
-        pack_start (player_revealer);
     }
 
     private bool raise_player (Gdk.EventButton event) {
         try {
             close ();
-            if (client.player.can_raise) {
+            if (client != null && client.player.can_raise) {
                 client.player.raise ();
             } else if (ainfo != null) {
                 ainfo.launch (null, null);
@@ -302,7 +376,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
             if  (client.player.playback_status == "Playing")
                 artist_label.set_text (_("Unknown Title"));
             else
-                artist_label.set_text (_("Not currently playing"));
+                artist_label.set_text (NOT_PLAYING);
         }
     }
 

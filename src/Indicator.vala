@@ -259,17 +259,17 @@ public class Sound.Indicator : Wingpanel.Indicator {
             int position = 0;
             main_grid = new Gtk.Grid ();
 
-            var mpris = new Widgets.MprisWidget ();
+            var mpris = new Widgets.MprisWidget (settings);
 
-            mpris.child_count_changed.connect ((count) => {
-                if (count > 0) {
-                    first_seperator.no_show_all = false;
-                    first_seperator.show ();
-                } else {
-                    first_seperator.no_show_all = true;
-                    first_seperator.hide ();
-                }
-            });
+            // mpris.child_count_changed.connect ((count) => {
+            //     if (count > 0) {
+            //         first_seperator.no_show_all = false;
+            //         first_seperator.show ();
+            //     } else {
+            //         first_seperator.no_show_all = true;
+            //         first_seperator.hide ();
+            //     }
+            // });
 
             mpris.close.connect (() => {
                 close ();
@@ -278,7 +278,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
             main_grid.attach (mpris, 0, position++, 1, 1);
 
             first_seperator = new Wingpanel.Widgets.IndicatorSeparator ();
-            first_seperator.no_show_all = true;
+            // first_seperator.no_show_all = true;
 
             main_grid.attach (first_seperator, 0, position++, 1, 1);
 
