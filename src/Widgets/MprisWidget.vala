@@ -14,7 +14,7 @@
 public class Sound.Widgets.MprisWidget : Gtk.Box {
     Services.DBusImpl impl;
 
-    AppInfo default_music;
+    AppInfo? default_music;
     ClientWidget default_widget;
     HashTable<string,ClientWidget> ifaces;
     public signal void child_count_changed (int count);
@@ -30,13 +30,14 @@ public class Sound.Widgets.MprisWidget : Gtk.Box {
             return false;
         });
         default_music = AppInfo.get_default_for_type ("audio/x-vorbis+ogg", false);
-        default_widget = new ClientWidget.default (default_music, settings);
-        default_widget.close.connect (() => {
-            close ();
-        });
-        default_widget.show_all();
-        pack_start(default_widget, false, false, 0);
-
+        if (default_music != null) {
+            default_widget = new ClientWidget.default (default_music, settings);
+            default_widget.close.connect (() => {
+                close ();
+            });
+            default_widget.show_all();
+            pack_start(default_widget, false, false, 0);
+        }
         show_all();
     }
 

@@ -21,7 +21,6 @@ const int MAX_WIDTH_TITLE = 200;
  * MPRIS clients to be controlled with multiple widgets
  */
 public class Sound.Widgets.ClientWidget : Gtk.Box {
-    private const string SEPERATOR =  "||";
     private const string NOT_PLAYING = _("Not currently playing");
 
     public string mpris_name = "";
@@ -40,6 +39,9 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
     Icon? app_icon = null;
     string app_name = _("Music player");
     Cancellable load_remote_art_cancel;
+    string last_artUrl;
+    bool launched_by_indicator = false;
+
     public signal void close ();
 
     /**
@@ -70,9 +72,10 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
     }
 
     /**
-     * Create a new ClientWidget
+     * Create a new ClientWidget for the default player
      *
-     * @param client The underlying MprisClient instance to use
+     * @param info The AppInfo of the default music player
+     * @param settings Sound indicator settings
      */
     public ClientWidget.default (AppInfo info, Services.Settings settings) {
         Object (orientation: Gtk.Orientation.VERTICAL, spacing: 0);
@@ -86,11 +89,13 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
         app_name = ainfo.get_display_name ();
 
         create_ui ();
-        if (settings.last_title != "") {
-            string[] title = settings.last_title.split (SEPERATOR);
-            if (title.length == 2) {
-                title_label.set_markup ("<b>%s</b>".printf (Markup.escape_text (title[0])));
-                artist_label.set_text (title[1]);
+        if (settings.last_title_info.length == 4) {
+            string[] title_info = settings.last_title_info;
+                if (title_info[0] == ainfo.get_id ()) {
+                title_label.set_markup ("<b>%s</b>".printf (Markup.escape_text (title_info[1])));
+                artist_label.set_text (title_info[2]);
+                if (title_info[3] != "")
+                    update_art (title_info[3]);
                 return;
             }
         }
@@ -160,8 +165,10 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
                 try {
                     if (client != null)
                         client.player.play_pause ();
-                    else
+                    else {
+                        launched_by_indicator = true;
                         ainfo.launch (null, null);
+                    }
                 } catch  (Error e) {
                     warning ("Could not play/pause: %s", e.message);
                 }
@@ -211,22 +218,26 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
         update_play_status ();
         update_from_meta ();
         update_controls ();
-        Idle.add (()=> {
-            try {
-                client.player.play_pause ();
-            } catch  (Error e) {
-                warning ("Could not play/pause: %s", e.message);
-            }
-            return false;
-        });
+        if (launched_by_indicator) {
+            Idle.add (()=> {
+                try {
+                    launched_by_indicator = false;
+                    client.player.play_pause ();
+                } catch  (Error e) {
+                    warning ("Could not play/pause: %s", e.message);
+                }
+                return false;
+            });
+        }
     }
 
     public void remove_client () {
-        this.client = null;
         (play_btn.get_image () as Gtk.Image).set_from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
         prev_btn.set_sensitive (false);
         next_btn.set_sensitive (false);
-        settings.last_title = "%s%s%s".printf (title_label.get_text (), SEPERATOR, artist_label.get_text ());
+        settings.last_title_info = {ainfo.get_id (), title_label.get_text (), artist_label.get_text (), last_artUrl};
+
+        this.client = null;
     }
 
     private void connect_to_client () {
@@ -354,8 +365,10 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
     protected void update_from_meta () {
         if  ("mpris:artUrl" in client.player.metadata) {
             var url = client.player.metadata["mpris:artUrl"].get_string ();
+            last_artUrl = url;
             update_art (url);
         } else {
+            last_artUrl = "";
             background.pixel_size = ICON_SIZE;
             background.set_from_gicon (app_icon, Gtk.IconSize.DIALOG);
         }

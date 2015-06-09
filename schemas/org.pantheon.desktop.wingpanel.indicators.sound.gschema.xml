@@ -7,9 +7,9 @@
             <summary>Define the maximum volume in %.</summary>
             <description>With this value you can customize the volume range. So if e.g. your speaker reach their max. tolerated volume at 20%, you can set the max volume to 20% and the sound indicator will adapt to this.</description>
         </key>
-        <key type="s" name="last-title">
-            <default>""</default>
-            <summary>Last played title in the default media player.</summary>
+        <key type="as" name="last-title-info">
+            <default>[]</default>
+            <summary>Last played title of the default media player.</summary>
         </key>
     </schema>
 </schemalist>

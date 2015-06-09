@@ -18,7 +18,7 @@
 public class Sound.Services.Settings : Granite.Services.Settings {
 
     public double max_volume { get; set; }
-    public string last_title { get; set; }
+    public string[] last_title_info { get; set; }
 
     public Settings () {
         base ("org.pantheon.desktop.wingpanel.indicators.sound");
