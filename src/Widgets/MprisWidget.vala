@@ -17,7 +17,6 @@ public class Sound.Widgets.MprisWidget : Gtk.Box {
     AppInfo? default_music;
     ClientWidget default_widget;
     HashTable<string,ClientWidget> ifaces;
-    public signal void child_count_changed (int count);
     public signal void close ();
 
     public MprisWidget(Services.Settings settings) {
@@ -58,7 +57,6 @@ public class Sound.Widgets.MprisWidget : Gtk.Box {
             widg.show_all();
             pack_start(widg, false, false, 0);
             ifaces.insert(name, widg);
-            child_count_changed ((int) ifaces.length);
         }
     }
 
@@ -75,7 +73,6 @@ public class Sound.Widgets.MprisWidget : Gtk.Box {
             if (widg  != null) {
                 remove(widg);
                 ifaces.remove(name);
-                child_count_changed ((int) ifaces.length);
             }
         }
     }
