@@ -110,8 +110,9 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
 
         background = new Gtk.Image.from_gicon (app_icon, Gtk.IconSize.DIALOG);
 
-        background.margin_start = 6;
-        background.margin_end = 6;
+        background.margin_start = 4;
+        background.margin_end = 4;
+        background.margin_bottom = 2;
         background.can_focus = true;
         var background_box = new Gtk.EventBox ();
         background_box.add_events (Gdk.EventMask.BUTTON_PRESS_MASK);
