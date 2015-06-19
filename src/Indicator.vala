@@ -27,13 +27,13 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
     private Widgets.Scale mic_scale;
 
-    private Wingpanel.Widgets.IndicatorButton settings_button;
+    private Wingpanel.Widgets.Button settings_button;
 
     private Services.VolumeControlPulse volume_control;
 
-    private Wingpanel.Widgets.IndicatorSeparator first_seperator;
+    private Wingpanel.Widgets.Separator first_seperator;
 
-    private Wingpanel.Widgets.IndicatorSeparator mic_seperator;
+    private Wingpanel.Widgets.Separator mic_seperator;
 
     private Notify.Notification notification;
 
@@ -267,7 +267,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
             main_grid.attach (mpris, 0, position++, 1, 1);
 
-            first_seperator = new Wingpanel.Widgets.IndicatorSeparator ();
+            first_seperator = new Wingpanel.Widgets.Separator ();
 
             main_grid.attach (first_seperator, 0, position++, 1, 1);
 
@@ -295,7 +295,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
             main_grid.attach (volume_scale, 0, position++, 1, 1);
 
-            main_grid.attach (new Wingpanel.Widgets.IndicatorSeparator (), 0, position++, 1, 1);
+            main_grid.attach (new Wingpanel.Widgets.Separator (), 0, position++, 1, 1);
 
             mic_scale = new Widgets.Scale ("audio-input-microphone-symbolic", true, 0.0, 1.0, 0.01);
             mic_scale.margin_start = 6;
@@ -311,13 +311,13 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
             main_grid.attach (mic_scale, 0, position++, 1, 1);
 
-            mic_seperator = new Wingpanel.Widgets.IndicatorSeparator ();
+            mic_seperator = new Wingpanel.Widgets.Separator ();
 
             update_mic_visibility ();
 
             main_grid.attach (mic_seperator, 0, position++, 1, 1);
 
-            settings_button = new Wingpanel.Widgets.IndicatorButton (_("Sound Settings…"));
+            settings_button = new Wingpanel.Widgets.Button (_("Sound Settings…"));
             settings_button.clicked.connect (() => {
                 show_settings ();
             });
@@ -338,6 +338,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
     private void show_settings () {
         var cmd = new Granite.Services.SimpleCommand ("/usr/bin", SETTINGS_EXEC);
         cmd.run ();
+        close ();
     }
 }
 
