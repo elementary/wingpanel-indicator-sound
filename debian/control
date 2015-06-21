@@ -4,13 +4,15 @@ Priority: optional
 Maintainer: Cody Garver <cody@elementary.io>
 Build-Depends: cmake,
                debhelper (>= 9),
+               gobject-introspection,
                libaccountsservice-dev,
                libgranite-dev,
                libgtk-3-dev (>= 3.12),
+               libnotify-dev,
                libpulse-dev,
-#               libpulse-mainloop-glib-dev,
                libwingpanel-dev,
-               valac (>= 0.24)
+               valac (>= 0.28),
+               libvala-0.28-dev
 Standards-Version: 3.9.6
 Homepage: https://launchpad.net/wingpanel-indicator-sound
 
