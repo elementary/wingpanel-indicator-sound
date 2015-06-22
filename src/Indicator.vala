@@ -43,8 +43,9 @@ public class Sound.Indicator : Wingpanel.Indicator {
     uint sound_was_blocked_timeout_id;
 
     double max_volume = 1.0;
-
     const double volume_step_percentage = 0.06;
+
+    unowned Canberra.Context? ca_context = null;
 
     public Indicator () {
         Object (code_name: Wingpanel.Indicator.SOUND,
@@ -64,6 +65,17 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
         this.settings = new Services.Settings ();
         settings.notify["max-volume"].connect (set_max_volume);
+    }
+
+    construct {
+        var locale = Intl.setlocale (LocaleCategory.MESSAGES, null);
+        ca_context = CanberraGtk.context_get ();
+        ca_context.change_props (Canberra.PROP_APPLICATION_NAME, "indicator-sound",
+                                 Canberra.PROP_APPLICATION_ID, "wingpanel-indicator-sound",
+                                 Canberra.PROP_APPLICATION_NAME, "start-here",
+                                 Canberra.PROP_APPLICATION_LANGUAGE, locale,
+                                 null);
+        ca_context.open ();
     }
 
     ~Indicator () {
@@ -289,6 +301,16 @@ public class Sound.Indicator : Wingpanel.Indicator {
             });
 
             volume_scale.get_scale ().set_value (volume_control.volume.volume);
+            volume_scale.get_scale ().button_release_event.connect ((e) => {
+                play_sound_blubble ();
+                return false;
+            });
+            volume_scale.get_scale ().scroll_event.connect ((e) => {
+                var v = volume_scale.get_scale ().get_value ();
+                if (v > 0.0 && v < 1.0)
+                    play_sound_blubble ();
+                return false;
+            });
 
             update_volume_icon ();
             set_max_volume ();
@@ -339,6 +361,14 @@ public class Sound.Indicator : Wingpanel.Indicator {
         var cmd = new Granite.Services.SimpleCommand ("/usr/bin", SETTINGS_EXEC);
         cmd.run ();
         close ();
+    }
+
+    private void play_sound_blubble () {
+        Canberra.Proplist props;
+        Canberra.Proplist.create (out props);
+        props.sets (Canberra.PROP_CANBERRA_CACHE_CONTROL, "volatile");
+        props.sets (Canberra.PROP_EVENT_ID, "audio-volume-change");
+        ca_context.play_full (0, props);
     }
 }
 

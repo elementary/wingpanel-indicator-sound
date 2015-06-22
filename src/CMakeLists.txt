@@ -1,7 +1,7 @@
 find_package (PkgConfig)
 
 # Add all your dependencies to the list below
-pkg_check_modules (DEPS REQUIRED wingpanel-2.0 granite libpulse libpulse-mainloop-glib libnotify)
+pkg_check_modules (DEPS REQUIRED wingpanel-2.0 granite libpulse libpulse-mainloop-glib libnotify libcanberra libcanberra-gtk)
 
 add_definitions (${DEPS_CFLAGS})
 link_directories (${DEPS_LIBRARY_DIRS})
@@ -29,6 +29,8 @@ PACKAGES
   libpulse
   libpulse-mainloop-glib
   libnotify
+  libcanberra
+  libcanberra-gtk
 OPTIONS
   --thread
 )
