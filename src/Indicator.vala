@@ -257,7 +257,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
                     catch (Error e) {
                         warning ("unable to show notification: %s", e.message);
                     } 
-                } else {
+                } else if (v <= (this.max_volume + 0.05)) {
                     play_sound_blubble ();
                 }
 
