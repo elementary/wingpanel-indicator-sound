@@ -26,10 +26,12 @@ public class MaxWidthLabel : Gtk.Label {
 
     public override void get_preferred_width (out int minimum_width, out int natural_width) {
         base.get_preferred_width (out minimum_width, out natural_width);
-        if (minimum_width > max_width)
+        if (minimum_width > max_width) {
             minimum_width = max_width;
-        if (natural_width > max_width)
+        }
+        if (natural_width > max_width) {
             natural_width = max_width;
+        }
     }
 
 }

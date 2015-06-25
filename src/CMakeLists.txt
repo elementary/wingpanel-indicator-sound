@@ -15,7 +15,6 @@ include (ValaPrecompile)
 vala_precompile (VALA_C ${CMAKE_PROJECT_NAME}
   Indicator.vala
   Widgets/MaxWidthLabel.vala
-  Widgets/PanelIcon.vala
   Widgets/Scale.vala
   Widgets/MprisGui.vala
   Widgets/MprisWidget.vala

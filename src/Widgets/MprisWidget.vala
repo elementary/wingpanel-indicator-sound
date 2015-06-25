@@ -92,8 +92,9 @@ public class Sound.Widgets.MprisWidget : Gtk.Box {
                     foreach (string name2 in ifaces.get_keys ()) {
                         // skip if already a interface is present.
                         // some version of vlc register two
-                        if (name2.has_prefix (name) || name.has_prefix (name2))
+                        if (name2.has_prefix (name) || name.has_prefix (name2)) {
                             add = false;
+                        }
                     }
                     if (add) {
                         var iface = new_iface(name);
@@ -114,8 +115,9 @@ public class Sound.Widgets.MprisWidget : Gtk.Box {
                             foreach (string name in ifaces.get_keys ()) {
                                 // skip if already a interface is present.
                                 // some version of vlc register two
-                                if (name.has_prefix (n) || n.has_prefix (name))
+                                if (name.has_prefix (n) || n.has_prefix (name)) {
                                     return false;
+                                }
                             }
                             var iface = new_iface(n);
                             if (iface != null) {

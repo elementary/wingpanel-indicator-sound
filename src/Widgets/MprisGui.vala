@@ -60,8 +60,9 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
             if  (ainfo != null) {
                 app_icon = ainfo.get_icon ();
                 app_name = ainfo.get_display_name ();
-                if  (app_name == "")
+                if  (app_name == "") {
                     app_name = ainfo.get_name ();
+                }
             }
         }
         if  (app_icon == null) {
@@ -94,8 +95,9 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
                 if (title_info[0] == ainfo.get_id ()) {
                 title_label.set_markup ("<b>%s</b>".printf (Markup.escape_text (title_info[1])));
                 artist_label.set_text (title_info[2]);
-                if (title_info[3] != "")
+                if (title_info[3] != "") {
                     update_art (title_info[3]);
+                }
                 return;
             }
         }
@@ -164,9 +166,9 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
         btn.clicked.connect (()=> {
             Idle.add (()=> {
                 try {
-                    if (client != null)
+                    if (client != null) {
                         client.player.play_pause ();
-                    else {
+                    } else {
                         launched_by_indicator = true;
                         ainfo.launch (null, null);
                     }
@@ -387,10 +389,11 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
             string[] artists = client.player.metadata["xesam:artist"].dup_strv ();
             artist_label.set_text (_("by ")+string.joinv (", ", artists));
         } else {
-            if  (client.player.playback_status == "Playing")
+            if  (client.player.playback_status == "Playing") {
                 artist_label.set_text (_("Unknown Title"));
-            else
+            } else {
                 artist_label.set_text (NOT_PLAYING);
+            }
         }
     }
 

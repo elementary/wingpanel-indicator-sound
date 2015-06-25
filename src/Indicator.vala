@@ -19,7 +19,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
     private const string SETTINGS_EXEC = "/usr/bin/switchboard sound";
 
-    private Widgets.PanelIcon panel_icon;
+    private Wingpanel.Widgets.OverlayIcon panel_icon;
 
     private Gtk.Grid main_grid;
 
@@ -77,7 +77,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
                                  Canberra.PROP_APPLICATION_LANGUAGE, locale,
                                  null);
         ca_context.open ();
-    } 
+    }
 
     ~Indicator () {
         if (this.sound_was_blocked_timeout_id > 0) {
@@ -90,8 +90,9 @@ public class Sound.Indicator : Wingpanel.Indicator {
         var max = settings.max_volume / 100;
         // we do not allow more than 11db over the NORM volume
         var cap_volume = (double)PulseAudio.Volume.sw_from_dB(11.0) / PulseAudio.Volume.NORM;
-        if (max > cap_volume)
+        if (max > cap_volume) {
             max = cap_volume;
+        }
 
         this.max_volume = max;
         on_volume_change ();
@@ -137,8 +138,9 @@ public class Sound.Indicator : Wingpanel.Indicator {
             this.mute_blocks_sound = true;
         } else if (this.mute_blocks_sound) {
             /* Continue to show the blocking icon five seconds after a player has tried to play something */
-            if (this.sound_was_blocked_timeout_id > 0)
+            if (this.sound_was_blocked_timeout_id > 0) {
                 Source.remove (this.sound_was_blocked_timeout_id);
+            }
 
             this.sound_was_blocked_timeout_id = Timeout.add_seconds (5, () => {
                 this.mute_blocks_sound = false;
@@ -167,27 +169,28 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
     private void update_panel_icon (double volume) {
         if (volume <= 0 || this.volume_control.mute) {
-            panel_icon.set_icon (this.mute_blocks_sound ? "audio-volume-muted-blocking-symbolic" : "audio-volume-muted-symbolic");
+            panel_icon.set_main_icon_name (this.mute_blocks_sound ? "audio-volume-muted-blocking-symbolic" : "audio-volume-muted-symbolic");
         } else if (volume <= 0.3) {
-            panel_icon.set_icon ("audio-volume-low-symbolic");
+            panel_icon.set_main_icon_name ("audio-volume-low-symbolic");
         } else if (volume <= 0.7) {
-            panel_icon.set_icon ("audio-volume-medium-symbolic");
+            panel_icon.set_main_icon_name ("audio-volume-medium-symbolic");
         } else {
-            panel_icon.set_icon ("audio-volume-high-symbolic");
+            panel_icon.set_main_icon_name ("audio-volume-high-symbolic");
         }
     }
 
     private void update_volume_icon () {
         string icon;
         var v = volume_scale.get_scale ().get_value ();
-        if (v <= 0.0)
+        if (v <= 0.0) {
             icon = "audio-volume-muted-symbolic";
-        else if (v <= 0.3)
+        } else if (v <= 0.3) {
             icon = "audio-volume-low-symbolic";
-        else if (v <= 0.7)
+        } else if (v <= 0.7) {
             icon = "audio-volume-medium-symbolic";
-        else
+        } else {
             icon = "audio-volume-high-symbolic";
+        }
         volume_scale.set_icon (icon);
     }
 
@@ -213,7 +216,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
     public override Gtk.Widget get_display_widget () {
         if (panel_icon == null) {
-            panel_icon = new Widgets.PanelIcon ();
+            panel_icon = new Wingpanel.Widgets.OverlayIcon ("audio-output-none");
             // toggle mute on middle click
             panel_icon.button_press_event.connect ((e) => {
                 if (e.button == Gdk.BUTTON_MIDDLE) {
@@ -239,24 +242,24 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
                 if (open == false && this.notification != null && v >= -0.05 && v <= (this.max_volume + 0.05)) {
                     string icon;
-                    if (v <= 0.0)
+                    if (v <= 0.0) {
                         icon = "notification-audio-volume-off";
-                    else if (v <= 0.3)
+                    } else if (v <= 0.3) {
                         icon = "notification-audio-volume-low";
-                    else if (v <= 0.7)
+                    } else if (v <= 0.7) {
                         icon = "notification-audio-volume-medium";
-                    else
+                    } else {
                         icon = "notification-audio-volume-high";
+                    }
 
                     this.notification.update ("indicator-sound", "", icon);
                     this.notification.set_hint ("value", new Variant.int32 (
                         (int32)Math.round(volume_control.volume.volume / this.max_volume * 100.0)));
                     try {
                         this.notification.show ();
+                    } catch (Error e) {
+                        warning ("Unable to show sound notification: %s", e.message);
                     }
-                    catch (Error e) {
-                        warning ("unable to show notification: %s", e.message);
-                    } 
                 } else if (v <= (this.max_volume + 0.05)) {
                     play_sound_blubble ();
                 }
@@ -309,10 +312,23 @@ public class Sound.Indicator : Wingpanel.Indicator {
                 return false;
             });
             volume_scale.get_scale ().scroll_event.connect ((e) => {
-                var v = volume_scale.get_scale ().get_value ();
-                if (v > 0.0 && v < 1.0)
+                int dir = 0;
+                if (e.direction == Gdk.ScrollDirection.UP || e.direction == Gdk.ScrollDirection.RIGHT ||
+                    (e.direction == Gdk.ScrollDirection.SMOOTH && e.delta_y < 0)) {
+                    dir = 1;
+                } else if (e.direction == Gdk.ScrollDirection.DOWN || e.direction == Gdk.ScrollDirection.LEFT ||
+                    (e.direction == Gdk.ScrollDirection.SMOOTH && e.delta_y > 0)) {
+                    dir = -1;
+                }
+
+                double v = volume_scale.get_scale ().get_value ();
+                v = v + volume_step_percentage * dir;
+
+                if (v >= -0.05 && v <= 1.05) {
+                    volume_scale.get_scale ().set_value (v);
                     play_sound_blubble ();
-                return false;
+                }
+                return true;
             });
 
             update_volume_icon ();
@@ -357,7 +373,9 @@ public class Sound.Indicator : Wingpanel.Indicator {
         open = true;
         try {
             notification.close ();
-        } catch (Error E) {}
+        } catch (Error e) {
+            warning ("Unable to close sound notification: %s", e.message);
+        }
     }
 
     public override void closed () {
