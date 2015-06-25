@@ -39,6 +39,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
     private Services.Settings settings;
 
+    bool open = false;
     bool mute_blocks_sound = false;
     uint sound_was_blocked_timeout_id;
 
@@ -76,7 +77,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
                                  Canberra.PROP_APPLICATION_LANGUAGE, locale,
                                  null);
         ca_context.open ();
-    }
+    } 
 
     ~Indicator () {
         if (this.sound_was_blocked_timeout_id > 0) {
@@ -236,7 +237,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
                 vol.reason = Services.VolumeControl.VolumeReasons.USER_KEYPRESS;
                 this.volume_control.volume = vol;
 
-                if (this.notification != null && v >= -0.05 && v <= (this.max_volume + 0.05)) {
+                if (open == false && this.notification != null && v >= -0.05 && v <= (this.max_volume + 0.05)) {
                     string icon;
                     if (v <= 0.0)
                         icon = "notification-audio-volume-off";
@@ -255,7 +256,9 @@ public class Sound.Indicator : Wingpanel.Indicator {
                     }
                     catch (Error e) {
                         warning ("unable to show notification: %s", e.message);
-                    }
+                    } 
+                } else if (v <= (this.max_volume + 0.05)) {
+                    play_sound_blubble ();
                 }
 
                 return Gdk.EVENT_STOP;
@@ -351,16 +354,20 @@ public class Sound.Indicator : Wingpanel.Indicator {
     }
 
     public override void opened () {
-
+        open = true;
+        try {
+            notification.close ();
+        } catch (Error E) {}
     }
 
     public override void closed () {
+        open = false;
     }
 
     private void show_settings () {
         var cmd = new Granite.Services.SimpleCommand ("/usr/bin", SETTINGS_EXEC);
-        cmd.run ();
         close ();
+        cmd.run ();
     }
 
     private void play_sound_blubble () {
