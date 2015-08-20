@@ -34,6 +34,9 @@ add_definitions (-w)
 # Files
 file (GLOB resources "${CMAKE_CURRENT_SOURCE_DIR}/data/*")
 
+# Translations
+add_subdirectory (po)
+
 # Code
 add_subdirectory(src)
 
