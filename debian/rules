@@ -13,4 +13,4 @@
 	dh $@ 
 
 override_dh_strip:
-        dh_strip --dbg-package=wingpanel-indicator-sound-dbg
+	dh_strip --dbg-package=wingpanel-indicator-sound-dbg
