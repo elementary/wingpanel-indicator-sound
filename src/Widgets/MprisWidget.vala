@@ -40,6 +40,19 @@ public class Sound.Widgets.MprisWidget : Gtk.Box {
         show_all();
     }
 
+    public void pause_all () {
+        foreach (var cw in ifaces.get_values ()) {
+            Idle.add (() => {
+                try {
+                    cw.client.player.pause ();
+                } catch  (Error e) {
+                    warning ("Could not pause: %s", e.message);
+                }
+                return false;
+            });
+        }
+    }
+
     /**
      * Add an interface handler/widget to known list and UI
      *

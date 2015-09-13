@@ -27,7 +27,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
 
     Gtk.Revealer player_revealer;
     Gtk.Image? background = null;
-    Services.MprisClient? client = null;
+    public Services.MprisClient? client = null;
     Services.Settings settings;
 
     Gtk.Label title_label;
@@ -49,10 +49,10 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
      *
      * @param client The underlying MprisClient instance to use
      */
-    public ClientWidget (Services.MprisClient client) {
+    public ClientWidget (Services.MprisClient mpris_client) {
         Object (orientation: Gtk.Orientation.VERTICAL, spacing: 0);
+        this.client = mpris_client;
 
-        this.client = client;
         load_remote_art_cancel = new Cancellable ();
 
         if  (client.player.desktop_entry != "") {

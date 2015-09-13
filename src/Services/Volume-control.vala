@@ -46,6 +46,8 @@
     private Volume _volume;
     public virtual Volume volume { get { return _volume; } set { } }
     public virtual double mic_volume { get { return 0.0; } set { } }
+    protected bool _active_port_headphone = false;
+    public virtual bool headphone_plugged { get { return _active_port_headphone; } set { } }
 
     public abstract void set_mute (bool mute);
  }
@@ -101,7 +103,6 @@ public class Sound.Services.VolumeControlPulse : VolumeControl {
     private Cancellable _volume_cancellable;
     private uint _local_volume_timer = 0;
     private bool _send_next_local_volume = false;
-    private bool _active_port_headphone = false;
 
     /** true when connected to the pulse server */
     public override bool ready { get; private set; }
@@ -205,9 +206,17 @@ public class Sound.Services.VolumeControlPulse : VolumeControl {
             (i.active_port.name == "output-wired_headset" ||
              i.active_port.name == "output-wired_headphone" ||
              i.active_port.name == "analog-output-headphones")) {
-            _active_port_headphone = true;
+            if (!_active_port_headphone) {
+                _active_port_headphone = true;
+                this.notify_property ("headphone-plugged");
+                debug ("headphone plugged in\n");
+            }
         } else {
-            _active_port_headphone = false;
+            if (_active_port_headphone) {
+                _active_port_headphone = false;
+                this.notify_property ("headphone-plugged");
+                debug ("no headphone plugged in\n");
+            }
         }
 
         if (_pulse_use_stream_restore == false &&
