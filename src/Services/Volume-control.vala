@@ -46,8 +46,7 @@
     private Volume _volume;
     public virtual Volume volume { get { return _volume; } set { } }
     public virtual double mic_volume { get { return 0.0; } set { } }
-    protected bool _active_port_headphone = false;
-    public virtual bool headphone_plugged { get { return _active_port_headphone; } set { } }
+    public bool headphone_plugged { get; protected set; default = false; }
 
     public abstract void set_mute (bool mute);
  }
@@ -113,7 +112,7 @@ public class Sound.Services.VolumeControlPulse : VolumeControl {
     /** true when high volume warnings should be shown */
     public override bool high_volume {
         get {
-            return this._volume.volume > 0.75 && _active_port_headphone && stream == "multimedia";
+            return this._volume.volume > 0.75 && headphone_plugged && stream == "multimedia";
         }
     }
 
@@ -206,15 +205,13 @@ public class Sound.Services.VolumeControlPulse : VolumeControl {
             (i.active_port.name == "output-wired_headset" ||
              i.active_port.name == "output-wired_headphone" ||
              i.active_port.name == "analog-output-headphones")) {
-            if (!_active_port_headphone) {
-                _active_port_headphone = true;
-                this.notify_property ("headphone-plugged");
+            if (!headphone_plugged) {
+                headphone_plugged = true;
                 debug ("headphone plugged in\n");
             }
         } else {
-            if (_active_port_headphone) {
-                _active_port_headphone = false;
-                this.notify_property ("headphone-plugged");
+            if (headphone_plugged) {
+                headphone_plugged = false;
                 debug ("no headphone plugged in\n");
             }
         }

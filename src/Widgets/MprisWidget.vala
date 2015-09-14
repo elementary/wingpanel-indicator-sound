@@ -42,14 +42,11 @@ public class Sound.Widgets.MprisWidget : Gtk.Box {
 
     public void pause_all () {
         foreach (var cw in ifaces.get_values ()) {
-            Idle.add (() => {
-                try {
-                    cw.client.player.pause ();
-                } catch  (Error e) {
-                    warning ("Could not pause: %s", e.message);
-                }
-                return false;
-            });
+            try {
+                cw.client.player.pause ();
+            } catch  (Error e) {
+                warning ("Could not pause: %s", e.message);
+            }
         }
     }
 
@@ -62,6 +59,7 @@ public class Sound.Widgets.MprisWidget : Gtk.Box {
     void add_iface (string name, Services.MprisClient iface) {
         if (iface.player.desktop_entry == default_music.get_id ().replace (".desktop","")) {
             default_widget.set_client (name, iface);
+            ifaces.insert(name, default_widget);
         } else {
             ClientWidget widg = new ClientWidget (iface);
             widg.close.connect (() => {
