@@ -282,6 +282,10 @@ public class Sound.Indicator : Wingpanel.Indicator {
             mpris.close.connect (() => {
                 close ();
             });
+            volume_control.notify["headphone-plugged"].connect(() => {
+                if (!volume_control.headphone_plugged)
+                    mpris.pause_all ();
+            });
 
             main_grid.attach (mpris, 0, position++, 1, 1);
 
