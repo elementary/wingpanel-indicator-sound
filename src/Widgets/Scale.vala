@@ -38,9 +38,9 @@ public class Sound.Widgets.Scale : Gtk.Grid {
 
         switch_widget = new Gtk.Switch ();
         switch_widget.active = active;
-        switch_widget.halign = Gtk.Align.END;
+        switch_widget.valign = Gtk.Align.CENTER;
         switch_widget.margin_start = 6;
-        switch_widget.margin_end = 0;
+        switch_widget.margin_end = 12;
 
         this.attach (switch_widget, 2, 0, 1, 1);
 
