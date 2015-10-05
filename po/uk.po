@@ -8,39 +8,39 @@ msgstr ""
 "Project-Id-Version: wingpanel-indicator-sound\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-08-20 04:54-0500\n"
-"PO-Revision-Date: 2015-08-27 09:41+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2015-10-04 09:34+0000\n"
+"Last-Translator: zigi21 <huckier78@gmail.com>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-08-28 05:56+0000\n"
-"X-Generator: Launchpad (build 17690)\n"
+"X-Launchpad-Export-Date: 2015-10-05 06:00+0000\n"
+"X-Generator: Launchpad (build 17783)\n"
 
 #: ../src//Indicator.vala:53
 msgid "Indicator Sound"
-msgstr ""
+msgstr "Індикатор звуку"
 
 #: ../src//Indicator.vala:54
 msgid "The sound indicator"
-msgstr ""
+msgstr "Індикатор звуку"
 
 #: ../src//Indicator.vala:361
 msgid "Sound Settings…"
-msgstr ""
+msgstr "Параметри звуку…"
 
 #: ../src//Widgets/MprisGui.vala:24
 msgid "Not currently playing"
-msgstr ""
+msgstr "Нічого не відтворюється"
 
 #: ../src//Widgets/MprisGui.vala:40
 msgid "Music player"
-msgstr ""
+msgstr "Музичний програвач"
 
 #: ../src//Widgets/MprisGui.vala:390
 msgid "by "
-msgstr ""
+msgstr "від "
 
 #: ../src//Widgets/MprisGui.vala:393
 msgid "Unknown Title"
-msgstr ""
+msgstr "Невідома назва"
