@@ -243,13 +243,13 @@ public class Sound.Indicator : Wingpanel.Indicator {
                 if (open == false && this.notification != null && v >= -0.05 && v <= (this.max_volume + 0.05)) {
                     string icon;
                     if (v <= 0.0) {
-                        icon = "notification-audio-volume-off";
+                        icon = "audio-volume-muted-symbolic";
                     } else if (v <= 0.3) {
-                        icon = "notification-audio-volume-low";
+                        icon = "audio-volume-low-symbolic";
                     } else if (v <= 0.7) {
-                        icon = "notification-audio-volume-medium";
+                        icon = "audio-volume-medium-symbolic";
                     } else {
-                        icon = "notification-audio-volume-high";
+                        icon = "audio-volume-high-symbolic";
                     }
 
                     this.notification.update ("indicator-sound", "", icon);
