@@ -55,6 +55,10 @@ public class Sound.Widgets.Scale : Gtk.Grid {
         switch_widget.scroll_event.connect (on_scroll);
     }
 
+    construct {
+    
+    }
+
     private bool on_scroll (Gdk.EventScroll event) {
         scale_widget.scroll_event (event);
 

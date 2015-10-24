@@ -70,6 +70,8 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
     construct {
         var locale = Intl.setlocale (LocaleCategory.MESSAGES, null);
+        volume_scale = new Widgets.Scale ("audio-volume-high-symbolic", true, 0.0, max_volume, 0.01);
+        mic_scale = new Widgets.Scale ("audio-input-microphone-symbolic", true, 0.0, 1.0, 0.01);
         ca_context = CanberraGtk.context_get ();
         ca_context.change_props (Canberra.PROP_APPLICATION_NAME, "indicator-sound",
                                  Canberra.PROP_APPLICATION_ID, "wingpanel-indicator-sound",
@@ -293,9 +295,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
             main_grid.attach (first_seperator, 0, position++, 1, 1);
 
-            volume_scale = new Widgets.Scale ("audio-volume-high-symbolic", true, 0.0, max_volume, 0.01);
             volume_scale.margin_start = 6;
-
             volume_scale.get_switch ().active = !volume_control.mute;
             volume_scale.get_image ().set_sensitive (false);
             volume_scale.get_scale ().set_sensitive (false);
@@ -342,9 +342,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
             main_grid.attach (new Wingpanel.Widgets.Separator (), 0, position++, 1, 1);
 
-            mic_scale = new Widgets.Scale ("audio-input-microphone-symbolic", true, 0.0, 1.0, 0.01);
             mic_scale.margin_start = 6;
-
             mic_scale.get_switch ().active = !volume_control.micMute;
             mic_scale.get_image ().set_sensitive (false);
             mic_scale.get_scale ().set_sensitive (false);
