@@ -1,4 +1,4 @@
-# Turkish translation for wingpanel-indicator-sound
+# Filipino translation for wingpanel-indicator-sound
 # Copyright (c) 2015 Rosetta Contributors and Canonical Ltd 2015
 # This file is distributed under the same license as the wingpanel-indicator-sound package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2015.
@@ -8,9 +8,9 @@ msgstr ""
 "Project-Id-Version: wingpanel-indicator-sound\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-08-20 04:54-0500\n"
-"PO-Revision-Date: 2015-11-09 03:02+0000\n"
-"Last-Translator: ERTAN ÇETİN <ertancetinn@gmail.com>\n"
-"Language-Team: Turkish <tr@li.org>\n"
+"PO-Revision-Date: 2015-11-08 13:29+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Filipino <fil@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,28 +19,28 @@ msgstr ""
 
 #: ../src//Indicator.vala:53
 msgid "Indicator Sound"
-msgstr "Ses Göstergesi"
+msgstr ""
 
 #: ../src//Indicator.vala:54
 msgid "The sound indicator"
-msgstr "Ses Göstergesi"
+msgstr ""
 
 #: ../src//Indicator.vala:361
 msgid "Sound Settings…"
-msgstr "Ses Ayarları..."
+msgstr ""
 
 #: ../src//Widgets/MprisGui.vala:24
 msgid "Not currently playing"
-msgstr "Şu anda çalınmıyor"
+msgstr ""
 
 #: ../src//Widgets/MprisGui.vala:40
 msgid "Music player"
-msgstr "Müzik çalar"
+msgstr ""
 
 #: ../src//Widgets/MprisGui.vala:390
 msgid "by "
-msgstr "yazar "
+msgstr ""
 
 #: ../src//Widgets/MprisGui.vala:393
 msgid "Unknown Title"
-msgstr "Bilinmeyen Başlık"
+msgstr ""
