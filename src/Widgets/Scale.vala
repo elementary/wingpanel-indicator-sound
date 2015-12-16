@@ -53,6 +53,8 @@ public class Sound.Widgets.Scale : Gtk.Grid {
         this.scroll_event.connect (on_scroll);
         image_box.scroll_event.connect (on_scroll);
         switch_widget.scroll_event.connect (on_scroll);
+        switch_widget.bind_property ("active", scale_widget, "sensitive", BindingFlags.SYNC_CREATE | BindingFlags.BIDIRECTIONAL);
+        switch_widget.bind_property ("active", image, "sensitive", BindingFlags.SYNC_CREATE | BindingFlags.BIDIRECTIONAL);
     }
 
     construct {
