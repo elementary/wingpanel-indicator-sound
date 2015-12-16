@@ -115,20 +115,13 @@ public class Sound.Indicator : Wingpanel.Indicator {
         volume_scale.get_switch ().active = !volume_control.mute;
         if (volume_control.mute) {
             update_panel_icon (volume_control.volume.volume);
-            volume_scale.get_scale ().set_sensitive (false);
         } else {
             update_panel_icon (volume_control.volume.volume);
-            volume_scale.get_scale ().set_sensitive (true);
         }
     }
 
     private void on_mic_mute_change () {
         mic_scale.get_switch ().active = !volume_control.micMute;
-        if (volume_control.micMute) {
-            mic_scale.get_scale ().set_sensitive (false);
-        } else {
-            mic_scale.get_scale ().set_sensitive (true);
-        }
     }
 
     private void on_is_playing_change () {
@@ -199,20 +192,16 @@ public class Sound.Indicator : Wingpanel.Indicator {
     private void on_volume_switch_change () {
         if (volume_scale.get_switch ().active) {
             volume_control.set_mute (false);
-            volume_scale.get_image ().set_sensitive (true);
         } else {
             volume_control.set_mute (true);
-            volume_scale.get_image ().set_sensitive (false);
         }
     }
 
     private void on_mic_switch_change () {
         if (mic_scale.get_switch ().active) {
             volume_control.set_mic_mute (false);
-            mic_scale.get_image ().set_sensitive (true);
         } else {
             volume_control.set_mic_mute (true);
-            mic_scale.get_image ().set_sensitive (false);
         }
     }
 
@@ -297,8 +286,6 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
             volume_scale.margin_start = 6;
             volume_scale.get_switch ().active = !volume_control.mute;
-            volume_scale.get_image ().set_sensitive (false);
-            volume_scale.get_scale ().set_sensitive (false);
             volume_scale.get_switch ().notify["active"].connect (on_volume_switch_change);
 
             volume_scale.get_scale ().value_changed.connect (() => {
@@ -344,8 +331,6 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
             mic_scale.margin_start = 6;
             mic_scale.get_switch ().active = !volume_control.micMute;
-            mic_scale.get_image ().set_sensitive (false);
-            mic_scale.get_scale ().set_sensitive (false);
             mic_scale.get_switch ().notify["active"].connect (on_mic_switch_change);
 
             mic_scale.get_scale ().value_changed.connect (() => {
