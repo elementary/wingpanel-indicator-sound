@@ -115,8 +115,10 @@ public class Sound.Indicator : Wingpanel.Indicator {
         volume_scale.get_switch ().active = !volume_control.mute;
         if (volume_control.mute) {
             update_panel_icon (volume_control.volume.volume);
+            volume_scale.set_icon ("audio-volume-muted-symbolic");
         } else {
             update_panel_icon (volume_control.volume.volume);
+            update_volume_icon ();
         }
     }
 
