@@ -144,7 +144,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
 
         var controls = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
 
-        var btn = make_control_button ("media-seek-backward-symbolic");
+        var btn = make_control_button ("media-skip-backward-symbolic");
         prev_btn = btn;
         btn.clicked.connect (()=> {
             Idle.add (()=> {
@@ -180,7 +180,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
         });
         controls.pack_start (btn, false, false, 0);
 
-        btn = make_control_button ("media-seek-forward-symbolic");
+        btn = make_control_button ("media-skip-forward-symbolic");
         next_btn = btn;
         btn.clicked.connect (()=> {
             Idle.add (()=> {
