@@ -17,8 +17,6 @@
 
 public class Sound.Indicator : Wingpanel.Indicator {
 
-    private const string SETTINGS_EXEC = "/usr/bin/switchboard sound";
-
     private Wingpanel.Widgets.OverlayIcon panel_icon;
 
     private Gtk.Grid main_grid;
