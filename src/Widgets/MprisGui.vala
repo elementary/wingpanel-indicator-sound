@@ -66,7 +66,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
             }
         }
         if  (app_icon == null) {
-            app_icon = new ThemedIcon ("emblem-music-symbolic");
+            app_icon = new ThemedIcon ("application-default-icon");
         }
 
         create_ui ();
