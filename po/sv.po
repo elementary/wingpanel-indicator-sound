@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: wingpanel-indicator-sound\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-08-20 04:54-0500\n"
-"PO-Revision-Date: 2016-07-22 13:02+0000\n"
+"PO-Revision-Date: 2016-08-03 09:12+0000\n"
 "Last-Translator: Mikael Nyberg <mikanybe@gmail.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-07-23 05:52+0000\n"
-"X-Generator: Launchpad (build 18147)\n"
+"X-Launchpad-Export-Date: 2016-08-04 05:48+0000\n"
+"X-Generator: Launchpad (build 18169)\n"
 
 #: ../src//Indicator.vala:53
 msgid "Indicator Sound"
@@ -31,7 +31,7 @@ msgstr "Ljudinställingar…"
 
 #: ../src//Widgets/MprisGui.vala:24
 msgid "Not currently playing"
-msgstr "Spelar inte för tillfället"
+msgstr "Ingenting spelas"
 
 #: ../src//Widgets/MprisGui.vala:40
 msgid "Music player"
