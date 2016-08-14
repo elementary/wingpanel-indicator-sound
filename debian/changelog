@@ -1,3 +1,9 @@
+wingpanel-indicator-sound (2.0) xenial; urgency=medium
+
+  * New upstream release.
+
+ -- Cody Garver <cody@elementary.io>  Sun, 14 Aug 2016 03:40:46 -0500
+
 wingpanel-indicator-sound (0.1) trusty; urgency=low
 
   * Initial Release.
