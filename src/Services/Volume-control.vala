@@ -126,7 +126,7 @@ public class Sound.Services.VolumeControlPulse : VolumeControl {
         _mute_cancellable = new Cancellable ();
         _volume_cancellable = new Cancellable ();
 
-        this.reconnect_to_pulse ();
+        reconnect_to_pulse.begin ();
     }
 
     ~VolumeControlPulse () {
@@ -453,11 +453,11 @@ public class Sound.Services.VolumeControlPulse : VolumeControl {
 
     bool reconnect_timeout () {
         _reconnect_timer = 0;
-        reconnect_to_pulse ();
+        reconnect_to_pulse.begin ();
         return false; // G_SOURCE_REMOVE
     }
 
-    void reconnect_to_pulse () {
+    async void reconnect_to_pulse () {
         if (this.ready) {
             this.context.disconnect ();
             this.context = null;
@@ -465,7 +465,7 @@ public class Sound.Services.VolumeControlPulse : VolumeControl {
         }
 
         var props = new PulseAudio.Proplist ();
-        props.sets (PulseAudio.Proplist.PROP_APPLICATION_NAME, "Elementary Audio Settings");
+        props.sets (PulseAudio.Proplist.PROP_APPLICATION_NAME, "elementary OS Audio Settings");
         props.sets (PulseAudio.Proplist.PROP_APPLICATION_ID, "org.pantheon.desktop.wingpanel.indicators.sound");
         props.sets (PulseAudio.Proplist.PROP_APPLICATION_ICON_NAME, "multimedia-volume-control");
         props.sets (PulseAudio.Proplist.PROP_APPLICATION_VERSION, "0.1");
