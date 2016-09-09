@@ -217,6 +217,10 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
                 return Gdk.EVENT_PROPAGATE;
             });
+
+            var vol = new Services.VolumeControl.Volume ();
+            vol.reason = Services.VolumeControl.VolumeReasons.USER_KEYPRESS;
+
             // change volume on scroll
             panel_icon.scroll_event.connect ((e) => {
                 int dir = 0;
@@ -225,10 +229,9 @@ public class Sound.Indicator : Wingpanel.Indicator {
                 } else if (e.direction == Gdk.ScrollDirection.DOWN) {
                     dir = -1;
                 }
+
                 double v = this.volume_control.volume.volume + volume_step_percentage * dir;
-                var vol = new Services.VolumeControl.Volume();
                 vol.volume = v.clamp (0.0, this.max_volume);
-                vol.reason = Services.VolumeControl.VolumeReasons.USER_KEYPRESS;
                 this.volume_control.volume = vol;
 
                 if (open == false && this.notification != null && v >= -0.05 && v <= (this.max_volume + 0.05)) {
