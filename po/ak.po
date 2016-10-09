@@ -8,26 +8,26 @@ msgstr ""
 "Project-Id-Version: wingpanel-indicator-sound\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-08-20 04:54-0500\n"
-"PO-Revision-Date: 2016-07-20 16:51+0000\n"
+"PO-Revision-Date: 2016-10-08 16:48+0000\n"
 "Last-Translator: laberba <karabutaworld@gmail.com>\n"
 "Language-Team: Akan <ak@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-10-06 06:30+0000\n"
-"X-Generator: Launchpad (build 18217)\n"
+"X-Launchpad-Export-Date: 2016-10-09 07:32+0000\n"
+"X-Generator: Launchpad (build 18227)\n"
 
 #: ../src//Indicator.vala:53
 msgid "Indicator Sound"
-msgstr "Indicator Dede"
+msgstr "Ngyegyee Ahyɛnsode"
 
 #: ../src//Indicator.vala:54
 msgid "The sound indicator"
-msgstr "Dede no ahyɛnsodeɛ"
+msgstr "Ngyegyee no ahyɛnsodeɛ"
 
 #: ../src//Indicator.vala:361
 msgid "Sound Settings…"
-msgstr "Dede Nhyehyeɛ…"
+msgstr "Senea Ɛgyegye Ho Nhyehyeɛ…"
 
 #: ../src//Widgets/MprisGui.vala:24
 msgid "Not currently playing"
@@ -35,12 +35,12 @@ msgstr "Agyae bɔ"
 
 #: ../src//Widgets/MprisGui.vala:40
 msgid "Music player"
-msgstr "Nnwom bɔ dwumadie"
+msgstr "Dwumadi a wɔde bɔ nnwom"
 
 #: ../src//Widgets/MprisGui.vala:390
 msgid "by "
-msgstr "a nea ɔbɔeɛ yɛ "
+msgstr "a nea ɔbɔe ne "
 
 #: ../src//Widgets/MprisGui.vala:393
 msgid "Unknown Title"
-msgstr "Ɛdin nka ho"
+msgstr "Edin nnka ho"
