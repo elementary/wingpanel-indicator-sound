@@ -271,7 +271,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
             int position = 0;
             main_grid = new Gtk.Grid ();
 
-            var mpris = new Widgets.MprisWidget (settings);
+            var mpris = new Widgets.MprisWidget ();
 
             mpris.close.connect (() => {
                 close ();

@@ -3,7 +3,7 @@
  *
  * Copyright
  * 2014 Ikey Doherty <ikey.doherty@gmail.com>
- * 2015 Wingpanel Developers
+ * 2016 Wingpanel Developers
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,26 +23,85 @@ const int MAX_WIDTH_TITLE = 200;
 public class Sound.Widgets.ClientWidget : Gtk.Box {
     private const string NOT_PLAYING = _("Not currently playing");
 
+    public signal void close ();
+
+    private Gtk.Revealer player_revealer;
+    private Gtk.Image? background = null;
+    private Gtk.Label title_label;
+    private Gtk.Label artist_label;
+    private Gtk.Button prev_btn;
+    private Gtk.Button play_btn;
+    private Gtk.Button next_btn;
+    private Icon? app_icon = null;
+    private Cancellable load_remote_art_cancel;
+
+    private bool launched_by_indicator = false;
+    private string app_name = _("Music player");
+    private string last_artUrl;
+
     public string mpris_name = "";
 
-    Gtk.Revealer player_revealer;
-    Gtk.Image? background = null;
-    public Services.MprisClient? client = null;
-    Services.Settings settings;
+    private AppInfo? ainfo;
 
-    Gtk.Label title_label;
-    Gtk.Label artist_label;
-    Gtk.Button prev_btn;
-    Gtk.Button play_btn;
-    Gtk.Button next_btn;
-    AppInfo? ainfo;
-    Icon? app_icon = null;
-    string app_name = _("Music player");
-    Cancellable load_remote_art_cancel;
-    string last_artUrl;
-    bool launched_by_indicator = false;
+    public AppInfo? app_info {
+        get {
+            return ainfo;
+        } set {
+            ainfo = value;
+            if (ainfo != null) {
+                app_name = ainfo.get_display_name ();
+                if (app_name == "") {
+                    app_name = ainfo.get_name ();
+                }
 
-    public signal void close ();
+                app_icon = value.get_icon ();
+                if (app_icon == null) {
+                    app_icon = new ThemedIcon ("application-default-icon");
+                }
+
+                background.set_from_gicon (app_icon, Gtk.IconSize.DIALOG);
+            }
+        }
+    }
+
+    private Services.MprisClient? client_ = null;
+
+    public Services.MprisClient? client {
+        get {
+            return client_;
+        } set {
+            this.client_ = value;
+            if (value != null) {
+                if  (client.player.desktop_entry != "") {
+                    app_info = new DesktopAppInfo (client.player.desktop_entry + ".desktop");
+                }
+
+                connect_to_client ();
+                update_play_status ();
+                update_from_meta ();
+                update_controls ();
+
+                if (launched_by_indicator) {
+                    Idle.add (()=> {
+                        try {
+                            launched_by_indicator = false;
+                            client.player.play_pause ();
+                        } catch  (Error e) {
+                            warning ("Could not play/pause: %s", e.message);
+                        }
+
+                        return false;
+                    });
+                }
+            } else {
+                (play_btn.get_image () as Gtk.Image).set_from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
+                prev_btn.set_sensitive (false);
+                next_btn.set_sensitive (false);
+                Sound.Services.Settings.get_instance ().last_title_info = {app_info.get_id (), title_label.get_text (), artist_label.get_text (), last_artUrl};
+                this.mpris_name = "";
+            }
+        }
+    }
 
     /**
      * Create a new ClientWidget
@@ -50,67 +109,42 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
      * @param client The underlying MprisClient instance to use
      */
     public ClientWidget (Services.MprisClient mpris_client) {
-        Object (orientation: Gtk.Orientation.VERTICAL, spacing: 0);
-        this.client = mpris_client;
-
-        load_remote_art_cancel = new Cancellable ();
-
-        if  (client.player.desktop_entry != "") {
-            ainfo = new DesktopAppInfo (client.player.desktop_entry + ".desktop");
-            if  (ainfo != null) {
-                app_icon = ainfo.get_icon ();
-                app_name = ainfo.get_display_name ();
-                if  (app_name == "") {
-                    app_name = ainfo.get_name ();
-                }
-            }
-        }
-        if  (app_icon == null) {
-            app_icon = new ThemedIcon ("application-default-icon");
-        }
-
-        create_ui ();
+        Object (orientation: Gtk.Orientation.VERTICAL, spacing: 0, client: mpris_client);
     }
 
     /**
      * Create a new ClientWidget for the default player
      *
      * @param info The AppInfo of the default music player
-     * @param settings Sound indicator settings
      */
-    public ClientWidget.default (AppInfo info, Services.Settings settings) {
-        Object (orientation: Gtk.Orientation.VERTICAL, spacing: 0);
+    public ClientWidget.default (AppInfo info) {
+        Object (orientation: Gtk.Orientation.VERTICAL, spacing: 0, app_info: info, client: null);
 
-        this.client = null;
-        this.settings = settings;
-        load_remote_art_cancel = new Cancellable ();
-
-        ainfo = info;
-        app_icon = ainfo.get_icon ();
-        app_name = ainfo.get_display_name ();
-
-        create_ui ();
-        if (settings.last_title_info.length == 4) {
-            string[] title_info = settings.last_title_info;
-                if (title_info[0] == ainfo.get_id ()) {
+        if (Sound.Services.Settings.get_instance ().last_title_info.length == 4) {
+            string[] title_info = Sound.Services.Settings.get_instance ().last_title_info;
+            if (title_info[0] == app_info.get_id ()) {
                 title_label.set_markup ("<b>%s</b>".printf (Markup.escape_text (title_info[1])));
                 artist_label.set_text (title_info[2]);
                 if (title_info[3] != "") {
                     update_art (title_info[3]);
                 }
+
                 return;
             }
         }
+
         title_label.set_markup ("<b>%s</b>".printf (Markup.escape_text (app_name)));
         artist_label.set_text (NOT_PLAYING);
     }
 
-    private void create_ui () {
+    construct {
+        load_remote_art_cancel = new Cancellable ();
+
         player_revealer = new Gtk.Revealer ();
         player_revealer.reveal_child = true;
         var player_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
 
-        background = new Gtk.Image.from_gicon (app_icon, Gtk.IconSize.DIALOG);
+        background = new Gtk.Image ();
 
         background.margin_start = 4;
         background.margin_end = 4;
@@ -148,7 +182,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
         prev_btn = btn;
         btn.clicked.connect (()=> {
             Idle.add (()=> {
-                if  (client.player.can_go_previous) {
+                if (client.player.can_go_previous) {
                   if(!Thread.supported ()) {
                       warning ("Threading is not supported. DBus timeout could be blocking UI");
                       try {
@@ -170,6 +204,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
                 return false;
             });
         });
+
         controls.pack_start (btn, false, false, 0);
 
         btn = make_control_button ("media-playback-start-symbolic");
@@ -197,6 +232,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
                 return false;
             });
         });
+
         controls.pack_start (btn, false, false, 0);
 
         btn = make_control_button ("media-skip-forward-symbolic");
@@ -225,6 +261,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
                 return false;
             });
         });
+
         controls.pack_start (btn, false, false, 0);
 
         controls.set_halign (Gtk.Align.CENTER);
@@ -232,7 +269,6 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
         controls.margin_end = 12;
 
         player_box.pack_end (controls, false, false, 0);
-
 
         if (client != null) {
             connect_to_client ();
@@ -243,36 +279,6 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
 
         player_revealer.add (player_box);
         pack_start (player_revealer);
-    }
-
-    public void set_client (string name, Services.MprisClient client) {
-        this.mpris_name = name;
-        this.client = client;
-        connect_to_client ();
-        update_play_status ();
-        update_from_meta ();
-        update_controls ();
-        if (launched_by_indicator) {
-            Idle.add (()=> {
-                try {
-                    launched_by_indicator = false;
-                    client.player.play_pause ();
-                } catch  (Error e) {
-                    warning ("Could not play/pause: %s", e.message);
-                }
-                return false;
-            });
-        }
-    }
-
-    public void remove_client () {
-        (play_btn.get_image () as Gtk.Image).set_from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
-        prev_btn.set_sensitive (false);
-        next_btn.set_sensitive (false);
-        settings.last_title_info = {ainfo.get_id (), title_label.get_text (), artist_label.get_text (), last_artUrl};
-
-        this.client = null;
-        this.mpris_name = "";
     }
 
     private void connect_to_client () {
@@ -322,8 +328,8 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
                         return null;
                       });
                 }
-            } else if (ainfo != null) {
-                ainfo.launch (null, null);
+            } else if (app_info != null) {
+                app_info.launch (null, null);
             }
         } catch  (Error e) {
             warning ("Could not launch player");
@@ -355,7 +361,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
     /**
      * Update play status based on player requirements
      */
-    void update_play_status () {
+    private void update_play_status () {
         switch  (client.player.playback_status) {
             case "Playing":
                  (play_btn.get_image () as Gtk.Image).set_from_icon_name ("media-playback-pause-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
@@ -370,7 +376,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
     /**
      * Update prev/next sensitivity based on player requirements
      */
-    void update_controls () {
+    private void update_controls () {
         prev_btn.set_sensitive (client.player.can_go_previous);
         next_btn.set_sensitive (client.player.can_go_next);
     }
@@ -378,7 +384,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
     /**
      * Utility, handle updating the album art
      */
-    void update_art (string uri) {
+    private void update_art (string uri) {
         if  (!uri.has_prefix ("file://") && !uri.has_prefix  ("http")) {
             background.set_from_gicon (app_icon, Gtk.IconSize.DIALOG);
             return;
@@ -389,7 +395,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
                 var pbuf = new Gdk.Pixbuf.from_file_at_size (fname, ICON_SIZE, ICON_SIZE);
                 background.set_from_pixbuf (mask_pixbuf (pbuf));
             } catch  (Error e) {
-                background.set_from_gicon (app_icon, Gtk.IconSize.DIALOG);
+                //background.set_from_gicon (app_icon, Gtk.IconSize.DIALOG);
             }
         } else {
             load_remote_art_cancel.cancel ();
@@ -398,7 +404,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
         }
     }
 
-    async void load_remote_art (string uri) {
+    private async void load_remote_art (string uri) {
       GLib.File file = GLib.File.new_for_uri (uri);
       try {
           GLib.InputStream stream = yield file.read_async (Priority.DEFAULT, load_remote_art_cancel);
@@ -445,7 +451,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
         }
     }
 
-    static Gdk.Pixbuf? mask_pixbuf (Gdk.Pixbuf pixbuf) {
+    private static Gdk.Pixbuf? mask_pixbuf (Gdk.Pixbuf pixbuf) {
         var size = ICON_SIZE;
         var mask_offset = 4;
         var mask_size_offset = mask_offset * 2;
