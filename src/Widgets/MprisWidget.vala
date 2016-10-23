@@ -19,7 +19,7 @@ public class Sound.Widgets.MprisWidget : Gtk.Box {
     HashTable<string,ClientWidget> ifaces;
     public signal void close ();
 
-    public MprisWidget(Services.Settings settings) {
+    public MprisWidget() {
         Object (orientation: Gtk.Orientation.VERTICAL, spacing: 1);
 
         ifaces = new HashTable<string,ClientWidget>(str_hash, str_equal);
@@ -31,7 +31,7 @@ public class Sound.Widgets.MprisWidget : Gtk.Box {
 
         default_music = AppInfo.get_default_for_type ("audio/x-vorbis+ogg", false);
         if (default_music != null) {
-            default_widget = new ClientWidget.default (default_music, settings);
+            default_widget = new ClientWidget.default (default_music);
 
             default_widget.close.connect (() => {
                 close ();
@@ -62,7 +62,8 @@ public class Sound.Widgets.MprisWidget : Gtk.Box {
      */
     void add_iface (string name, Services.MprisClient iface) {
         if (iface.player.desktop_entry == default_music.get_id ().replace (".desktop","")) {
-            default_widget.set_client (name, iface);
+            default_widget.mpris_name = name;
+            default_widget.client = iface;
             ifaces.insert(name, default_widget);
             default_widget.no_show_all = false;
             default_widget.visible = true;
@@ -89,7 +90,7 @@ public class Sound.Widgets.MprisWidget : Gtk.Box {
      */
     void destroy_iface(string name) {
         if (default_widget.mpris_name == name) {
-            default_widget.remove_client ();
+            default_widget.client = null;
         } else {
             var widg = ifaces[name];
             if (widg  != null) {
