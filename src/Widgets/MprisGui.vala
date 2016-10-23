@@ -272,6 +272,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
         settings.last_title_info = {ainfo.get_id (), title_label.get_text (), artist_label.get_text (), last_artUrl};
 
         this.client = null;
+        this.mpris_name = "";
     }
 
     private void connect_to_client () {
