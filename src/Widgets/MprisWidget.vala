@@ -94,13 +94,18 @@ public class Sound.Widgets.MprisWidget : Gtk.Box {
             var widg = ifaces[name];
             if (widg  != null) {
                 remove(widg);
-                ifaces.remove(name);
             }
+        }
 
-            if (ifaces.length == 0) {
-                default_widget.no_show_all = false;
-                default_widget.visible = true;
-            }
+        ifaces.remove(name);
+
+        if (ifaces.length != 0 && default_widget.mpris_name == "") {
+            default_widget.no_show_all = true;
+            default_widget.visible = false;
+        } else {
+            default_widget.no_show_all = false;
+            default_widget.visible = true;
+            show_all ();
         }
     }
 
