@@ -28,15 +28,19 @@ public class Sound.Widgets.MprisWidget : Gtk.Box {
             setup_dbus();
             return false;
         });
+
         default_music = AppInfo.get_default_for_type ("audio/x-vorbis+ogg", false);
         if (default_music != null) {
             default_widget = new ClientWidget.default (default_music, settings);
+
             default_widget.close.connect (() => {
                 close ();
             });
+
             default_widget.show_all();
             pack_start(default_widget, false, false, 0);
         }
+
         show_all();
     }
 
@@ -60,7 +64,14 @@ public class Sound.Widgets.MprisWidget : Gtk.Box {
         if (iface.player.desktop_entry == default_music.get_id ().replace (".desktop","")) {
             default_widget.set_client (name, iface);
             ifaces.insert(name, default_widget);
+            default_widget.no_show_all = false;
+            default_widget.visible = true;
         } else {
+            if (default_widget.mpris_name == "") {
+                default_widget.no_show_all = true;
+                default_widget.visible = false;
+            }
+
             ClientWidget widg = new ClientWidget (iface);
             widg.close.connect (() => {
                 close ();
@@ -83,8 +94,18 @@ public class Sound.Widgets.MprisWidget : Gtk.Box {
             var widg = ifaces[name];
             if (widg  != null) {
                 remove(widg);
-                ifaces.remove(name);
             }
+        }
+
+        ifaces.remove(name);
+
+        if (ifaces.length != 0 && default_widget.mpris_name == "") {
+            default_widget.no_show_all = true;
+            default_widget.visible = false;
+        } else {
+            default_widget.no_show_all = false;
+            default_widget.visible = true;
+            show_all ();
         }
     }
 
