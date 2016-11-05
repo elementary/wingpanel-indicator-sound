@@ -67,6 +67,21 @@ public class Sound.Indicator : Wingpanel.Indicator {
     }
 
     construct {
+        panel_icon = new Wingpanel.Widgets.OverlayIcon ("audio-output-none");
+
+        // toggle mute on middle click
+        panel_icon.button_press_event.connect ((e) => {
+            if (e.button == Gdk.BUTTON_MIDDLE) {
+                volume_control.toggle_mute ();
+                return Gdk.EVENT_STOP;
+            }
+
+            return Gdk.EVENT_PROPAGATE;
+        });
+
+        // change volume on scroll
+        panel_icon.scroll_event.connect (on_icon_scroll_event);
+
         var locale = Intl.setlocale (LocaleCategory.MESSAGES, null);
         volume_scale = new Widgets.Scale ("audio-volume-high-symbolic", true, 0.0, max_volume, 0.01);
         mic_scale = new Widgets.Scale ("audio-input-microphone-symbolic", true, 0.0, 1.0, 0.01);
@@ -148,6 +163,48 @@ public class Sound.Indicator : Wingpanel.Indicator {
         this.update_panel_icon (volume_control.volume.volume);
     }
 
+    private bool on_icon_scroll_event (Gdk.EventScroll e) {
+        var vol = new Services.VolumeControl.Volume ();
+        vol.reason = Services.VolumeControl.VolumeReasons.USER_KEYPRESS;
+
+        int dir = 0;
+        if (e.direction == Gdk.ScrollDirection.UP) {
+            dir = 1;
+        } else if (e.direction == Gdk.ScrollDirection.DOWN) {
+            dir = -1;
+        }
+
+        double v = this.volume_control.volume.volume + volume_step_percentage * dir;
+        vol.volume = v.clamp (0.0, this.max_volume);
+        this.volume_control.volume = vol;
+
+        if (open == false && this.notification != null && v >= -0.05 && v <= (this.max_volume + 0.05)) {
+            string icon;
+            if (v <= 0.0) {
+                icon = "audio-volume-muted-symbolic";
+            } else if (v <= 0.3) {
+                icon = "audio-volume-low-symbolic";
+            } else if (v <= 0.7) {
+                icon = "audio-volume-medium-symbolic";
+            } else {
+                icon = "audio-volume-high-symbolic";
+            }
+
+            this.notification.update ("indicator-sound", "", icon);
+            this.notification.set_hint ("value", new Variant.int32 (
+                (int32)Math.round(volume_control.volume.volume / this.max_volume * 100.0)));
+            try {
+                this.notification.show ();
+            } catch (Error e) {
+                warning ("Unable to show sound notification: %s", e.message);
+            }
+        } else if (v <= (this.max_volume + 0.05)) {
+            play_sound_blubble ();
+        }
+
+        return Gdk.EVENT_STOP;
+    }
+
     private void update_mic_visibility () {
         if (this.volume_control.is_listening) {
             mic_scale.no_show_all = false;
@@ -206,63 +263,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
     }
 
     public override Gtk.Widget get_display_widget () {
-        if (panel_icon == null) {
-            panel_icon = new Wingpanel.Widgets.OverlayIcon ("audio-output-none");
-            // toggle mute on middle click
-            panel_icon.button_press_event.connect ((e) => {
-                if (e.button == Gdk.BUTTON_MIDDLE) {
-                    volume_control.toggle_mute ();
-                    return Gdk.EVENT_STOP;
-                }
-
-                return Gdk.EVENT_PROPAGATE;
-            });
-
-            var vol = new Services.VolumeControl.Volume ();
-            vol.reason = Services.VolumeControl.VolumeReasons.USER_KEYPRESS;
-
-            // change volume on scroll
-            panel_icon.scroll_event.connect ((e) => {
-                int dir = 0;
-                if (e.direction == Gdk.ScrollDirection.UP) {
-                    dir = 1;
-                } else if (e.direction == Gdk.ScrollDirection.DOWN) {
-                    dir = -1;
-                }
-
-                double v = this.volume_control.volume.volume + volume_step_percentage * dir;
-                vol.volume = v.clamp (0.0, this.max_volume);
-                this.volume_control.volume = vol;
-
-                if (open == false && this.notification != null && v >= -0.05 && v <= (this.max_volume + 0.05)) {
-                    string icon;
-                    if (v <= 0.0) {
-                        icon = "audio-volume-muted-symbolic";
-                    } else if (v <= 0.3) {
-                        icon = "audio-volume-low-symbolic";
-                    } else if (v <= 0.7) {
-                        icon = "audio-volume-medium-symbolic";
-                    } else {
-                        icon = "audio-volume-high-symbolic";
-                    }
-
-                    this.notification.update ("indicator-sound", "", icon);
-                    this.notification.set_hint ("value", new Variant.int32 (
-                        (int32)Math.round(volume_control.volume.volume / this.max_volume * 100.0)));
-                    try {
-                        this.notification.show ();
-                    } catch (Error e) {
-                        warning ("Unable to show sound notification: %s", e.message);
-                    }
-                } else if (v <= (this.max_volume + 0.05)) {
-                    play_sound_blubble ();
-                }
-
-                return Gdk.EVENT_STOP;
-            });
-            update_panel_icon (volume_control.volume.volume);
-        }
-
+        update_panel_icon (volume_control.volume.volume);
         return panel_icon;
     }
 
