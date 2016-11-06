@@ -72,7 +72,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
         } set {
             this.client_ = value;
             if (value != null) {
-                if  (client.player.desktop_entry != "") {
+                if  (client.player.desktop_entry != null && client.player.desktop_entry != "") {
                     app_info = new DesktopAppInfo (client.player.desktop_entry + ".desktop");
                 }
 
