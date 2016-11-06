@@ -72,8 +72,9 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
         } set {
             this.client_ = value;
             if (value != null) {
-                if  (client.player.desktop_entry != null && client.player.desktop_entry != "") {
-                    app_info = new DesktopAppInfo (client.player.desktop_entry + ".desktop");
+                string? desktop_entry = client.player.desktop_entry;
+                if  (desktop_entry != null && desktop_entry != "") {
+                    app_info = new DesktopAppInfo ("%s.desktop".printf (desktop_entry));
                 }
 
                 connect_to_client ();
@@ -420,8 +421,9 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
      * Update display info such as artist, the background image, etc.
      */
     protected void update_from_meta () {
-        if  ("mpris:artUrl" in client.player.metadata) {
-            var url = client.player.metadata["mpris:artUrl"].get_string ();
+        var metadata = client.player.metadata;
+        if  ("mpris:artUrl" in metadata) {
+            var url = metadata["mpris:artUrl"].get_string ();
             last_artUrl = url;
             update_art (url);
         } else {
@@ -429,18 +431,20 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
             background.pixel_size = ICON_SIZE;
             background.set_from_gicon (app_icon, Gtk.IconSize.DIALOG);
         }
+        
         string title;
-        if  ("xesam:title" in client.player.metadata && client.player.metadata["xesam:title"].is_of_type (VariantType.STRING)
-            && client.player.metadata["xesam:title"].get_string () != "") {
-            title = client.player.metadata["xesam:title"].get_string ();
+        if  ("xesam:title" in metadata && metadata["xesam:title"].is_of_type (VariantType.STRING)
+            && metadata["xesam:title"].get_string () != "") {
+            title = metadata["xesam:title"].get_string ();
         } else {
-           title = app_name;
+            title = app_name;
         }
+
         title_label.set_markup ("<b>%s</b>".printf (Markup.escape_text (title)));
 
-        if  ("xesam:artist" in client.player.metadata && client.player.metadata["xesam:artist"].is_of_type (VariantType.STRING_ARRAY)) {
+        if  ("xesam:artist" in metadata && metadata["xesam:artist"].is_of_type (VariantType.STRING_ARRAY)) {
             /* get_strv causes a segfault from multiple free's on vala's side. */
-            string[] artists = client.player.metadata["xesam:artist"].dup_strv ();
+            string[] artists = metadata["xesam:artist"].dup_strv ();
             artist_label.set_text (_("by ")+string.joinv (", ", artists));
         } else {
             if  (client.player.playback_status == "Playing") {
