@@ -443,8 +443,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
         title_label.set_markup ("<b>%s</b>".printf (Markup.escape_text (title)));
 
         if  ("xesam:artist" in metadata && metadata["xesam:artist"].is_of_type (VariantType.STRING_ARRAY)) {
-            /* get_strv causes a segfault from multiple free's on vala's side. */
-            string[] artists = metadata["xesam:artist"].dup_strv ();
+            (unowned string)[] artists = metadata["xesam:artist"].get_strv ();
             artist_label.set_text (_("by ")+string.joinv (", ", artists));
         } else {
             if  (client.player.playback_status == "Playing") {
