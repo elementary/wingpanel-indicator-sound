@@ -409,9 +409,10 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
       GLib.File file = GLib.File.new_for_uri (uri);
       try {
           GLib.InputStream stream = yield file.read_async (Priority.DEFAULT, load_remote_art_cancel);
-          Gdk.Pixbuf pixbuf = yield new Gdk.Pixbuf.from_stream_at_scale_async
-             (stream, ICON_SIZE, ICON_SIZE, true, load_remote_art_cancel);
-          background.set_from_pixbuf (mask_pixbuf (pixbuf));
+          Gdk.Pixbuf pixbuf = yield new Gdk.Pixbuf.from_stream_async (stream, load_remote_art_cancel);
+          if (pixbuf != null) {
+              background.set_from_pixbuf (mask_pixbuf (pixbuf));
+          }
       } catch  (Error e) {
           background.set_from_gicon (app_icon, Gtk.IconSize.DIALOG);
       }
@@ -476,9 +477,13 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
 
         cr.reset_clip ();
 
-        var mask = new Cairo.ImageSurface.from_png ("/usr/share/gala/image-mask.png");
-        cr.set_source_surface (mask, 0, 0);
-        cr.paint ();
+        try {
+            var mask = new Gdk.Pixbuf.from_resource_at_scale ("/io/elementary/wingpanel/sound/image-mask.svg", -1, mask_size, true);
+            Gdk.cairo_set_source_pixbuf (cr, mask, 0, 0);
+            cr.paint ();
+        } catch (Error e) {
+            critical (e.message);
+        }
 
         return Gdk.pixbuf_get_from_surface (surface, 0, 0, mask_size, mask_size);
     }

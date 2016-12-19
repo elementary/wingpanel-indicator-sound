@@ -34,7 +34,10 @@ OPTIONS
   --thread
 )
 
-add_library (${CMAKE_PROJECT_NAME} MODULE ${VALA_C})
+include (GResource)
+glib_compile_resources (GLIB_RESOURCES_MASK ../data/mask.gresource.xml)
+
+add_library (${CMAKE_PROJECT_NAME} MODULE ${VALA_C} ${GLIB_RESOURCES_MASK})
 target_link_libraries(${CMAKE_PROJECT_NAME} ${DEPS_LIBRARIES})
 
 # Installation
