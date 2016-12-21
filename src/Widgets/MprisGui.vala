@@ -27,6 +27,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
 
     private Gtk.Revealer player_revealer;
     private Gtk.Image? background = null;
+    private Gtk.Image mask;
     private Gtk.Label title_label;
     private Gtk.Label artist_label;
     private Gtk.Button prev_btn;
@@ -146,15 +147,20 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
         var player_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
 
         background = new Gtk.Image ();
-
-        background.margin_start = 4;
-        background.margin_end = 4;
-        background.margin_bottom = 2;
-        background.can_focus = true;
+        mask = new Gtk.Image.from_resource ("/io/elementary/wingpanel/sound/image-mask.svg");
+        mask.no_show_all = true;
+        mask.pixel_size = 48;
+        var overlay = new Gtk.Overlay ();
+        overlay.add (background);
+        overlay.add_overlay (mask);
+        overlay.margin_start = 4;
+        overlay.margin_end = 4;
+        overlay.margin_bottom = 2;
+        overlay.can_focus = true;
         var background_box = new Gtk.EventBox ();
         background_box.add_events (Gdk.EventMask.BUTTON_PRESS_MASK);
         background_box.button_press_event.connect (raise_player);
-        background_box.add (background);
+        background_box.add (overlay);
         player_box.pack_start (background_box, false, false, 0);
 
         var titles_events = new Gtk.EventBox ();
@@ -388,6 +394,8 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
     private void update_art (string uri) {
         if  (!uri.has_prefix ("file://") && !uri.has_prefix  ("http")) {
             background.set_from_gicon (app_icon, Gtk.IconSize.DIALOG);
+            mask.no_show_all = true;
+            mask.hide ();
             return;
         }
         if  (uri.has_prefix  ("file://")) {
@@ -395,6 +403,8 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
             try {
                 var pbuf = new Gdk.Pixbuf.from_file_at_size (fname, ICON_SIZE, ICON_SIZE);
                 background.set_from_pixbuf (mask_pixbuf (pbuf));
+                mask.no_show_all = false;
+                mask.show ();
             } catch  (Error e) {
                 //background.set_from_gicon (app_icon, Gtk.IconSize.DIALOG);
             }
@@ -412,9 +422,13 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
           Gdk.Pixbuf pixbuf = yield new Gdk.Pixbuf.from_stream_async (stream, load_remote_art_cancel);
           if (pixbuf != null) {
               background.set_from_pixbuf (mask_pixbuf (pixbuf));
+              mask.no_show_all = false;
+              mask.show ();
           }
       } catch  (Error e) {
           background.set_from_gicon (app_icon, Gtk.IconSize.DIALOG);
+          mask.no_show_all = true;
+          mask.hide ();
       }
     }
 
@@ -431,6 +445,8 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
             last_artUrl = "";
             background.pixel_size = ICON_SIZE;
             background.set_from_gicon (app_icon, Gtk.IconSize.DIALOG);
+            mask.no_show_all = true;
+            mask.hide ();
         }
         
         string title;
@@ -474,16 +490,6 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
 
         Gdk.cairo_set_source_pixbuf (cr, input, offset_x, offset_y);
         cr.paint ();
-
-        cr.reset_clip ();
-
-        try {
-            var mask = new Gdk.Pixbuf.from_resource_at_scale ("/io/elementary/wingpanel/sound/image-mask.svg", -1, mask_size, true);
-            Gdk.cairo_set_source_pixbuf (cr, mask, 0, 0);
-            cr.paint ();
-        } catch (Error e) {
-            critical (e.message);
-        }
 
         return Gdk.pixbuf_get_from_surface (surface, 0, 0, mask_size, mask_size);
     }
