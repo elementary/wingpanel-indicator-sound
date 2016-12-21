@@ -16,26 +16,16 @@
  */
 
 public class Sound.Indicator : Wingpanel.Indicator {
-
-    private Wingpanel.Widgets.OverlayIcon panel_icon;
-
     private Gtk.Grid main_grid;
-
     private Widgets.Scale volume_scale;
-
     private Widgets.Scale mic_scale;
-
+    private Wingpanel.Widgets.OverlayIcon panel_icon;
     private Wingpanel.Widgets.Button settings_button;
-
-    private Services.VolumeControlPulse volume_control;
-
     private Wingpanel.Widgets.Separator first_seperator;
-
     private Wingpanel.Widgets.Separator mic_seperator;
-
     private Notify.Notification notification;
-
     private Services.Settings settings;
+    private Services.VolumeControlPulse volume_control;
 
     bool open = false;
     bool mute_blocks_sound = false;
@@ -50,19 +40,23 @@ public class Sound.Indicator : Wingpanel.Indicator {
         Object (code_name: Wingpanel.Indicator.SOUND,
                 display_name: _("Indicator Sound"),
                 description:_("The sound indicator"));
-        this.visible = true;
-        this.volume_control = new Services.VolumeControlPulse ();
-        this.volume_control.notify["volume"].connect (on_volume_change);
-        this.volume_control.notify["mic-volume"].connect (on_mic_volume_change);
-        this.volume_control.notify["mute"].connect (on_mute_change);
-        this.volume_control.notify["micMute"].connect (on_mic_mute_change);
-        this.volume_control.notify["is-playing"].connect(on_is_playing_change);
-        this.volume_control.notify["is-listening"].connect(update_mic_visibility);
-        Notify.init ("wingpanel-indicator-sound");
-        this.notification = new Notify.Notification ("indicator-sound", "", "");
-        this.notification.set_hint ("x-canonical-private-synchronous", new Variant.string ("indicator-sound"));
 
-        this.settings = new Services.Settings ();
+        visible = true;
+
+        volume_control = new Services.VolumeControlPulse ();
+        volume_control.notify["volume"].connect (on_volume_change);
+        volume_control.notify["mic-volume"].connect (on_mic_volume_change);
+        volume_control.notify["mute"].connect (on_mute_change);
+        volume_control.notify["micMute"].connect (on_mic_mute_change);
+        volume_control.notify["is-playing"].connect(on_is_playing_change);
+        volume_control.notify["is-listening"].connect(update_mic_visibility);
+
+        Notify.init ("wingpanel-indicator-sound");
+
+        notification = new Notify.Notification ("indicator-sound", "", "");
+        notification.set_hint ("x-canonical-private-synchronous", new Variant.string ("indicator-sound"));
+
+        settings = new Services.Settings ();
         settings.notify["max-volume"].connect (set_max_volume);
     }
 
@@ -83,8 +77,10 @@ public class Sound.Indicator : Wingpanel.Indicator {
         panel_icon.scroll_event.connect (on_icon_scroll_event);
 
         var locale = Intl.setlocale (LocaleCategory.MESSAGES, null);
+
         volume_scale = new Widgets.Scale ("audio-volume-high-symbolic", true, 0.0, max_volume, 0.01);
         mic_scale = new Widgets.Scale ("audio-input-microphone-symbolic", true, 0.0, 1.0, 0.01);
+
         ca_context = CanberraGtk.context_get ();
         ca_context.change_props (Canberra.PROP_APPLICATION_NAME, "indicator-sound",
                                  Canberra.PROP_APPLICATION_ID, "wingpanel-indicator-sound",
@@ -116,7 +112,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
     private void on_volume_change () {
         var volume = volume_control.volume.volume / this.max_volume;
         volume_scale.get_scale ().set_value (volume);
-        update_panel_icon (volume);
+        panel_icon.set_main_icon_name (get_volume_icon (volume));
     }
 
     private void on_mic_volume_change () {
@@ -126,12 +122,14 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
     private void on_mute_change () {
         volume_scale.get_switch ().active = !volume_control.mute;
+
+        string volume_icon = get_volume_icon (volume_control.volume.volume);
+        panel_icon.set_main_icon_name (volume_icon);
+
         if (volume_control.mute) {
-            update_panel_icon (volume_control.volume.volume);
             volume_scale.set_icon ("audio-volume-muted-symbolic");
         } else {
-            update_panel_icon (volume_control.volume.volume);
-            update_volume_icon ();
+            volume_scale.set_icon (volume_icon);
         }
     }
 
@@ -155,12 +153,12 @@ public class Sound.Indicator : Wingpanel.Indicator {
             this.sound_was_blocked_timeout_id = Timeout.add_seconds (5, () => {
                 this.mute_blocks_sound = false;
                 this.sound_was_blocked_timeout_id = 0;
-                this.update_panel_icon (volume_control.volume.volume);
+                panel_icon.set_main_icon_name (get_volume_icon (volume_control.volume.volume));
                 return false;
             });
         }
 
-        this.update_panel_icon (volume_control.volume.volume);
+        panel_icon.set_main_icon_name (get_volume_icon (volume_control.volume.volume));
     }
 
     private bool on_icon_scroll_event (Gdk.EventScroll e) {
@@ -179,16 +177,8 @@ public class Sound.Indicator : Wingpanel.Indicator {
         this.volume_control.volume = vol;
 
         if (open == false && this.notification != null && v >= -0.05 && v <= (this.max_volume + 0.05)) {
-            string icon;
-            if (v <= 0.0) {
-                icon = "audio-volume-muted-symbolic";
-            } else if (v <= 0.3) {
-                icon = "audio-volume-low-symbolic";
-            } else if (v <= 0.7) {
-                icon = "audio-volume-medium-symbolic";
-            } else {
-                icon = "audio-volume-high-symbolic";
-            }
+
+            string icon = get_volume_icon (v);
 
             this.notification.update ("indicator-sound", "", icon);
             this.notification.set_hint ("value", new Variant.int32 (
@@ -219,31 +209,16 @@ public class Sound.Indicator : Wingpanel.Indicator {
         }
     }
 
-    private void update_panel_icon (double volume) {
+    private string get_volume_icon (double volume) {
         if (volume <= 0 || this.volume_control.mute) {
-            panel_icon.set_main_icon_name (this.mute_blocks_sound ? "audio-volume-muted-blocking-symbolic" : "audio-volume-muted-symbolic");
+            return this.mute_blocks_sound ? "audio-volume-muted-blocking-symbolic" : "audio-volume-muted-symbolic";
         } else if (volume <= 0.3) {
-            panel_icon.set_main_icon_name ("audio-volume-low-symbolic");
+            return "audio-volume-low-symbolic";
         } else if (volume <= 0.7) {
-            panel_icon.set_main_icon_name ("audio-volume-medium-symbolic");
+            return "audio-volume-medium-symbolic";
         } else {
-            panel_icon.set_main_icon_name ("audio-volume-high-symbolic");
+            return "audio-volume-high-symbolic";
         }
-    }
-
-    private void update_volume_icon () {
-        string icon;
-        var v = volume_scale.get_scale ().get_value ();
-        if (v <= 0.0) {
-            icon = "audio-volume-muted-symbolic";
-        } else if (v <= 0.3) {
-            icon = "audio-volume-low-symbolic";
-        } else if (v <= 0.7) {
-            icon = "audio-volume-medium-symbolic";
-        } else {
-            icon = "audio-volume-high-symbolic";
-        }
-        volume_scale.set_icon (icon);
     }
 
     private void on_volume_switch_change () {
@@ -263,7 +238,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
     }
 
     public override Gtk.Widget get_display_widget () {
-        update_panel_icon (volume_control.volume.volume);
+        panel_icon.set_main_icon_name (get_volume_icon (volume_control.volume.volume));
         return panel_icon;
     }
 
@@ -298,7 +273,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
                 vol.volume = v.clamp (0.0, this.max_volume);
                 vol.reason = Services.VolumeControl.VolumeReasons.USER_KEYPRESS;
                 this.volume_control.volume = vol;
-                update_volume_icon ();
+                volume_scale.set_icon (get_volume_icon (volume_scale.get_scale ().get_value ()));
             });
 
             volume_scale.get_scale ().set_value (volume_control.volume.volume);
@@ -326,7 +301,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
                 return true;
             });
 
-            update_volume_icon ();
+            volume_scale.set_icon (get_volume_icon (volume_scale.get_scale ().get_value ()));
             set_max_volume ();
 
             main_grid.attach (volume_scale, 0, position++, 1, 1);
