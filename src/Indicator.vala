@@ -16,10 +16,10 @@
  */
 
 public class Sound.Indicator : Wingpanel.Indicator {
+    private DisplayWidget display_widget;
     private Gtk.Grid main_grid;
     private Widgets.Scale volume_scale;
     private Widgets.Scale mic_scale;
-    private Wingpanel.Widgets.OverlayIcon panel_icon;
     private Wingpanel.Widgets.Button settings_button;
     private Wingpanel.Widgets.Separator first_seperator;
     private Wingpanel.Widgets.Separator mic_seperator;
@@ -61,21 +61,6 @@ public class Sound.Indicator : Wingpanel.Indicator {
     }
 
     construct {
-        panel_icon = new Wingpanel.Widgets.OverlayIcon ("audio-output-none");
-
-        // toggle mute on middle click
-        panel_icon.button_press_event.connect ((e) => {
-            if (e.button == Gdk.BUTTON_MIDDLE) {
-                volume_control.toggle_mute ();
-                return Gdk.EVENT_STOP;
-            }
-
-            return Gdk.EVENT_PROPAGATE;
-        });
-
-        // change volume on scroll
-        panel_icon.scroll_event.connect (on_icon_scroll_event);
-
         var locale = Intl.setlocale (LocaleCategory.MESSAGES, null);
 
         volume_scale = new Widgets.Scale ("audio-volume-high-symbolic", true, 0.0, max_volume, 0.01);
@@ -112,7 +97,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
     private void on_volume_change () {
         var volume = volume_control.volume.volume / this.max_volume;
         volume_scale.get_scale ().set_value (volume);
-        panel_icon.set_main_icon_name (get_volume_icon (volume));
+        display_widget.icon_name = get_volume_icon (volume);
     }
 
     private void on_mic_volume_change () {
@@ -124,7 +109,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
         volume_scale.get_switch ().active = !volume_control.mute;
 
         string volume_icon = get_volume_icon (volume_control.volume.volume);
-        panel_icon.set_main_icon_name (volume_icon);
+        display_widget.icon_name = volume_icon;
 
         if (volume_control.mute) {
             volume_scale.set_icon ("audio-volume-muted-symbolic");
@@ -153,12 +138,12 @@ public class Sound.Indicator : Wingpanel.Indicator {
             this.sound_was_blocked_timeout_id = Timeout.add_seconds (5, () => {
                 this.mute_blocks_sound = false;
                 this.sound_was_blocked_timeout_id = 0;
-                panel_icon.set_main_icon_name (get_volume_icon (volume_control.volume.volume));
+                display_widget.icon_name = get_volume_icon (volume_control.volume.volume);
                 return false;
             });
         }
 
-        panel_icon.set_main_icon_name (get_volume_icon (volume_control.volume.volume));
+        display_widget.icon_name = get_volume_icon (volume_control.volume.volume);
     }
 
     private bool on_icon_scroll_event (Gdk.EventScroll e) {
@@ -201,11 +186,13 @@ public class Sound.Indicator : Wingpanel.Indicator {
             mic_scale.show_all();
             mic_seperator.no_show_all = false;
             mic_seperator.show ();
+            display_widget.show_mic = true;
         } else {
             mic_scale.no_show_all = true;
             mic_scale.hide();
             mic_seperator.no_show_all = true;
             mic_seperator.hide ();
+            display_widget.show_mic = false;
         }
     }
 
@@ -238,8 +225,21 @@ public class Sound.Indicator : Wingpanel.Indicator {
     }
 
     public override Gtk.Widget get_display_widget () {
-        panel_icon.set_main_icon_name (get_volume_icon (volume_control.volume.volume));
-        return panel_icon;
+        display_widget = new DisplayWidget ();
+        display_widget.icon_name = get_volume_icon (volume_control.volume.volume);
+
+        display_widget.button_press_event.connect ((e) => {
+            if (e.button == Gdk.BUTTON_MIDDLE) {
+                volume_control.toggle_mute ();
+                return Gdk.EVENT_STOP;
+            }
+
+            return Gdk.EVENT_PROPAGATE;
+        });
+
+        display_widget.scroll_event.connect (on_icon_scroll_event);
+
+        return display_widget;
     }
 
     public override Gtk.Widget? get_widget () {
