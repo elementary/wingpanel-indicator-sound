@@ -1,8 +1,7 @@
 /*
  * -*- Mode:Vala; indent-tabs-mode:t; tab-width:4; encoding:utf8 -*-
- * Copyright
- * 2013 Canonical Ltd.
- * 2015 Wingpanel Developers
+ * Copyright (c) 2013 Canonical Ltd.
+ *               2015-2017 elementary LLC. (http://launchpad.net/wingpanel)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
