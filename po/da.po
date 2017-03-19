@@ -3,14 +3,14 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-20 04:54-0500\n"
-"PO-Revision-Date: 2015-12-04 13:32+0000\n"
-"Last-Translator: Jimmy Merrild Krag <jimmy@kragenet.dk>\n"
+"PO-Revision-Date: 2017-03-17 14:26+0000\n"
+"Last-Translator: scootergrisen <scootergrisen@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-12-28 04:58+0000\n"
-"X-Generator: Launchpad (build 18298)\n"
+"X-Launchpad-Export-Date: 2017-03-19 06:49+0000\n"
+"X-Generator: Launchpad (build 18332)\n"
 
 #: ../src//Indicator.vala:53
 msgid "Indicator Sound"
@@ -22,7 +22,7 @@ msgstr "Lydindikatoren"
 
 #: ../src//Indicator.vala:361
 msgid "Sound Settings…"
-msgstr "Lydindstillinger..."
+msgstr "Lydindstillinger…"
 
 #: ../src//Widgets/MprisGui.vala:24
 msgid "Not currently playing"
