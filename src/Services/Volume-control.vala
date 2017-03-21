@@ -103,10 +103,10 @@ public class Sound.Services.VolumeControlPulse : VolumeControl {
     private bool _send_next_local_volume = false;
 
     /** true when connected to the pulse server */
-    public override bool ready { get; private set; }
+    public override bool ready { get; set; }
 
     /** true when a microphone is active **/
-    public override bool active_mic { get; private set; default = false; }
+    public override bool active_mic { get; set; default = false; }
 
     /** true when high volume warnings should be shown */
     public override bool high_volume {
