@@ -25,19 +25,19 @@ public interface Sound.Services.Device : Object {
 	public abstract void disconnect_profile (string UUID) throws IOError;
 	public abstract void pair () throws IOError;
 
-	public abstract string[] UUIDs { public owned get; private set; }
-	public abstract bool blocked { public owned get; public set; }
-	public abstract bool connected { public owned get; private set; }
-	public abstract bool legacy_pairing { public owned get; private set; }
-	public abstract bool paired { public owned get; private set; }
-	public abstract bool trusted { public owned get; public set; }
-	public abstract int16 RSSI { public owned get; private set; }
-	public abstract ObjectPath adapter { public owned get; private set; }
-	public abstract string address { public owned get; private set; }
-	public abstract string alias { public owned get; public set; }
-	public abstract string icon { public owned get; private set; }
-	public abstract string modalias { public owned get; private set; }
-	public abstract string name { public owned get; private set; }
-	public abstract uint16 appearance { public owned get; private set; }
-	public abstract uint32 @class { public owned get; private set; }
+	public abstract string[] UUIDs { owned get; }
+	public abstract bool blocked { get; set; }
+	public abstract bool connected { get; }
+	public abstract bool legacy_pairing { get; }
+	public abstract bool paired { get; }
+	public abstract bool trusted { get; set; }
+	public abstract int16 RSSI { get; }
+	public abstract ObjectPath adapter { owned get; }
+	public abstract string address { owned get; }
+	public abstract string alias { owned get; set; }
+	public abstract string icon { owned get; }
+	public abstract string modalias { owned get;  }
+	public abstract string name { owned get; }
+	public abstract uint16 appearance { get; }
+	public abstract uint32 @class { get; }
 }

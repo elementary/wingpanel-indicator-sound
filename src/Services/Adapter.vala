@@ -23,16 +23,16 @@ public interface Sound.Services.Adapter : Object {
 	public abstract void start_discovery () throws IOError;
 	public abstract void stop_discovery () throws IOError;
 
-	public abstract string[] UUIDs { public owned get; private set; }
-	public abstract bool discoverable { public get; public set; }
-	public abstract bool discovering { public get; private set; }
-	public abstract bool pairable { public get; public set; }
-	public abstract bool powered { public get; public set; }
-	public abstract string address { public owned get; private set; }
-	public abstract string alias { public owned get; public set; }
-	public abstract string modalias { public owned get; private set; }
-	public abstract string name { public owned get; private set; }
-	public abstract uint @class { public get; private set; }
-	public abstract uint discoverable_timeout { public get; private set; }
-	public abstract uint pairable_timeout { public get; private set; }
+	public abstract string[] UUIDs { owned get; }
+	public abstract bool discoverable { get; set; }
+	public abstract bool discovering { get; }
+	public abstract bool pairable { get; set; }
+	public abstract bool powered { get; set; }
+	public abstract string address { owned get; }
+	public abstract string alias { owned get; set; }
+	public abstract string modalias { owned get; }
+	public abstract string name { owned get; }
+	public abstract uint32 @class { get; }
+	public abstract uint32 discoverable_timeout { get; set; }
+	public abstract uint32 pairable_timeout { get; set; }
 }
