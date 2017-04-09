@@ -22,6 +22,10 @@ vala_precompile (VALA_C ${CMAKE_PROJECT_NAME}
   Services/MprisClient.vala
   Services/Settings.vala
   Services/Volume-control.vala
+  Services/Manager.vala
+  Services/Adapter.vala
+  Services/Device.vala
+  Services/MediaPlayer.vala
   ${CMAKE_CURRENT_BINARY_DIR}/config.vala
 PACKAGES
   wingpanel-2.0
