@@ -6,10 +6,11 @@
 You'll need the following dependencies:
 
     cmake
-    libcanberra-gtk3-dev
+    libcanberra-gtk-dev
     libgranite-dev
     libglib2.0-dev
     libgtk-3-dev
+    libnotify-dev
     libpulse-dev
     libwingpanel-2.0-dev
     valac (>= 0.26)
