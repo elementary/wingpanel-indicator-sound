@@ -71,6 +71,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
     }
 
     private Services.MprisClient? client_ = null;
+    private Services.MediaPlayer? mp_client = null;
 
     public Services.MprisClient? client {
         get {
@@ -117,6 +118,22 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
      */
     public ClientWidget (Services.MprisClient mpris_client) {
         Object (orientation: Gtk.Orientation.VERTICAL, spacing: 0, client: mpris_client);
+    }
+
+    /**
+     * Create a new ClientWidget for bluetooth controls
+     *
+     * @param client The underlying MediaPlayer instance to use
+     */
+    public ClientWidget.bluetooth (Services.MediaPlayer media_player_client, string name, string icon){
+        mp_client = media_player_client;
+
+        app_icon = new ThemedIcon (icon);
+        background.set_from_gicon (app_icon, Gtk.IconSize.DIALOG);
+        title_label.set_markup ("<b>%s</b>".printf (Markup.escape_text (name)));
+        artist_label.set_text (NOT_PLAYING);
+
+        update_controls ();
     }
 
     /**
@@ -194,25 +211,33 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
         prev_btn = btn;
         btn.clicked.connect (()=> {
             Idle.add (()=> {
-                if (client.player.can_go_previous) {
-                  if(!Thread.supported ()) {
-                      warning ("Threading is not supported. DBus timeout could be blocking UI");
-                      try {
-                          client.player.previous();
-                      } catch  (Error e) {
-                          warning ("Going to previous track probably failed (faulty MPRIS interface): %s", e.message);
-                      }
-                  } else {
-                      new Thread <void*> ("wingpanel_indicator_sound_dbus_backward_thread", () => {
-                          try {
-                              client.player.previous();
-                          } catch (Error e) {
-                              warning ("Going to previous track probably failed (faulty MPRIS interface): %s", e.message);
-                          }
-                          return null;
-                        });
-                  }
+                if (!Thread.supported ()) {
+                    warning ("Threading is not supported. DBus timeout could be blocking UI");
+                    try {
+                        if (mp_client == null && client.player.can_go_previous) {
+                            client.player.previous ();
+                        } else if (mp_client != null) {
+                            mp_client.previous ();
+                        }
+                    } catch  (Error e) {
+                        warning ("Going to previous track probably failed (faulty MPRIS interface): %s", e.message);
+                    }
+                } else {
+                    new Thread <void*> ("wingpanel_indicator_sound_dbus_backward_thread", () => {
+                        try {
+                            if (mp_client == null) {
+                                client.player.previous ();
+                            } else if(mp_client != null) {
+                                mp_client.previous ();
+                            }
+                        } catch (Error e) {
+                            warning ("Going to previous track probably failed (faulty MPRIS interface): %s", e.message);
+                        }
+
+                        return null;
+                    });
                 }
+
                 return false;
             });
         });
@@ -224,23 +249,43 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
         play_btn = btn;
         btn.clicked.connect (()=> {
             Idle.add (()=> {
-                if(!Thread.supported ()) {
+                if (!Thread.supported ()) {
                     warning ("Threading is not supported. DBus timeout could be blocking UI");
                     try {
-                        client.player.play_pause();
-                    } catch  (Error e) {
+                        if (mp_client == null) {
+                            client.player.play_pause ();
+                        } else if (mp_client != null) {
+                            if (mp_client.status == "playing") {
+                                mp_client.pause ();
+                            } else {
+                                mp_client.play ();
+                            }
+                            update_play_status ();
+                        }
+                    } catch (Error e) {
                         warning ("Playing/Pausing probably failed (faulty MPRIS interface): %s", e.message);
                     }
                 } else {
                     new Thread <void*> ("wingpanel_indicator_sound_dbus_backward_thread", () => {
                         try {
-                            client.player.play_pause();
+                            if (mp_client == null) {
+                                client.player.play_pause ();
+                            } else if (mp_client != null) {
+                                if (mp_client.status == "playing") {
+                                    mp_client.pause (); 
+                                } else {
+                                    mp_client.play ();
+                                }
+                                update_play_status ();                              
+                            }
                         } catch (Error e) {
-                            warning ("Playing/Pausing probably failed (faulty MPRIS interface): %s", e.message);
+                        warning ("Playing/Pausing probably failed (faulty MPRIS interface): %s", e.message);
                         }
+
                         return null;
-                      });
+                    });
                 }
+
                 return false;
             });
         });
@@ -251,25 +296,33 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
         next_btn = btn;
         btn.clicked.connect (()=> {
             Idle.add (()=> {
-                if (client.player.can_go_next) {
-                    if(!Thread.supported ()) {
-                        warning ("Threading is not supported. DBus timeout could be blocking UI");
+                if(!Thread.supported ()) {
+                    warning ("Threading is not supported. DBus timeout could be blocking UI");
+                    try {
+                        if (mp_client == null && client.player.can_go_next) {
+                            client.player.next ();
+                        } else if (mp_client != null) {
+                            mp_client.next ();
+                        }
+                    } catch (Error e) {
+                        warning ("Going to next track probably failed (faulty MPRIS interface): %s", e.message);
+                    }
+                } else {
+                    new Thread <void*> ("wingpanel_indicator_sound_dbus_forward_thread", () => {
                         try {
-                            client.player.next();
-                        } catch  (Error e) {
+                            if (mp_client == null) {
+                                client.player.next ();
+                            } else if (mp_client != null) {
+                                mp_client.next ();
+                            }
+                        } catch (Error e) {
                             warning ("Going to next track probably failed (faulty MPRIS interface): %s", e.message);
                         }
-                    } else {
-                        new Thread <void*> ("wingpanel_indicator_sound_dbus_forward_thread", () => {
-                            try {
-                                client.player.next();
-                            } catch (Error e) {
-                                warning ("Going to next track probably failed (faulty MPRIS interface): %s", e.message);
-                            }
-                            return null;
-                          });
-                    }
+
+                        return null;
+                    });
                 }
+
                 return false;
             });
         });
@@ -295,7 +348,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
 
     private void connect_to_client () {
         client.prop.properties_changed.connect ((i,p,inv)=> {
-            if  (i == "org.mpris.MediaPlayer2.Player") {
+            if (i == "org.mpris.MediaPlayer2.Player") {
                 /* Handle mediaplayer2 iface */
                 p.foreach ((k,v)=> {
                     if (k == "Metadata") {
@@ -323,17 +376,17 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
         try {
             close ();
             if (client != null && client.player.can_raise) {
-                if(!Thread.supported ()) {
+                if (!Thread.supported ()) {
                     warning ("Threading is not supported. DBus timeout could be blocking UI");
                     try {
-                        client.player.raise();
+                        client.player.raise ();
                     } catch  (Error e) {
                         warning ("Raising the player probably failed (faulty MPRIS interface): %s", e.message);
                     }
                 } else {
                     new Thread <void*> ("wingpanel_indicator_sound_dbus_backward_thread", () => {
                         try {
-                            client.player.raise();
+                            client.player.raise ();
                         } catch (Error e) {
                             warning ("Raising the player probably failed (faulty MPRIS interface): %s", e.message);
                         }
@@ -343,7 +396,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
             } else if (app_info != null) {
                 app_info.launch (null, null);
             }
-        } catch  (Error e) {
+        } catch (Error e) {
             warning ("Could not launch player");
         }
 
@@ -376,11 +429,11 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
     private void update_play_status () {
         switch  (client.player.playback_status) {
             case "Playing":
-                 (play_btn.get_image () as Gtk.Image).set_from_icon_name ("media-playback-pause-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
+                (play_btn.get_image () as Gtk.Image).set_from_icon_name ("media-playback-pause-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
                 break;
             default:
                 /* Stopped, Paused */
-                 (play_btn.get_image () as Gtk.Image).set_from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
+                (play_btn.get_image () as Gtk.Image).set_from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
                 break;
         }
     }
@@ -389,8 +442,13 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
      * Update prev/next sensitivity based on player requirements
      */
     private void update_controls () {
-        prev_btn.set_sensitive (client.player.can_go_previous);
-        next_btn.set_sensitive (client.player.can_go_next);
+        if (mp_client == null) {
+            prev_btn.set_sensitive (client.player.can_go_previous);
+            next_btn.set_sensitive (client.player.can_go_next);
+        } else {
+            prev_btn.set_sensitive (true);
+            next_btn.set_sensitive (true);
+        }
     }
 
     /**
@@ -497,5 +555,24 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
         cr.paint ();
 
         return Gdk.pixbuf_get_from_surface (surface, 0, 0, mask_size, mask_size);
+    }
+
+    public void update_play (string playing, string title, string artist) {
+        if (playing != "") {
+            switch (playing) {
+                case "playing":
+                    (play_btn.get_image () as Gtk.Image).set_from_icon_name ("media-playback-pause-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
+                    break;
+                default:
+                    /* Stopped, Paused */
+                    (play_btn.get_image () as Gtk.Image).set_from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
+                    break;
+            }
+        }
+
+        if (title != "" && artist != "") {
+            title_label.set_markup ("<b>%s</b>".printf (Markup.escape_text (title)));
+            artist_label.set_text (artist);
+        }
     }
 }

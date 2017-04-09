@@ -21,8 +21,11 @@ public class Sound.Widgets.MprisWidget : Gtk.Box {
 
     AppInfo? default_music;
     ClientWidget default_widget;
+    ClientWidget bluetooth_widget;
     HashTable<string,ClientWidget> ifaces;
     public signal void close ();
+
+    public Sound.Services.ObjectManager object_manager;
 
     public MprisWidget() {
         Object (orientation: Gtk.Orientation.VERTICAL, spacing: 1);
@@ -45,6 +48,39 @@ public class Sound.Widgets.MprisWidget : Gtk.Box {
             default_widget.show_all();
             pack_start(default_widget, false, false, 0);
         }
+
+        object_manager = new Services.ObjectManager ();
+        object_manager.bind_property ("has-object", this, "visible", GLib.BindingFlags.SYNC_CREATE);
+
+        if (object_manager.has_object) {
+            object_manager.set_last_state ();
+        }
+
+        object_manager.media_player_added.connect ((media_player, name, icon) => {
+            try { 
+                bluetooth_widget = new ClientWidget.bluetooth (media_player, name, icon);
+                bluetooth_widget.close.connect (() => {
+                    close ();
+                });
+
+                bluetooth_widget.show_all ();
+                pack_start (bluetooth_widget, false, false, 0);
+            } catch (Error e) {
+                warning ("Connecting to bluetooth device failed: %s", e.message);
+            }
+        });
+
+        object_manager.media_player_removed.connect ((media_player) => {
+            debug ("Media player %s removed", media_player.name);
+            bluetooth_widget.destroy ();
+        });
+
+        object_manager.media_player_status_changed.connect ((status, title, artist) => {
+            bluetooth_widget.update_play (status, title, artist);
+            if (status == "playing" && default_widget.client.player.playback_status == "Playing") {
+                default_widget.client.player.play_pause ();
+            }
+        });
 
         show_all();
     }
