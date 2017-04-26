@@ -37,13 +37,13 @@ public class DisplayWidget : Gtk.Grid {
         volume_icon.icon_size = Gtk.IconSize.LARGE_TOOLBAR;
 
         var mic_icon = new Gtk.Image.from_icon_name ("audio-input-microphone-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
-        mic_icon.margin_start = 12;
+        mic_icon.margin_end = 18;
 
         mic_revealer = new Gtk.Revealer ();
-        mic_revealer.transition_type = Gtk.RevealerTransitionType.SLIDE_RIGHT;
+        mic_revealer.transition_type = Gtk.RevealerTransitionType.SLIDE_LEFT;
         mic_revealer.add (mic_icon);
 
-        add (volume_icon);
         add (mic_revealer);
+        add (volume_icon);
     }
 }
