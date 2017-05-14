@@ -16,7 +16,7 @@
 */
 
 public class Sound.Indicator : Wingpanel.Indicator {
-    private DisplayWidget display_widget;
+    private DisplayWidget? display_widget;
     private Gtk.Grid main_grid;
     private Widgets.Scale volume_scale;
     private Widgets.Scale mic_scale;
@@ -39,9 +39,13 @@ public class Sound.Indicator : Wingpanel.Indicator {
     public Indicator () {
         Object (code_name: Wingpanel.Indicator.SOUND,
                 display_name: _("Indicator Sound"),
-                description:_("The sound indicator"));
+                description: _("The sound indicator"));        
+    }
 
+    construct {
         visible = true;
+
+        display_widget = new DisplayWidget ();
 
         volume_control = new Services.VolumeControlPulse ();
         volume_control.notify["volume"].connect (on_volume_change);
@@ -58,10 +62,20 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
         settings = new Services.Settings ();
         settings.notify["max-volume"].connect (set_max_volume);
-    }
-
-    construct {
+    
         var locale = Intl.setlocale (LocaleCategory.MESSAGES, null);
+
+        display_widget.button_press_event.connect ((e) => {
+            if (e.button == Gdk.BUTTON_MIDDLE) {
+                volume_control.toggle_mute ();
+                return Gdk.EVENT_STOP;
+            }
+
+            return Gdk.EVENT_PROPAGATE;
+        });
+
+        display_widget.icon_name = get_volume_icon (volume_control.volume.volume);
+        display_widget.scroll_event.connect (on_icon_scroll_event);
 
         volume_scale = new Widgets.Scale ("audio-volume-high-symbolic", true, 0.0, max_volume, 0.01);
         mic_scale = new Widgets.Scale ("audio-input-microphone-symbolic", true, 0.0, 1.0, 0.01);
@@ -225,20 +239,6 @@ public class Sound.Indicator : Wingpanel.Indicator {
     }
 
     public override Gtk.Widget get_display_widget () {
-        display_widget = new DisplayWidget ();
-        display_widget.icon_name = get_volume_icon (volume_control.volume.volume);
-
-        display_widget.button_press_event.connect ((e) => {
-            if (e.button == Gdk.BUTTON_MIDDLE) {
-                volume_control.toggle_mute ();
-                return Gdk.EVENT_STOP;
-            }
-
-            return Gdk.EVENT_PROPAGATE;
-        });
-
-        display_widget.scroll_event.connect (on_icon_scroll_event);
-
         return display_widget;
     }
 
