@@ -16,7 +16,7 @@
 */
 
 public class Sound.Indicator : Wingpanel.Indicator {
-    private DisplayWidget? display_widget;
+    private DisplayWidget display_widget;
     private Gtk.Grid main_grid;
     private Widgets.Scale volume_scale;
     private Widgets.Scale mic_scale;
