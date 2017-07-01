@@ -6,16 +6,20 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: wingpanel-indicator-sound\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-20 04:54-0500\n"
-"PO-Revision-Date: 2016-06-16 17:39+0000\n"
+"PO-Revision-Date: 2017-04-14 02:05+0000\n"
 "Last-Translator: colindemian <colindemian@outlook.com>\n"
-"Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
+"Language-Team: Chinese (Simplified) "
+"<https://l10n.elementary.io/projects/wingpanel/wingpanel-indicator-"
+"sound/zh_CN/>\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 2.13-dev\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
-"X-Generator: Launchpad (build 18335)\n"
 
 #: ../src//Indicator.vala:53
 msgid "Indicator Sound"
@@ -27,7 +31,7 @@ msgstr "声音指示器"
 
 #: ../src//Indicator.vala:361
 msgid "Sound Settings…"
-msgstr "声音设置..."
+msgstr "声音设置…"
 
 #: ../src//Widgets/MprisGui.vala:24
 msgid "Not currently playing"

@@ -6,16 +6,19 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: wingpanel-indicator-sound\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-20 04:54-0500\n"
-"PO-Revision-Date: 2017-01-26 18:31+0000\n"
-"Last-Translator: Rokar ✌ <Unknown>\n"
-"Language-Team: Kurdish <ku@li.org>\n"
+"PO-Revision-Date: 2017-05-04 20:05+0000\n"
+"Last-Translator: Rokar <rokartv10@gmail.com>\n"
+"Language-Team: ku (generated) <https://l10n.elementary.io/projects/wingpanel"
+"/wingpanel-indicator-sound/ku/>\n"
+"Language: ku\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.13-dev\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
-"X-Generator: Launchpad (build 18335)\n"
 
 #: ../src//Indicator.vala:53
 msgid "Indicator Sound"
@@ -27,7 +30,7 @@ msgstr "we nîşane deng"
 
 #: ../src//Indicator.vala:361
 msgid "Sound Settings…"
-msgstr "deste dengî"
+msgstr "deste dengî…"
 
 #: ../src//Widgets/MprisGui.vala:24
 msgid "Not currently playing"
