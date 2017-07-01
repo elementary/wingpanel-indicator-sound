@@ -43,6 +43,7 @@ public class DisplayWidget : Gtk.Grid {
         mic_revealer.transition_type = Gtk.RevealerTransitionType.SLIDE_LEFT;
         mic_revealer.add (mic_icon);
 
+        valign = Gtk.Align.CENTER;
         add (mic_revealer);
         add (volume_icon);
     }

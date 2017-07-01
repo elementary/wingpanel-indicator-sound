@@ -455,17 +455,21 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
      * Utility, handle updating the album art
      */
     private void update_art (string uri) {
-        if  (!uri.has_prefix ("file://") && !uri.has_prefix  ("http")) {
-            background.set_from_gicon (app_icon, Gtk.IconSize.DIALOG);
+        var scale = get_style_context ().get_scale ();
+        if (!uri.has_prefix ("file://") && !uri.has_prefix ("http")) {
+            background.gicon = app_icon;
+            background.get_style_context ().set_scale (scale);
             mask.no_show_all = true;
             mask.hide ();
             return;
         }
-        if  (uri.has_prefix  ("file://")) {
+
+        if (uri.has_prefix  ("file://")) {
             string fname = uri.split ("file://")[1];
             try {
-                var pbuf = new Gdk.Pixbuf.from_file_at_size (fname, ICON_SIZE, ICON_SIZE);
-                background.set_from_pixbuf (mask_pixbuf (pbuf));
+                var pbuf = new Gdk.Pixbuf.from_file_at_size (fname, ICON_SIZE * scale, ICON_SIZE * scale);
+                background.gicon = mask_pixbuf (pbuf, scale);
+                background.get_style_context ().set_scale (1);
                 mask.no_show_all = false;
                 mask.show ();
             } catch  (Error e) {
@@ -479,20 +483,23 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
     }
 
     private async void load_remote_art (string uri) {
-      GLib.File file = GLib.File.new_for_uri (uri);
-      try {
-          GLib.InputStream stream = yield file.read_async (Priority.DEFAULT, load_remote_art_cancel);
-          Gdk.Pixbuf pixbuf = yield new Gdk.Pixbuf.from_stream_async (stream, load_remote_art_cancel);
-          if (pixbuf != null) {
-              background.set_from_pixbuf (mask_pixbuf (pixbuf));
-              mask.no_show_all = false;
-              mask.show ();
-          }
-      } catch  (Error e) {
-          background.set_from_gicon (app_icon, Gtk.IconSize.DIALOG);
-          mask.no_show_all = true;
-          mask.hide ();
-      }
+        var scale = get_style_context ().get_scale ();
+        GLib.File file = GLib.File.new_for_uri (uri);
+        try {
+            GLib.InputStream stream = yield file.read_async (Priority.DEFAULT, load_remote_art_cancel);
+            Gdk.Pixbuf pixbuf = yield new Gdk.Pixbuf.from_stream_async (stream, load_remote_art_cancel);
+            if (pixbuf != null) {
+                background.gicon = mask_pixbuf (pixbuf, scale);
+                background.get_style_context ().set_scale (1);
+                mask.no_show_all = false;
+                mask.show ();
+            }
+        } catch (Error e) {
+            background.gicon = app_icon;
+            background.get_style_context ().set_scale (scale);
+            mask.no_show_all = true;
+            mask.hide ();
+        }
     }
 
     /**
@@ -534,13 +541,13 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
         }
     }
 
-    private static Gdk.Pixbuf? mask_pixbuf (Gdk.Pixbuf pixbuf) {
-        var size = ICON_SIZE;
-        var mask_offset = 4;
+    private static Gdk.Pixbuf? mask_pixbuf (Gdk.Pixbuf pixbuf, int scale) {
+        var size = ICON_SIZE * scale;
+        var mask_offset = 4 * scale;
         var mask_size_offset = mask_offset * 2;
-        var mask_size = ICON_SIZE;
+        var mask_size = ICON_SIZE * scale;
         var offset_x = mask_offset;
-        var offset_y = mask_offset + 1;
+        var offset_y = mask_offset + scale;
         size = size - mask_size_offset;
 
         var input = pixbuf.scale_simple (size, size, Gdk.InterpType.BILINEAR);
@@ -548,7 +555,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
         var cr = new Cairo.Context (surface);
 
         Granite.Drawing.Utilities.cairo_rounded_rectangle (cr,
-            offset_x, offset_y, size, size, 4);
+            offset_x, offset_y, size, size, mask_offset);
         cr.clip ();
 
         Gdk.cairo_set_source_pixbuf (cr, input, offset_x, offset_y);
