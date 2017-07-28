@@ -17,7 +17,7 @@
  */
 
 const int ICON_SIZE = 48;
-const int MAX_WIDTH_TITLE = 200;
+const int FIXED_WIDTH_TITLE = 200;
 
 /**
  * A ClientWidget is simply used to control and display information in a two-way
@@ -188,14 +188,14 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
         var titles_events = new Gtk.EventBox ();
         var titles = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
         titles.set_valign (Gtk.Align.CENTER);
-        title_label = new MaxWidthLabel (MAX_WIDTH_TITLE);
+        title_label = new FixedWidthLabel (FIXED_WIDTH_TITLE);
         title_label.set_use_markup (true);
         title_label.set_line_wrap (true);
         title_label.set_line_wrap_mode (Pango.WrapMode.WORD);
         title_label.set_ellipsize (Pango.EllipsizeMode.END);
         title_label.halign = Gtk.Align.START;
         titles.pack_start (title_label, false, false, 0);
-        artist_label = new MaxWidthLabel (MAX_WIDTH_TITLE);
+        artist_label = new FixedWidthLabel (FIXED_WIDTH_TITLE);
         artist_label.set_line_wrap (true);
         artist_label.set_line_wrap_mode (Pango.WrapMode.WORD);
         artist_label.set_ellipsize (Pango.EllipsizeMode.END);
