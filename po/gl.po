@@ -3,40 +3,42 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-20 04:54-0500\n"
-"PO-Revision-Date: 2015-10-24 16:29+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2017-09-08 14:59+0000\n"
+"Last-Translator: Thiago Galvani <thiagopaiva99@gmail.com>\n"
+"Language-Team: Galician <https://weblate.elementary.io/projects/wingpanel"
+"/wingpanel-indicator-sound/gl/>\n"
+"Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.16\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
-"X-Generator: Launchpad (build 18335)\n"
 
 #: ../src//Indicator.vala:53
 msgid "Indicator Sound"
-msgstr ""
+msgstr "Son de indicador"
 
 #: ../src//Indicator.vala:54
 msgid "The sound indicator"
-msgstr ""
+msgstr "O indicador de son"
 
 #: ../src//Indicator.vala:361
 msgid "Sound Settings…"
-msgstr ""
+msgstr "Configuración de son …"
 
 #: ../src//Widgets/MprisGui.vala:24
 msgid "Not currently playing"
-msgstr ""
+msgstr "Non xogando actualmente"
 
 #: ../src//Widgets/MprisGui.vala:40
 msgid "Music player"
-msgstr ""
+msgstr "Reprodutor de música"
 
 #: ../src//Widgets/MprisGui.vala:390
 msgid "by "
-msgstr ""
+msgstr "por "
 
 #: ../src//Widgets/MprisGui.vala:393
 msgid "Unknown Title"
-msgstr ""
+msgstr "Título descoñecido"
