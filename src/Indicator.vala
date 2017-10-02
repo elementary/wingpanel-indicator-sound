@@ -171,6 +171,14 @@ public class Sound.Indicator : Wingpanel.Indicator {
             dir = -1;
         }
 
+        var sss = SettingsSchemaSource.get_default ();
+        var schema = sss.lookup ("org.gnome.desktop.peripherals.touchpad", true);
+        if (schema != null) {
+            var touchpad_settings = new Settings.full (schema, null, null);
+            var natural_scrolling = touchpad_settings.get_boolean ("natural-scroll");
+            dir = natural_scrolling ? -dir : dir;
+        }
+
         double v = this.volume_control.volume.volume + volume_step_percentage * dir;
         vol.volume = v.clamp (0.0, this.max_volume);
         this.volume_control.volume = vol;
