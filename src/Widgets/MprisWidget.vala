@@ -57,17 +57,13 @@ public class Sound.Widgets.MprisWidget : Gtk.Box {
         }
 
         object_manager.media_player_added.connect ((media_player, name, icon) => {
-            try { 
-                bluetooth_widget = new ClientWidget.bluetooth (media_player, name, icon);
-                bluetooth_widget.close.connect (() => {
-                    close ();
-                });
+            bluetooth_widget = new ClientWidget.bluetooth (media_player, name, icon);
+            bluetooth_widget.close.connect (() => {
+                close ();
+            });
 
-                bluetooth_widget.show_all ();
-                pack_start (bluetooth_widget, false, false, 0);
-            } catch (Error e) {
-                warning ("Connecting to bluetooth device failed: %s", e.message);
-            }
+            bluetooth_widget.show_all ();
+            pack_start (bluetooth_widget, false, false, 0);
         });
 
         object_manager.media_player_removed.connect ((media_player) => {
