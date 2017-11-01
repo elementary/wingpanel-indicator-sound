@@ -21,7 +21,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
     private Widgets.Scale volume_scale;
     private Widgets.Scale mic_scale;
     private Wingpanel.Widgets.Button settings_button;
-    private Wingpanel.Widgets.Separator first_seperator;
+    private Wingpanel.Widgets.Separator first_separator;
     private Wingpanel.Widgets.Separator mic_seperator;
     private Notify.Notification notification;
     private Services.Settings settings;
@@ -259,9 +259,11 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
             main_grid.attach (mpris, 0, position++, 1, 1);
 
-            first_seperator = new Wingpanel.Widgets.Separator ();
+            if (mpris.get_children ().length () > 0) {
+                first_separator = new Wingpanel.Widgets.Separator ();
 
-            main_grid.attach (first_seperator, 0, position++, 1, 1);
+                main_grid.attach (first_separator, 0, position++, 1, 1);
+            }
 
             volume_scale.margin_start = 6;
             volume_scale.get_switch ().active = !volume_control.mute;
