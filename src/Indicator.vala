@@ -22,7 +22,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
     private Widgets.Scale mic_scale;
     private Wingpanel.Widgets.Button settings_button;
     private Wingpanel.Widgets.Separator first_separator;
-    private Wingpanel.Widgets.Separator mic_seperator;
+    private Wingpanel.Widgets.Separator mic_separator;
     private Notify.Notification notification;
     private Services.Settings settings;
     private Services.VolumeControlPulse volume_control;
@@ -198,14 +198,14 @@ public class Sound.Indicator : Wingpanel.Indicator {
         if (this.volume_control.is_listening) {
             mic_scale.no_show_all = false;
             mic_scale.show_all();
-            mic_seperator.no_show_all = false;
-            mic_seperator.show ();
+            mic_separator.no_show_all = false;
+            mic_separator.show ();
             display_widget.show_mic = true;
         } else {
             mic_scale.no_show_all = true;
             mic_scale.hide();
-            mic_seperator.no_show_all = true;
-            mic_seperator.hide ();
+            mic_separator.no_show_all = true;
+            mic_separator.hide ();
             display_widget.show_mic = false;
         }
     }
@@ -320,11 +320,11 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
             main_grid.attach (mic_scale, 0, position++, 1, 1);
 
-            mic_seperator = new Wingpanel.Widgets.Separator ();
+            mic_separator = new Wingpanel.Widgets.Separator ();
 
             update_mic_visibility ();
 
-            main_grid.attach (mic_seperator, 0, position++, 1, 1);
+            main_grid.attach (mic_separator, 0, position++, 1, 1);
 
             settings_button = new Wingpanel.Widgets.Button (_("Sound Settings…"));
             settings_button.clicked.connect (() => {
