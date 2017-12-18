@@ -5,6 +5,8 @@ i18n = import('i18n')
 
 add_global_arguments('-DGETTEXT_PACKAGE="' + meson.project_name() + '-indicator"', language:'c')
 
+wingpanel_dep = dependency('wingpanel-2.0')
+
 asresources = gnome.compile_resources(
     'as-resources', 'data/mask.gresource.xml',
     source_dir: 'data',
@@ -37,10 +39,10 @@ shared_module(
         dependency('libnotify'),
         dependency('libcanberra'),
         dependency('libcanberra-gtk'),
-        dependency('wingpanel-2.0')
+        wingpanel_dep
     ],
     install: true,
-    install_dir : get_option('libdir') + '/wingpanel'
+    install_dir : wingpanel_dep.get_pkgconfig_variable('indicatorsdir')
 )
 
 subdir('po')
