@@ -1,3 +1,3 @@
-i18n.gettext(meson.project_name() + '-indicator',
+i18n.gettext(gettext_name,
     args: '--directory=' + meson.source_root()
 )   
