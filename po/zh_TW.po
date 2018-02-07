@@ -8,15 +8,18 @@ msgstr ""
 "Project-Id-Version: wingpanel-indicator-sound\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-20 04:54-0500\n"
-"PO-Revision-Date: 2015-09-13 14:22+0000\n"
+"PO-Revision-Date: 2018-02-09 00:12+0000\n"
 "Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
-"Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
-"Language: \n"
+"Language-Team: Chinese (Traditional) "
+"<https://weblate.elementary.io/projects/wingpanel/wingpanel-indicator-"
+"sound/zh_TW/>\n"
+"Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 2.18\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
-"X-Generator: Launchpad (build 18335)\n"
 
 #: ../src//Indicator.vala:53
 msgid "Indicator Sound"
@@ -28,7 +31,7 @@ msgstr "音效指示器"
 
 #: ../src//Indicator.vala:361
 msgid "Sound Settings…"
-msgstr "音效設定值..."
+msgstr "音效設定值…"
 
 #: ../src//Widgets/MprisGui.vala:24
 msgid "Not currently playing"
