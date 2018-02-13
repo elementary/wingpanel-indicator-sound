@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-20 04:54-0500\n"
+"POT-Creation-Date: 2018-02-12 18:28-0800\n"
 "PO-Revision-Date: 2016-03-19 19:21+0000\n"
 "Last-Translator: chilledfrogs <Unknown>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -13,30 +13,30 @@ msgstr ""
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 "X-Generator: Launchpad (build 18335)\n"
 
-#: ../src//Indicator.vala:53
+#: src/Indicator.vala:41
 msgid "Indicator Sound"
 msgstr "Indicator Sound"
 
-#: ../src//Indicator.vala:54
+#: src/Indicator.vala:42
 msgid "The sound indicator"
 msgstr "The sound indicator"
 
-#: ../src//Indicator.vala:361
+#: src/Indicator.vala:329
 msgid "Sound Settings…"
 msgstr "Sound Settings…"
 
-#: ../src//Widgets/MprisGui.vala:24
+#: src/Widgets/MprisGui.vala:29
 msgid "Not currently playing"
 msgstr "Not currently playing"
 
-#: ../src//Widgets/MprisGui.vala:40
+#: src/Widgets/MprisGui.vala:45
 msgid "Music player"
 msgstr "Music player"
 
-#: ../src//Widgets/MprisGui.vala:390
+#: src/Widgets/MprisGui.vala:534
 msgid "by "
 msgstr "by "
 
-#: ../src//Widgets/MprisGui.vala:393
+#: src/Widgets/MprisGui.vala:537
 msgid "Unknown Title"
 msgstr "Unknown Title"
