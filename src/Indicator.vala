@@ -20,7 +20,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
     private Gtk.Grid main_grid;
     private Widgets.Scale volume_scale;
     private Widgets.Scale mic_scale;
-    private Wingpanel.Widgets.Button settings_button;
+    private Gtk.ModelButton settings_button;
     private Wingpanel.Widgets.Separator first_separator;
     private Wingpanel.Widgets.Separator mic_separator;
     private Notify.Notification notification;
@@ -326,7 +326,8 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
             main_grid.attach (mic_separator, 0, position++, 1, 1);
 
-            settings_button = new Wingpanel.Widgets.Button (_("Sound Settings…"));
+            settings_button = new Gtk.ModelButton ();
+            settings_button.text = _("Sound Settings…");
             settings_button.clicked.connect (() => {
                 show_settings ();
             });
