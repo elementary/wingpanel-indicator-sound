@@ -42,9 +42,9 @@ public class Sound.Widgets.Scale : Gtk.Grid {
 
         hexpand = true;
         get_style_context ().add_class ("indicator-switch");
-        attach (image_box, 0, 0, 1, 1);
-        attach (scale_widget, 1, 0, 1, 1);
-        attach (switch_widget, 2, 0, 1, 1);
+        add (image_box);
+        add (scale_widget);
+        add (switch_widget);
 
         add_events (Gdk.EventMask.SCROLL_MASK);
         scroll_event.connect (on_scroll);
