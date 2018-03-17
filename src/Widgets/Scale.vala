@@ -17,77 +17,59 @@
 
 public class Sound.Widgets.Scale : Gtk.Grid {
     private Gtk.Image image;
-    private Gtk.Switch switch_widget;
-    private Gtk.Scale scale_widget;
+
+    public bool active { get; set; }
+    public Gtk.Scale scale_widget { get; private set; }
 
     public Scale (string icon, bool active = false, double min, double max, double step) {
-        this.hexpand = true;
-        var image_box = new Gtk.EventBox ();
         image = new Gtk.Image.from_icon_name (icon, Gtk.IconSize.DIALOG);
-        image_box.halign = Gtk.Align.START;
-        image_box.add (image);
+        image.pixel_size = 48;
 
-        this.attach (image_box, 0, 0, 1, 1);
+        var image_box = new Gtk.EventBox ();
+        image_box.add (image);
 
         scale_widget = new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL, min, max, step);
         scale_widget.margin_start = 6;
         scale_widget.set_size_request (175, -1);
         scale_widget.set_draw_value (false);
         scale_widget.hexpand = true;
-        this.attach (scale_widget, 1, 0, 1, 1);
 
-        switch_widget = new Gtk.Switch ();
+        var switch_widget = new Gtk.Switch ();
         switch_widget.active = active;
         switch_widget.valign = Gtk.Align.CENTER;
         switch_widget.margin_start = 6;
         switch_widget.margin_end = 12;
 
-        this.attach (switch_widget, 2, 0, 1, 1);
+        hexpand = true;
+        get_style_context ().add_class ("indicator-switch");
+        attach (image_box, 0, 0, 1, 1);
+        attach (scale_widget, 1, 0, 1, 1);
+        attach (switch_widget, 2, 0, 1, 1);
 
-        this.get_style_context ().add_class ("indicator-switch");
+        add_events (Gdk.EventMask.SCROLL_MASK);
+        scroll_event.connect (on_scroll);
 
-        this.add_events (Gdk.EventMask.SCROLL_MASK);
         image_box.add_events (Gdk.EventMask.SCROLL_MASK);
-        switch_widget.add_events (Gdk.EventMask.SCROLL_MASK);
-        // delegate all scroll events to the scale
-        this.scroll_event.connect (on_scroll);
+        image_box.add_events (Gdk.EventMask.BUTTON_RELEASE_MASK);
         image_box.scroll_event.connect (on_scroll);
+        image_box.button_release_event.connect (() => {
+            switch_widget.active = !switch_widget.active;
+            return Gdk.EVENT_STOP;
+        });
+
+        switch_widget.add_events (Gdk.EventMask.SCROLL_MASK);
         switch_widget.scroll_event.connect (on_scroll);
         switch_widget.bind_property ("active", scale_widget, "sensitive", BindingFlags.SYNC_CREATE);
         switch_widget.bind_property ("active", image, "sensitive", BindingFlags.SYNC_CREATE);
-    }
-
-    construct {
-    
+        switch_widget.bind_property ("active", this, "active", BindingFlags.BIDIRECTIONAL);
     }
 
     private bool on_scroll (Gdk.EventScroll event) {
         scale_widget.scroll_event (event);
-
         return Gdk.EVENT_STOP;
-    }
-
-    public Gtk.Image get_image () {
-        return image;
     }
 
     public void set_icon (string icon) {
         image.set_from_icon_name (icon, Gtk.IconSize.DIALOG);
-    }
-
-    public void set_active (bool active) {
-        switch_widget.set_active (active);
-    }
-
-    public bool get_active () {
-        return switch_widget.get_active ();
-    }
-
-    public Gtk.Switch get_switch () {
-        return switch_widget;
-    }
-
-    public Gtk.Scale get_scale () {
-        return scale_widget;
     }
 }
