@@ -18,10 +18,34 @@
 public class Sound.Widgets.Scale : Gtk.Grid {
     private Gtk.Image image;
 
-    public bool active { get; set; }
+    private string _icon;
+    public string icon {
+        get {
+            return _icon;
+        }
+        set {
+            image.set_from_icon_name (value, Gtk.IconSize.DIALOG);
+            _icon = value;
+        }
+    }
+
+    public bool active { get; construct set; }
+    public double max { get; construct; }
+    public double min { get; construct; }
+    public double step { get; construct; }
     public Gtk.Scale scale_widget { get; private set; }
 
     public Scale (string icon, bool active = false, double min, double max, double step) {
+        Object (
+            active: active,
+            icon: icon,
+            max: max,
+            min: min,
+            step: step
+        );
+    }
+
+    construct {
         image = new Gtk.Image.from_icon_name (icon, Gtk.IconSize.DIALOG);
         image.pixel_size = 48;
 
@@ -35,7 +59,6 @@ public class Sound.Widgets.Scale : Gtk.Grid {
         scale_widget.hexpand = true;
 
         var switch_widget = new Gtk.Switch ();
-        switch_widget.active = active;
         switch_widget.valign = Gtk.Align.CENTER;
         switch_widget.margin_start = 6;
         switch_widget.margin_end = 12;
@@ -67,9 +90,5 @@ public class Sound.Widgets.Scale : Gtk.Grid {
     private bool on_scroll (Gdk.EventScroll event) {
         scale_widget.scroll_event (event);
         return Gdk.EVENT_STOP;
-    }
-
-    public void set_icon (string icon) {
-        image.set_from_icon_name (icon, Gtk.IconSize.DIALOG);
     }
 }
