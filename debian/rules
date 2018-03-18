@@ -10,7 +10,10 @@
 #export DH_VERBOSE=1
 
 %:
-	dh $@ --buildsystem=meson
+	dh $@ 
 
 override_dh_strip:
-	dh_strip --dbg-package=wingpanel-indicator-sound-dbg
+	dh_strip --dbgsym-migration='switchboard-plug-keyboard-dbg (<< 2.0.5)'
+
+override_dh_missing:
+	dh_missing --fail-missing
