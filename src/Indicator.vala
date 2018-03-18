@@ -126,9 +126,9 @@ public class Sound.Indicator : Wingpanel.Indicator {
         display_widget.icon_name = volume_icon;
 
         if (volume_control.mute) {
-            volume_scale.set_icon ("audio-volume-muted-symbolic");
+            volume_scale.icon = "audio-volume-muted-symbolic";
         } else {
-            volume_scale.set_icon (volume_icon);
+            volume_scale.icon = volume_icon;
         }
     }
 
@@ -275,7 +275,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
                 vol.volume = v.clamp (0.0, this.max_volume);
                 vol.reason = Services.VolumeControl.VolumeReasons.USER_KEYPRESS;
                 this.volume_control.volume = vol;
-                volume_scale.set_icon (get_volume_icon (volume_scale.scale_widget.get_value ()));
+                volume_scale.icon = get_volume_icon (volume_scale.scale_widget.get_value ());
             });
 
             volume_scale.scale_widget.set_value (volume_control.volume.volume);
@@ -303,7 +303,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
                 return true;
             });
 
-            volume_scale.set_icon (get_volume_icon (volume_scale.scale_widget.get_value ()));
+            volume_scale.icon = get_volume_icon (volume_scale.scale_widget.get_value ());
             set_max_volume ();
 
             main_grid.attach (volume_scale, 0, position++, 1, 1);
