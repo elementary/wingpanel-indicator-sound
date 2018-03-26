@@ -110,30 +110,30 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
     private void on_volume_change () {
         var volume = volume_control.volume.volume / this.max_volume;
-        volume_scale.get_scale ().set_value (volume);
+        volume_scale.scale_widget.set_value (volume);
         display_widget.icon_name = get_volume_icon (volume);
     }
 
     private void on_mic_volume_change () {
         var volume = volume_control.mic_volume;
-        mic_scale.get_scale ().set_value (volume);
+        mic_scale.scale_widget.set_value (volume);
     }
 
     private void on_mute_change () {
-        volume_scale.get_switch ().active = !volume_control.mute;
+        volume_scale.active = !volume_control.mute;
 
         string volume_icon = get_volume_icon (volume_control.volume.volume);
         display_widget.icon_name = volume_icon;
 
         if (volume_control.mute) {
-            volume_scale.set_icon ("audio-volume-muted-symbolic");
+            volume_scale.icon = "audio-volume-muted-symbolic";
         } else {
-            volume_scale.set_icon (volume_icon);
+            volume_scale.icon = volume_icon;
         }
     }
 
     private void on_mic_mute_change () {
-        mic_scale.get_switch ().active = !volume_control.micMute;
+        mic_scale.active = !volume_control.micMute;
     }
 
     private void on_is_playing_change () {
@@ -223,7 +223,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
     }
 
     private void on_volume_switch_change () {
-        if (volume_scale.get_switch ().active) {
+        if (volume_scale.active) {
             volume_control.set_mute (false);
         } else {
             volume_control.set_mute (true);
@@ -231,7 +231,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
     }
 
     private void on_mic_switch_change () {
-        if (mic_scale.get_switch ().active) {
+        if (mic_scale.active) {
             volume_control.set_mic_mute (false);
         } else {
             volume_control.set_mic_mute (true);
@@ -266,24 +266,24 @@ public class Sound.Indicator : Wingpanel.Indicator {
             }
 
             volume_scale.margin_start = 6;
-            volume_scale.get_switch ().active = !volume_control.mute;
-            volume_scale.get_switch ().notify["active"].connect (on_volume_switch_change);
+            volume_scale.active = !volume_control.mute;
+            volume_scale.notify["active"].connect (on_volume_switch_change);
 
-            volume_scale.get_scale ().value_changed.connect (() => {
+            volume_scale.scale_widget.value_changed.connect (() => {
                 var vol = new Services.VolumeControl.Volume();
-                var v = volume_scale.get_scale ().get_value () * this.max_volume;
+                var v = volume_scale.scale_widget.get_value () * this.max_volume;
                 vol.volume = v.clamp (0.0, this.max_volume);
                 vol.reason = Services.VolumeControl.VolumeReasons.USER_KEYPRESS;
                 this.volume_control.volume = vol;
-                volume_scale.set_icon (get_volume_icon (volume_scale.get_scale ().get_value ()));
+                volume_scale.icon = get_volume_icon (volume_scale.scale_widget.get_value ());
             });
 
-            volume_scale.get_scale ().set_value (volume_control.volume.volume);
-            volume_scale.get_scale ().button_release_event.connect ((e) => {
+            volume_scale.scale_widget.set_value (volume_control.volume.volume);
+            volume_scale.scale_widget.button_release_event.connect ((e) => {
                 play_sound_blubble ();
                 return false;
             });
-            volume_scale.get_scale ().scroll_event.connect ((e) => {
+            volume_scale.scale_widget.scroll_event.connect ((e) => {
                 int dir = 0;
                 if (e.direction == Gdk.ScrollDirection.UP || e.direction == Gdk.ScrollDirection.RIGHT ||
                     (e.direction == Gdk.ScrollDirection.SMOOTH && e.delta_y < 0)) {
@@ -293,17 +293,17 @@ public class Sound.Indicator : Wingpanel.Indicator {
                     dir = -1;
                 }
 
-                double v = volume_scale.get_scale ().get_value ();
+                double v = volume_scale.scale_widget.get_value ();
                 v = v + volume_step_percentage * dir;
 
                 if (v >= -0.05 && v <= 1.05) {
-                    volume_scale.get_scale ().set_value (v);
+                    volume_scale.scale_widget.set_value (v);
                     play_sound_blubble ();
                 }
                 return true;
             });
 
-            volume_scale.set_icon (get_volume_icon (volume_scale.get_scale ().get_value ()));
+            volume_scale.icon = get_volume_icon (volume_scale.scale_widget.get_value ());
             set_max_volume ();
 
             main_grid.attach (volume_scale, 0, position++, 1, 1);
@@ -311,11 +311,11 @@ public class Sound.Indicator : Wingpanel.Indicator {
             main_grid.attach (new Wingpanel.Widgets.Separator (), 0, position++, 1, 1);
 
             mic_scale.margin_start = 6;
-            mic_scale.get_switch ().active = !volume_control.micMute;
-            mic_scale.get_switch ().notify["active"].connect (on_mic_switch_change);
+            mic_scale.active = !volume_control.micMute;
+            mic_scale.notify["active"].connect (on_mic_switch_change);
 
-            mic_scale.get_scale ().value_changed.connect (() => {
-                volume_control.mic_volume = mic_scale.get_scale ().get_value ();
+            mic_scale.scale_widget.value_changed.connect (() => {
+                volume_control.mic_volume = mic_scale.scale_widget.get_value ();
             });
 
             main_grid.attach (mic_scale, 0, position++, 1, 1);
