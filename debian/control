@@ -1,8 +1,9 @@
 Source: wingpanel-indicator-sound
 Section: x11
 Priority: optional
-Maintainer: elementary OS Team <builds@elementary.io>
+Maintainer: elementary LLC <builds@elementary.io>
 Build-Depends: debhelper (>= 10.5.1),
+               gettext,
                gobject-introspection,
                libaccountsservice-dev,
                libcanberra-dev,
