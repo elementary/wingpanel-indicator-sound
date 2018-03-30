@@ -1,9 +1,9 @@
 Source: wingpanel-indicator-sound
 Section: x11
 Priority: optional
-Maintainer: Cody Garver <cody@elementary.io>
-Build-Depends: cmake,
-               debhelper (>= 9),
+Maintainer: elementary LLC <builds@elementary.io>
+Build-Depends: debhelper (>= 10.5.1),
+               gettext,
                gobject-introspection,
                libaccountsservice-dev,
                libcanberra-dev,
@@ -13,9 +13,10 @@ Build-Depends: cmake,
                libnotify-dev,
                libpulse-dev,
                libwingpanel-2.0-dev,
+               meson,
                valac (>= 0.28)
-Standards-Version: 3.9.6
-Homepage: https://launchpad.net/wingpanel-indicator-sound
+Standards-Version: 4.1.1
+Homepage: https://github.com/elementary/wingpanel-indicator-sound
 
 Package: wingpanel-indicator-sound
 Architecture: any
@@ -23,14 +24,3 @@ Depends: ${misc:Depends}, ${shlibs:Depends}
 Enhances: wingpanel
 Description: WingPanel Sound Indicator
  WingPanel Sound Indicator
-
-Package: wingpanel-indicator-sound-dbg
-Architecture: any
-Section: debug
-Priority: extra
-Depends: wingpanel-indicator-sound (= ${binary:Version}), ${misc:Depends}
-Enhances: wingpanel-indicator-sound
-Description: WingPanel Sound Indicator (debugging symbols)
- WingPanel Sound Indicator
- .
- This package contains debugging symbols for wingpanel-indicator-sound.
