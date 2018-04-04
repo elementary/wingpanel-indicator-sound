@@ -25,8 +25,8 @@ public class MprisClient : Object {
     public PlayerIface player { construct set; get; }
     public DbusPropIface prop { construct set; get; }
 
-    public MprisClient(PlayerIface player, DbusPropIface prop) {
-        Object(player: player, prop: prop);
+    public MprisClient (PlayerIface player, DbusPropIface prop) {
+        Object (player: player, prop: prop);
     }
 }
 
@@ -35,7 +35,7 @@ public class MprisClient : Object {
  */
 [DBus (name="org.freedesktop.DBus")]
 public interface DBusImpl : Object {
-    public abstract string[] list_names() throws GLib.Error;
+    public abstract string[] list_names () throws GLib.Error;
     public signal void name_owner_changed (string name, string old_owner, string new_owner);
 }
 
@@ -59,7 +59,6 @@ public interface MprisIface : Object {
 
 /**
  * Interface for the org.mpris.MediaPlayer2.Player spec
- * This is the one that actually does cool stuff!
  *
  * @note We cheat and inherit from MprisIface to save faffing around with two
  * iface initialisations over one
