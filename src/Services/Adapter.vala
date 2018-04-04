@@ -18,10 +18,10 @@
 
 [DBus (name = "org.bluez.Adapter1")]
 public interface Sound.Services.Adapter : Object {
-	public abstract void remove_device (ObjectPath device) throws IOError;
-	public abstract void set_discovery_filter (HashTable<string, Variant> properties) throws IOError;
-	public abstract void start_discovery () throws IOError;
-	public abstract void stop_discovery () throws IOError;
+	public abstract void remove_device (ObjectPath device) throws GLib.Error;
+	public abstract void set_discovery_filter (HashTable<string, Variant> properties) throws GLib.Error;
+	public abstract void start_discovery () throws GLib.Error;
+	public abstract void stop_discovery () throws GLib.Error;
 
 	public abstract string[] UUIDs { owned get; }
 	public abstract bool discoverable { get; set; }
