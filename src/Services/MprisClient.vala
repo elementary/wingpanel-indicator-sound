@@ -57,8 +57,8 @@ public interface DbusPropIface : Object
 [DBus (name="org.mpris.MediaPlayer2")]
 public interface MprisIface : Object
 {
-    public abstract void raise() throws GLib.Error;
-    public abstract void quit() throws GLib.Error;
+    public abstract void raise () throws GLib.Error;
+    public abstract void quit () throws GLib.Error;
 
     public abstract bool can_quit { get; set; }
     public abstract bool fullscreen { get; } /* Optional */
@@ -88,8 +88,8 @@ public interface PlayerIface : MprisIface
     public abstract void stop () throws GLib.Error;
     public abstract void play () throws GLib.Error;
     /* Eh we don't use everything in this iface :p */
-    public abstract void seek(int64 offset) throws GLib.Error;
-    public abstract void open_uri(string uri) throws GLib.Error;
+    public abstract void seek (int64 offset) throws GLib.Error;
+    public abstract void open_uri (string uri) throws GLib.Error;
 
     public abstract string playback_status { owned get; }
     public abstract string loop_status { owned get; set; } /* Optional */
