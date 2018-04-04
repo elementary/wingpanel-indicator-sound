@@ -21,7 +21,7 @@ public interface Sound.Services.DBusInterface : Object {
     public signal void interfaces_added (ObjectPath object_path, HashTable<string, HashTable<string, Variant>> param);
     public signal void interfaces_removed (ObjectPath object_path, string[] string_array);
 
-    public abstract HashTable<ObjectPath, HashTable<string, HashTable<string, Variant>>> get_managed_objects () throws IOError;
+    public abstract HashTable<ObjectPath, HashTable<string, HashTable<string, Variant>>> get_managed_objects () throws GLib.Error;
 }
 
 public class Sound.Services.ObjectManager : Object {
