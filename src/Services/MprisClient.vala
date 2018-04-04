@@ -37,7 +37,7 @@ public class MprisClient : Object
 [DBus (name="org.freedesktop.DBus")]
 public interface DBusImpl : Object
 {
-    public abstract string[] list_names() throws IOError;
+    public abstract string[] list_names () throws GLib.Error;
     public signal void name_owner_changed(string name, string old_owner, string new_owner);
     public signal void name_acquired(string name);
 }
@@ -57,8 +57,8 @@ public interface DbusPropIface : Object
 [DBus (name="org.mpris.MediaPlayer2")]
 public interface MprisIface : Object
 {
-    public abstract void raise() throws IOError;
-    public abstract void quit() throws IOError;
+    public abstract void raise () throws GLib.Error;
+    public abstract void quit () throws GLib.Error;
 
     public abstract bool can_quit { get; set; }
     public abstract bool fullscreen { get; } /* Optional */
@@ -81,15 +81,15 @@ public interface MprisIface : Object
 [DBus (name="org.mpris.MediaPlayer2.Player")]
 public interface PlayerIface : MprisIface
 {
-    public abstract void next() throws IOError;
-    public abstract void previous() throws IOError;
-    public abstract void pause() throws IOError;
-    public abstract void play_pause() throws IOError;
-    public abstract void stop() throws IOError;
-    public abstract void play() throws IOError;
+    public abstract void next () throws GLib.Error;
+    public abstract void previous () throws GLib.Error;
+    public abstract void pause () throws GLib.Error;
+    public abstract void play_pause () throws GLib.Error;
+    public abstract void stop () throws GLib.Error;
+    public abstract void play () throws GLib.Error;
     /* Eh we don't use everything in this iface :p */
-    public abstract void seek(int64 offset) throws IOError;
-    public abstract void open_uri(string uri) throws IOError;
+    public abstract void seek (int64 offset) throws GLib.Error;
+    public abstract void open_uri (string uri) throws GLib.Error;
 
     public abstract string playback_status { owned get; }
     public abstract string loop_status { owned get; set; } /* Optional */

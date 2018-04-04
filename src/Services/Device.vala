@@ -18,12 +18,12 @@
 
 [DBus (name = "org.bluez.Device1")]
 public interface Sound.Services.Device : Object {
-	public abstract void cancel_pairing () throws IOError;
-	public abstract void connect () throws IOError;
-	public abstract void connect_profile (string UUID) throws IOError;
-	public abstract void disconnect () throws IOError;
-	public abstract void disconnect_profile (string UUID) throws IOError;
-	public abstract void pair () throws IOError;
+	public abstract void cancel_pairing () throws GLib.Error;
+	public abstract void connect () throws GLib.Error;
+	public abstract void connect_profile (string UUID) throws GLib.Error;
+	public abstract void disconnect () throws GLib.Error;
+	public abstract void disconnect_profile (string UUID) throws GLib.Error;
+	public abstract void pair () throws GLib.Error;
 
 	public abstract string[] UUIDs { owned get; }
 	public abstract bool blocked { get; set; }
