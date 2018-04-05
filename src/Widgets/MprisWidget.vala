@@ -74,7 +74,11 @@ public class Sound.Widgets.MprisWidget : Gtk.Box {
         object_manager.media_player_status_changed.connect ((status, title, artist) => {
             bluetooth_widget.update_play (status, title, artist);
             if (status == "playing" && default_widget.client.player.playback_status == "Playing") {
-                default_widget.client.player.play_pause ();
+                try {
+                    default_widget.client.player.play_pause ();
+                } catch (Error e) {
+                    critical (e.message);
+                }
             }
         });
 
