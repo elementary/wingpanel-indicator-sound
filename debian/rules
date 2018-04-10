@@ -13,4 +13,4 @@
 	dh $@ --buildsystem=meson
 
 override_dh_strip:
-	dh_strip --dbgsym-migration='switchboard-plug-keyboard-dbg (<< 2.0.5)'
+	dh_strip --dbgsym-migration='wingpanel-indicator-sound-dbg (<< 2.0.5)'
