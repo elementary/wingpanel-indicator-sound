@@ -27,6 +27,9 @@ public class Sound.Indicator : Wingpanel.Indicator {
     private Services.Settings settings;
     private Services.VolumeControlPulse volume_control;
 
+    private bool mouse_natural_scroll = false;
+    private bool touchpad_natural_scroll = false;
+
     bool open = false;
     bool mute_blocks_sound = false;
     uint sound_was_blocked_timeout_id;
@@ -87,6 +90,19 @@ public class Sound.Indicator : Wingpanel.Indicator {
                                  Canberra.PROP_APPLICATION_LANGUAGE, locale,
                                  null);
         ca_context.open ();
+
+        var sss = SettingsSchemaSource.get_default ();
+        var touchpad_schema = sss.lookup ("org.gnome.desktop.peripherals.touchpad", true);
+        if (touchpad_schema != null) {
+            var touchpad_settings = new Settings.full (touchpad_schema, null, null);
+            touchpad_natural_scroll = touchpad_settings.get_boolean ("natural-scroll");
+        }
+
+        var mouse_schema = sss.lookup ("org.gnome.desktop.peripherals.mouse", true);
+        if (mouse_schema != null) {
+            var mouse_settings = new Settings.full (mouse_schema, null, null);
+            mouse_natural_scroll = mouse_settings.get_boolean ("natural-scroll");
+        }
     }
 
     ~Indicator () {
@@ -169,6 +185,13 @@ public class Sound.Indicator : Wingpanel.Indicator {
             dir = 1;
         } else if (e.direction == Gdk.ScrollDirection.DOWN) {
             dir = -1;
+        }
+
+        var is_mouse = e.device.input_source == Gdk.InputSource.MOUSE;
+        var is_touchpad = e.device.input_source == Gdk.InputSource.TOUCHPAD;
+
+        if ((is_mouse && mouse_natural_scroll) || (is_touchpad && touchpad_natural_scroll)) {
+            dir = -dir;
         }
 
         double v = this.volume_control.volume.volume + volume_step_percentage * dir;
