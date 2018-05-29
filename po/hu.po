@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-12 18:28-0800\n"
 "PO-Revision-Date: 2018-05-29 11:58+0000\n"
-"Last-Translator: anonymous <noreply@weblate.org>\n"
+"Last-Translator: Majer Tamás <mtamas@disroot.org>\n"
 "Language-Team: Hungarian <https://weblate.elementary.io/projects/wingpanel"
 "/wingpanel-indicator-sound/hu/>\n"
 "Language: hu\n"
@@ -37,8 +37,8 @@ msgstr "Zene lejátszó"
 
 #: src/Widgets/MprisGui.vala:534
 msgid "by "
-msgstr ""
+msgstr "előadó "
 
 #: src/Widgets/MprisGui.vala:537
 msgid "Unknown Title"
-msgstr ""
+msgstr "Ismeretlen cím"
