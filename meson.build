@@ -52,7 +52,7 @@ shared_module(
 )
 
 install_data(
-    'schemas/org.pantheon.desktop.wingpanel.indicators.sound.gschema.xml',
+    'data/io.elementary.desktop.wingpanel.sound.gschema.xml',
     install_dir: join_paths(get_option('datadir'), 'glib-2.0', 'schemas')
 )
 

@@ -23,7 +23,7 @@ public class Sound.Services.Settings : Granite.Services.Settings {
     private static Sound.Services.Settings? instance = null;
 
     public Settings () {
-        base ("org.pantheon.desktop.wingpanel.indicators.sound");
+        base ("io.elementary.desktop.wingpanel.sound");
     }
 
     public static Sound.Services.Settings get_instance () {
