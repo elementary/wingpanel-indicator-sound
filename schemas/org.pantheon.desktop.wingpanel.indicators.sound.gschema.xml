@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
-    <schema path="/org/pantheon/desktop/wingpanel/indicators/sound/" id="org.pantheon.desktop.wingpanel.indicators.sound" gettext-domain="sound-indicator">
+    <schema path="/org/pantheon/desktop/wingpanel/indicators/sound/" id="org.pantheon.desktop.wingpanel.indicators.sound">
         <key type="d" name="max-volume">
             <default>100</default>
             <range min="1" max="160"/>
