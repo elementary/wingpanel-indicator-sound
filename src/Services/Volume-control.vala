@@ -465,7 +465,7 @@ public class Sound.Services.VolumeControlPulse : VolumeControl {
 
         var props = new PulseAudio.Proplist ();
         props.sets (PulseAudio.Proplist.PROP_APPLICATION_NAME, "elementary OS Audio Settings");
-        props.sets (PulseAudio.Proplist.PROP_APPLICATION_ID, "org.pantheon.desktop.wingpanel.indicators.sound");
+        props.sets (PulseAudio.Proplist.PROP_APPLICATION_ID, "io.elementary.desktop.wingpanel.sound");
         props.sets (PulseAudio.Proplist.PROP_APPLICATION_ICON_NAME, "multimedia-volume-control");
         props.sets (PulseAudio.Proplist.PROP_APPLICATION_VERSION, "0.1");
 
