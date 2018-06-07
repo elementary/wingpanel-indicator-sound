@@ -13,6 +13,7 @@ Build-Depends: debhelper (>= 10.5.1),
                libnotify-dev,
                libpulse-dev,
                libwingpanel-2.0-dev,
+               libxml2-utils,
                meson,
                valac (>= 0.28)
 Standards-Version: 4.1.1
