@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-12 18:28-0800\n"
-"PO-Revision-Date: 2018-06-09 11:48+0000\n"
-"Last-Translator: Gamunu Udaya Balagalla <gamunu.balagalla@gmail.com>\n"
+"PO-Revision-Date: 2018-06-10 00:14+0000\n"
+"Last-Translator: Gamunu Balagalla <gamunu.balagalla@gmail.com>\n"
 "Language-Team: Sinhala <https://weblate.elementary.io/projects/wingpanel"
 "/wingpanel-indicator-sound/si/>\n"
 "Language: si\n"
@@ -25,7 +25,7 @@ msgstr "ශබ්ද දර්ශකය"
 
 #: src/Indicator.vala:329
 msgid "Sound Settings…"
-msgstr "ශබ්ද සකස් කිරීම"
+msgstr "ශබ්ද සකස් කිරීම…"
 
 #: src/Widgets/MprisGui.vala:29
 msgid "Not currently playing"
