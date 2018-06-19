@@ -1,8 +1,8 @@
-wingpanel-indicator-sound (2.0.6) UNRELEASED; urgency=medium
+wingpanel-indicator-sound (2.1.0) bionic; urgency=medium
 
-  * Pre-release version bump.
+  * New upstream release.
 
- -- Daniel <daniel@elementary.io>  Thu, 29 Mar 2018 16:32:14 -0700
+ -- Cody Garver <cody@elementary.io>  Mon, 18 Jun 2018 19:38:50 -0500
 
 wingpanel-indicator-sound (2.0.5) xenial; urgency=medium
 
