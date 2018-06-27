@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-12 18:28-0800\n"
+"POT-Creation-Date: 2018-06-27 09:57-0700\n"
 "PO-Revision-Date: 2017-01-31 19:29+0000\n"
 "Last-Translator: a.hargange <a.hargange@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,7 +21,7 @@ msgstr "दर्शक ध्वनी"
 msgid "The sound indicator"
 msgstr "आवाज सूचक"
 
-#: src/Indicator.vala:329
+#: src/Indicator.vala:330
 msgid "Sound Settings…"
 msgstr "आवाजाच्या सॆटींग्स"
 

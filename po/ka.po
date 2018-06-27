@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-12 18:28-0800\n"
+"POT-Creation-Date: 2018-06-27 09:57-0700\n"
 "PO-Revision-Date: 2015-11-14 14:07+0000\n"
 "Last-Translator: Beqa Arabuli <arabulibeqa@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,7 +21,7 @@ msgstr "ინდიკატორის ხმა"
 msgid "The sound indicator"
 msgstr "ხმის ინდიკატორი"
 
-#: src/Indicator.vala:329
+#: src/Indicator.vala:330
 msgid "Sound Settings…"
 msgstr "ხმის პარამეტრები..."
 

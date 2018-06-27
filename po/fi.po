@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wingpanel-indicator-sound\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-12 18:28-0800\n"
+"POT-Creation-Date: 2018-06-27 09:57-0700\n"
 "PO-Revision-Date: 2015-08-21 07:56+0000\n"
 "Last-Translator: Jiri Grönroos <Unknown>\n"
 "Language-Team: Finnish <fi@li.org>\n"
@@ -26,7 +26,7 @@ msgstr "Ääni-ilmaisin"
 msgid "The sound indicator"
 msgstr "Ääni-ilmaisin"
 
-#: src/Indicator.vala:329
+#: src/Indicator.vala:330
 msgid "Sound Settings…"
 msgstr "Ääniasetukset…"
 

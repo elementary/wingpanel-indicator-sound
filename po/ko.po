@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wingpanel-indicator-sound\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-12 18:28-0800\n"
+"POT-Creation-Date: 2018-06-27 09:57-0700\n"
 "PO-Revision-Date: 2017-04-09 21:57+0000\n"
 "Last-Translator: Jung-Kyu Park <bagjunggyu@gmail.com>\n"
 "Language-Team: Korean <http://weblate.elementary.io/projects/desktop/"
@@ -28,7 +28,7 @@ msgstr "소리 설정 알림"
 msgid "The sound indicator"
 msgstr "사운드 인디케이터"
 
-#: src/Indicator.vala:329
+#: src/Indicator.vala:330
 msgid "Sound Settings…"
 msgstr "소리 설정…"
 

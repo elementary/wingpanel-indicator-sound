@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wingpanel-indicator-sound\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-12 18:28-0800\n"
+"POT-Creation-Date: 2018-06-27 09:57-0700\n"
 "PO-Revision-Date: 2016-10-08 16:48+0000\n"
 "Last-Translator: aberba <karabutaworld@gmail.com>\n"
 "Language-Team: Akan <ak@li.org>\n"
@@ -26,7 +26,7 @@ msgstr "Ngyegyee Ahyɛnsode"
 msgid "The sound indicator"
 msgstr "Ngyegyee no ahyɛnsodeɛ"
 
-#: src/Indicator.vala:329
+#: src/Indicator.vala:330
 msgid "Sound Settings…"
 msgstr "Senea Ɛgyegye Ho Nhyehyeɛ…"
 

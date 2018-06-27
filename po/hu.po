@@ -2,11 +2,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-12 18:28-0800\n"
+"POT-Creation-Date: 2018-06-27 09:57-0700\n"
 "PO-Revision-Date: 2018-06-15 00:13+0000\n"
 "Last-Translator: Majer Tamás <mtamas@disroot.org>\n"
-"Language-Team: Hungarian <https://weblate.elementary.io/projects/wingpanel"
-"/wingpanel-indicator-sound/hu/>\n"
+"Language-Team: Hungarian <https://weblate.elementary.io/projects/wingpanel/"
+"wingpanel-indicator-sound/hu/>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,7 +23,7 @@ msgstr "Hang kijelző"
 msgid "The sound indicator"
 msgstr "A hang indikátor"
 
-#: src/Indicator.vala:329
+#: src/Indicator.vala:330
 msgid "Sound Settings…"
 msgstr "Hangbeállítások…"
 

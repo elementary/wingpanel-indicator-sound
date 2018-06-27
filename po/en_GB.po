@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-12 18:28-0800\n"
+"POT-Creation-Date: 2018-06-27 09:57-0700\n"
 "PO-Revision-Date: 2017-12-13 04:39+0000\n"
 "Last-Translator: Joe Osborne <reachjoe.o@gmail.com>\n"
 "Language-Team: English (United Kingdom) <https://weblate.elementary.io/"
@@ -23,7 +23,7 @@ msgstr "Indicator Sound"
 msgid "The sound indicator"
 msgstr "The sound indicator"
 
-#: src/Indicator.vala:329
+#: src/Indicator.vala:330
 msgid "Sound Settings…"
 msgstr "Sound Settings…"
 

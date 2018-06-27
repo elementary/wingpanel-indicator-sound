@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wingpanel-indicator-sound\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-12 18:28-0800\n"
+"POT-Creation-Date: 2018-06-27 09:57-0700\n"
 "PO-Revision-Date: 2015-10-04 09:34+0000\n"
 "Last-Translator: zigi21 <huckier78@gmail.com>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
@@ -26,7 +26,7 @@ msgstr "Індикатор звуку"
 msgid "The sound indicator"
 msgstr "Індикатор звуку"
 
-#: src/Indicator.vala:329
+#: src/Indicator.vala:330
 msgid "Sound Settings…"
 msgstr "Параметри звуку…"
 
