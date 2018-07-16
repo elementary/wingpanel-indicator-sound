@@ -531,7 +531,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
 
         if  ("xesam:artist" in metadata && metadata["xesam:artist"].is_of_type (VariantType.STRING_ARRAY)) {
             (unowned string)[] artists = metadata["xesam:artist"].get_strv ();
-            artist_label.set_text (_("by ")+string.joinv (", ", artists));
+            artist_label.text = string.joinv (", ", artists);
         } else {
             if  (client.player.playback_status == "Playing") {
                 artist_label.set_text (_("Unknown Title"));
