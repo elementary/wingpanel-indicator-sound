@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-27 09:57-0700\n"
+"POT-Creation-Date: 2018-07-16 09:53-0700\n"
 "PO-Revision-Date: 2017-04-19 22:53+0000\n"
 "Last-Translator: Martin Myrvold <myrvold.martin@gmail.com>\n"
 "Language-Team: nn (generated) <https://l10n.elementary.io/projects/wingpanel/"
@@ -35,10 +35,9 @@ msgstr "Spelar ikkje"
 msgid "Music player"
 msgstr "Musikkavspelar"
 
-#: src/Widgets/MprisGui.vala:534
-msgid "by "
-msgstr "av "
-
 #: src/Widgets/MprisGui.vala:537
 msgid "Unknown Title"
 msgstr "Ukjend tittel"
+
+#~ msgid "by "
+#~ msgstr "av "

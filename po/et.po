@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wingpanel-indicator-sound\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-27 09:57-0700\n"
+"POT-Creation-Date: 2018-07-16 09:53-0700\n"
 "PO-Revision-Date: 2015-09-22 17:46+0000\n"
 "Last-Translator: Kristjan Vool <tictac7x@gmail.com>\n"
 "Language-Team: Estonian <et@li.org>\n"
@@ -38,10 +38,9 @@ msgstr "Praegu ei esitata"
 msgid "Music player"
 msgstr "Muusika mängija"
 
-#: src/Widgets/MprisGui.vala:534
-msgid "by "
-msgstr "autorilt "
-
 #: src/Widgets/MprisGui.vala:537
 msgid "Unknown Title"
 msgstr "Tundmatu pealkiri"
+
+#~ msgid "by "
+#~ msgstr "autorilt "

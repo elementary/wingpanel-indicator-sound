@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-27 09:57-0700\n"
+"POT-Creation-Date: 2018-07-16 09:53-0700\n"
 "PO-Revision-Date: 2017-01-31 19:29+0000\n"
 "Last-Translator: a.hargange <a.hargange@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,10 +33,9 @@ msgstr "सध्या सुरु नाही"
 msgid "Music player"
 msgstr "संगीतपटू"
 
-#: src/Widgets/MprisGui.vala:534
-msgid "by "
-msgstr "कडून "
-
 #: src/Widgets/MprisGui.vala:537
 msgid "Unknown Title"
 msgstr "अज्ञात शीर्षक"
+
+#~ msgid "by "
+#~ msgstr "कडून "

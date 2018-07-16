@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wingpanel-indicator-sound\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-27 09:57-0700\n"
+"POT-Creation-Date: 2018-07-16 09:53-0700\n"
 "PO-Revision-Date: 2017-04-14 02:05+0000\n"
 "Last-Translator: colindemian <colindemian@outlook.com>\n"
 "Language-Team: Chinese (Simplified) <https://l10n.elementary.io/projects/"
@@ -40,10 +40,9 @@ msgstr "尚未播放"
 msgid "Music player"
 msgstr "音乐播放器"
 
-#: src/Widgets/MprisGui.vala:534
-msgid "by "
-msgstr "艺术家 "
-
 #: src/Widgets/MprisGui.vala:537
 msgid "Unknown Title"
 msgstr "未知标题"
+
+#~ msgid "by "
+#~ msgstr "艺术家 "

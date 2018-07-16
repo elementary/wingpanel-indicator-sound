@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wingpanel-indicator-sound\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-27 09:57-0700\n"
+"POT-Creation-Date: 2018-07-16 09:53-0700\n"
 "PO-Revision-Date: 2017-05-12 21:26+0000\n"
 "Last-Translator: Fabio Zaramella <fabiozaramella@hotmail.it>\n"
 "Language-Team: Italian <https://l10n.elementary.io/projects/wingpanel/"
@@ -40,10 +40,9 @@ msgstr "Non in riproduzione"
 msgid "Music player"
 msgstr "Riproduttore musicale"
 
-#: src/Widgets/MprisGui.vala:534
-msgid "by "
-msgstr "di "
-
 #: src/Widgets/MprisGui.vala:537
 msgid "Unknown Title"
 msgstr "Titolo sconosciuto"
+
+#~ msgid "by "
+#~ msgstr "di "

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sound-indicator\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-27 09:57-0700\n"
+"POT-Creation-Date: 2018-07-16 09:53-0700\n"
 "PO-Revision-Date: 2018-05-31 08:08+0000\n"
 "Last-Translator: Romanic Ion Nicușor <contact.romanic@gmail.com>\n"
 "Language-Team: Moldovan <https://weblate.elementary.io/projects/wingpanel/"
@@ -39,10 +39,9 @@ msgstr "Nu rulează în prezent"
 msgid "Music player"
 msgstr "Reproductor muzică"
 
-#: src/Widgets/MprisGui.vala:534
-msgid "by "
-msgstr "de "
-
 #: src/Widgets/MprisGui.vala:537
 msgid "Unknown Title"
 msgstr "Titlul necunoscut"
+
+#~ msgid "by "
+#~ msgstr "de "

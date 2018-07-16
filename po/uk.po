@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wingpanel-indicator-sound\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-27 09:57-0700\n"
+"POT-Creation-Date: 2018-07-16 09:53-0700\n"
 "PO-Revision-Date: 2015-10-04 09:34+0000\n"
 "Last-Translator: zigi21 <huckier78@gmail.com>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
@@ -38,10 +38,9 @@ msgstr "Нічого не відтворюється"
 msgid "Music player"
 msgstr "Музичний програвач"
 
-#: src/Widgets/MprisGui.vala:534
-msgid "by "
-msgstr "від "
-
 #: src/Widgets/MprisGui.vala:537
 msgid "Unknown Title"
 msgstr "Невідома назва"
+
+#~ msgid "by "
+#~ msgstr "від "

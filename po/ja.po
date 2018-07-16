@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-27 09:57-0700\n"
+"POT-Creation-Date: 2018-07-16 09:53-0700\n"
 "PO-Revision-Date: 2018-03-25 00:11+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock@gmail.com>\n"
 "Language-Team: Japanese <https://weblate.elementary.io/projects/wingpanel/"
@@ -35,10 +35,9 @@ msgstr "現在何も再生していません"
 msgid "Music player"
 msgstr "ミュージックプレーヤー"
 
-#: src/Widgets/MprisGui.vala:534
-msgid "by "
-msgstr "by "
-
 #: src/Widgets/MprisGui.vala:537
 msgid "Unknown Title"
 msgstr "不明なタイトル"
+
+#~ msgid "by "
+#~ msgstr "by "

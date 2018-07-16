@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wingpanel-indicator-sound\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-27 09:57-0700\n"
+"POT-Creation-Date: 2018-07-16 09:53-0700\n"
 "PO-Revision-Date: 2015-08-21 07:56+0000\n"
 "Last-Translator: Jiri Grönroos <Unknown>\n"
 "Language-Team: Finnish <fi@li.org>\n"
@@ -38,10 +38,9 @@ msgstr "Mitään ei toisteta nyt"
 msgid "Music player"
 msgstr "Musiikkisoitin"
 
-#: src/Widgets/MprisGui.vala:534
-msgid "by "
-msgstr "esittäjä "
-
 #: src/Widgets/MprisGui.vala:537
 msgid "Unknown Title"
 msgstr "Tuntematon kappale"
+
+#~ msgid "by "
+#~ msgstr "esittäjä "

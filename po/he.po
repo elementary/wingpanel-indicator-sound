@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-27 09:57-0700\n"
+"POT-Creation-Date: 2018-07-16 09:53-0700\n"
 "PO-Revision-Date: 2016-09-21 18:38+0000\n"
 "Last-Translator: Niv Baehr <Unknown>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,10 +33,9 @@ msgstr "לא מנגן כרגע"
 msgid "Music player"
 msgstr "נגן מוזיקה"
 
-#: src/Widgets/MprisGui.vala:534
-msgid "by "
-msgstr "על ידי "
-
 #: src/Widgets/MprisGui.vala:537
 msgid "Unknown Title"
 msgstr "כותרת לא ידועה"
+
+#~ msgid "by "
+#~ msgstr "על ידי "

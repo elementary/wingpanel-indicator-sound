@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wingpanel-indicator-sound\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-27 09:57-0700\n"
+"POT-Creation-Date: 2018-07-16 09:53-0700\n"
 "PO-Revision-Date: 2018-02-09 00:12+0000\n"
 "Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://weblate.elementary.io/projects/"
@@ -40,10 +40,9 @@ msgstr "目前沒有音效在播放"
 msgid "Music player"
 msgstr "音樂播放器"
 
-#: src/Widgets/MprisGui.vala:534
-msgid "by "
-msgstr "來自 "
-
 #: src/Widgets/MprisGui.vala:537
 msgid "Unknown Title"
 msgstr "未知曲名"
+
+#~ msgid "by "
+#~ msgstr "來自 "

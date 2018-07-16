@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wingpanel-indicator-sound\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-27 09:57-0700\n"
+"POT-Creation-Date: 2018-07-16 09:53-0700\n"
 "PO-Revision-Date: 2016-06-24 05:25+0000\n"
 "Last-Translator: Bone Pyae Sone <bone.burma@gmail.com>\n"
 "Language-Team: Burmese <my@li.org>\n"
@@ -38,10 +38,9 @@ msgstr "လက်ရှိ ဖွင့်ထားခြင်း မရှိ�
 msgid "Music player"
 msgstr "တေးဂီတဖွင့်စက်"
 
-#: src/Widgets/MprisGui.vala:534
-msgid "by "
-msgstr "သီဆိုသူ- "
-
 #: src/Widgets/MprisGui.vala:537
 msgid "Unknown Title"
 msgstr "ခေါင်းစဉ်မဲ့"
+
+#~ msgid "by "
+#~ msgstr "သီဆိုသူ- "

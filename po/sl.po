@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-27 09:57-0700\n"
+"POT-Creation-Date: 2018-07-16 09:53-0700\n"
 "PO-Revision-Date: 2017-05-31 21:13+0000\n"
 "Last-Translator: Jernej Virag <jernej@virag.si>\n"
 "Language-Team: Slovenian <https://l10n.elementary.io/projects/wingpanel/"
@@ -36,10 +36,9 @@ msgstr "Trenutno ni predvajanja"
 msgid "Music player"
 msgstr "Predvajalnik glasbe"
 
-#: src/Widgets/MprisGui.vala:534
-msgid "by "
-msgstr "od "
-
 #: src/Widgets/MprisGui.vala:537
 msgid "Unknown Title"
 msgstr "Neznan naslov"
+
+#~ msgid "by "
+#~ msgstr "od "
