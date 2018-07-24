@@ -191,6 +191,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
         artist_label.valign = Gtk.Align.START;
 
         var titles = new Gtk.Grid ();
+        titles.column_spacing = 3;
         titles.attach (overlay, 0, 0, 1, 2);
         titles.attach (title_label, 1, 0);
         titles.attach (artist_label, 1, 1);
