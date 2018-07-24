@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2016-2017 elementary LLC. (http://launchpad.net/wingpanel-indicator-sound)
+* Copyright (c) 2016-2018 elementary, Inc. (https://elementary.io)
 *
 * This program is free software; you can redistribute it and/or
 * modify it under the terms of the GNU General Public
@@ -16,35 +16,25 @@
 */
 
 public class DisplayWidget : Gtk.Grid {
-    private Gtk.Image volume_icon;
-    private Gtk.Revealer mic_revealer;
-
-    public bool show_mic {
-        set {
-            mic_revealer.reveal_child = value;
-        }
-    }
-
-    public string icon_name {
-        set {
-            volume_icon.icon_name = value;
-        }
-    }
+    public bool show_mic { get; set; }
+    public string icon_name { get; set; }
 
     construct {
-        volume_icon = new Gtk.Image ();
-        volume_icon.icon_name = "audio-volume-high-symbolic";
-        volume_icon.icon_size = Gtk.IconSize.LARGE_TOOLBAR;
+        var volume_icon = new Gtk.Image ();
+        volume_icon.pixel_size = 24;
 
         var mic_icon = new Gtk.Image.from_icon_name ("audio-input-microphone-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
         mic_icon.margin_end = 18;
 
-        mic_revealer = new Gtk.Revealer ();
+        var mic_revealer = new Gtk.Revealer ();
         mic_revealer.transition_type = Gtk.RevealerTransitionType.SLIDE_LEFT;
         mic_revealer.add (mic_icon);
 
         valign = Gtk.Align.CENTER;
         add (mic_revealer);
         add (volume_icon);
+
+        bind_property ("icon-name", volume_icon, "icon-name", GLib.BindingFlags.BIDIRECTIONAL | GLib.BindingFlags.SYNC_CREATE);
+        bind_property ("show-mic", mic_revealer, "reveal-child", GLib.BindingFlags.BIDIRECTIONAL | GLib.BindingFlags.SYNC_CREATE);
     }
 }
