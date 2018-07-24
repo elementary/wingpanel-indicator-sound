@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2014 Ikey Doherty <ikey.doherty@gmail.com>
- *               2016-2017 elementary LLC. (http://launchpad.net/wingpanel)
+ *               2016-2018 elementary, Inc. (https://elementary.io)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -166,50 +166,69 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
 
         player_revealer = new Gtk.Revealer ();
         player_revealer.reveal_child = true;
-        var player_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
 
         background = new Gtk.Image ();
+
         mask = new Gtk.Image.from_resource ("/io/elementary/wingpanel/sound/image-mask.svg");
         mask.no_show_all = true;
         mask.pixel_size = 48;
+
         var overlay = new Gtk.Overlay ();
-        overlay.add (background);
-        overlay.add_overlay (mask);
+        overlay.can_focus = true;
         overlay.margin_start = 4;
         overlay.margin_end = 4;
         overlay.margin_bottom = 2;
-        overlay.can_focus = true;
-        var background_box = new Gtk.EventBox ();
-        background_box.add_events (Gdk.EventMask.BUTTON_PRESS_MASK);
-        background_box.button_press_event.connect (raise_player);
-        background_box.add (overlay);
-        player_box.pack_start (background_box, false, false, 0);
+        overlay.add (background);
+        overlay.add_overlay (mask);
+
+        title_label = new MaxWidthLabel (MAX_WIDTH_TITLE);
+        title_label.use_markup = true;
+        title_label.ellipsize = Pango.EllipsizeMode.END;
+        title_label.halign = Gtk.Align.START;
+        title_label.valign = Gtk.Align.END;
+
+        artist_label = new MaxWidthLabel (MAX_WIDTH_TITLE);
+        artist_label.use_markup = true;
+        artist_label.ellipsize = Pango.EllipsizeMode.END;
+        artist_label.halign = Gtk.Align.START;
+        artist_label.valign = Gtk.Align.START;
+
+        var titles = new Gtk.Grid ();
+        titles.attach (overlay, 0, 0, 1, 2);
+        titles.attach (title_label, 1, 0);
+        titles.attach (artist_label, 1, 1);
 
         var titles_events = new Gtk.EventBox ();
-        var titles = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
-        titles.set_valign (Gtk.Align.CENTER);
-        title_label = new MaxWidthLabel (MAX_WIDTH_TITLE);
-        title_label.set_use_markup (true);
-        title_label.set_line_wrap (true);
-        title_label.set_line_wrap_mode (Pango.WrapMode.WORD);
-        title_label.set_ellipsize (Pango.EllipsizeMode.END);
-        title_label.halign = Gtk.Align.START;
-        titles.pack_start (title_label, false, false, 0);
-        artist_label = new MaxWidthLabel (MAX_WIDTH_TITLE);
-        artist_label.set_line_wrap (true);
-        artist_label.set_line_wrap_mode (Pango.WrapMode.WORD);
-        artist_label.set_ellipsize (Pango.EllipsizeMode.END);
-        artist_label.halign = Gtk.Align.START;
-        titles.pack_start (artist_label, false, false, 0);
+        titles_events.hexpand = true;
         titles_events.add (titles);
-        player_box.pack_start (titles_events, false, false, 0);
+
+        prev_btn = make_control_button ("media-skip-backward-symbolic");
+
+        play_btn = make_control_button ("media-playback-start-symbolic");
+        play_btn.sensitive = true;
+
+        next_btn = make_control_button ("media-skip-forward-symbolic");
+
+        var player_box = new Gtk.Grid ();
+        player_box.margin_end = 6;
+        player_box.add (titles_events);
+        player_box.add (prev_btn);
+        player_box.add (play_btn);
+        player_box.add (next_btn);
+
+        if (client != null) {
+            connect_to_client ();
+            update_play_status ();
+            update_from_meta ();
+            update_controls ();
+        }
+
+        player_revealer.add (player_box);
+        pack_start (player_revealer);
+
         titles_events.button_press_event.connect (raise_player);
 
-        var controls = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
-
-        var btn = make_control_button ("media-skip-backward-symbolic");
-        prev_btn = btn;
-        btn.clicked.connect (()=> {
+        prev_btn.clicked.connect (()=> {
             Idle.add (()=> {
                 if (!Thread.supported ()) {
                     warning ("Threading is not supported. DBus timeout could be blocking UI");
@@ -242,12 +261,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
             });
         });
 
-        controls.pack_start (btn, false, false, 0);
-
-        btn = make_control_button ("media-playback-start-symbolic");
-        btn.set_sensitive (true);
-        play_btn = btn;
-        btn.clicked.connect (()=> {
+        play_btn.clicked.connect (()=> {
             Idle.add (()=> {
                 if (!Thread.supported ()) {
                     warning ("Threading is not supported. DBus timeout could be blocking UI");
@@ -290,11 +304,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
             });
         });
 
-        controls.pack_start (btn, false, false, 0);
-
-        btn = make_control_button ("media-skip-forward-symbolic");
-        next_btn = btn;
-        btn.clicked.connect (()=> {
+        next_btn.clicked.connect (()=> {
             Idle.add (()=> {
                 if(!Thread.supported ()) {
                     warning ("Threading is not supported. DBus timeout could be blocking UI");
@@ -326,24 +336,6 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
                 return false;
             });
         });
-
-        controls.pack_start (btn, false, false, 0);
-
-        controls.set_halign (Gtk.Align.CENTER);
-        controls.set_valign (Gtk.Align.CENTER);
-        controls.margin_end = 12;
-
-        player_box.pack_end (controls, false, false, 0);
-
-        if (client != null) {
-            connect_to_client ();
-            update_play_status ();
-            update_from_meta ();
-            update_controls ();
-        }
-
-        player_revealer.add (player_box);
-        pack_start (player_revealer);
     }
 
     private void connect_to_client () {
