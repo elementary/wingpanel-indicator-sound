@@ -164,9 +164,6 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
     construct {
         load_remote_art_cancel = new Cancellable ();
 
-        player_revealer = new Gtk.Revealer ();
-        player_revealer.reveal_child = true;
-
         background = new Gtk.Image ();
 
         mask = new Gtk.Image.from_resource ("/io/elementary/wingpanel/sound/image-mask.svg");
@@ -216,15 +213,18 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
         player_box.add (play_btn);
         player_box.add (next_btn);
 
+        player_revealer = new Gtk.Revealer ();
+        player_revealer.reveal_child = true;
+        player_revealer.add (player_box);
+
+        pack_start (player_revealer);
+
         if (client != null) {
             connect_to_client ();
             update_play_status ();
             update_from_meta ();
             update_controls ();
         }
-
-        player_revealer.add (player_box);
-        pack_start (player_revealer);
 
         titles_events.button_press_event.connect (raise_player);
 
