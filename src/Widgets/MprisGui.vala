@@ -262,7 +262,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
             });
         });
 
-        play_btn.clicked.connect (()=> {
+        play_btn.clicked.connect (() => {
             Idle.add (()=> {
                 if (!Thread.supported ()) {
                     warning ("Threading is not supported. DBus timeout could be blocking UI");
