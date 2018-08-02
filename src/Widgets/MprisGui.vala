@@ -90,7 +90,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
                 update_controls ();
 
                 if (launched_by_indicator) {
-                    Idle.add (()=> {
+                    Idle.add (() => {
                         try {
                             launched_by_indicator = false;
                             client.player.play_pause ();
@@ -103,9 +103,14 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
                 }
             } else {
                 (play_btn.get_image () as Gtk.Image).set_from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
-                prev_btn.set_sensitive (false);
-                next_btn.set_sensitive (false);
-                Sound.Services.Settings.get_instance ().last_title_info = {app_info.get_id (), title_label.get_text (), artist_label.get_text (), last_artUrl};
+                prev_btn.sensitive = false;
+                next_btn.sensitive = false;
+                Sound.Services.Settings.get_instance ().last_title_info = {
+                    app_info.get_id (),
+                    title_label.get_text (),
+                    artist_label.get_text (),
+                    last_artUrl
+                };
                 this.mpris_name = "";
             }
         }
@@ -130,8 +135,8 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
 
         app_icon = new ThemedIcon (icon);
         background.set_from_gicon (app_icon, Gtk.IconSize.DIALOG);
-        title_label.set_markup ("<b>%s</b>".printf (Markup.escape_text (name)));
-        artist_label.set_text (NOT_PLAYING);
+        title_label.label = "<b>%s</b>".printf (Markup.escape_text (name));
+        artist_label.label = NOT_PLAYING;
 
         update_controls ();
     }
@@ -142,13 +147,18 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
      * @param info The AppInfo of the default music player
      */
     public ClientWidget.default (AppInfo info) {
-        Object (orientation: Gtk.Orientation.VERTICAL, spacing: 0, app_info: info, client: null);
+        Object (
+            app_info: info,
+            client: null,
+            orientation: Gtk.Orientation.VERTICAL,
+            spacing: 0
+        );
 
         if (Sound.Services.Settings.get_instance ().last_title_info.length == 4) {
             string[] title_info = Sound.Services.Settings.get_instance ().last_title_info;
             if (title_info[0] == app_info.get_id ()) {
-                title_label.set_markup ("<b>%s</b>".printf (Markup.escape_text (title_info[1])));
-                artist_label.set_text (title_info[2]);
+                title_label.label = "<b>%s</b>".printf (Markup.escape_text (title_info[1]));
+                artist_label.label = title_info[2];
                 if (title_info[3] != "") {
                     update_art (title_info[3]);
                 }
@@ -157,8 +167,8 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
             }
         }
 
-        title_label.set_markup ("<b>%s</b>".printf (Markup.escape_text (app_name)));
-        artist_label.set_text (NOT_PLAYING);
+        title_label.label = "<b>%s</b>".printf (Markup.escape_text (app_name));
+        artist_label.label = NOT_PLAYING;
     }
 
     construct {
@@ -172,22 +182,22 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
 
         var overlay = new Gtk.Overlay ();
         overlay.can_focus = true;
-        overlay.margin_start = 4;
-        overlay.margin_end = 4;
         overlay.margin_bottom = 2;
+        overlay.margin_end = 4;
+        overlay.margin_start = 4;
         overlay.add (background);
         overlay.add_overlay (mask);
 
         title_label = new MaxWidthLabel (MAX_WIDTH_TITLE);
-        title_label.use_markup = true;
         title_label.ellipsize = Pango.EllipsizeMode.END;
         title_label.halign = Gtk.Align.START;
+        title_label.use_markup = true;
         title_label.valign = Gtk.Align.END;
 
         artist_label = new MaxWidthLabel (MAX_WIDTH_TITLE);
-        artist_label.use_markup = true;
         artist_label.ellipsize = Pango.EllipsizeMode.END;
         artist_label.halign = Gtk.Align.START;
+        artist_label.use_markup = true;
         artist_label.valign = Gtk.Align.START;
 
         var titles = new Gtk.Grid ();
@@ -230,7 +240,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
         titles_events.button_press_event.connect (raise_player);
 
         prev_btn.clicked.connect (() => {
-            Idle.add (()=> {
+            Idle.add (() => {
                 if (!Thread.supported ()) {
                     warning ("Threading is not supported. DBus timeout could be blocking UI");
                     try {
@@ -247,7 +257,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
                         try {
                             if (mp_client == null) {
                                 client.player.previous ();
-                            } else if(mp_client != null) {
+                            } else if (mp_client != null) {
                                 mp_client.previous ();
                             }
                         } catch (Error e) {
@@ -263,7 +273,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
         });
 
         play_btn.clicked.connect (() => {
-            Idle.add (()=> {
+            Idle.add (() => {
                 if (!Thread.supported ()) {
                     warning ("Threading is not supported. DBus timeout could be blocking UI");
                     try {
@@ -287,14 +297,14 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
                                 client.player.play_pause ();
                             } else if (mp_client != null) {
                                 if (mp_client.status == "playing") {
-                                    mp_client.pause (); 
+                                    mp_client.pause ();
                                 } else {
                                     mp_client.play ();
                                 }
-                                update_play_status ();                              
+                                update_play_status ();
                             }
                         } catch (Error e) {
-                        warning ("Playing/Pausing probably failed (faulty MPRIS interface): %s", e.message);
+                            warning ("Playing/Pausing probably failed (faulty MPRIS interface): %s", e.message);
                         }
 
                         return null;
@@ -306,8 +316,8 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
         });
 
         next_btn.clicked.connect (() => {
-            Idle.add (()=> {
-                if(!Thread.supported ()) {
+            Idle.add (() => {
+                if (!Thread.supported ()) {
                     warning ("Threading is not supported. DBus timeout could be blocking UI");
                     try {
                         if (mp_client == null && client.player.can_go_next) {
@@ -340,22 +350,22 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
     }
 
     private void connect_to_client () {
-        client.prop.properties_changed.connect ((i,p,inv)=> {
+        client.prop.properties_changed.connect ((i,p,inv) => {
             if (i == "org.mpris.MediaPlayer2.Player") {
                 /* Handle mediaplayer2 iface */
-                p.foreach ((k,v)=> {
+                p.foreach ((k,v) => {
                     if (k == "Metadata") {
-                        Idle.add (()=> {
+                        Idle.add (() => {
                             update_from_meta ();
                             return false;
                         });
                     } else if (k == "PlaybackStatus") {
-                        Idle.add (()=> {
+                        Idle.add (() => {
                             update_play_status ();
                             return false;
                         });
                     } else if (k == "CanGoNext" || k == "CanGoPrevious") {
-                        Idle.add (()=> {
+                        Idle.add (() => {
                             update_controls ();
                             return false;
                         });
@@ -398,21 +408,24 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
 
     private Gtk.Button make_control_button (string icon) {
         var btn = new Gtk.Button.from_icon_name (icon, Gtk.IconSize.LARGE_TOOLBAR);
-        btn.set_can_focus (false);
-        btn.set_sensitive (false);
-        btn.set_relief (Gtk.ReliefStyle.NONE);
+        btn.can_focus = false;
+        btn.relief = Gtk.ReliefStyle.NONE;
+        btn.sensitive = false;
+
         btn.enter_notify_event.connect ((e) => {
             btn.can_focus = true;
             btn.grab_focus ();
 
             return Gdk.EVENT_STOP;
         });
+
         btn.leave_notify_event.connect ((e) => {
             btn.can_focus = false;
             background.grab_focus ();
 
             return Gdk.EVENT_STOP;
         });
+
         return btn;
     }
 
@@ -436,11 +449,11 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
      */
     private void update_controls () {
         if (mp_client == null) {
-            prev_btn.set_sensitive (client.player.can_go_previous);
-            next_btn.set_sensitive (client.player.can_go_next);
+            prev_btn.sensitive = client.player.can_go_previous;
+            next_btn.sensitive = client.player.can_go_next;
         } else {
-            prev_btn.set_sensitive (true);
-            next_btn.set_sensitive (true);
+            prev_btn.sensitive = true;
+            next_btn.sensitive = true;
         }
     }
 
@@ -511,7 +524,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
             mask.no_show_all = true;
             mask.hide ();
         }
-        
+
         string title;
         if  ("xesam:title" in metadata && metadata["xesam:title"].is_of_type (VariantType.STRING)
             && metadata["xesam:title"].get_string () != "") {
@@ -520,16 +533,16 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
             title = app_name;
         }
 
-        title_label.set_markup ("<b>%s</b>".printf (Markup.escape_text (title)));
+        title_label.label = "<b>%s</b>".printf (Markup.escape_text (title));
 
         if  ("xesam:artist" in metadata && metadata["xesam:artist"].is_of_type (VariantType.STRING_ARRAY)) {
             (unowned string)[] artists = metadata["xesam:artist"].get_strv ();
             artist_label.label = string.joinv (", ", artists);
         } else {
             if  (client.player.playback_status == "Playing") {
-                artist_label.set_text (_("Unknown Title"));
+                artist_label.label = _("Unknown Title");
             } else {
-                artist_label.set_text (NOT_PLAYING);
+                artist_label.label = NOT_PLAYING;
             }
         }
     }
@@ -547,8 +560,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
         var surface = new Cairo.ImageSurface (Cairo.Format.ARGB32, mask_size, mask_size);
         var cr = new Cairo.Context (surface);
 
-        Granite.Drawing.Utilities.cairo_rounded_rectangle (cr,
-            offset_x, offset_y, size, size, mask_offset);
+        Granite.Drawing.Utilities.cairo_rounded_rectangle (cr, offset_x, offset_y, size, size, mask_offset);
         cr.clip ();
 
         Gdk.cairo_set_source_pixbuf (cr, input, offset_x, offset_y);
@@ -571,8 +583,8 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
         }
 
         if (title != "" && artist != "") {
-            title_label.set_markup ("<b>%s</b>".printf (Markup.escape_text (title)));
-            artist_label.set_text (artist);
+            title_label.label = "<b>%s</b>".printf (Markup.escape_text (title));
+            artist_label.label = artist;
         }
     }
 }
