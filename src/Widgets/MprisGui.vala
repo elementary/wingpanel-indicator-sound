@@ -229,7 +229,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
 
         titles_events.button_press_event.connect (raise_player);
 
-        prev_btn.clicked.connect (()=> {
+        prev_btn.clicked.connect (() => {
             Idle.add (()=> {
                 if (!Thread.supported ()) {
                     warning ("Threading is not supported. DBus timeout could be blocking UI");
@@ -305,7 +305,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
             });
         });
 
-        next_btn.clicked.connect (()=> {
+        next_btn.clicked.connect (() => {
             Idle.add (()=> {
                 if(!Thread.supported ()) {
                     warning ("Threading is not supported. DBus timeout could be blocking UI");
