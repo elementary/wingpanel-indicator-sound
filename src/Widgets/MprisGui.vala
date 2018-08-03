@@ -25,12 +25,11 @@ const int MAX_WIDTH_TITLE = 200;
  * It is "designed" to be self contained and added to a large UI, enabling multiple
  * MPRIS clients to be controlled with multiple widgets
  */
-public class Sound.Widgets.ClientWidget : Gtk.Box {
+public class Sound.Widgets.ClientWidget : Gtk.Grid {
     private const string NOT_PLAYING = _("Not currently playing");
 
     public signal void close ();
 
-    private Gtk.Revealer player_revealer;
     private Gtk.Image? background = null;
     private Gtk.Image mask;
     private Gtk.Label title_label;
@@ -122,7 +121,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
      * @param client The underlying MprisClient instance to use
      */
     public ClientWidget (Services.MprisClient mpris_client) {
-        Object (orientation: Gtk.Orientation.VERTICAL, spacing: 0, client: mpris_client);
+        Object (client: mpris_client);
     }
 
     /**
@@ -130,7 +129,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
      *
      * @param client The underlying MediaPlayer instance to use
      */
-    public ClientWidget.bluetooth (Services.MediaPlayer media_player_client, string name, string icon){
+    public ClientWidget.bluetooth (Services.MediaPlayer media_player_client, string name, string icon) {
         mp_client = media_player_client;
 
         app_icon = new ThemedIcon (icon);
@@ -149,9 +148,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
     public ClientWidget.default (AppInfo info) {
         Object (
             app_info: info,
-            client: null,
-            orientation: Gtk.Orientation.VERTICAL,
-            spacing: 0
+            client: null
         );
 
         if (Sound.Services.Settings.get_instance ().last_title_info.length == 4) {
@@ -217,18 +214,11 @@ public class Sound.Widgets.ClientWidget : Gtk.Box {
 
         next_btn = make_control_button ("media-skip-forward-symbolic");
 
-        var player_box = new Gtk.Grid ();
-        player_box.margin_end = 6;
-        player_box.add (titles_events);
-        player_box.add (prev_btn);
-        player_box.add (play_btn);
-        player_box.add (next_btn);
-
-        player_revealer = new Gtk.Revealer ();
-        player_revealer.reveal_child = true;
-        player_revealer.add (player_box);
-
-        pack_start (player_revealer);
+        margin_end = 6;
+        add (titles_events);
+        add (prev_btn);
+        add (play_btn);
+        add (next_btn);
 
         if (client != null) {
             connect_to_client ();
