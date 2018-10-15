@@ -293,8 +293,13 @@ public class Sound.Indicator : Wingpanel.Indicator {
                     dir = -1;
                 }
 
+                var adjusted_volume_step_percentage = volume_step_percentage;
+                if (e.direction == Gdk.ScrollDirection.SMOOTH) {
+                    adjusted_volume_step_percentage = e.delta_y.abs() / 10;
+                }
+
                 double v = volume_scale.scale_widget.get_value ();
-                v = v + volume_step_percentage * dir;
+                v = v + adjusted_volume_step_percentage * dir;
 
                 if (v >= -0.05 && v <= 1.05) {
                     volume_scale.scale_widget.set_value (v);
