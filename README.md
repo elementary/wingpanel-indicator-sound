@@ -13,7 +13,7 @@ You'll need the following dependencies:
     libgtk-3-dev
     libnotify-dev
     libpulse-dev
-    libwingpanel-2.0-dev
+    libwingpanel-2.0-dev >= 2.1.0
     meson
     valac (>= 0.26)
 
