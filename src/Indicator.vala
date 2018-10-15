@@ -169,6 +169,8 @@ public class Sound.Indicator : Wingpanel.Indicator {
             dir = 1;
         } else if (e.direction == Gdk.ScrollDirection.DOWN) {
             dir = -1;
+        } else {
+            return Gdk.EVENT_STOP;
         }
 
         double v = this.volume_control.volume.volume + volume_step_percentage * dir;
