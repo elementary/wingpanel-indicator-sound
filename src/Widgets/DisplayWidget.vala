@@ -18,12 +18,14 @@
 public class DisplayWidget : Gtk.Grid {
     public bool show_mic { get; set; }
     public string icon_name { get; set; }
+    public string mic_icon_name { get; set; }
 
     construct {
         var volume_icon = new Gtk.Image ();
         volume_icon.pixel_size = 24;
 
         var mic_icon = new Gtk.Image.from_icon_name ("audio-input-microphone-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
+        mic_icon.pixel_size = 24;
         mic_icon.margin_end = 18;
 
         var mic_revealer = new Gtk.Revealer ();
@@ -35,6 +37,7 @@ public class DisplayWidget : Gtk.Grid {
         add (volume_icon);
 
         bind_property ("icon-name", volume_icon, "icon-name", GLib.BindingFlags.BIDIRECTIONAL | GLib.BindingFlags.SYNC_CREATE);
+        bind_property ("mic-icon-name", mic_icon, "icon-name", GLib.BindingFlags.BIDIRECTIONAL | GLib.BindingFlags.SYNC_CREATE);
         bind_property ("show-mic", mic_revealer, "reveal-child", GLib.BindingFlags.BIDIRECTIONAL | GLib.BindingFlags.SYNC_CREATE);
     }
 }
