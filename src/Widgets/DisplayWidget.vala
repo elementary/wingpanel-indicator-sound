@@ -15,11 +15,12 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-public class DisplayWidget : Gtk.Grid {
+public class DisplayWidget : Gtk.EventBox {
     public bool show_mic { get; set; }
     public string icon_name { get; set; }
 
     construct {
+        var grid = new Gtk.Grid ();
         var volume_icon = new Gtk.Image ();
         volume_icon.pixel_size = 24;
 
@@ -31,8 +32,20 @@ public class DisplayWidget : Gtk.Grid {
         mic_revealer.add (mic_icon);
 
         valign = Gtk.Align.CENTER;
-        add (mic_revealer);
-        add (volume_icon);
+        grid.add (mic_revealer);
+        grid.add (volume_icon);
+        add (grid);
+
+        set_events (Gdk.EventMask.SMOOTH_SCROLL_MASK);
+
+        scroll_event.connect ((e) => {
+            /* Ignore horizontal scrolling unless smooth to avoid jerky changes cause by separate events for each axis */
+            if (e.direction == Gdk.ScrollDirection.LEFT || e.direction == Gdk.ScrollDirection.RIGHT) {
+                return true;
+            } else {
+                return false;
+            }
+        });
 
         bind_property ("icon-name", volume_icon, "icon-name", GLib.BindingFlags.BIDIRECTIONAL | GLib.BindingFlags.SYNC_CREATE);
         bind_property ("show-mic", mic_revealer, "reveal-child", GLib.BindingFlags.BIDIRECTIONAL | GLib.BindingFlags.SYNC_CREATE);

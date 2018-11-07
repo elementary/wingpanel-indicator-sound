@@ -26,7 +26,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
     private Notify.Notification notification;
     private Services.Settings settings;
     private Services.VolumeControlPulse volume_control;
-
+    public bool natural_scroll { get; set; }
     bool open = false;
     bool mute_blocks_sound = false;
     uint sound_was_blocked_timeout_id;
@@ -36,13 +36,21 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
     unowned Canberra.Context? ca_context = null;
 
+    /* Smooth scrolling support */
+    double total_x_delta = 0;
+    double total_y_delta= 0;
+    double last_dir = 0.0;
+
     public Indicator () {
         Object (code_name: Wingpanel.Indicator.SOUND,
                 display_name: _("Indicator Sound"),
-                description: _("The sound indicator"));        
+                description: _("The sound indicator"));
     }
 
     construct {
+        var touchpad_settings = new GLib.Settings ("org.gnome.desktop.peripherals.touchpad");
+        touchpad_settings.bind ("natural-scroll", this, "natural-scroll", SettingsBindFlags.DEFAULT);
+
         visible = true;
 
         display_widget = new DisplayWidget ();
@@ -62,7 +70,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
         settings = new Services.Settings ();
         settings.notify["max-volume"].connect (set_max_volume);
-    
+
         var locale = Intl.setlocale (LocaleCategory.MESSAGES, null);
 
         display_widget.button_press_event.connect ((e) => {
@@ -75,7 +83,8 @@ public class Sound.Indicator : Wingpanel.Indicator {
         });
 
         display_widget.icon_name = get_volume_icon (volume_control.volume.volume);
-        display_widget.scroll_event.connect (on_icon_scroll_event);
+
+        display_widget.scroll_event.connect_after (on_icon_scroll_event);
 
         volume_scale = new Widgets.Scale ("audio-volume-high-symbolic", true, 0.0, max_volume, 0.01);
         mic_scale = new Widgets.Scale ("audio-input-microphone-symbolic", true, 0.0, 1.0, 0.01);
@@ -109,9 +118,11 @@ public class Sound.Indicator : Wingpanel.Indicator {
     }
 
     private void on_volume_change () {
-        var volume = volume_control.volume.volume / this.max_volume;
-        volume_scale.scale_widget.set_value (volume);
-        display_widget.icon_name = get_volume_icon (volume);
+        double volume = volume_control.volume.volume / this.max_volume;
+        if (volume != volume_scale.scale_widget.get_value ()) {
+            volume_scale.scale_widget.set_value (volume);
+            display_widget.icon_name = get_volume_icon (volume);
+        }
     }
 
     private void on_mic_volume_change () {
@@ -164,31 +175,27 @@ public class Sound.Indicator : Wingpanel.Indicator {
         var vol = new Services.VolumeControl.Volume ();
         vol.reason = Services.VolumeControl.VolumeReasons.USER_KEYPRESS;
 
-        int dir = 0;
-        if (e.direction == Gdk.ScrollDirection.UP) {
-            dir = 1;
-        } else if (e.direction == Gdk.ScrollDirection.DOWN) {
-            dir = -1;
-        }
+        double dir = 0.0;
 
-        double v = this.volume_control.volume.volume + volume_step_percentage * dir;
-        vol.volume = v.clamp (0.0, this.max_volume);
-        this.volume_control.volume = vol;
+        if (handle_scroll_event (e, out dir)) {
+            double v = this.volume_control.volume.volume + volume_step_percentage * dir;
+            vol.volume = v.clamp (0.0, this.max_volume);
+            this.volume_control.volume = vol;
 
-        if (open == false && this.notification != null && v >= -0.05 && v <= (this.max_volume + 0.05)) {
+            if (open == false && this.notification != null) {
+                string icon = get_volume_icon (v);
 
-            string icon = get_volume_icon (v);
-
-            this.notification.update ("indicator-sound", "", icon);
-            this.notification.set_hint ("value", new Variant.int32 (
-                (int32)Math.round(volume_control.volume.volume / this.max_volume * 100.0)));
-            try {
-                this.notification.show ();
-            } catch (Error e) {
-                warning ("Unable to show sound notification: %s", e.message);
+                this.notification.update ("indicator-sound", "", icon);
+                this.notification.set_hint ("value", new Variant.int32 (
+                    (int32)Math.round(volume_control.volume.volume / this.max_volume * 100.0)));
+                try {
+                    this.notification.show ();
+                } catch (Error e) {
+                    warning ("Unable to show sound notification: %s", e.message);
+                }
+            } else if (v <= (this.max_volume + 0.05)) {
+                play_sound_blubble ();
             }
-        } else if (v <= (this.max_volume + 0.05)) {
-            play_sound_blubble ();
         }
 
         return Gdk.EVENT_STOP;
@@ -242,6 +249,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
         return display_widget;
     }
 
+
     public override Gtk.Widget? get_widget () {
         if (main_grid == null) {
             int position = 0;
@@ -283,28 +291,20 @@ public class Sound.Indicator : Wingpanel.Indicator {
                 play_sound_blubble ();
                 return false;
             });
-            volume_scale.scale_widget.scroll_event.connect ((e) => {
-                int dir = 0;
-                if (e.direction == Gdk.ScrollDirection.UP || e.direction == Gdk.ScrollDirection.RIGHT ||
-                    (e.direction == Gdk.ScrollDirection.SMOOTH && e.delta_y < 0)) {
-                    dir = 1;
-                } else if (e.direction == Gdk.ScrollDirection.DOWN || e.direction == Gdk.ScrollDirection.LEFT ||
-                    (e.direction == Gdk.ScrollDirection.SMOOTH && e.delta_y > 0)) {
-                    dir = -1;
+
+
+            volume_scale.scroll_event.connect_after ((e) => {
+                double dir = 0.0;
+                if (handle_scroll_event (e, out dir)) {
+                    double v = volume_scale.scale_widget.get_value ();
+                    v = v + 0.05 * dir;
+
+                    if (v >= -0.05 && v <= 1.05) {
+                        volume_scale.scale_widget.set_value (v);
+                        play_sound_blubble ();
+                    }
                 }
 
-                var adjusted_volume_step_percentage = volume_step_percentage;
-                if (e.direction == Gdk.ScrollDirection.SMOOTH) {
-                    adjusted_volume_step_percentage = e.delta_y.abs() / 10;
-                }
-
-                double v = volume_scale.scale_widget.get_value ();
-                v = v + adjusted_volume_step_percentage * dir;
-
-                if (v >= -0.05 && v <= 1.05) {
-                    volume_scale.scale_widget.set_value (v);
-                    play_sound_blubble ();
-                }
                 return true;
             });
 
@@ -312,7 +312,6 @@ public class Sound.Indicator : Wingpanel.Indicator {
             set_max_volume ();
 
             main_grid.attach (volume_scale, 0, position++, 1, 1);
-
             main_grid.attach (new Wingpanel.Widgets.Separator (), 0, position++, 1, 1);
 
             mic_scale.margin_start = 6;
@@ -341,6 +340,74 @@ public class Sound.Indicator : Wingpanel.Indicator {
         }
 
         return main_grid;
+    }
+
+    /* Handles both SMOOTH and non-SMOOTH events (although is only sent SMOOTH normally).
+     * In order to deliver smooth volume changes it:
+     * * ignores whether "natural scrolling" is set since this does not make sense in this context.
+     * * accumulates very small changes until they become significant.
+     * * ignores rapid changes in direction.
+     * * responds to both horizontal and vertical scrolling.
+     * In the case of diagonal scrolling, it takes the larger of the two directions.
+     */
+    private bool handle_scroll_event (Gdk.EventScroll e, out double dir) {
+        dir = 0.0;
+        switch (e.direction) {
+            case Gdk.ScrollDirection.SMOOTH:
+                if (same_sign (e.delta_x, total_x_delta)) {
+                    total_x_delta += e.delta_x;
+                } else {
+                    total_x_delta = 0;
+                }
+
+                if (same_sign (e.delta_y, total_y_delta)) {
+                    total_y_delta += e.delta_y;
+                } else {
+                    total_y_delta = 0.0;
+                }
+                break;
+
+            case Gdk.ScrollDirection.UP:
+                total_y_delta = -1.0;
+                total_x_delta = 0.0;
+                break;
+            case Gdk.ScrollDirection.DOWN:
+                total_y_delta = 1.0;
+                total_x_delta = 0.0;
+                break;
+            case Gdk.ScrollDirection.LEFT:
+                total_x_delta = -1.0;
+                total_y_delta = 0.0;
+                break;
+            case Gdk.ScrollDirection.RIGHT:
+                total_x_delta = 1.0;
+                total_y_delta = 0.0;
+                break;
+            default:
+                break;
+        }
+
+        dir = total_x_delta.abs () > total_y_delta.abs () ? total_x_delta : total_y_delta;
+
+        /* DO not honor natural scroll setting */
+        if (natural_scroll) {
+            dir *= -1.0;
+        }
+
+        if (dir.abs () > 0.2 && same_sign (dir, last_dir)) {
+            total_x_delta = 0.0;
+            total_y_delta = 0.0;
+            return true;
+        } else {
+            last_dir = dir;
+            return false;
+        }
+
+    }
+
+    /* Requires -1 > param < 1 */
+    private bool same_sign (double a, double b) {
+        return a == 0.0 || b == 0.0 || Math.floor (a) == Math.floor (b);
     }
 
     public override void opened () {

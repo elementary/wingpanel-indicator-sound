@@ -15,7 +15,7 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-public class Sound.Widgets.Scale : Gtk.Grid {
+public class Sound.Widgets.Scale : Gtk.EventBox {
     private Gtk.Image image;
 
     private string _icon;
@@ -46,6 +46,8 @@ public class Sound.Widgets.Scale : Gtk.Grid {
     }
 
     construct {
+        set_above_child (true);
+        var grid = new Gtk.Grid ();
         image = new Gtk.Image.from_icon_name (icon, Gtk.IconSize.DIALOG);
         image.pixel_size = 48;
 
@@ -63,32 +65,23 @@ public class Sound.Widgets.Scale : Gtk.Grid {
         switch_widget.margin_start = 6;
         switch_widget.margin_end = 12;
 
-        hexpand = true;
-        get_style_context ().add_class ("indicator-switch");
-        add (image_box);
-        add (scale_widget);
-        add (switch_widget);
+        grid.hexpand = true;
+        grid.get_style_context ().add_class ("indicator-switch");
+        grid.add (image_box);
+        grid.add (scale_widget);
+        grid.add (switch_widget);
 
-        add_events (Gdk.EventMask.SCROLL_MASK);
-        scroll_event.connect (on_scroll);
+        add (grid);
+        add_events (Gdk.EventMask.SMOOTH_SCROLL_MASK);
 
-        image_box.add_events (Gdk.EventMask.SCROLL_MASK);
         image_box.add_events (Gdk.EventMask.BUTTON_RELEASE_MASK);
-        image_box.scroll_event.connect (on_scroll);
         image_box.button_release_event.connect (() => {
             switch_widget.active = !switch_widget.active;
             return Gdk.EVENT_STOP;
         });
 
-        switch_widget.add_events (Gdk.EventMask.SCROLL_MASK);
-        switch_widget.scroll_event.connect (on_scroll);
         switch_widget.bind_property ("active", scale_widget, "sensitive", BindingFlags.SYNC_CREATE);
         switch_widget.bind_property ("active", image, "sensitive", BindingFlags.SYNC_CREATE);
         switch_widget.bind_property ("active", this, "active", BindingFlags.BIDIRECTIONAL);
-    }
-
-    private bool on_scroll (Gdk.EventScroll event) {
-        scale_widget.scroll_event (event);
-        return Gdk.EVENT_STOP;
     }
 }
