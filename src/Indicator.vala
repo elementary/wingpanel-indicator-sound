@@ -124,7 +124,10 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
     private void on_mic_volume_change () {
         var volume = volume_control.mic_volume;
-        mic_scale.scale_widget.set_value (volume);
+
+        if (volume != mic_scale.scale_widget.get_value ()) {
+            mic_scale.scale_widget.set_value (volume);
+        }
     }
 
     private void on_mute_change () {
