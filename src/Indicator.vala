@@ -273,7 +273,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
             volume_scale.scale_widget.set_value (volume_control.volume.volume);
             volume_scale.scale_widget.button_release_event.connect ((e) => {
-                play_sound_blubble ();
+                volume_change_notify ();
                 return false;
             });
 
@@ -302,7 +302,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
             });
 
             mic_scale.scale_widget.button_release_event.connect (() => {
-                play_sound_blubble ();
+                volume_change_notify ();
                 return false;
             });
 
@@ -415,7 +415,8 @@ public class Sound.Indicator : Wingpanel.Indicator {
         vol.reason = Services.VolumeControl.VolumeReasons.USER_KEYPRESS;
         vol.volume = v;
         volume_control.volume = vol;
-        play_sound_blubble ();
+
+        volume_change_notify_throttled ();
     }
 
     private void handle_mic_change (double change) {
@@ -463,31 +464,37 @@ public class Sound.Indicator : Wingpanel.Indicator {
         }
     }
 
-    uint blubble_timeout_id = 0;
-    private void play_sound_blubble () {
-        if (blubble_timeout_id > 0) {
+    private uint notify_timeout_id = 0;
+    private void volume_change_notify_throttled () {
+        if (notify_timeout_id > 0) {
             return;
         }
 
-        blubble_timeout_id = Timeout.add (50, () => {
-            if (!show_notification ()) { /* false when indicator open or notification cannot be shown */
-                Canberra.Proplist props;
-                Canberra.Proplist.create (out props);
-                props.sets (Canberra.PROP_CANBERRA_CACHE_CONTROL, "volatile");
-                props.sets (Canberra.PROP_EVENT_ID, "audio-volume-change");
-                ca_context.play_full (0, props);
-            }
-
-            blubble_timeout_id = 0;
+        notify_timeout_id = Timeout.add (50, () => {
+            volume_change_notify ();
+            notify_timeout_id = 0;
             return false;
         });
     }
 
-    /* This also plays a sound. */
-    private bool show_notification () {
-        if (open) {
-            return false;
+    private void volume_change_notify () {
+        var bubble_shown = false;
+        // show notification when indicator isn't open
+        if (!open) {
+            bubble_shown = show_bubble ();
         }
+        // when no bubble was shown, just play sound
+        if (!bubble_shown) {
+            Canberra.Proplist props;
+            Canberra.Proplist.create (out props);
+            props.sets (Canberra.PROP_CANBERRA_CACHE_CONTROL, "volatile");
+            props.sets (Canberra.PROP_EVENT_ID, "audio-volume-change");
+            ca_context.play_full (0, props);
+        }
+    }
+
+    /* This also plays a sound. */
+    private bool show_bubble () {
 
         if (notification == null) {
             notification = new Notify.Notification ("indicator-sound", "", "");
