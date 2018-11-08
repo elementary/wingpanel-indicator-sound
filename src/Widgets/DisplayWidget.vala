@@ -18,6 +18,7 @@
 public class DisplayWidget : Gtk.EventBox {
     public bool show_mic { get; set; }
     public string icon_name { get; set; }
+    private bool ignore_next_event = false;
 
     construct {
         var grid = new Gtk.Grid ();
@@ -36,10 +37,23 @@ public class DisplayWidget : Gtk.EventBox {
         grid.add (volume_icon);
         add (grid);
 
-        set_events (Gdk.EventMask.SMOOTH_SCROLL_MASK);
+        /* SMOOTH_SCROLL_MASK has no effect on this widget for reasons that are not
+         * entirely clear.  Only normal scroll events are received even if the SMOOTH_SCROLL_MASK
+         * is set. */
+        set_events (Gdk.EventMask.SCROLL_MASK);
 
+        /* Diagonal scrolling causes a mixture of horizontal and vertical events.
+         * We ignore horizontal and "impure" scrolling by only passing on every other vertical event.
+         * This avoids jerky changes when horizontal scrolling with touchpad is attempted.
+         */
         scroll_event.connect ((e) => {
-            /* Ignore horizontal scrolling unless smooth to avoid jerky changes cause by separate events for each axis */
+            if (ignore_next_event) {
+                ignore_next_event = false;
+                return true;
+            } else {
+                ignore_next_event = true;
+            }
+
             if (e.direction == Gdk.ScrollDirection.LEFT || e.direction == Gdk.ScrollDirection.RIGHT) {
                 return true;
             } else {
