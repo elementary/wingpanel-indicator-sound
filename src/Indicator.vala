@@ -81,7 +81,8 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
         display_widget.icon_name = get_volume_icon (volume_control.volume.volume);
 
-        display_widget.scroll_event.connect_after (on_icon_scroll_event);
+        display_widget.volume_scroll_event.connect_after (on_volume_icon_scroll_event);
+        display_widget.mic_scroll_event.connect_after (on_mic_icon_scroll_event);
 
         volume_scale = new Widgets.Scale ("audio-volume-high-symbolic", true, 0.0, max_volume, 0.01);
         mic_scale = new Widgets.Scale ("audio-input-microphone-symbolic", true, 0.0, 1.0, 0.01);
@@ -171,13 +172,18 @@ public class Sound.Indicator : Wingpanel.Indicator {
         display_widget.icon_name = get_volume_icon (volume_control.volume.volume);
     }
 
-    private bool on_icon_scroll_event (Gdk.EventScroll e) {
+    private void on_volume_icon_scroll_event (Gdk.EventScroll e) {
         double dir = 0.0;
         if (handle_scroll_event (e, out dir)) {
             handle_volume_change (dir);
         }
+    }
 
-        return Gdk.EVENT_STOP;
+    private void on_mic_icon_scroll_event (Gdk.EventScroll e) {
+        double dir = 0.0;
+        if (handle_scroll_event (e, out dir)) {
+            handle_mic_change (dir);
+        }
     }
 
     private void update_mic_visibility () {
@@ -295,6 +301,21 @@ public class Sound.Indicator : Wingpanel.Indicator {
                 volume_control.mic_volume = mic_scale.scale_widget.get_value ();
             });
 
+            mic_scale.scale_widget.button_release_event.connect (() => {
+                play_sound_blubble ();
+                return false;
+            });
+
+            mic_scale.scroll_event.connect_after ((e) => {
+                double dir = 0.0;
+                if (handle_scroll_event (e, out dir)) {
+                    handle_mic_change (dir);
+                }
+
+                return true;
+            });
+
+
             main_grid.attach (mic_scale, 0, position++, 1, 1);
 
             mic_separator = new Wingpanel.Widgets.Separator ();
@@ -397,6 +418,23 @@ public class Sound.Indicator : Wingpanel.Indicator {
         play_sound_blubble ();
     }
 
+    private void handle_mic_change (double change) {
+        double v = volume_control.mic_volume;
+
+        if (change == 0 ||
+            v == 0.0 && change < 0.0 ||
+            v == max_volume && change > 0.0) {
+
+            /* Ignore if no volume change will result */
+            return;
+        }
+
+        v = (v + volume_step_percentage * change).clamp (0.0, max_volume);
+
+        volume_control.mic_volume = v;
+        show_mic_notification ();
+    }
+
     public override void opened () {
         open = true;
         if (notification != null) {
@@ -462,6 +500,36 @@ public class Sound.Indicator : Wingpanel.Indicator {
             notification.update ("indicator-sound", "", icon);
             notification.set_hint ("value", new Variant.int32 (
                 (int32)Math.round(volume_control.volume.volume / max_volume * 100.0)));
+            try {
+                notification.show ();
+            } catch (Error e) {
+                warning ("Unable to show sound notification: %s", e.message);
+                notification = null;
+                return false;
+            }
+        } else {
+            return false;
+        }
+
+        return true;
+    }
+
+    private bool show_mic_notification () {
+        if (open) {
+            return false;
+        }
+
+        if (notification == null) {
+            notification = new Notify.Notification ("indicator-sound", "", "");
+            notification.set_hint ("x-canonical-private-synchronous", new Variant.string ("indicator-sound"));
+        }
+
+        if (notification != null) {
+            string icon = "audio-input-microphone-symbolic";
+
+            notification.update ("indicator-sound", "", icon);
+            notification.set_hint ("value", new Variant.int32 (
+                (int32)Math.round(volume_control.mic_volume / max_volume * 100.0)));
             try {
                 notification.show ();
             } catch (Error e) {
