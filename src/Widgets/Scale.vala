@@ -46,7 +46,7 @@ public class Sound.Widgets.Scale : Gtk.EventBox {
     }
 
     construct {
-        set_above_child (true);
+        set_above_child (false);
         var grid = new Gtk.Grid ();
         image = new Gtk.Image.from_icon_name (icon, Gtk.IconSize.DIALOG);
         image.pixel_size = 48;
@@ -78,6 +78,12 @@ public class Sound.Widgets.Scale : Gtk.EventBox {
         image_box.button_release_event.connect (() => {
             switch_widget.active = !switch_widget.active;
             return Gdk.EVENT_STOP;
+        });
+
+        scale_widget.scroll_event.connect ((e) => {
+            /* Re-emit the signal on the eventbox instead of using native handler */
+            scroll_event (e);
+            return true;
         });
 
         switch_widget.bind_property ("active", scale_widget, "sensitive", BindingFlags.SYNC_CREATE);
