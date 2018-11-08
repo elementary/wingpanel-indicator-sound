@@ -325,7 +325,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
         switch (e.direction) {
             case Gdk.ScrollDirection.SMOOTH:
                 if (same_sign (e.delta_x, total_x_delta)) {
-                    total_x_delta += e.delta_x;
+                    total_x_delta += natural_scroll ? -e.delta_x : e.delta_x;
                 } else {
                     total_x_delta = 0;
                 }
@@ -346,11 +346,11 @@ public class Sound.Indicator : Wingpanel.Indicator {
                 total_x_delta = 0.0;
                 break;
             case Gdk.ScrollDirection.LEFT:
-                total_x_delta = -1.0;
+                total_x_delta = natural_scroll ? 1.0 : -1.0;
                 total_y_delta = 0.0;
                 break;
             case Gdk.ScrollDirection.RIGHT:
-                total_x_delta = 1.0;
+                total_x_delta = natural_scroll ? -1.0 : 1.0;
                 total_y_delta = 0.0;
                 break;
             default:
@@ -358,11 +358,6 @@ public class Sound.Indicator : Wingpanel.Indicator {
         }
 
         dir = total_x_delta.abs () > total_y_delta.abs () ? total_x_delta : total_y_delta;
-
-        /* DO not honor natural scroll setting */
-        if (natural_scroll) {
-            dir *= -1.0;
-        }
 
         if (dir.abs () > 0.2 && same_sign (dir, last_dir)) {
             total_x_delta = 0.0;
