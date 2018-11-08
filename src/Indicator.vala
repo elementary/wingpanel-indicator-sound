@@ -55,7 +55,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
         display_widget = new DisplayWidget ();
 
-        volume_control = new Services.VolumeControlPulse ();
+        volume_control = new Services.VolumeControlPulse (); /* sub-class of Services.VolumeControl */
         volume_control.notify["volume"].connect (on_volume_change);
         volume_control.notify["mic-volume"].connect (on_mic_volume_change);
         volume_control.notify["mute"].connect (on_mute_change);
@@ -64,9 +64,6 @@ public class Sound.Indicator : Wingpanel.Indicator {
         volume_control.notify["is-listening"].connect(update_mic_visibility);
 
         Notify.init ("wingpanel-indicator-sound");
-
-        notification = new Notify.Notification ("indicator-sound", "", "");
-        notification.set_hint ("x-canonical-private-synchronous", new Variant.string ("indicator-sound"));
 
         settings = new Services.Settings ();
         settings.notify["max-volume"].connect (set_max_volume);
@@ -172,30 +169,9 @@ public class Sound.Indicator : Wingpanel.Indicator {
     }
 
     private bool on_icon_scroll_event (Gdk.EventScroll e) {
-        var vol = new Services.VolumeControl.Volume ();
-        vol.reason = Services.VolumeControl.VolumeReasons.USER_KEYPRESS;
-
         double dir = 0.0;
-
         if (handle_scroll_event (e, out dir)) {
-            double v = this.volume_control.volume.volume + volume_step_percentage * dir;
-            vol.volume = v.clamp (0.0, this.max_volume);
-            this.volume_control.volume = vol;
-
-            if (open == false && this.notification != null) {
-                string icon = get_volume_icon (v);
-
-                this.notification.update ("indicator-sound", "", icon);
-                this.notification.set_hint ("value", new Variant.int32 (
-                    (int32)Math.round(volume_control.volume.volume / this.max_volume * 100.0)));
-                try {
-                    this.notification.show ();
-                } catch (Error e) {
-                    warning ("Unable to show sound notification: %s", e.message);
-                }
-            } else if (v <= (this.max_volume + 0.05)) {
-                play_sound_blubble ();
-            }
+            handle_volume_change (dir);
         }
 
         return Gdk.EVENT_STOP;
@@ -296,13 +272,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
             volume_scale.scroll_event.connect_after ((e) => {
                 double dir = 0.0;
                 if (handle_scroll_event (e, out dir)) {
-                    double v = volume_scale.scale_widget.get_value ();
-                    v = v + 0.05 * dir;
-
-                    if (v >= -0.05 && v <= 1.05) {
-                        volume_scale.scale_widget.set_value (v);
-                        play_sound_blubble ();
-                    }
+                    handle_volume_change (dir);
                 }
 
                 return true;
@@ -410,17 +380,37 @@ public class Sound.Indicator : Wingpanel.Indicator {
         return a == 0.0 || b == 0.0 || Math.floor (a) == Math.floor (b);
     }
 
+    private void handle_volume_change (double change) {
+        double v = volume_control.volume.volume;
+        if (change == 0 || v == 0.0 && change < 0.0 || v == max_volume && change > 0.0) {
+            return;
+        }
+
+        v = (v + 0.06 * change).clamp (0.0, max_volume);
+
+        var vol = new Services.VolumeControl.Volume ();
+        vol.reason = Services.VolumeControl.VolumeReasons.USER_KEYPRESS;
+        vol.volume = v.clamp (0.0, this.max_volume);
+        this.volume_control.volume = vol;
+        play_sound_blubble ();
+    }
+
     public override void opened () {
         open = true;
-        try {
-            notification.close ();
-        } catch (Error e) {
-            warning ("Unable to close sound notification: %s", e.message);
+        if (notification != null) {
+            try {
+                notification.close ();
+            } catch (Error e) {
+                critical ("Unable to close sound notification: %s", e.message);
+            } finally {
+                notification = null;
+            }
         }
     }
 
     public override void closed () {
         open = false;
+        notification = null;
     }
 
     private void show_settings () {
@@ -433,13 +423,57 @@ public class Sound.Indicator : Wingpanel.Indicator {
         }
     }
 
+    uint blubble_timeout_id = 0;
     private void play_sound_blubble () {
-        Canberra.Proplist props;
-        Canberra.Proplist.create (out props);
-        props.sets (Canberra.PROP_CANBERRA_CACHE_CONTROL, "volatile");
-        props.sets (Canberra.PROP_EVENT_ID, "audio-volume-change");
-        ca_context.play_full (0, props);
+        if (blubble_timeout_id > 0) {
+            return;
+        }
+
+        blubble_timeout_id = Timeout.add (50, () => {
+            if (!show_notification ()) { /* false when indicator open or notification cannot be shown */
+                Canberra.Proplist props;
+                Canberra.Proplist.create (out props);
+                props.sets (Canberra.PROP_CANBERRA_CACHE_CONTROL, "volatile");
+                props.sets (Canberra.PROP_EVENT_ID, "audio-volume-change");
+                ca_context.play_full (0, props);
+            }
+
+            blubble_timeout_id = 0;
+            return false;
+        });
     }
+
+    /* This also plays a sound. */
+    private bool show_notification () {
+        if (open) {
+            return false;
+        }
+
+        if (notification == null) {
+            notification = new Notify.Notification ("indicator-sound", "", "");
+            notification.set_hint ("x-canonical-private-synchronous", new Variant.string ("indicator-sound"));
+        }
+
+        if (notification != null) {
+            string icon = get_volume_icon (volume_scale.scale_widget.get_value ());
+
+            this.notification.update ("indicator-sound", "", icon);
+            this.notification.set_hint ("value", new Variant.int32 (
+                (int32)Math.round(volume_control.volume.volume / this.max_volume * 100.0)));
+            try {
+                this.notification.show ();
+            } catch (Error e) {
+                warning ("Unable to show sound notification: %s", e.message);
+                notification = null;
+                return false;
+            }
+        } else {
+            return false;
+        }
+
+        return true;
+    }
+
 }
 
 public Wingpanel.Indicator? get_indicator (Module module, Wingpanel.IndicatorManager.ServerType server_type) {
