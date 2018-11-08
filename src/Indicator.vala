@@ -370,18 +370,22 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
     }
 
-    /* Requires -1 > param < 1 */
     private bool same_sign (double a, double b) {
-        return a == 0.0 || b == 0.0 || Math.floor (a) == Math.floor (b);
+        return a == 0.0 || b == 0.0 || (a > 0.0 && b > 0.0) || (a < 0.0 && b < 0.0);
     }
 
     private void handle_volume_change (double change) {
         double v = volume_control.volume.volume;
-        if (change == 0 || v == 0.0 && change < 0.0 || v == max_volume && change > 0.0) {
+
+        if (change == 0 ||
+            v == 0.0 && change < 0.0 ||
+            v == max_volume && change > 0.0) {
+
+            /* Ignore if no volume change will result */
             return;
         }
 
-        v = (v + 0.06 * change).clamp (0.0, max_volume);
+        v = (v + volume_step_percentage * change).clamp (0.0, max_volume);
 
         var vol = new Services.VolumeControl.Volume ();
         vol.reason = Services.VolumeControl.VolumeReasons.USER_KEYPRESS;
