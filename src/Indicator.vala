@@ -96,9 +96,9 @@ public class Sound.Indicator : Wingpanel.Indicator {
     }
 
     ~Indicator () {
-        if (this.sound_was_blocked_timeout_id > 0) {
-            Source.remove (this.sound_was_blocked_timeout_id);
-            this.sound_was_blocked_timeout_id = 0;
+        if (sound_was_blocked_timeout_id > 0) {
+            Source.remove (sound_was_blocked_timeout_id);
+            sound_was_blocked_timeout_id = 0;
         }
     }
 
@@ -110,12 +110,12 @@ public class Sound.Indicator : Wingpanel.Indicator {
             max = cap_volume;
         }
 
-        this.max_volume = max;
+        max_volume = max;
         on_volume_change ();
     }
 
     private void on_volume_change () {
-        double volume = volume_control.volume.volume / this.max_volume;
+        double volume = volume_control.volume.volume / max_volume;
         if (volume != volume_scale.scale_widget.get_value ()) {
             volume_scale.scale_widget.set_value (volume);
             display_widget.icon_name = get_volume_icon (volume);
@@ -145,21 +145,21 @@ public class Sound.Indicator : Wingpanel.Indicator {
     }
 
     private void on_is_playing_change () {
-        if (!this.volume_control.mute) {
-            this.mute_blocks_sound = false;
+        if (!volume_control.mute) {
+            mute_blocks_sound = false;
             return;
         }
-        if (this.volume_control.is_playing) {
-            this.mute_blocks_sound = true;
-        } else if (this.mute_blocks_sound) {
+        if (volume_control.is_playing) {
+            mute_blocks_sound = true;
+        } else if (mute_blocks_sound) {
             /* Continue to show the blocking icon five seconds after a player has tried to play something */
-            if (this.sound_was_blocked_timeout_id > 0) {
-                Source.remove (this.sound_was_blocked_timeout_id);
+            if (sound_was_blocked_timeout_id > 0) {
+                Source.remove (sound_was_blocked_timeout_id);
             }
 
-            this.sound_was_blocked_timeout_id = Timeout.add_seconds (5, () => {
-                this.mute_blocks_sound = false;
-                this.sound_was_blocked_timeout_id = 0;
+            sound_was_blocked_timeout_id = Timeout.add_seconds (5, () => {
+                mute_blocks_sound = false;
+                sound_was_blocked_timeout_id = 0;
                 display_widget.icon_name = get_volume_icon (volume_control.volume.volume);
                 return false;
             });
@@ -178,7 +178,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
     }
 
     private void update_mic_visibility () {
-        if (this.volume_control.is_listening) {
+        if (volume_control.is_listening) {
             mic_scale.no_show_all = false;
             mic_scale.show_all();
             mic_separator.no_show_all = false;
@@ -194,8 +194,8 @@ public class Sound.Indicator : Wingpanel.Indicator {
     }
 
     private string get_volume_icon (double volume) {
-        if (volume <= 0 || this.volume_control.mute) {
-            return this.mute_blocks_sound ? "audio-volume-muted-blocking-symbolic" : "audio-volume-muted-symbolic";
+        if (volume <= 0 || volume_control.mute) {
+            return mute_blocks_sound ? "audio-volume-muted-blocking-symbolic" : "audio-volume-muted-symbolic";
         } else if (volume <= 0.3) {
             return "audio-volume-low-symbolic";
         } else if (volume <= 0.7) {
@@ -255,10 +255,10 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
             volume_scale.scale_widget.value_changed.connect (() => {
                 var vol = new Services.VolumeControl.Volume();
-                var v = volume_scale.scale_widget.get_value () * this.max_volume;
-                vol.volume = v.clamp (0.0, this.max_volume);
+                var v = volume_scale.scale_widget.get_value () * max_volume;
+                vol.volume = v.clamp (0.0, max_volume);
                 vol.reason = Services.VolumeControl.VolumeReasons.USER_KEYPRESS;
-                this.volume_control.volume = vol;
+                volume_control.volume = vol;
                 volume_scale.icon = get_volume_icon (volume_scale.scale_widget.get_value ());
             });
 
@@ -389,8 +389,8 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
         var vol = new Services.VolumeControl.Volume ();
         vol.reason = Services.VolumeControl.VolumeReasons.USER_KEYPRESS;
-        vol.volume = v.clamp (0.0, this.max_volume);
-        this.volume_control.volume = vol;
+        vol.volume = v;
+        volume_control.volume = vol;
         play_sound_blubble ();
     }
 
@@ -456,11 +456,11 @@ public class Sound.Indicator : Wingpanel.Indicator {
         if (notification != null) {
             string icon = get_volume_icon (volume_scale.scale_widget.get_value ());
 
-            this.notification.update ("indicator-sound", "", icon);
-            this.notification.set_hint ("value", new Variant.int32 (
-                (int32)Math.round(volume_control.volume.volume / this.max_volume * 100.0)));
+            notification.update ("indicator-sound", "", icon);
+            notification.set_hint ("value", new Variant.int32 (
+                (int32)Math.round(volume_control.volume.volume / max_volume * 100.0)));
             try {
-                this.notification.show ();
+                notification.show ();
             } catch (Error e) {
                 warning ("Unable to show sound notification: %s", e.message);
                 notification = null;
