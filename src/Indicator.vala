@@ -25,8 +25,15 @@ public class Sound.Indicator : Wingpanel.Indicator {
     private Wingpanel.Widgets.Separator mic_separator;
     private Notify.Notification notification;
     private Services.Settings settings;
+    private GLib.Settings gnome_sound_settings;
     private Services.VolumeControlPulse volume_control;
     public bool natural_scroll { get; set; }
+
+    /* Support for temporarily suppressing event-sounds with Alt key */
+    public bool event_sounds { get; set; }
+    private bool event_sounds_orig;
+    uint restore_timeout_id = 0;
+
     bool open = false;
     bool mute_blocks_sound = false;
     uint sound_was_blocked_timeout_id;
@@ -50,6 +57,10 @@ public class Sound.Indicator : Wingpanel.Indicator {
     construct {
         var touchpad_settings = new GLib.Settings ("org.gnome.desktop.peripherals.touchpad");
         touchpad_settings.bind ("natural-scroll", this, "natural-scroll", SettingsBindFlags.DEFAULT);
+
+        gnome_sound_settings = new GLib.Settings ("org.gnome.desktop.sound");
+        gnome_sound_settings.bind ("event-sounds", this, "event-sounds", SettingsBindFlags.GET);
+        event_sounds_orig = event_sounds;
 
         visible = true;
 
@@ -175,14 +186,14 @@ public class Sound.Indicator : Wingpanel.Indicator {
     private void on_volume_icon_scroll_event (Gdk.EventScroll e) {
         double dir = 0.0;
         if (handle_scroll_event (e, out dir)) {
-            handle_change (dir, false);
+            handle_change (e, dir, false);
         }
     }
 
     private void on_mic_icon_scroll_event (Gdk.EventScroll e) {
         double dir = 0.0;
         if (handle_scroll_event (e, out dir)) {
-            handle_change (dir, true);
+            handle_change (e, dir, true);
         }
     }
 
@@ -273,7 +284,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
             volume_scale.scale_widget.set_value (volume_control.volume.volume);
             volume_scale.scale_widget.button_release_event.connect ((e) => {
-                notify_change (false);
+                notify_change (e.state, false);
                 return false;
             });
 
@@ -281,7 +292,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
             volume_scale.scroll_event.connect_after ((e) => {
                 double dir = 0.0;
                 if (handle_scroll_event (e, out dir)) {
-                    handle_change (dir, false);
+                    handle_change (e, dir, false);
                 }
 
                 return true;
@@ -301,15 +312,15 @@ public class Sound.Indicator : Wingpanel.Indicator {
                 volume_control.mic_volume = mic_scale.scale_widget.get_value ();
             });
 
-            mic_scale.scale_widget.button_release_event.connect (() => {
-                notify_change (true);
+            mic_scale.scale_widget.button_release_event.connect ((e) => {
+                notify_change (e.state, true);
                 return false;
             });
 
             mic_scale.scroll_event.connect_after ((e) => {
                 double dir = 0.0;
                 if (handle_scroll_event (e, out dir)) {
-                    handle_change (dir, true);
+                    handle_change (e, dir, true);
                 }
 
                 return true;
@@ -394,14 +405,13 @@ public class Sound.Indicator : Wingpanel.Indicator {
             last_dir = dir;
             return false;
         }
-
     }
 
     private bool same_sign (double a, double b) {
         return a == 0.0 || b == 0.0 || (a > 0.0 && b > 0.0) || (a < 0.0 && b < 0.0);
     }
 
-    private void handle_change (double change, bool is_mic) {
+    private void handle_change (Gdk.EventScroll e, double change, bool is_mic) {
         double v;
 
         if (is_mic) {
@@ -417,8 +427,6 @@ public class Sound.Indicator : Wingpanel.Indicator {
             return;
         }
 
-
-
         if (is_mic) {
             volume_control.mic_volume = new_v;
         } else {
@@ -428,7 +436,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
             volume_control.volume = vol;
         }
 
-        notify_change (is_mic);
+        notify_change (e.state, is_mic);
     }
 
     public override void opened () {
@@ -460,9 +468,18 @@ public class Sound.Indicator : Wingpanel.Indicator {
     }
 
     uint notify_timeout_id = 0;
-    private void notify_change (bool is_mic) {
+    private void notify_change (uint state, bool is_mic) {
         if (notify_timeout_id > 0) {
             return;
+        }
+
+
+        /* Implement silencing event sounds with Alt key */
+        var silence_requested = only_alt_pressed (state);
+
+        if (silence_requested) {
+            /* Temporarily suppress event sounds if necessary */
+            silence_event_sounds ();
         }
 
         notify_timeout_id = Timeout.add (50, () => {
@@ -473,8 +490,8 @@ public class Sound.Indicator : Wingpanel.Indicator {
             }
 
             /* If open or no notification shown, just play sound */
-            /* TODO: Should this be suppressed if mic is on? */
-            if (!notification_showing) {
+            /* but honor Gnome event-sounds setting and Alt key*/
+            if (!notification_showing && event_sounds && !silence_requested) {
                 Canberra.Proplist props;
                 Canberra.Proplist.create (out props);
                 props.sets (Canberra.PROP_CANBERRA_CACHE_CONTROL, "volatile");
@@ -482,12 +499,17 @@ public class Sound.Indicator : Wingpanel.Indicator {
                 ca_context.play_full (0, props);
             }
 
+            if (silence_requested) {
+                /* Restore event sounds to original setting, if temporarily suppressed */
+                restore_event_sounds ();
+            }
+
             notify_timeout_id = 0;
             return false;
         });
     }
 
-    /* This also plays a sound. TODO Is there a way of suppressing this if mic is on? */
+    /* This also plays a sound unless event-sounds setting is off. */
     private bool show_notification (bool is_mic) {
         if (notification == null) {
             notification = new Notify.Notification ("indicator-sound", "", "");
@@ -526,6 +548,44 @@ public class Sound.Indicator : Wingpanel.Indicator {
         }
 
         return true;
+    }
+
+    private void silence_event_sounds () {
+        if (restore_timeout_id > 0) {
+            /* Already silenced and not restored */
+            return;
+        }
+
+        event_sounds_orig = event_sounds;
+
+        if (event_sounds) {
+            /* Set directly to avoid race */
+            gnome_sound_settings.set_boolean ("event-sounds", false);
+        }
+    }
+
+    private void restore_event_sounds () {
+        if (restore_timeout_id > 0) {
+            Source.remove (restore_timeout_id);
+            restore_timeout_id = 0;
+        }
+
+        /* Avoid spamming the setting */
+        restore_timeout_id = Timeout.add (500, () => {
+            warning ("RESTORE ORIG %s ", event_sounds_orig.to_string ());
+            if (event_sounds_orig) {
+                gnome_sound_settings.set_boolean ("event-sounds", true);
+                restore_timeout_id = 0;
+            }
+
+            restore_timeout_id = 0;
+            return false;
+        });
+    }
+
+    private bool only_alt_pressed (uint state) {
+        uint mods = state & Gtk.accelerator_get_default_mod_mask ();
+        return ((mods & Gdk.ModifierType.MOD1_MASK) != 0) && ((mods & ~Gdk.ModifierType.MOD1_MASK) == 0);
     }
 }
 
