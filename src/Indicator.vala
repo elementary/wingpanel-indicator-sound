@@ -175,14 +175,14 @@ public class Sound.Indicator : Wingpanel.Indicator {
     private void on_volume_icon_scroll_event (Gdk.EventScroll e) {
         double dir = 0.0;
         if (handle_scroll_event (e, out dir)) {
-            handle_volume_change (dir);
+            handle_change (dir, false);
         }
     }
 
     private void on_mic_icon_scroll_event (Gdk.EventScroll e) {
         double dir = 0.0;
         if (handle_scroll_event (e, out dir)) {
-            handle_mic_change (dir);
+            handle_change (dir, true);
         }
     }
 
@@ -273,7 +273,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
             volume_scale.scale_widget.set_value (volume_control.volume.volume);
             volume_scale.scale_widget.button_release_event.connect ((e) => {
-                play_sound_blubble ();
+                notify_change (false);
                 return false;
             });
 
@@ -281,7 +281,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
             volume_scale.scroll_event.connect_after ((e) => {
                 double dir = 0.0;
                 if (handle_scroll_event (e, out dir)) {
-                    handle_volume_change (dir);
+                    handle_change (dir, false);
                 }
 
                 return true;
@@ -302,14 +302,14 @@ public class Sound.Indicator : Wingpanel.Indicator {
             });
 
             mic_scale.scale_widget.button_release_event.connect (() => {
-                play_sound_blubble ();
+                notify_change (true);
                 return false;
             });
 
             mic_scale.scroll_event.connect_after ((e) => {
                 double dir = 0.0;
                 if (handle_scroll_event (e, out dir)) {
-                    handle_mic_change (dir);
+                    handle_change (dir, true);
                 }
 
                 return true;
@@ -398,8 +398,14 @@ public class Sound.Indicator : Wingpanel.Indicator {
         return a == 0.0 || b == 0.0 || (a > 0.0 && b > 0.0) || (a < 0.0 && b < 0.0);
     }
 
-    private void handle_volume_change (double change) {
-        double v = volume_control.volume.volume;
+    private void handle_change (double change, bool is_mic) {
+        double v;
+
+        if (is_mic) {
+            v = volume_control.mic_volume;
+        } else {
+            v = volume_control.volume.volume;
+        }
 
         if (change == 0 ||
             v == 0.0 && change < 0.0 ||
@@ -411,28 +417,16 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
         v = (v + volume_step_percentage * change).clamp (0.0, max_volume);
 
-        var vol = new Services.VolumeControl.Volume ();
-        vol.reason = Services.VolumeControl.VolumeReasons.USER_KEYPRESS;
-        vol.volume = v;
-        volume_control.volume = vol;
-        play_sound_blubble ();
-    }
-
-    private void handle_mic_change (double change) {
-        double v = volume_control.mic_volume;
-
-        if (change == 0 ||
-            v == 0.0 && change < 0.0 ||
-            v == max_volume && change > 0.0) {
-
-            /* Ignore if no volume change will result */
-            return;
+        if (is_mic) {
+            volume_control.mic_volume = v;
+        } else {
+            var vol = new Services.VolumeControl.Volume ();
+            vol.reason = Services.VolumeControl.VolumeReasons.USER_KEYPRESS;
+            vol.volume = v;
+            volume_control.volume = vol;
         }
 
-        v = (v + volume_step_percentage * change).clamp (0.0, max_volume);
-
-        volume_control.mic_volume = v;
-        show_mic_notification ();
+        notify_change (is_mic);
     }
 
     public override void opened () {
@@ -463,14 +457,22 @@ public class Sound.Indicator : Wingpanel.Indicator {
         }
     }
 
-    uint blubble_timeout_id = 0;
-    private void play_sound_blubble () {
-        if (blubble_timeout_id > 0) {
+    uint notify_timeout_id = 0;
+    private void notify_change (bool is_mic) {
+        if (notify_timeout_id > 0) {
             return;
         }
 
-        blubble_timeout_id = Timeout.add (50, () => {
-            if (!show_notification ()) { /* false when indicator open or notification cannot be shown */
+        notify_timeout_id = Timeout.add (50, () => {
+            bool notification_showing = false;
+            /* Show notification if not open */
+            if (!open) {
+                notification_showing = show_notification (is_mic);
+            }
+
+            /* If open or no notification shown, just play sound */
+            /* TODO: Should this be suppressed if mic is on? */
+            if (!notification_showing) {
                 Canberra.Proplist props;
                 Canberra.Proplist.create (out props);
                 props.sets (Canberra.PROP_CANBERRA_CACHE_CONTROL, "volatile");
@@ -478,28 +480,38 @@ public class Sound.Indicator : Wingpanel.Indicator {
                 ca_context.play_full (0, props);
             }
 
-            blubble_timeout_id = 0;
+            notify_timeout_id = 0;
             return false;
         });
     }
 
-    /* This also plays a sound. */
-    private bool show_notification () {
-        if (open) {
-            return false;
-        }
-
+    /* This also plays a sound. TODO Is there a way of suppressing this if mic is on? */
+    private bool show_notification (bool is_mic) {
         if (notification == null) {
             notification = new Notify.Notification ("indicator-sound", "", "");
             notification.set_hint ("x-canonical-private-synchronous", new Variant.string ("indicator-sound"));
         }
 
         if (notification != null) {
-            string icon = get_volume_icon (volume_scale.scale_widget.get_value ());
+            string icon;
+
+            if (is_mic) {
+                icon = "audio-input-microphone-symbolic";
+            } else {
+                icon = get_volume_icon (volume_scale.scale_widget.get_value ());
+            }
 
             notification.update ("indicator-sound", "", icon);
-            notification.set_hint ("value", new Variant.int32 (
-                (int32)Math.round(volume_control.volume.volume / max_volume * 100.0)));
+
+            int32 volume;
+            if (is_mic) {
+                volume = (int32)Math.round(volume_control.mic_volume / max_volume * 100.0);
+            } else {
+                volume = (int32)Math.round(volume_control.volume.volume / max_volume * 100.0);
+            }
+
+            notification.set_hint ("value", new Variant.int32 (volume));
+
             try {
                 notification.show ();
             } catch (Error e) {
@@ -513,37 +525,6 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
         return true;
     }
-
-    private bool show_mic_notification () {
-        if (open) {
-            return false;
-        }
-
-        if (notification == null) {
-            notification = new Notify.Notification ("indicator-sound", "", "");
-            notification.set_hint ("x-canonical-private-synchronous", new Variant.string ("indicator-sound"));
-        }
-
-        if (notification != null) {
-            string icon = "audio-input-microphone-symbolic";
-
-            notification.update ("indicator-sound", "", icon);
-            notification.set_hint ("value", new Variant.int32 (
-                (int32)Math.round(volume_control.mic_volume / max_volume * 100.0)));
-            try {
-                notification.show ();
-            } catch (Error e) {
-                warning ("Unable to show sound notification: %s", e.message);
-                notification = null;
-                return false;
-            }
-        } else {
-            return false;
-        }
-
-        return true;
-    }
-
 }
 
 public Wingpanel.Indicator? get_indicator (Module module, Wingpanel.IndicatorManager.ServerType server_type) {
