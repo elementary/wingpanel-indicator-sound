@@ -410,22 +410,21 @@ public class Sound.Indicator : Wingpanel.Indicator {
             v = volume_control.volume.volume;
         }
 
-        if (change == 0 ||
-            v == 0.0 && change < 0.0 ||
-            v == max_volume && change > 0.0) {
+        var new_v = (v + volume_step_percentage * change).clamp (0.0, max_volume);
 
+        if (new_v == v) {
             /* Ignore if no volume change will result */
             return;
         }
 
-        v = (v + volume_step_percentage * change).clamp (0.0, max_volume);
+
 
         if (is_mic) {
-            volume_control.mic_volume = v;
+            volume_control.mic_volume = new_v;
         } else {
             var vol = new Services.VolumeControl.Volume ();
             vol.reason = Services.VolumeControl.VolumeReasons.USER_KEYPRESS;
-            vol.volume = v;
+            vol.volume = new_v;
             volume_control.volume = vol;
         }
 
