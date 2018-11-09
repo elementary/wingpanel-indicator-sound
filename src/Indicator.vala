@@ -383,6 +383,9 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
         dir = total_x_delta.abs () > total_y_delta.abs () ? total_x_delta : total_y_delta;
 
+        /* Check that there has been a significant change in the same direction as last
+         * time, in order to reduce fluctuating changes.
+         */
         if (dir.abs () > 0.2 && same_sign (dir, last_dir)) {
             total_x_delta = 0.0;
             total_y_delta = 0.0;
