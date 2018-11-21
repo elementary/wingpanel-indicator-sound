@@ -23,7 +23,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
     private Gtk.ModelButton settings_button;
     private Wingpanel.Widgets.Separator first_separator;
     private Wingpanel.Widgets.Separator mic_separator;
-    private Notify.Notification notification;
+    private Notify.Notification? notification;
     private Services.Settings settings;
     private Services.VolumeControlPulse volume_control;
 
@@ -56,9 +56,6 @@ public class Sound.Indicator : Wingpanel.Indicator {
         volume_control.notify["is-listening"].connect(update_mic_visibility);
 
         Notify.init ("wingpanel-indicator-sound");
-
-        notification = new Notify.Notification ("indicator-sound", "", "");
-        notification.set_hint ("x-canonical-private-synchronous", new Variant.string ("indicator-sound"));
 
         settings = new Services.Settings ();
         settings.notify["max-volume"].connect (set_max_volume);
@@ -175,12 +172,16 @@ public class Sound.Indicator : Wingpanel.Indicator {
         vol.volume = v.clamp (0.0, this.max_volume);
         this.volume_control.volume = vol;
 
-        if (open == false && this.notification != null && v >= -0.05 && v <= (this.max_volume + 0.05)) {
+        if (open == false && v >= -0.05 && v <= (this.max_volume + 0.05)) {
+            unowned string icon = get_volume_icon (v);
+            if (notification == null) {
+                notification = new Notify.Notification ("indicator-sound", "", icon);
+                notification.set_hint ("x-canonical-private-synchronous", new Variant.string ("indicator-sound"));
+            } else {
+                notification.update ("indicator-sound", "", icon);
+            }
 
-            string icon = get_volume_icon (v);
-
-            this.notification.update ("indicator-sound", "", icon);
-            this.notification.set_hint ("value", new Variant.int32 (
+            notification.set_hint ("value", new Variant.int32 (
                 (int32)Math.round(volume_control.volume.volume / this.max_volume * 100.0)));
             try {
                 this.notification.show ();
@@ -210,7 +211,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
         }
     }
 
-    private string get_volume_icon (double volume) {
+    private unowned string get_volume_icon (double volume) {
         if (volume <= 0 || this.volume_control.mute) {
             return this.mute_blocks_sound ? "audio-volume-muted-blocking-symbolic" : "audio-volume-muted-symbolic";
         } else if (volume <= 0.3) {
@@ -340,10 +341,14 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
     public override void opened () {
         open = true;
-        try {
-            notification.close ();
-        } catch (Error e) {
-            warning ("Unable to close sound notification: %s", e.message);
+        if (notification != null) {
+            try {
+                notification.close ();
+            } catch (Error e) {
+                warning ("Unable to close sound notification: %s", e.message);
+            }
+
+            notification = null;
         }
     }
 
