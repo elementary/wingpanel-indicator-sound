@@ -1,11 +1,12 @@
 # Yassine MRABET <yassine.mrabet@gmail.com>, 2018.
+# Mohelm97 <mohelm97@gmail.com>, 2018.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-16 09:53-0700\n"
 "PO-Revision-Date: 2018-12-02 05:36+0000\n"
-"Last-Translator: Yassine MRABET <yassine.mrabet@gmail.com>\n"
+"Last-Translator: Mohelm97 <mohelm97@gmail.com>\n"
 "Language-Team: Arabic <https://weblate.elementary.io/projects/wingpanel/"
 "wingpanel-indicator-sound/ar/>\n"
 "Language: ar\n"
@@ -27,7 +28,7 @@ msgstr "مؤشر الصوت"
 
 #: src/Indicator.vala:330
 msgid "Sound Settings…"
-msgstr "إعدادات الصوت"
+msgstr "إعدادات الصوت…"
 
 #: src/Widgets/MprisGui.vala:29
 msgid "Not currently playing"
