@@ -1,29 +1,33 @@
+# Yassine MRABET <yassine.mrabet@gmail.com>, 2018.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-16 09:53-0700\n"
-"PO-Revision-Date: 2015-10-24 16:29+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2018-12-02 05:36+0000\n"
+"Last-Translator: Yassine MRABET <yassine.mrabet@gmail.com>\n"
+"Language-Team: Arabic <https://weblate.elementary.io/projects/wingpanel/"
+"wingpanel-indicator-sound/ar/>\n"
+"Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+"X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
-"X-Generator: Launchpad (build 18335)\n"
 
 #: src/Indicator.vala:41
 msgid "Indicator Sound"
-msgstr ""
+msgstr "مؤشر الصوت"
 
 #: src/Indicator.vala:42
 msgid "The sound indicator"
-msgstr ""
+msgstr "مؤشر الصوت"
 
 #: src/Indicator.vala:330
 msgid "Sound Settings…"
-msgstr ""
+msgstr "إعدادات الصوت"
 
 #: src/Widgets/MprisGui.vala:29
 msgid "Not currently playing"
