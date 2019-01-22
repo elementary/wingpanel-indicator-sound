@@ -23,7 +23,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
     private Gtk.ModelButton settings_button;
     private Wingpanel.Widgets.Separator first_separator;
     private Wingpanel.Widgets.Separator mic_separator;
-    private Notify.Notification notification;
+    private Notify.Notification? notification;
     private Services.Settings settings;
     private Services.VolumeControlPulse volume_control;
     public bool natural_scroll { get; set; }
@@ -202,9 +202,9 @@ public class Sound.Indicator : Wingpanel.Indicator {
         }
     }
 
-    private string get_volume_icon (double volume) {
-        if (volume <= 0 || volume_control.mute) {
-            return mute_blocks_sound ? "audio-volume-muted-blocking-symbolic" : "audio-volume-muted-symbolic";
+    private unowned string get_volume_icon (double volume) {
+        if (volume <= 0 || this.volume_control.mute) {
+            return this.mute_blocks_sound ? "audio-volume-muted-blocking-symbolic" : "audio-volume-muted-symbolic";
         } else if (volume <= 0.3) {
             return "audio-volume-low-symbolic";
         } else if (volume <= 0.7) {
@@ -437,10 +437,10 @@ public class Sound.Indicator : Wingpanel.Indicator {
             try {
                 notification.close ();
             } catch (Error e) {
-                critical ("Unable to close sound notification: %s", e.message);
-            } finally {
-                notification = null;
+                warning ("Unable to close sound notification: %s", e.message);
             }
+
+            notification = null;
         }
     }
 
