@@ -18,7 +18,6 @@
 public class DisplayWidget : Gtk.Grid {
     public bool show_mic { get; set; }
     public string icon_name { get; set; }
-    private bool ignore_next_event = false;
 
     public signal void volume_scroll_event (Gdk.EventScroll e);
     public signal void mic_scroll_event (Gdk.EventScroll e);
@@ -43,7 +42,8 @@ public class DisplayWidget : Gtk.Grid {
          * entirely clear.  Only normal scroll events are received even if the SMOOTH_SCROLL_MASK
          * is set. */
         scroll_event.connect ((e) => {
-            if (!ignore_scroll_event (e)) {
+            /* Ignore horizontal scrolling on wingpanel indicator */
+            if (e.direction != Gdk.ScrollDirection.LEFT && e.direction != Gdk.ScrollDirection.RIGHT) {
                 /* Determine whether scrolling on mic icon or not */
                 if (show_mic && e.x < mic_icon.pixel_size + mic_icon.margin_end) {
                     mic_scroll_event (e);
@@ -57,24 +57,5 @@ public class DisplayWidget : Gtk.Grid {
 
         bind_property ("icon-name", volume_icon, "icon-name", GLib.BindingFlags.BIDIRECTIONAL | GLib.BindingFlags.SYNC_CREATE);
         bind_property ("show-mic", mic_revealer, "reveal-child", GLib.BindingFlags.BIDIRECTIONAL | GLib.BindingFlags.SYNC_CREATE);
-    }
-
-    /* Diagonal scrolling causes a mixture of horizontal and vertical events.
-     * We ignore horizontal and "impure" scrolling by only passing on every other vertical event.
-     * This avoids jerky changes when horizontal scrolling with touchpad is attempted.
-     */
-    private bool ignore_scroll_event (Gdk.EventScroll e) {
-        if (ignore_next_event) {
-            ignore_next_event = false;
-            return true;
-        } else {
-            ignore_next_event = true;
-        }
-
-        if (e.direction == Gdk.ScrollDirection.LEFT || e.direction == Gdk.ScrollDirection.RIGHT) {
-            return true;
-        } else {
-            return false;
-        }
     }
 }

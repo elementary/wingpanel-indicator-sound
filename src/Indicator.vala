@@ -39,7 +39,6 @@ public class Sound.Indicator : Wingpanel.Indicator {
     /* Smooth scrolling support */
     double total_x_delta = 0;
     double total_y_delta= 0;
-    double last_dir = 0.0;
 
     public Indicator () {
         Object (code_name: Wingpanel.Indicator.SOUND,
@@ -346,59 +345,52 @@ public class Sound.Indicator : Wingpanel.Indicator {
      */
     private bool handle_scroll_event (Gdk.EventScroll e, out double dir) {
         dir = 0.0;
+
         switch (e.direction) {
             case Gdk.ScrollDirection.SMOOTH:
-                if (same_sign (e.delta_x, total_x_delta)) {
-                    total_x_delta += natural_scroll ? -e.delta_x : e.delta_x;
-                } else {
-                    total_x_delta = 0;
-                }
+                    var abs_x = double.max (e.delta_x.abs (), 0.0001);
+                    var abs_y = double.max (e.delta_y.abs (), 0.0001);
 
-                if (same_sign (e.delta_y, total_y_delta)) {
-                    total_y_delta += e.delta_y;
-                } else {
-                    total_y_delta = 0.0;
-                }
+
+                    if (abs_y / abs_x > 2.0) {
+                        total_y_delta += e.delta_y;
+                    } else if (abs_x / abs_y > 2.0) {
+                        total_x_delta += e.delta_x;
+                    }
+
                 break;
 
             case Gdk.ScrollDirection.UP:
                 total_y_delta = -1.0;
-                total_x_delta = 0.0;
                 break;
             case Gdk.ScrollDirection.DOWN:
                 total_y_delta = 1.0;
-                total_x_delta = 0.0;
                 break;
             case Gdk.ScrollDirection.LEFT:
-                total_x_delta = natural_scroll ? 1.0 : -1.0;
-                total_y_delta = 0.0;
+                total_x_delta = -1.0;
                 break;
             case Gdk.ScrollDirection.RIGHT:
-                total_x_delta = natural_scroll ? -1.0 : 1.0;
-                total_y_delta = 0.0;
+                total_x_delta = 1.0;
                 break;
             default:
                 break;
         }
 
-        dir = total_x_delta.abs () > total_y_delta.abs () ? total_x_delta : total_y_delta;
-
-        /* Check that there has been a significant change in the same direction as last
-         * time, in order to reduce fluctuating changes.
-         */
-        if (dir.abs () > 0.2 && same_sign (dir, last_dir)) {
-            total_x_delta = 0.0;
-            total_y_delta = 0.0;
-            return true;
-        } else {
-            last_dir = dir;
-            return false;
+        if (total_y_delta.abs () > 0.5) {
+            dir = total_y_delta;
         }
 
-    }
+        if (total_x_delta.abs () > 0.5) {
+            dir = natural_scroll ? -total_x_delta : total_x_delta;
+        }
 
-    private bool same_sign (double a, double b) {
-        return a == 0.0 || b == 0.0 || (a > 0.0 && b > 0.0) || (a < 0.0 && b < 0.0);
+        if (dir.abs () > 0.0) {
+            total_y_delta = 0.0;
+            total_x_delta = 0.0;
+            return true;
+        }
+
+        return false;
     }
 
     private void handle_change (double change, bool is_mic) {
