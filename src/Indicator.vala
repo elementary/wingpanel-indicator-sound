@@ -377,7 +377,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
         }
 
         if (total_y_delta.abs () > 0.5) {
-            dir = total_y_delta;
+            dir = natural_scroll ? total_y_delta : -total_y_delta;
         }
 
         if (total_x_delta.abs () > 0.5) {
