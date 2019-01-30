@@ -98,7 +98,10 @@ public class Sound.Indicator : Wingpanel.Indicator {
     ~Indicator () {
         if (sound_was_blocked_timeout_id > 0) {
             Source.remove (sound_was_blocked_timeout_id);
-            sound_was_blocked_timeout_id = 0;
+        }
+
+        if (notify_timeout_id > 0) {
+            Source.remove (notify_timeout_id);
         }
     }
 
@@ -335,13 +338,13 @@ public class Sound.Indicator : Wingpanel.Indicator {
         return main_grid;
     }
 
-    /* Handles both SMOOTH and non-SMOOTH events (although is only sent SMOOTH normally).
+    /* Handles both SMOOTH and non-SMOOTH events.
      * In order to deliver smooth volume changes it:
-     * * ignores whether "natural scrolling" is set since this does not make sense in this context.
      * * accumulates very small changes until they become significant.
      * * ignores rapid changes in direction.
      * * responds to both horizontal and vertical scrolling.
-     * In the case of diagonal scrolling, it takes the larger of the two directions.
+     * In the case of diagonal scrolling, it ignores the event unless movement in one direction
+     * is more than twice the movement in the other direction.
      */
     private bool handle_scroll_event (Gdk.EventScroll e, out double dir) {
         dir = 0.0;
@@ -350,7 +353,6 @@ public class Sound.Indicator : Wingpanel.Indicator {
             case Gdk.ScrollDirection.SMOOTH:
                     var abs_x = double.max (e.delta_x.abs (), 0.0001);
                     var abs_y = double.max (e.delta_y.abs (), 0.0001);
-
 
                     if (abs_y / abs_x > 2.0) {
                         total_y_delta += e.delta_y;
@@ -378,9 +380,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
         if (total_y_delta.abs () > 0.5) {
             dir = natural_scroll ? total_y_delta : -total_y_delta;
-        }
-
-        if (total_x_delta.abs () > 0.5) {
+        } else if (total_x_delta.abs () > 0.5) {
             dir = natural_scroll ? -total_x_delta : total_x_delta;
         }
 
@@ -408,8 +408,6 @@ public class Sound.Indicator : Wingpanel.Indicator {
             /* Ignore if no volume change will result */
             return;
         }
-
-
 
         if (is_mic) {
             volume_control.mic_volume = new_v;
