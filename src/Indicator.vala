@@ -23,7 +23,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
     private Gtk.ModelButton settings_button;
     private Wingpanel.Widgets.Separator first_separator;
     private Wingpanel.Widgets.Separator mic_separator;
-    private Notify.Notification notification;
+    private Notify.Notification? notification;
     private Services.Settings settings;
     private GLib.Settings gnome_sound_settings;
     private Services.VolumeControlPulse volume_control;
@@ -33,6 +33,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
     public bool event_sounds { get; set; }
     private bool event_sounds_orig;
     uint restore_timeout_id = 0;
+    uint notify_timeout_id = 0;
 
     bool open = false;
     bool mute_blocks_sound = false;
@@ -46,7 +47,6 @@ public class Sound.Indicator : Wingpanel.Indicator {
     /* Smooth scrolling support */
     double total_x_delta = 0;
     double total_y_delta= 0;
-    double last_dir = 0.0;
 
     public Indicator () {
         Object (code_name: Wingpanel.Indicator.SOUND,
@@ -110,7 +110,10 @@ public class Sound.Indicator : Wingpanel.Indicator {
     ~Indicator () {
         if (sound_was_blocked_timeout_id > 0) {
             Source.remove (sound_was_blocked_timeout_id);
-            sound_was_blocked_timeout_id = 0;
+        }
+
+        if (notify_timeout_id > 0) {
+            Source.remove (notify_timeout_id);
         }
     }
 
@@ -186,14 +189,16 @@ public class Sound.Indicator : Wingpanel.Indicator {
     private void on_volume_icon_scroll_event (Gdk.EventScroll e) {
         double dir = 0.0;
         if (handle_scroll_event (e, out dir)) {
-            handle_change (e, dir, false);
+            handle_change (dir, false);
+            notify_change (e.state, false);
         }
     }
 
     private void on_mic_icon_scroll_event (Gdk.EventScroll e) {
         double dir = 0.0;
         if (handle_scroll_event (e, out dir)) {
-            handle_change (e, dir, true);
+            handle_change (dir, true);
+            notify_change (e.state, true);
         }
     }
 
@@ -213,7 +218,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
         }
     }
 
-    private string get_volume_icon (double volume) {
+    private unowned string get_volume_icon (double volume) {
         if (volume <= 0 || volume_control.mute) {
             return mute_blocks_sound ? "audio-volume-muted-blocking-symbolic" : "audio-volume-muted-symbolic";
         } else if (volume <= 0.3) {
@@ -292,7 +297,8 @@ public class Sound.Indicator : Wingpanel.Indicator {
             volume_scale.scroll_event.connect_after ((e) => {
                 double dir = 0.0;
                 if (handle_scroll_event (e, out dir)) {
-                    handle_change (e, dir, false);
+                    handle_change (dir, false);
+                    notify_change (e.state, false);
                 }
 
                 return true;
@@ -320,7 +326,8 @@ public class Sound.Indicator : Wingpanel.Indicator {
             mic_scale.scroll_event.connect_after ((e) => {
                 double dir = 0.0;
                 if (handle_scroll_event (e, out dir)) {
-                    handle_change (e, dir, true);
+                    handle_change (dir, true);
+                    notify_change (e.state, true);
                 }
 
                 return true;
@@ -347,71 +354,62 @@ public class Sound.Indicator : Wingpanel.Indicator {
         return main_grid;
     }
 
-    /* Handles both SMOOTH and non-SMOOTH events (although is only sent SMOOTH normally).
+    /* Handles both SMOOTH and non-SMOOTH events.
      * In order to deliver smooth volume changes it:
-     * * ignores whether "natural scrolling" is set since this does not make sense in this context.
      * * accumulates very small changes until they become significant.
      * * ignores rapid changes in direction.
      * * responds to both horizontal and vertical scrolling.
-     * In the case of diagonal scrolling, it takes the larger of the two directions.
+     * In the case of diagonal scrolling, it ignores the event unless movement in one direction
+     * is more than twice the movement in the other direction.
      */
     private bool handle_scroll_event (Gdk.EventScroll e, out double dir) {
         dir = 0.0;
+
         switch (e.direction) {
             case Gdk.ScrollDirection.SMOOTH:
-                if (same_sign (e.delta_x, total_x_delta)) {
-                    total_x_delta += natural_scroll ? -e.delta_x : e.delta_x;
-                } else {
-                    total_x_delta = 0;
-                }
+                    var abs_x = double.max (e.delta_x.abs (), 0.0001);
+                    var abs_y = double.max (e.delta_y.abs (), 0.0001);
 
-                if (same_sign (e.delta_y, total_y_delta)) {
-                    total_y_delta += e.delta_y;
-                } else {
-                    total_y_delta = 0.0;
-                }
+                    if (abs_y / abs_x > 2.0) {
+                        total_y_delta += e.delta_y;
+                    } else if (abs_x / abs_y > 2.0) {
+                        total_x_delta += e.delta_x;
+                    }
+
                 break;
 
             case Gdk.ScrollDirection.UP:
                 total_y_delta = -1.0;
-                total_x_delta = 0.0;
                 break;
             case Gdk.ScrollDirection.DOWN:
                 total_y_delta = 1.0;
-                total_x_delta = 0.0;
                 break;
             case Gdk.ScrollDirection.LEFT:
-                total_x_delta = natural_scroll ? 1.0 : -1.0;
-                total_y_delta = 0.0;
+                total_x_delta = -1.0;
                 break;
             case Gdk.ScrollDirection.RIGHT:
-                total_x_delta = natural_scroll ? -1.0 : 1.0;
-                total_y_delta = 0.0;
+                total_x_delta = 1.0;
                 break;
             default:
                 break;
         }
 
-        dir = total_x_delta.abs () > total_y_delta.abs () ? total_x_delta : total_y_delta;
-
-        /* Check that there has been a significant change in the same direction as last
-         * time, in order to reduce fluctuating changes.
-         */
-        if (dir.abs () > 0.2 && same_sign (dir, last_dir)) {
-            total_x_delta = 0.0;
-            total_y_delta = 0.0;
-            return true;
-        } else {
-            last_dir = dir;
-            return false;
+        if (total_y_delta.abs () > 0.5) {
+            dir = natural_scroll ? total_y_delta : -total_y_delta;
+        } else if (total_x_delta.abs () > 0.5) {
+            dir = natural_scroll ? -total_x_delta : total_x_delta;
         }
+
+        if (dir.abs () > 0.0) {
+            total_y_delta = 0.0;
+            total_x_delta = 0.0;
+            return true;
+        }
+
+        return false;
     }
 
-    private bool same_sign (double a, double b) {
-        return a == 0.0 || b == 0.0 || (a > 0.0 && b > 0.0) || (a < 0.0 && b < 0.0);
-    }
-
-    private void handle_change (Gdk.EventScroll e, double change, bool is_mic) {
+    private void handle_change (double change, bool is_mic) {
         double v;
 
         if (is_mic) {
@@ -435,8 +433,6 @@ public class Sound.Indicator : Wingpanel.Indicator {
             vol.volume = new_v;
             volume_control.volume = vol;
         }
-
-        notify_change (e.state, is_mic);
     }
 
     public override void opened () {
@@ -467,12 +463,10 @@ public class Sound.Indicator : Wingpanel.Indicator {
         }
     }
 
-    uint notify_timeout_id = 0;
     private void notify_change (uint state, bool is_mic) {
         if (notify_timeout_id > 0) {
             return;
         }
-
 
         /* Implement silencing event sounds with Alt key */
         var silence_requested = only_alt_pressed (state);

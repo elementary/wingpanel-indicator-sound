@@ -1,7 +1,7 @@
 project(
     'sound',
     'vala', 'c',
-    version: '2.1.1'
+    version: '2.1.2'
 )
 
 gettext_name = meson.project_name() + '-indicator'
@@ -15,7 +15,7 @@ add_project_arguments(
     language: 'vala'
 )
 
-wingpanel_dep = dependency('wingpanel-2.0')
+wingpanel_dep = dependency('wingpanel-2.0', version: '>=2.1.0')
 
 asresources = gnome.compile_resources(
     'as-resources', 'data/mask.gresource.xml',

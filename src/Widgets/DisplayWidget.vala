@@ -43,7 +43,8 @@ public class DisplayWidget : Gtk.Grid {
          * entirely clear.  Only normal scroll events are received even if the SMOOTH_SCROLL_MASK
          * is set. */
         scroll_event.connect ((e) => {
-            if (!ignore_scroll_event (e)) {
+            /* Ignore horizontal scrolling on wingpanel indicator */
+            if (e.direction != Gdk.ScrollDirection.LEFT && e.direction != Gdk.ScrollDirection.RIGHT) {
                 /* Determine whether scrolling on mic icon or not */
                 if (show_mic && e.x < mic_icon.pixel_size + mic_icon.margin_end) {
                     mic_scroll_event (e);
