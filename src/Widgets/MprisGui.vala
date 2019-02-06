@@ -171,6 +171,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Grid {
         load_remote_art_cancel = new Cancellable ();
 
         background = new Gtk.Image ();
+        background.pixel_size = ICON_SIZE;
 
         mask = new Gtk.Image.from_resource ("/io/elementary/wingpanel/sound/image-mask.svg");
         mask.no_show_all = true;
