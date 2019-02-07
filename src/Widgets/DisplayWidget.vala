@@ -19,9 +19,13 @@ public class DisplayWidget : Gtk.Grid {
     public bool show_mic { get; set; }
     public string icon_name { get; set; }
     private bool ignore_next_event = false;
+    public string mic_icon_name { get; set; }
 
     public signal void volume_scroll_event (Gdk.EventScroll e);
     public signal void mic_scroll_event (Gdk.EventScroll e);
+
+    public signal void volume_press_event (Gdk.EventButton e);
+    public signal void mic_press_event (Gdk.EventButton e);
 
     construct {
         var volume_icon = new Gtk.Image ();
@@ -56,7 +60,18 @@ public class DisplayWidget : Gtk.Grid {
             return true;
         });
 
+        button_press_event.connect ((e) => {
+            /* Determine whether scrolling on mic icon or not */
+            if (show_mic && e.x < mic_icon.pixel_size + mic_icon.margin_end) {
+                mic_press_event (e);
+            } else {
+                volume_press_event (e);
+            }
+            return Gdk.EVENT_PROPAGATE;
+        });
+
         bind_property ("icon-name", volume_icon, "icon-name", GLib.BindingFlags.BIDIRECTIONAL | GLib.BindingFlags.SYNC_CREATE);
+        bind_property ("mic-icon-name", mic_icon, "icon-name", GLib.BindingFlags.BIDIRECTIONAL | GLib.BindingFlags.SYNC_CREATE);
         bind_property ("show-mic", mic_revealer, "reveal-child", GLib.BindingFlags.BIDIRECTIONAL | GLib.BindingFlags.SYNC_CREATE);
     }
 

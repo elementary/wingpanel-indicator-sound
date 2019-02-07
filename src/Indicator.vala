@@ -81,13 +81,16 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
         var locale = Intl.setlocale (LocaleCategory.MESSAGES, null);
 
-        display_widget.button_press_event.connect ((e) => {
+        display_widget.volume_press_event.connect ((e) => {
             if (e.button == Gdk.BUTTON_MIDDLE) {
                 volume_control.toggle_mute ();
-                return Gdk.EVENT_STOP;
             }
+        });
 
-            return Gdk.EVENT_PROPAGATE;
+        display_widget.mic_press_event.connect ((e) => {
+            if (e.button == Gdk.BUTTON_MIDDLE) {
+                volume_control.toggle_mic_mute ();
+            }
         });
 
         display_widget.icon_name = get_volume_icon (volume_control.volume.volume);
@@ -160,6 +163,14 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
     private void on_mic_mute_change () {
         mic_scale.active = !volume_control.micMute;
+
+        if (volume_control.micMute) {
+            display_widget.mic_icon_name = "microphone-sensitivity-muted-symbolic";
+            mic_scale.icon = "microphone-sensitivity-muted-symbolic";
+        } else {
+            display_widget.mic_icon_name = "audio-input-microphone-symbolic";
+            mic_scale.icon = "audio-input-microphone-symbolic";
+        }
     }
 
     private void on_is_playing_change () {
