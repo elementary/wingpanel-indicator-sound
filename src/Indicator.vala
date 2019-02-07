@@ -148,6 +148,14 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
     private void on_mic_mute_change () {
         mic_scale.active = !volume_control.micMute;
+
+        if (volume_control.micMute) {
+            display_widget.mic_icon_name = "microphone-sensitivity-muted-symbolic";
+            mic_scale.icon = "microphone-sensitivity-muted-symbolic";
+        } else {
+            display_widget.mic_icon_name = "audio-input-microphone-symbolic";
+            mic_scale.icon = "audio-input-microphone-symbolic";
+        }
     }
 
     private void on_is_playing_change () {
