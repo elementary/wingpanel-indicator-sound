@@ -74,6 +74,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
                 volume_control.toggle_mute ();
             }
         });
+
         display_widget.mic_press_event.connect ((e) => {
             if (e.button == Gdk.BUTTON_MIDDLE) {
                 volume_control.toggle_mic_mute ();
