@@ -23,10 +23,10 @@ public class Sound.Indicator : Wingpanel.Indicator {
     private Gtk.ModelButton settings_button;
     private Wingpanel.Widgets.Separator first_separator;
     private Wingpanel.Widgets.Separator mic_separator;
-    private Notify.Notification notification;
+    private Notify.Notification? notification;
     private Services.Settings settings;
     private Services.VolumeControlPulse volume_control;
-
+    public bool natural_scroll { get; set; }
     bool open = false;
     bool mute_blocks_sound = false;
     uint sound_was_blocked_timeout_id;
@@ -36,18 +36,25 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
     unowned Canberra.Context? ca_context = null;
 
+    /* Smooth scrolling support */
+    double total_x_delta = 0;
+    double total_y_delta= 0;
+
     public Indicator () {
         Object (code_name: Wingpanel.Indicator.SOUND,
                 display_name: _("Indicator Sound"),
-                description: _("The sound indicator"));        
+                description: _("The sound indicator"));
     }
 
     construct {
+        var touchpad_settings = new GLib.Settings ("org.gnome.desktop.peripherals.touchpad");
+        touchpad_settings.bind ("natural-scroll", this, "natural-scroll", SettingsBindFlags.DEFAULT);
+
         visible = true;
 
         display_widget = new DisplayWidget ();
 
-        volume_control = new Services.VolumeControlPulse ();
+        volume_control = new Services.VolumeControlPulse (); /* sub-class of Services.VolumeControl */
         volume_control.notify["volume"].connect (on_volume_change);
         volume_control.notify["mic-volume"].connect (on_mic_volume_change);
         volume_control.notify["mute"].connect (on_mute_change);
@@ -57,12 +64,9 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
         Notify.init ("wingpanel-indicator-sound");
 
-        notification = new Notify.Notification ("indicator-sound", "", "");
-        notification.set_hint ("x-canonical-private-synchronous", new Variant.string ("indicator-sound"));
-
         settings = new Services.Settings ();
         settings.notify["max-volume"].connect (set_max_volume);
-    
+
         var locale = Intl.setlocale (LocaleCategory.MESSAGES, null);
 
         display_widget.button_press_event.connect ((e) => {
@@ -75,7 +79,9 @@ public class Sound.Indicator : Wingpanel.Indicator {
         });
 
         display_widget.icon_name = get_volume_icon (volume_control.volume.volume);
-        display_widget.scroll_event.connect (on_icon_scroll_event);
+
+        display_widget.volume_scroll_event.connect_after (on_volume_icon_scroll_event);
+        display_widget.mic_scroll_event.connect_after (on_mic_icon_scroll_event);
 
         volume_scale = new Widgets.Scale ("audio-volume-high-symbolic", true, 0.0, max_volume, 0.01);
         mic_scale = new Widgets.Scale ("audio-input-microphone-symbolic", true, 0.0, 1.0, 0.01);
@@ -90,9 +96,12 @@ public class Sound.Indicator : Wingpanel.Indicator {
     }
 
     ~Indicator () {
-        if (this.sound_was_blocked_timeout_id > 0) {
-            Source.remove (this.sound_was_blocked_timeout_id);
-            this.sound_was_blocked_timeout_id = 0;
+        if (sound_was_blocked_timeout_id > 0) {
+            Source.remove (sound_was_blocked_timeout_id);
+        }
+
+        if (notify_timeout_id > 0) {
+            Source.remove (notify_timeout_id);
         }
     }
 
@@ -104,19 +113,24 @@ public class Sound.Indicator : Wingpanel.Indicator {
             max = cap_volume;
         }
 
-        this.max_volume = max;
+        max_volume = max;
         on_volume_change ();
     }
 
     private void on_volume_change () {
-        var volume = volume_control.volume.volume / this.max_volume;
-        volume_scale.scale_widget.set_value (volume);
-        display_widget.icon_name = get_volume_icon (volume);
+        double volume = volume_control.volume.volume / max_volume;
+        if (volume != volume_scale.scale_widget.get_value ()) {
+            volume_scale.scale_widget.set_value (volume);
+            display_widget.icon_name = get_volume_icon (volume);
+        }
     }
 
     private void on_mic_volume_change () {
         var volume = volume_control.mic_volume;
-        mic_scale.scale_widget.set_value (volume);
+
+        if (volume != mic_scale.scale_widget.get_value ()) {
+            mic_scale.scale_widget.set_value (volume);
+        }
     }
 
     private void on_mute_change () {
@@ -145,21 +159,21 @@ public class Sound.Indicator : Wingpanel.Indicator {
     }
 
     private void on_is_playing_change () {
-        if (!this.volume_control.mute) {
-            this.mute_blocks_sound = false;
+        if (!volume_control.mute) {
+            mute_blocks_sound = false;
             return;
         }
-        if (this.volume_control.is_playing) {
-            this.mute_blocks_sound = true;
-        } else if (this.mute_blocks_sound) {
+        if (volume_control.is_playing) {
+            mute_blocks_sound = true;
+        } else if (mute_blocks_sound) {
             /* Continue to show the blocking icon five seconds after a player has tried to play something */
-            if (this.sound_was_blocked_timeout_id > 0) {
-                Source.remove (this.sound_was_blocked_timeout_id);
+            if (sound_was_blocked_timeout_id > 0) {
+                Source.remove (sound_was_blocked_timeout_id);
             }
 
-            this.sound_was_blocked_timeout_id = Timeout.add_seconds (5, () => {
-                this.mute_blocks_sound = false;
-                this.sound_was_blocked_timeout_id = 0;
+            sound_was_blocked_timeout_id = Timeout.add_seconds (5, () => {
+                mute_blocks_sound = false;
+                sound_was_blocked_timeout_id = 0;
                 display_widget.icon_name = get_volume_icon (volume_control.volume.volume);
                 return false;
             });
@@ -168,42 +182,22 @@ public class Sound.Indicator : Wingpanel.Indicator {
         display_widget.icon_name = get_volume_icon (volume_control.volume.volume);
     }
 
-    private bool on_icon_scroll_event (Gdk.EventScroll e) {
-        var vol = new Services.VolumeControl.Volume ();
-        vol.reason = Services.VolumeControl.VolumeReasons.USER_KEYPRESS;
-
-        int dir = 0;
-        if (e.direction == Gdk.ScrollDirection.UP) {
-            dir = 1;
-        } else if (e.direction == Gdk.ScrollDirection.DOWN) {
-            dir = -1;
+    private void on_volume_icon_scroll_event (Gdk.EventScroll e) {
+        double dir = 0.0;
+        if (handle_scroll_event (e, out dir)) {
+            handle_change (dir, false);
         }
+    }
 
-        double v = this.volume_control.volume.volume + volume_step_percentage * dir;
-        vol.volume = v.clamp (0.0, this.max_volume);
-        this.volume_control.volume = vol;
-
-        if (open == false && this.notification != null && v >= -0.05 && v <= (this.max_volume + 0.05)) {
-
-            string icon = get_volume_icon (v);
-
-            this.notification.update ("indicator-sound", "", icon);
-            this.notification.set_hint ("value", new Variant.int32 (
-                (int32)Math.round(volume_control.volume.volume / this.max_volume * 100.0)));
-            try {
-                this.notification.show ();
-            } catch (Error e) {
-                warning ("Unable to show sound notification: %s", e.message);
-            }
-        } else if (v <= (this.max_volume + 0.05)) {
-            play_sound_blubble ();
+    private void on_mic_icon_scroll_event (Gdk.EventScroll e) {
+        double dir = 0.0;
+        if (handle_scroll_event (e, out dir)) {
+            handle_change (dir, true);
         }
-
-        return Gdk.EVENT_STOP;
     }
 
     private void update_mic_visibility () {
-        if (this.volume_control.is_listening) {
+        if (volume_control.is_listening) {
             mic_scale.no_show_all = false;
             mic_scale.show_all();
             mic_separator.no_show_all = false;
@@ -218,7 +212,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
         }
     }
 
-    private string get_volume_icon (double volume) {
+    private unowned string get_volume_icon (double volume) {
         if (volume <= 0 || this.volume_control.mute) {
             return this.mute_blocks_sound ? "audio-volume-muted-blocking-symbolic" : "audio-volume-muted-symbolic";
         } else if (volume <= 0.3) {
@@ -250,6 +244,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
         return display_widget;
     }
 
+
     public override Gtk.Widget? get_widget () {
         if (main_grid == null) {
             int position = 0;
@@ -279,35 +274,26 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
             volume_scale.scale_widget.value_changed.connect (() => {
                 var vol = new Services.VolumeControl.Volume();
-                var v = volume_scale.scale_widget.get_value () * this.max_volume;
-                vol.volume = v.clamp (0.0, this.max_volume);
+                var v = volume_scale.scale_widget.get_value () * max_volume;
+                vol.volume = v.clamp (0.0, max_volume);
                 vol.reason = Services.VolumeControl.VolumeReasons.USER_KEYPRESS;
-                this.volume_control.volume = vol;
+                volume_control.volume = vol;
                 volume_scale.icon = get_volume_icon (volume_scale.scale_widget.get_value ());
             });
 
             volume_scale.scale_widget.set_value (volume_control.volume.volume);
             volume_scale.scale_widget.button_release_event.connect ((e) => {
-                play_sound_blubble ();
+                notify_change (false);
                 return false;
             });
-            volume_scale.scale_widget.scroll_event.connect ((e) => {
-                int dir = 0;
-                if (e.direction == Gdk.ScrollDirection.UP || e.direction == Gdk.ScrollDirection.RIGHT ||
-                    (e.direction == Gdk.ScrollDirection.SMOOTH && e.delta_y < 0)) {
-                    dir = 1;
-                } else if (e.direction == Gdk.ScrollDirection.DOWN || e.direction == Gdk.ScrollDirection.LEFT ||
-                    (e.direction == Gdk.ScrollDirection.SMOOTH && e.delta_y > 0)) {
-                    dir = -1;
+
+
+            volume_scale.scroll_event.connect_after ((e) => {
+                double dir = 0.0;
+                if (handle_scroll_event (e, out dir)) {
+                    handle_change (dir, false);
                 }
 
-                double v = volume_scale.scale_widget.get_value ();
-                v = v + volume_step_percentage * dir;
-
-                if (v >= -0.05 && v <= 1.05) {
-                    volume_scale.scale_widget.set_value (v);
-                    play_sound_blubble ();
-                }
                 return true;
             });
 
@@ -315,7 +301,6 @@ public class Sound.Indicator : Wingpanel.Indicator {
             set_max_volume ();
 
             main_grid.attach (volume_scale, 0, position++, 1, 1);
-
             main_grid.attach (new Wingpanel.Widgets.Separator (), 0, position++, 1, 1);
 
             mic_scale.margin_start = 6;
@@ -325,6 +310,21 @@ public class Sound.Indicator : Wingpanel.Indicator {
             mic_scale.scale_widget.value_changed.connect (() => {
                 volume_control.mic_volume = mic_scale.scale_widget.get_value ();
             });
+
+            mic_scale.scale_widget.button_release_event.connect (() => {
+                notify_change (true);
+                return false;
+            });
+
+            mic_scale.scroll_event.connect_after ((e) => {
+                double dir = 0.0;
+                if (handle_scroll_event (e, out dir)) {
+                    handle_change (dir, true);
+                }
+
+                return true;
+            });
+
 
             main_grid.attach (mic_scale, 0, position++, 1, 1);
 
@@ -346,17 +346,105 @@ public class Sound.Indicator : Wingpanel.Indicator {
         return main_grid;
     }
 
+    /* Handles both SMOOTH and non-SMOOTH events.
+     * In order to deliver smooth volume changes it:
+     * * accumulates very small changes until they become significant.
+     * * ignores rapid changes in direction.
+     * * responds to both horizontal and vertical scrolling.
+     * In the case of diagonal scrolling, it ignores the event unless movement in one direction
+     * is more than twice the movement in the other direction.
+     */
+    private bool handle_scroll_event (Gdk.EventScroll e, out double dir) {
+        dir = 0.0;
+
+        switch (e.direction) {
+            case Gdk.ScrollDirection.SMOOTH:
+                    var abs_x = double.max (e.delta_x.abs (), 0.0001);
+                    var abs_y = double.max (e.delta_y.abs (), 0.0001);
+
+                    if (abs_y / abs_x > 2.0) {
+                        total_y_delta += e.delta_y;
+                    } else if (abs_x / abs_y > 2.0) {
+                        total_x_delta += e.delta_x;
+                    }
+
+                break;
+
+            case Gdk.ScrollDirection.UP:
+                total_y_delta = -1.0;
+                break;
+            case Gdk.ScrollDirection.DOWN:
+                total_y_delta = 1.0;
+                break;
+            case Gdk.ScrollDirection.LEFT:
+                total_x_delta = -1.0;
+                break;
+            case Gdk.ScrollDirection.RIGHT:
+                total_x_delta = 1.0;
+                break;
+            default:
+                break;
+        }
+
+        if (total_y_delta.abs () > 0.5) {
+            dir = natural_scroll ? total_y_delta : -total_y_delta;
+        } else if (total_x_delta.abs () > 0.5) {
+            dir = natural_scroll ? -total_x_delta : total_x_delta;
+        }
+
+        if (dir.abs () > 0.0) {
+            total_y_delta = 0.0;
+            total_x_delta = 0.0;
+            return true;
+        }
+
+        return false;
+    }
+
+    private void handle_change (double change, bool is_mic) {
+        double v;
+
+        if (is_mic) {
+            v = volume_control.mic_volume;
+        } else {
+            v = volume_control.volume.volume;
+        }
+
+        var new_v = (v + volume_step_percentage * change).clamp (0.0, max_volume);
+
+        if (new_v == v) {
+            /* Ignore if no volume change will result */
+            return;
+        }
+
+        if (is_mic) {
+            volume_control.mic_volume = new_v;
+        } else {
+            var vol = new Services.VolumeControl.Volume ();
+            vol.reason = Services.VolumeControl.VolumeReasons.USER_KEYPRESS;
+            vol.volume = new_v;
+            volume_control.volume = vol;
+        }
+
+        notify_change (is_mic);
+    }
+
     public override void opened () {
         open = true;
-        try {
-            notification.close ();
-        } catch (Error e) {
-            warning ("Unable to close sound notification: %s", e.message);
+        if (notification != null) {
+            try {
+                notification.close ();
+            } catch (Error e) {
+                warning ("Unable to close sound notification: %s", e.message);
+            }
+
+            notification = null;
         }
     }
 
     public override void closed () {
         open = false;
+        notification = null;
     }
 
     private void show_settings () {
@@ -369,12 +457,73 @@ public class Sound.Indicator : Wingpanel.Indicator {
         }
     }
 
-    private void play_sound_blubble () {
-        Canberra.Proplist props;
-        Canberra.Proplist.create (out props);
-        props.sets (Canberra.PROP_CANBERRA_CACHE_CONTROL, "volatile");
-        props.sets (Canberra.PROP_EVENT_ID, "audio-volume-change");
-        ca_context.play_full (0, props);
+    uint notify_timeout_id = 0;
+    private void notify_change (bool is_mic) {
+        if (notify_timeout_id > 0) {
+            return;
+        }
+
+        notify_timeout_id = Timeout.add (50, () => {
+            bool notification_showing = false;
+            /* Show notification if not open */
+            if (!open) {
+                notification_showing = show_notification (is_mic);
+            }
+
+            /* If open or no notification shown, just play sound */
+            /* TODO: Should this be suppressed if mic is on? */
+            if (!notification_showing) {
+                Canberra.Proplist props;
+                Canberra.Proplist.create (out props);
+                props.sets (Canberra.PROP_CANBERRA_CACHE_CONTROL, "volatile");
+                props.sets (Canberra.PROP_EVENT_ID, "audio-volume-change");
+                ca_context.play_full (0, props);
+            }
+
+            notify_timeout_id = 0;
+            return false;
+        });
+    }
+
+    /* This also plays a sound. TODO Is there a way of suppressing this if mic is on? */
+    private bool show_notification (bool is_mic) {
+        if (notification == null) {
+            notification = new Notify.Notification ("indicator-sound", "", "");
+            notification.set_hint ("x-canonical-private-synchronous", new Variant.string ("indicator-sound"));
+        }
+
+        if (notification != null) {
+            string icon;
+
+            if (is_mic) {
+                icon = "audio-input-microphone-symbolic";
+            } else {
+                icon = get_volume_icon (volume_scale.scale_widget.get_value ());
+            }
+
+            notification.update ("indicator-sound", "", icon);
+
+            int32 volume;
+            if (is_mic) {
+                volume = (int32)Math.round(volume_control.mic_volume / max_volume * 100.0);
+            } else {
+                volume = (int32)Math.round(volume_control.volume.volume / max_volume * 100.0);
+            }
+
+            notification.set_hint ("value", new Variant.int32 (volume));
+
+            try {
+                notification.show ();
+            } catch (Error e) {
+                warning ("Unable to show sound notification: %s", e.message);
+                notification = null;
+                return false;
+            }
+        } else {
+            return false;
+        }
+
+        return true;
     }
 }
 
