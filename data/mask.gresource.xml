@@ -2,5 +2,6 @@
 <gresources>
   <gresource prefix="/io/elementary/wingpanel/sound">
     <file compressed="true" preprocess="xml-stripblanks">image-mask.svg</file>
+    <file alias="indicator.css" compressed="true">indicator.css</file>
   </gresource>
 </gresources>
