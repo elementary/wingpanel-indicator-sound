@@ -18,6 +18,7 @@
 public class DisplayWidget : Gtk.Grid {
     public bool show_mic { get; set; }
     public string icon_name { get; set; }
+    public string mic_icon_name { get; set; }
 
     public signal void volume_scroll_event (Gdk.EventScroll e);
     public signal void mic_scroll_event (Gdk.EventScroll e);
@@ -69,6 +70,7 @@ public class DisplayWidget : Gtk.Grid {
         });
 
         bind_property ("icon-name", volume_icon, "icon-name", GLib.BindingFlags.BIDIRECTIONAL | GLib.BindingFlags.SYNC_CREATE);
+        bind_property ("mic-icon-name", mic_icon, "icon-name", GLib.BindingFlags.BIDIRECTIONAL | GLib.BindingFlags.SYNC_CREATE);
         bind_property ("show-mic", mic_revealer, "reveal-child", GLib.BindingFlags.BIDIRECTIONAL | GLib.BindingFlags.SYNC_CREATE);
     }
 }
