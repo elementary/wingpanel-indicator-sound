@@ -26,7 +26,8 @@ public class Sound.Indicator : Wingpanel.Indicator {
     private Notify.Notification? notification;
     private Services.Settings settings;
     private Services.VolumeControlPulse volume_control;
-    public bool natural_scroll { get; set; }
+    public bool natural_scroll_touchpad { get; set; }
+    public bool natural_scroll_mouse { get; set; }
     bool open = false;
     bool mute_blocks_sound = false;
     uint sound_was_blocked_timeout_id;
@@ -48,7 +49,9 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
     construct {
         var touchpad_settings = new GLib.Settings ("org.gnome.desktop.peripherals.touchpad");
-        touchpad_settings.bind ("natural-scroll", this, "natural-scroll", SettingsBindFlags.DEFAULT);
+        touchpad_settings.bind ("natural-scroll", this, "natural-scroll-touchpad", SettingsBindFlags.DEFAULT);
+        var mouse_settings = new GLib.Settings ("org.gnome.desktop.peripherals.mouse");
+        mouse_settings.bind ("natural-scroll", this, "natural-scroll-mouse", SettingsBindFlags.DEFAULT);
 
         visible = true;
 
@@ -359,6 +362,15 @@ public class Sound.Indicator : Wingpanel.Indicator {
      */
     private bool handle_scroll_event (Gdk.EventScroll e, out double dir) {
         dir = 0.0;
+        bool natural_scroll;
+        var event_source = e.get_source_device ().input_source;
+        if (event_source == Gdk.InputSource.MOUSE) {
+            natural_scroll = natural_scroll_mouse;
+        } else if (event_source == Gdk.InputSource.TOUCHPAD) {
+            natural_scroll = natural_scroll_touchpad;
+        } else {
+            natural_scroll = false;
+        }
 
         switch (e.direction) {
             case Gdk.ScrollDirection.SMOOTH:
