@@ -58,8 +58,9 @@ public class Sound.Widgets.ClientWidget : Gtk.Grid {
                 if (app_name == "") {
                     app_name = ainfo.get_name ();
                 }
-                if (value.get_icon () != null) {
-                    app_icon = value.get_icon ();
+                var icon = value.get_icon ();
+                if (icon != null) {
+                    app_icon = icon;
                     background.set_from_gicon (app_icon, Gtk.IconSize.DIALOG);
                 }
             }
