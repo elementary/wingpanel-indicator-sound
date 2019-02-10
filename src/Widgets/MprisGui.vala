@@ -37,7 +37,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Grid {
     private Gtk.Button prev_btn;
     private Gtk.Button play_btn;
     private Gtk.Button next_btn;
-    private Icon? app_icon = null;
+    private Icon app_icon;
     private Cancellable load_remote_art_cancel;
 
     private bool launched_by_indicator = false;
@@ -58,13 +58,11 @@ public class Sound.Widgets.ClientWidget : Gtk.Grid {
                 if (app_name == "") {
                     app_name = ainfo.get_name ();
                 }
-
-                app_icon = value.get_icon ();
-                if (app_icon == null) {
-                    app_icon = new ThemedIcon ("application-default-icon");
+                var icon = value.get_icon ();
+                if (icon != null) {
+                    app_icon = icon;
+                    background.set_from_gicon (app_icon, Gtk.IconSize.DIALOG);
                 }
-
-                background.set_from_gicon (app_icon, Gtk.IconSize.DIALOG);
             }
         }
     }
@@ -169,9 +167,12 @@ public class Sound.Widgets.ClientWidget : Gtk.Grid {
     }
 
     construct {
+        app_icon = new ThemedIcon ("multimedia-audio-player");
+
         load_remote_art_cancel = new Cancellable ();
 
         background = new Gtk.Image ();
+        background.pixel_size = ICON_SIZE;
 
         mask = new Gtk.Image.from_resource ("/io/elementary/wingpanel/sound/image-mask.svg");
         mask.no_show_all = true;
