@@ -505,8 +505,10 @@ public class Sound.Widgets.ClientWidget : Gtk.Grid {
         var metadata = client.player.metadata;
         if  ("mpris:artUrl" in metadata) {
             var url = metadata["mpris:artUrl"].get_string ();
-            last_artUrl = url;
-            update_art (url);
+            if (url != last_artUrl) {
+                update_art (url);
+                last_artUrl = url;
+            }
         } else {
             last_artUrl = "";
             background.pixel_size = ICON_SIZE;
