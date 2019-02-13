@@ -17,8 +17,8 @@
 
 public class DisplayWidget : Gtk.Grid {
     public bool show_mic { get; set; }
+    public bool mic_muted { get; set; }
     public string icon_name { get; set; }
-    public string mic_icon_name { get; set; }
 
     public signal void volume_scroll_event (Gdk.EventScroll e);
     public signal void mic_scroll_event (Gdk.EventScroll e);
@@ -27,12 +27,18 @@ public class DisplayWidget : Gtk.Grid {
     public signal void mic_press_event (Gdk.EventButton e);
 
     construct {
+        var provider = new Gtk.CssProvider ();
+        provider.load_from_resource ("io/elementary/wingpanel/sound/indicator.css");
+
         var volume_icon = new Gtk.Image ();
         volume_icon.pixel_size = 24;
 
-        var mic_icon = new Gtk.Image.from_icon_name ("audio-input-microphone-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
-        mic_icon.pixel_size = 24;
+        var mic_icon = new Gtk.Spinner ();
         mic_icon.margin_end = 18;
+
+        var mic_style_context = mic_icon.get_style_context ();
+        mic_style_context.add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+        mic_style_context.add_class ("mic-icon");
 
         var mic_revealer = new Gtk.Revealer ();
         mic_revealer.transition_type = Gtk.RevealerTransitionType.SLIDE_LEFT;
@@ -49,7 +55,7 @@ public class DisplayWidget : Gtk.Grid {
             /* Ignore horizontal scrolling on wingpanel indicator */
             if (e.direction != Gdk.ScrollDirection.LEFT && e.direction != Gdk.ScrollDirection.RIGHT) {
                 /* Determine whether scrolling on mic icon or not */
-                if (show_mic && e.x < mic_icon.pixel_size + mic_icon.margin_end) {
+                if (show_mic && e.x < 24 + mic_icon.margin_end) {
                     mic_scroll_event (e);
                 } else {
                     volume_scroll_event (e);
@@ -61,7 +67,7 @@ public class DisplayWidget : Gtk.Grid {
 
         button_press_event.connect ((e) => {
             /* Determine whether scrolling on mic icon or not */
-            if (show_mic && e.x < mic_icon.pixel_size + mic_icon.margin_end) {
+            if (show_mic && e.x < 24 + mic_icon.margin_end) {
                 mic_press_event (e);
             } else {
                 volume_press_event (e);
@@ -70,7 +76,14 @@ public class DisplayWidget : Gtk.Grid {
         });
 
         bind_property ("icon-name", volume_icon, "icon-name", GLib.BindingFlags.BIDIRECTIONAL | GLib.BindingFlags.SYNC_CREATE);
-        bind_property ("mic-icon-name", mic_icon, "icon-name", GLib.BindingFlags.BIDIRECTIONAL | GLib.BindingFlags.SYNC_CREATE);
         bind_property ("show-mic", mic_revealer, "reveal-child", GLib.BindingFlags.BIDIRECTIONAL | GLib.BindingFlags.SYNC_CREATE);
+
+        notify["mic-muted"].connect (() => {
+            if (mic_muted) {
+                mic_style_context.add_class ("disabled");
+            } else {
+                mic_style_context.remove_class ("disabled");
+            }
+        });
     }
 }
