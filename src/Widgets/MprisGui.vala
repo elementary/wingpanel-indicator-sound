@@ -132,7 +132,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Grid {
 
         app_icon = new ThemedIcon (icon);
         background.set_from_gicon (app_icon, Gtk.IconSize.DIALOG);
-        title_label.label = "<b>%s</b>".printf (Markup.escape_text (name));
+        title_label.label = name;
         artist_label.label = NOT_PLAYING;
 
         update_controls ();
@@ -152,7 +152,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Grid {
         if (Sound.Services.Settings.get_instance ().last_title_info.length == 4) {
             string[] title_info = Sound.Services.Settings.get_instance ().last_title_info;
             if (title_info[0] == app_info.get_id ()) {
-                title_label.label = "<b>%s</b>".printf (Markup.escape_text (title_info[1]));
+                title_label.label = title_info[1];
                 artist_label.label = title_info[2];
                 if (title_info[3] != "") {
                     update_art (title_info[3]);
@@ -162,7 +162,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Grid {
             }
         }
 
-        title_label.label = "<b>%s</b>".printf (Markup.escape_text (app_name));
+        title_label.label = app_name;
         artist_label.label = NOT_PLAYING;
     }
 
@@ -186,16 +186,20 @@ public class Sound.Widgets.ClientWidget : Gtk.Grid {
         overlay.add (background);
         overlay.add_overlay (mask);
 
+        var markup_attribute = new Pango.AttrList ();
+	    markup_attribute.insert(Pango.attr_weight_new (Pango.Weight.BOLD));
+
         title_label = new MaxWidthLabel (MAX_WIDTH_TITLE);
         title_label.ellipsize = Pango.EllipsizeMode.END;
         title_label.halign = Gtk.Align.START;
-        title_label.use_markup = true;
+        title_label.use_markup = false;
         title_label.valign = Gtk.Align.END;
+        title_label.attributes = markup_attribute;
 
         artist_label = new MaxWidthLabel (MAX_WIDTH_TITLE);
         artist_label.ellipsize = Pango.EllipsizeMode.END;
         artist_label.halign = Gtk.Align.START;
-        artist_label.use_markup = true;
+        artist_label.use_markup = false;
         artist_label.valign = Gtk.Align.START;
 
         var titles = new Gtk.Grid ();
@@ -526,7 +530,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Grid {
             title = app_name;
         }
 
-        title_label.label = "<b>%s</b>".printf (Markup.escape_text (title));
+        title_label.label = title;
 
         if  ("xesam:artist" in metadata && metadata["xesam:artist"].is_of_type (VariantType.STRING_ARRAY)) {
             (unowned string)[] artists = metadata["xesam:artist"].get_strv ();
@@ -576,7 +580,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Grid {
         }
 
         if (title != "" && artist != "") {
-            title_label.label = "<b>%s</b>".printf (Markup.escape_text (title));
+            title_label.label = title;
             artist_label.label = artist;
         }
     }
