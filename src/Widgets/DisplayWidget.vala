@@ -55,7 +55,7 @@ public class DisplayWidget : Gtk.Grid {
             /* Ignore horizontal scrolling on wingpanel indicator */
             if (e.direction != Gdk.ScrollDirection.LEFT && e.direction != Gdk.ScrollDirection.RIGHT) {
                 /* Determine whether scrolling on mic icon or not */
-                if (show_mic && e.x < 24 + mic_icon.margin_end) {
+                if (show_mic && e.x < mic_icon.get_allocated_width () + mic_icon.margin_end) {
                     mic_scroll_event (e);
                 } else {
                     volume_scroll_event (e);
