@@ -187,7 +187,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Grid {
         overlay.add_overlay (mask);
 
         var markup_attribute = new Pango.AttrList ();
-	    markup_attribute.insert(Pango.attr_weight_new (Pango.Weight.BOLD));
+        markup_attribute.insert(Pango.attr_weight_new (Pango.Weight.BOLD));
 
         title_label = new MaxWidthLabel (MAX_WIDTH_TITLE);
         title_label.ellipsize = Pango.EllipsizeMode.END;
