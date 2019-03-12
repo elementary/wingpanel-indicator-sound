@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2015-2018 elementary LLC. (https://elementary.io)
+* Copyright (c) 2015-2019 elementary LLC. (https://elementary.io)
 *
 * This program is free software; you can redistribute it and/or
 * modify it under the terms of the GNU General Public
@@ -16,19 +16,7 @@
 */
 
 public class Sound.Widgets.Scale : Gtk.EventBox {
-    private Gtk.Image image;
-
-    private string _icon;
-    public string icon {
-        get {
-            return _icon;
-        }
-        set {
-            image.set_from_icon_name (value, Gtk.IconSize.DIALOG);
-            _icon = value;
-        }
-    }
-
+    public string icon { get; set; }
     public bool active { get; construct set; }
     public double max { get; construct; }
     public double min { get; construct; }
@@ -47,8 +35,8 @@ public class Sound.Widgets.Scale : Gtk.EventBox {
 
     construct {
         set_above_child (false);
-        var grid = new Gtk.Grid ();
-        image = new Gtk.Image.from_icon_name (icon, Gtk.IconSize.DIALOG);
+
+        var image = new Gtk.Image.from_icon_name (icon, Gtk.IconSize.DIALOG);
         image.pixel_size = 48;
 
         var image_box = new Gtk.EventBox ();
@@ -65,6 +53,7 @@ public class Sound.Widgets.Scale : Gtk.EventBox {
         switch_widget.margin_start = 6;
         switch_widget.margin_end = 12;
 
+        var grid = new Gtk.Grid ();
         grid.hexpand = true;
         grid.get_style_context ().add_class ("indicator-switch");
         grid.add (image_box);
@@ -85,6 +74,8 @@ public class Sound.Widgets.Scale : Gtk.EventBox {
             scroll_event (e);
             return true;
         });
+
+        bind_property ("icon", image, "icon-name");
 
         switch_widget.bind_property ("active", scale_widget, "sensitive", BindingFlags.SYNC_CREATE);
         switch_widget.bind_property ("active", image, "sensitive", BindingFlags.SYNC_CREATE);
