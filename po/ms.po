@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-16 09:53-0700\n"
+"POT-Creation-Date: 2019-06-26 22:47+0200\n"
 "PO-Revision-Date: 2016-12-02 16:18+0000\n"
 "Last-Translator: abuyop <Unknown>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -13,15 +13,15 @@ msgstr ""
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 "X-Generator: Launchpad (build 18335)\n"
 
-#: src/Indicator.vala:41
+#: src/Indicator.vala:46
 msgid "Indicator Sound"
 msgstr "Penunjuk Bunyi"
 
-#: src/Indicator.vala:42
+#: src/Indicator.vala:47
 msgid "The sound indicator"
 msgstr "Penyunjuk bunyi"
 
-#: src/Indicator.vala:330
+#: src/Indicator.vala:343
 msgid "Sound Settings…"
 msgstr "Tetapan Bunyi..."
 
@@ -29,11 +29,11 @@ msgstr "Tetapan Bunyi..."
 msgid "Not currently playing"
 msgstr "Tidak dimainkan buat masa ini"
 
-#: src/Widgets/MprisGui.vala:45
+#: src/Widgets/MprisGui.vala:44
 msgid "Music player"
 msgstr "Pemain muzik"
 
-#: src/Widgets/MprisGui.vala:537
+#: src/Widgets/MprisGui.vala:540
 msgid "Unknown Title"
 msgstr "Tajuk Tidak Diketahui"
 

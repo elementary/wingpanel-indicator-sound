@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-16 09:53-0700\n"
+"POT-Creation-Date: 2019-06-26 22:47+0200\n"
 "PO-Revision-Date: 2018-12-06 06:00+0000\n"
 "Last-Translator: Mohelm97 <mohelm97@gmail.com>\n"
 "Language-Team: Arabic <https://weblate.elementary.io/projects/wingpanel/"
@@ -18,15 +18,15 @@ msgstr ""
 "X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 
-#: src/Indicator.vala:41
+#: src/Indicator.vala:46
 msgid "Indicator Sound"
 msgstr "مؤشر الصوت"
 
-#: src/Indicator.vala:42
+#: src/Indicator.vala:47
 msgid "The sound indicator"
 msgstr "مؤشر الصوت"
 
-#: src/Indicator.vala:330
+#: src/Indicator.vala:343
 msgid "Sound Settings…"
 msgstr "إعدادات الصوت…"
 
@@ -34,10 +34,10 @@ msgstr "إعدادات الصوت…"
 msgid "Not currently playing"
 msgstr "ليس في وضع التشغيل"
 
-#: src/Widgets/MprisGui.vala:45
+#: src/Widgets/MprisGui.vala:44
 msgid "Music player"
 msgstr "مشغل الموسيقى"
 
-#: src/Widgets/MprisGui.vala:537
+#: src/Widgets/MprisGui.vala:540
 msgid "Unknown Title"
 msgstr "عنوان غير معروف"

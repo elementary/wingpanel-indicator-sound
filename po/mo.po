@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sound-indicator\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-16 09:53-0700\n"
+"POT-Creation-Date: 2019-06-26 22:47+0200\n"
 "PO-Revision-Date: 2018-05-31 08:08+0000\n"
 "Last-Translator: Romanic Ion Nicușor <contact.romanic@gmail.com>\n"
 "Language-Team: Moldovan <https://weblate.elementary.io/projects/wingpanel/"
@@ -19,15 +19,15 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 2.18\n"
 
-#: src/Indicator.vala:41
+#: src/Indicator.vala:46
 msgid "Indicator Sound"
 msgstr "Indicator sunet"
 
-#: src/Indicator.vala:42
+#: src/Indicator.vala:47
 msgid "The sound indicator"
 msgstr "Indicatorul de sunet"
 
-#: src/Indicator.vala:330
+#: src/Indicator.vala:343
 msgid "Sound Settings…"
 msgstr "Setări sunet …"
 
@@ -35,11 +35,11 @@ msgstr "Setări sunet …"
 msgid "Not currently playing"
 msgstr "Nu rulează în prezent"
 
-#: src/Widgets/MprisGui.vala:45
+#: src/Widgets/MprisGui.vala:44
 msgid "Music player"
 msgstr "Reproductor muzică"
 
-#: src/Widgets/MprisGui.vala:537
+#: src/Widgets/MprisGui.vala:540
 msgid "Unknown Title"
 msgstr "Titlul necunoscut"
 

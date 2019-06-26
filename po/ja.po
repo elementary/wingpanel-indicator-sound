@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-16 09:53-0700\n"
+"POT-Creation-Date: 2019-06-26 22:47+0200\n"
 "PO-Revision-Date: 2018-03-25 00:11+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock@gmail.com>\n"
 "Language-Team: Japanese <https://weblate.elementary.io/projects/wingpanel/"
@@ -15,15 +15,15 @@ msgstr ""
 "X-Generator: Weblate 2.18\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 
-#: src/Indicator.vala:41
+#: src/Indicator.vala:46
 msgid "Indicator Sound"
 msgstr "サウンドの通知"
 
-#: src/Indicator.vala:42
+#: src/Indicator.vala:47
 msgid "The sound indicator"
 msgstr "サウンドインジケーター"
 
-#: src/Indicator.vala:330
+#: src/Indicator.vala:343
 msgid "Sound Settings…"
 msgstr "サウンドの設定…"
 
@@ -31,11 +31,11 @@ msgstr "サウンドの設定…"
 msgid "Not currently playing"
 msgstr "現在何も再生していません"
 
-#: src/Widgets/MprisGui.vala:45
+#: src/Widgets/MprisGui.vala:44
 msgid "Music player"
 msgstr "ミュージックプレーヤー"
 
-#: src/Widgets/MprisGui.vala:537
+#: src/Widgets/MprisGui.vala:540
 msgid "Unknown Title"
 msgstr "不明なタイトル"
 

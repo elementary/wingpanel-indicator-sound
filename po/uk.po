@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wingpanel-indicator-sound\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-16 09:53-0700\n"
+"POT-Creation-Date: 2019-06-26 22:47+0200\n"
 "PO-Revision-Date: 2015-10-04 09:34+0000\n"
 "Last-Translator: zigi21 <huckier78@gmail.com>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
@@ -18,15 +18,15 @@ msgstr ""
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 "X-Generator: Launchpad (build 18335)\n"
 
-#: src/Indicator.vala:41
+#: src/Indicator.vala:46
 msgid "Indicator Sound"
 msgstr "Індикатор звуку"
 
-#: src/Indicator.vala:42
+#: src/Indicator.vala:47
 msgid "The sound indicator"
 msgstr "Індикатор звуку"
 
-#: src/Indicator.vala:330
+#: src/Indicator.vala:343
 msgid "Sound Settings…"
 msgstr "Параметри звуку…"
 
@@ -34,11 +34,11 @@ msgstr "Параметри звуку…"
 msgid "Not currently playing"
 msgstr "Нічого не відтворюється"
 
-#: src/Widgets/MprisGui.vala:45
+#: src/Widgets/MprisGui.vala:44
 msgid "Music player"
 msgstr "Музичний програвач"
 
-#: src/Widgets/MprisGui.vala:537
+#: src/Widgets/MprisGui.vala:540
 msgid "Unknown Title"
 msgstr "Невідома назва"
 

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-16 09:53-0700\n"
+"POT-Creation-Date: 2019-06-26 22:47+0200\n"
 "PO-Revision-Date: 2017-12-27 15:45+0000\n"
 "Last-Translator: Hải Hồ <hochihai1997@gmail.com>\n"
 "Language-Team: Vietnamese <https://weblate.elementary.io/projects/wingpanel/"
@@ -15,15 +15,15 @@ msgstr ""
 "X-Generator: Weblate 2.18\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 
-#: src/Indicator.vala:41
+#: src/Indicator.vala:46
 msgid "Indicator Sound"
 msgstr "Chỉ thị Âm thanh"
 
-#: src/Indicator.vala:42
+#: src/Indicator.vala:47
 msgid "The sound indicator"
 msgstr "Chỉ thị âm thanh"
 
-#: src/Indicator.vala:330
+#: src/Indicator.vala:343
 msgid "Sound Settings…"
 msgstr "Cài đặt âm thanh…"
 
@@ -31,11 +31,11 @@ msgstr "Cài đặt âm thanh…"
 msgid "Not currently playing"
 msgstr "Hiện chưa phát"
 
-#: src/Widgets/MprisGui.vala:45
+#: src/Widgets/MprisGui.vala:44
 msgid "Music player"
 msgstr "Trình nghe nhạc"
 
-#: src/Widgets/MprisGui.vala:537
+#: src/Widgets/MprisGui.vala:540
 msgid "Unknown Title"
 msgstr "Tiêu đề không xác định"
 
