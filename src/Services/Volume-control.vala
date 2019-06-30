@@ -228,6 +228,12 @@ public class Sound.Services.VolumeControlPulse : VolumeControl {
         if (i == null)
             return;
 
+        var is_phone = i.active_port != null && i.active_port.name == "phone-input";
+
+        // Don't show monitors and phones connected through bluetooth. cf. #103
+        if (i.monitor_of_sink != PulseAudio.INVALID_INDEX || is_phone)
+            return;
+
         if (_mute_mic != (bool)i.mute) {
             _mute_mic = (bool)i.mute;
             this.notify_property ("micMute");
@@ -257,7 +263,7 @@ public class Sound.Services.VolumeControlPulse : VolumeControl {
 
     private void update_source_get_server_info_cb (PulseAudio.Context c, PulseAudio.ServerInfo? i) {
         if (i != null)
-            context.get_source_info_by_name (i.default_source_name, source_info_cb);
+            context.get_source_info_list (source_info_cb);
     }
 
     private void update_source ()
