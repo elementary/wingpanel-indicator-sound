@@ -18,16 +18,30 @@
 */
 
 .mic-icon {
-    animation: none;
+    animation: microphone-recording 1s ease-in-out infinite;
+    animation-direction: alternate;
+    border-radius: 100px;
     min-width: 24px;
     opacity: 1;
+    padding: 1px;
     transition: none;
     -gtk-icon-source: -gtk-icontheme("audio-input-microphone-symbolic");
 }
 
 .mic-icon.disabled {
     animation: microphone-disabled 160ms cubic-bezier(0.4, 0.0, 0.2, 1);
+    animation-direction: normal;
+    min-height: 24px;
     -gtk-icon-source: -gtk-icontheme("microphone-sensitivity-muted-symbolic");
+}
+
+@keyframes microphone-recording {
+    0% {
+        background: alpha(@BLUEBERRY_500, 0.5);
+    }
+    100% {
+        background: alpha(@BLUEBERRY_500, 0.8);
+    }
 }
 
 @keyframes microphone-disabled {
