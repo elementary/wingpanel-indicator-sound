@@ -19,13 +19,14 @@ add_project_arguments(
     language: 'vala'
 )
 
-wingpanel_dep = dependency('wingpanel-2.0', version: '>=2.1.0')
-
 asresources = gnome.compile_resources(
     'as-resources', 'data/mask.gresource.xml',
     source_dir: 'data',
     c_name: 'as'
 )
+
+wingpanel_dep = dependency('wingpanel-2.0', version: '>=2.1.0')
+wingpanel_indicatorsdir = wingpanel_dep.get_pkgconfig_variable('indicatorsdir', define_variable: ['libdir', libdir])
 
 shared_module(
     meson.project_name(),
@@ -56,7 +57,7 @@ shared_module(
         wingpanel_dep
     ],
     install: true,
-    install_dir : wingpanel_dep.get_pkgconfig_variable('indicatorsdir')
+    install_dir : wingpanel_indicatorsdir,
 )
 
 install_data(
