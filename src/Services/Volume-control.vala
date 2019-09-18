@@ -367,10 +367,7 @@ public class Sound.Services.VolumeControlPulse : VolumeControl {
                         break;
                 }
                 /* Only switch the active sink input in case a phone one is not active */
-                if (
-                    _active_sink_input == -1
-                    || _sink_input_hash.get (_active_sink_input) != _objp_role_phone
-                ) {
+                if (_active_sink_input == -1 || _sink_input_hash.get (_active_sink_input) != _objp_role_phone) {
                     update_active_sink_input.begin ((int32)sink_input.index);
                 }
             }
