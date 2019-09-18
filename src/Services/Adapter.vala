@@ -18,21 +18,21 @@
 
 [DBus (name = "org.bluez.Adapter1")]
 public interface Sound.Services.Adapter : Object {
-	public abstract void remove_device (ObjectPath device) throws GLib.Error;
-	public abstract void set_discovery_filter (HashTable<string, Variant> properties) throws GLib.Error;
-	public abstract void start_discovery () throws GLib.Error;
-	public abstract void stop_discovery () throws GLib.Error;
+    public abstract void remove_device (ObjectPath device) throws GLib.Error;
+    public abstract void set_discovery_filter (HashTable<string, Variant> properties) throws GLib.Error;
+    public abstract void start_discovery () throws GLib.Error;
+    public abstract void stop_discovery () throws GLib.Error;
 
-	public abstract string[] UUIDs { owned get; }
-	public abstract bool discoverable { get; set; }
-	public abstract bool discovering { get; }
-	public abstract bool pairable { get; set; }
-	public abstract bool powered { get; set; }
-	public abstract string address { owned get; }
-	public abstract string alias { owned get; set; }
-	public abstract string modalias { owned get; }
-	public abstract string name { owned get; }
-	public abstract uint32 @class { get; }
-	public abstract uint32 discoverable_timeout { get; set; }
-	public abstract uint32 pairable_timeout { get; set; }
+    public abstract string[] UUIDs { owned get; }
+    public abstract bool discoverable { get; set; }
+    public abstract bool discovering { get; }
+    public abstract bool pairable { get; set; }
+    public abstract bool powered { get; set; }
+    public abstract string address { owned get; }
+    public abstract string alias { owned get; set; }
+    public abstract string modalias { owned get; }
+    public abstract string name { owned get; }
+    public abstract uint32 @class { get; }
+    public abstract uint32 discoverable_timeout { get; set; }
+    public abstract uint32 pairable_timeout { get; set; }
 }
