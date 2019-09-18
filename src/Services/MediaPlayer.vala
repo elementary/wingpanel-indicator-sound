@@ -20,14 +20,14 @@
 
 [DBus (name = "org.bluez.MediaPlayer1")]
 public interface Sound.Services.MediaPlayer : Object {
-	public abstract void play () throws GLib.Error;
-	public abstract void pause () throws GLib.Error;
-	public abstract void stop () throws GLib.Error;
-	public abstract void next () throws GLib.Error;
-	public abstract void previous () throws GLib.Error;
-	public abstract void fast_forward () throws GLib.Error;
-	public abstract void rewind () throws GLib.Error;
-	public abstract string name { public owned get; }
-	public abstract string status { public owned get; }
-	public abstract HashTable<string,Variant> track { public owned get; }
+    public abstract void play () throws GLib.Error;
+    public abstract void pause () throws GLib.Error;
+    public abstract void stop () throws GLib.Error;
+    public abstract void next () throws GLib.Error;
+    public abstract void previous () throws GLib.Error;
+    public abstract void fast_forward () throws GLib.Error;
+    public abstract void rewind () throws GLib.Error;
+    public abstract string name { public owned get; }
+    public abstract string status { public owned get; }
+    public abstract HashTable<string,Variant> track { public owned get; }
 }
