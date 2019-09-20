@@ -75,8 +75,18 @@ public class DisplayWidget : Gtk.Grid {
             return Gdk.EVENT_PROPAGATE;
         });
 
-        bind_property ("icon-name", volume_icon, "icon-name", GLib.BindingFlags.BIDIRECTIONAL | GLib.BindingFlags.SYNC_CREATE);
-        bind_property ("show-mic", mic_revealer, "reveal-child", GLib.BindingFlags.BIDIRECTIONAL | GLib.BindingFlags.SYNC_CREATE);
+        bind_property (
+            "icon-name",
+            volume_icon,
+            "icon-name",
+            GLib.BindingFlags.BIDIRECTIONAL | GLib.BindingFlags.SYNC_CREATE
+        );
+        bind_property (
+            "show-mic",
+            mic_revealer,
+            "reveal-child",
+            GLib.BindingFlags.BIDIRECTIONAL | GLib.BindingFlags.SYNC_CREATE
+        );
 
         notify["mic-muted"].connect (() => {
             if (mic_muted) {
