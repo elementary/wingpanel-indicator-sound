@@ -24,7 +24,6 @@ public class Sound.Indicator : Wingpanel.Indicator {
     private Wingpanel.Widgets.Separator first_separator;
     private Wingpanel.Widgets.Separator mic_separator;
     private Notify.Notification? notification;
-    private Services.Settings settings;
     private Services.VolumeControlPulse volume_control;
     public bool natural_scroll_touchpad { get; set; }
     public bool natural_scroll_mouse { get; set; }
@@ -41,10 +40,16 @@ public class Sound.Indicator : Wingpanel.Indicator {
     double total_x_delta = 0;
     double total_y_delta= 0;
 
+    public static GLib.Settings settings;
+
     public Indicator () {
         Object (code_name: Wingpanel.Indicator.SOUND,
                 display_name: _("Indicator Sound"),
                 description: _("The sound indicator"));
+    }
+
+    static construct {
+        settings = new GLib.Settings ("io.elementary.desktop.wingpanel.sound");
     }
 
     construct {
@@ -67,7 +72,6 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
         Notify.init ("wingpanel-indicator-sound");
 
-        settings = new Services.Settings ();
         settings.notify["max-volume"].connect (set_max_volume);
 
         var locale = Intl.setlocale (LocaleCategory.MESSAGES, null);
@@ -112,7 +116,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
     }
 
     private void set_max_volume () {
-        var max = settings.max_volume / 100;
+        var max = settings.get_double ("max-volume") / 100;
         // we do not allow more than 11db over the NORM volume
         var cap_volume = (double)PulseAudio.Volume.sw_from_dB (11.0) / PulseAudio.Volume.NORM;
         if (max > cap_volume) {

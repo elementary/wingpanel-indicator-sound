@@ -105,12 +105,15 @@ public class Sound.Widgets.ClientWidget : Gtk.Grid {
                 );
                 prev_btn.sensitive = false;
                 next_btn.sensitive = false;
-                Sound.Services.Settings.get_instance ().last_title_info = {
-                    app_info.get_id (),
-                    title_label.get_text (),
-                    artist_label.get_text (),
-                    last_art_url
-                };
+                Sound.Indicator.settings.set_strv (
+                    "last-title-info",
+                    {
+                        app_info.get_id (),
+                        title_label.get_text (),
+                        artist_label.get_text (),
+                        last_art_url
+                    }
+                );
                 this.mpris_name = "";
             }
         }
@@ -152,8 +155,8 @@ public class Sound.Widgets.ClientWidget : Gtk.Grid {
             client: null
         );
 
-        if (Sound.Services.Settings.get_instance ().last_title_info.length == 4) {
-            string[] title_info = Sound.Services.Settings.get_instance ().last_title_info;
+        var title_info = Sound.Indicator.settings.get_strv ("last-title-info");
+        if (title_info.length == 4) {
             if (title_info[0] == app_info.get_id ()) {
                 title_label.label = title_info[1];
                 artist_label.label = title_info[2];

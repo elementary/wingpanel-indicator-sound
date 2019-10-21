@@ -37,7 +37,6 @@ shared_module(
     'src/Widgets/MprisGui.vala',
     'src/Widgets/MprisWidget.vala',
     'src/Services/MprisClient.vala',
-    'src/Services/Settings.vala',
     'src/Services/Volume-control.vala',
     'src/Services/Manager.vala',
     'src/Services/Adapter.vala',
