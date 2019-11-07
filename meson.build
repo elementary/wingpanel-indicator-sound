@@ -59,11 +59,7 @@ shared_module(
     install_dir : wingpanel_indicatorsdir,
 )
 
-install_data(
-    'data/io.elementary.desktop.wingpanel.sound.gschema.xml',
-    install_dir: join_paths(datadir, 'glib-2.0', 'schemas')
-)
-
+subdir('data')
 subdir('po')
 
 meson.add_install_script('meson/post_install.py')
