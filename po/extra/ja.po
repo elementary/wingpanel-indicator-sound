@@ -8,29 +8,31 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-07 11:39-0800\n"
-"PO-Revision-Date: 2019-11-07 11:39-0800\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2019-11-09 12:24+0000\n"
+"Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
+"Language-Team: Japanese <https://l10n.elementary.io/projects/wingpanel/"
+"indicator-sound-extra/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ASCII\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 3.7.1\n"
 
 #: data/sound.appdata.xml.in:6
 msgid "Sound Indicator"
-msgstr ""
+msgstr "サウンドインジケーター"
 
 #: data/sound.appdata.xml.in:7
 msgid ""
 "Adjust speaker and microphone volume or see Now Playing information and "
 "media controls"
-msgstr ""
+msgstr "スピーカーやマイクの音量を調整したり、現在再生中の曲の情報やメディアコントロールを表示したりします"
 
 #: data/sound.appdata.xml.in:11
 msgid "Updated translations"
-msgstr ""
+msgstr "翻訳の更新"
 
 #: data/sound.appdata.xml.in:20
 msgid "elementary, Inc."
-msgstr ""
+msgstr "elementary, Inc."
