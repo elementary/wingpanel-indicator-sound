@@ -8,29 +8,33 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-07 11:39-0800\n"
-"PO-Revision-Date: 2019-11-07 11:39-0800\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2019-11-09 12:24+0000\n"
+"Last-Translator: Corentin Noël <corentin@elementary.io>\n"
+"Language-Team: French <https://l10n.elementary.io/projects/wingpanel/"
+"indicator-sound-extra/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ASCII\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.7.1\n"
 
 #: data/sound.appdata.xml.in:6
 msgid "Sound Indicator"
-msgstr ""
+msgstr "Indicateur de son"
 
 #: data/sound.appdata.xml.in:7
 msgid ""
 "Adjust speaker and microphone volume or see Now Playing information and "
 "media controls"
 msgstr ""
+"Ajuster le volume de lecture et d'enregistrement ou voir et contrôler les "
+"médias en-cours"
 
 #: data/sound.appdata.xml.in:11
 msgid "Updated translations"
-msgstr ""
+msgstr "Mise à jour des traductions"
 
 #: data/sound.appdata.xml.in:20
 msgid "elementary, Inc."
-msgstr ""
+msgstr "elementary, Inc."
