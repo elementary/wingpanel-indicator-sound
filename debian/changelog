@@ -1,3 +1,28 @@
+wingpanel-indicator-sound (2.1.4) bionic; urgency=medium
+
+  * Release 2.1.4 (#126)
+  * Add AppData (#125)
+  * Remove duplicate CI
+  * Add Release to Actions
+  * Update POTFILES
+  * Add Gettext Updates to Actions
+  * Replace Granite.Services.Settings with GLib.Settings (#124)
+  * run installation in CI (#121)
+  * use github workflows. add linting step in ci. (#117)
+  * Test with GitHub CI (#120)
+  * Delete CODE_OF_CONDUCT.md
+  * indicator: lint file using vala-lint (#116)
+  * :shirt: Lint widgets directory with vala-lint (#114)
+  * :shirt: Lint services directory with vala-lint (#115)
+  * build: fix install path for wingpanel indicator (#111)
+  * Add Silesian and update translation template
+  * Scale: bind image icon_name to icon property (#97)
+  * Tab → space
+  * Disable markup support for title_label and artist_label and add
+    Pango.Bold attribute to title_label
+
+ -- elementary LLC <builds@elementary.io>  Mon, 25 Nov 2019 16:57:03 +0000
+
 wingpanel-indicator-sound (2.1.3) bionic; urgency=medium
 
   * New upstream release.
