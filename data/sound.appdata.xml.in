@@ -8,7 +8,7 @@
   <releases>
     <release version="2.1.5" date="2019-12-15" urgency="medium">
       <description>
-        <p>Corrected mpris text to Unkown Artist</p>
+        <p>Correctly show "Unknown Artist" when artist info isn't available</p>
       </description>
     </release>
     <release version="2.1.4" date="2019-11-25" urgency="medium">
