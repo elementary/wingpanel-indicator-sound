@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-07 11:39-0800\n"
+"POT-Creation-Date: 2019-12-15 20:29+0000\n"
 "PO-Revision-Date: 2019-11-10 20:24+0000\n"
 "Last-Translator: Ozgur Baskin <bebeto_baskin@yahoo.com>\n"
 "Language-Team: Turkish <https://l10n.elementary.io/projects/wingpanel/"
@@ -32,9 +32,13 @@ msgstr ""
 "kontrollerine bakın"
 
 #: data/sound.appdata.xml.in:11
+msgid "Correctly show \"Unknown Artist\" when artist info isn't available"
+msgstr ""
+
+#: data/sound.appdata.xml.in:16
 msgid "Updated translations"
 msgstr ""
 
-#: data/sound.appdata.xml.in:20
+#: data/sound.appdata.xml.in:25
 msgid "elementary, Inc."
 msgstr "elementary, Inc."

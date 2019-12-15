@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-26 22:47+0200\n"
+"POT-Creation-Date: 2019-12-15 20:29+0000\n"
 "PO-Revision-Date: 2017-12-13 04:39+0000\n"
 "Last-Translator: Joe Osborne <reachjoe.o@gmail.com>\n"
 "Language-Team: English (United Kingdom) <https://weblate.elementary.io/"
@@ -15,15 +15,15 @@ msgstr ""
 "X-Generator: Weblate 2.17.1\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 
-#: src/Indicator.vala:46
+#: src/Indicator.vala:47
 msgid "Indicator Sound"
 msgstr "Indicator Sound"
 
-#: src/Indicator.vala:47
+#: src/Indicator.vala:48
 msgid "The sound indicator"
 msgstr "The sound indicator"
 
-#: src/Indicator.vala:343
+#: src/Indicator.vala:347
 msgid "Sound Settings…"
 msgstr "Sound Settings…"
 
@@ -35,8 +35,9 @@ msgstr "Not currently playing"
 msgid "Music player"
 msgstr "Music player"
 
-#: src/Widgets/MprisGui.vala:540
-msgid "Unknown Title"
+#: src/Widgets/MprisGui.vala:552
+#, fuzzy
+msgid "Unknown Artist"
 msgstr "Unknown Title"
 
 #~ msgid "by "

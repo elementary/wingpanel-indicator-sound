@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-07 11:39-0800\n"
+"POT-Creation-Date: 2019-12-15 20:29+0000\n"
 "PO-Revision-Date: 2019-11-09 12:24+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementary.io/projects/wingpanel/"
@@ -27,12 +27,18 @@ msgstr "サウンドインジケーター"
 msgid ""
 "Adjust speaker and microphone volume or see Now Playing information and "
 "media controls"
-msgstr "スピーカーやマイクの音量を調整したり、現在再生中の曲の情報やメディアコントロールを表示したりします"
+msgstr ""
+"スピーカーやマイクの音量を調整したり、現在再生中の曲の情報やメディアコント"
+"ロールを表示したりします"
 
 #: data/sound.appdata.xml.in:11
+msgid "Correctly show \"Unknown Artist\" when artist info isn't available"
+msgstr ""
+
+#: data/sound.appdata.xml.in:16
 msgid "Updated translations"
 msgstr "翻訳の更新"
 
-#: data/sound.appdata.xml.in:20
+#: data/sound.appdata.xml.in:25
 msgid "elementary, Inc."
 msgstr "elementary, Inc."
