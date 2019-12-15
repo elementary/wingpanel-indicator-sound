@@ -11,6 +11,11 @@
         <p>Updated translations</p>
       </description>
     </release>
+    <release version="2.1.5" date="2019-12-15" urgency="medium">
+      <description>
+        <p>Corrected mpris text to Unkown Artist</p>
+      </description>
+    </release>
   </releases>
   <screenshots>
     <screenshot type="default">
