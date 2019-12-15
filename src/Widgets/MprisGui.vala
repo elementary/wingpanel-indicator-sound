@@ -549,7 +549,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Grid {
             artist_label.label = string.joinv (", ", artists);
         } else {
             if (client.player.playback_status == "Playing") {
-                artist_label.label = _("Unknown Title");
+                artist_label.label = _("Unknown Artist");
             } else {
                 artist_label.label = NOT_PLAYING;
             }
