@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-15 20:29+0000\n"
-"PO-Revision-Date: 2019-08-27 17:22+0000\n"
+"PO-Revision-Date: 2019-12-17 19:17+0000\n"
 "Last-Translator: David M <rbndavid@gmail.com>\n"
 "Language-Team: Catalan <https://l10n.elementary.io/projects/wingpanel/"
 "wingpanel-indicator-sound/ca/>\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.7.1\n"
+"X-Generator: Weblate 3.9.1\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 
 #: src/Indicator.vala:47
@@ -37,9 +37,8 @@ msgid "Music player"
 msgstr "Reproductor de música"
 
 #: src/Widgets/MprisGui.vala:552
-#, fuzzy
 msgid "Unknown Artist"
-msgstr "Títol desconegut"
+msgstr "Artista desconegut"
 
 #~ msgid "by "
 #~ msgstr "per "
