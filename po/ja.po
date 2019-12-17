@@ -1,18 +1,19 @@
+# Ryo Nakano <ryonakaknock3@gmail.com>, 2019.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-15 20:29+0000\n"
-"PO-Revision-Date: 2018-03-25 00:11+0000\n"
-"Last-Translator: Ryo Nakano <ryonakaknock@gmail.com>\n"
-"Language-Team: Japanese <https://weblate.elementary.io/projects/wingpanel/"
+"PO-Revision-Date: 2019-12-17 19:17+0000\n"
+"Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
+"Language-Team: Japanese <https://l10n.elementary.io/projects/wingpanel/"
 "wingpanel-indicator-sound/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2.18\n"
+"X-Generator: Weblate 3.9.1\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 
 #: src/Indicator.vala:47
@@ -36,9 +37,8 @@ msgid "Music player"
 msgstr "ミュージックプレーヤー"
 
 #: src/Widgets/MprisGui.vala:552
-#, fuzzy
 msgid "Unknown Artist"
-msgstr "不明なタイトル"
+msgstr "不明なアーティスト"
 
 #~ msgid "by "
 #~ msgstr "by "
