@@ -8,33 +8,39 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-15 20:29+0000\n"
-"PO-Revision-Date: 2019-11-07 11:39-0800\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2020-01-03 21:07+0000\n"
+"Last-Translator: Jaimie85 <alsemgeest@gmail.com>\n"
+"Language-Team: Dutch <https://l10n.elementary.io/projects/wingpanel/"
+"indicator-sound-extra/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ASCII\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
 
 #: data/sound.appdata.xml.in:6
 msgid "Sound Indicator"
-msgstr ""
+msgstr "Geluid indicator"
 
 #: data/sound.appdata.xml.in:7
 msgid ""
 "Adjust speaker and microphone volume or see Now Playing information and "
 "media controls"
 msgstr ""
+"Pas het volume van de speakers en microfoon aan, zie informatie over het "
+"huidige nummer en bedien media"
 
 #: data/sound.appdata.xml.in:11
 msgid "Correctly show \"Unknown Artist\" when artist info isn't available"
 msgstr ""
+"Toon “onbekende artiest” als er geen informatie beschikbaar is over de "
+"artiest"
 
 #: data/sound.appdata.xml.in:16
 msgid "Updated translations"
-msgstr ""
+msgstr "Bijgewerkte vertalingen"
 
 #: data/sound.appdata.xml.in:25
 msgid "elementary, Inc."
-msgstr ""
+msgstr "elementary, Inc."
