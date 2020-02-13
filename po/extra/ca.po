@@ -1,0 +1,46 @@
+# Catalan translations for extra package.
+# Copyright (C) 2019 THE extra'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the extra package.
+# Automatically generated, 2019.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: extra\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-12-15 20:29+0000\n"
+"PO-Revision-Date: 2019-12-17 19:17+0000\n"
+"Last-Translator: David M <rbndavid@gmail.com>\n"
+"Language-Team: Catalan <https://l10n.elementary.io/projects/wingpanel/"
+"indicator-sound-extra/ca/>\n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+#: data/sound.appdata.xml.in:6
+msgid "Sound Indicator"
+msgstr "Indicador de so"
+
+#: data/sound.appdata.xml.in:7
+msgid ""
+"Adjust speaker and microphone volume or see Now Playing information and "
+"media controls"
+msgstr ""
+"Ajusteu el volum de l'altaveu i el micròfon o vegeu la informació del que es "
+"reprodueix i els controls."
+
+#: data/sound.appdata.xml.in:11
+msgid "Correctly show \"Unknown Artist\" when artist info isn't available"
+msgstr ""
+"Es mostra correctament \"Artista desconegut\" quan la informació de "
+"l'artista no estigui disponible."
+
+#: data/sound.appdata.xml.in:16
+msgid "Updated translations"
+msgstr "Traduccions actualitzades"
+
+#: data/sound.appdata.xml.in:25
+msgid "elementary, Inc."
+msgstr "elementary, Inc."

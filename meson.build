@@ -1,12 +1,16 @@
 project(
     'sound',
     'vala', 'c',
-    version: '2.1.3'
+    version: '2.1.5'
 )
 
 gettext_name = meson.project_name() + '-indicator'
 gnome = import('gnome')
 i18n = import('i18n')
+
+prefix = get_option('prefix')
+datadir = join_paths(prefix, get_option('datadir'))
+libdir = join_paths(prefix, get_option('libdir'))
 
 add_global_arguments('-DGETTEXT_PACKAGE="@0@"'.format(gettext_name), language:'c')
 
@@ -15,13 +19,14 @@ add_project_arguments(
     language: 'vala'
 )
 
-wingpanel_dep = dependency('wingpanel-2.0', version: '>=2.1.0')
-
 asresources = gnome.compile_resources(
     'as-resources', 'data/mask.gresource.xml',
     source_dir: 'data',
     c_name: 'as'
 )
+
+wingpanel_dep = dependency('wingpanel-2.0', version: '>=2.1.0')
+wingpanel_indicatorsdir = wingpanel_dep.get_pkgconfig_variable('indicatorsdir', define_variable: ['libdir', libdir])
 
 shared_module(
     meson.project_name(),
@@ -32,7 +37,6 @@ shared_module(
     'src/Widgets/MprisGui.vala',
     'src/Widgets/MprisWidget.vala',
     'src/Services/MprisClient.vala',
-    'src/Services/Settings.vala',
     'src/Services/Volume-control.vala',
     'src/Services/Manager.vala',
     'src/Services/Adapter.vala',
@@ -52,14 +56,10 @@ shared_module(
         wingpanel_dep
     ],
     install: true,
-    install_dir : wingpanel_dep.get_pkgconfig_variable('indicatorsdir')
+    install_dir : wingpanel_indicatorsdir,
 )
 
-install_data(
-    'data/io.elementary.desktop.wingpanel.sound.gschema.xml',
-    install_dir: join_paths(get_option('datadir'), 'glib-2.0', 'schemas')
-)
-
+subdir('data')
 subdir('po')
 
 meson.add_install_script('meson/post_install.py')

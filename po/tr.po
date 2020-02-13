@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wingpanel-indicator-sound\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-26 22:47+0200\n"
-"PO-Revision-Date: 2019-04-09 22:53+0000\n"
+"POT-Creation-Date: 2019-12-15 20:29+0000\n"
+"PO-Revision-Date: 2019-12-17 19:17+0000\n"
 "Last-Translator: Ozgur Baskin <bebeto_baskin@yahoo.com>\n"
 "Language-Team: Turkish <https://l10n.elementary.io/projects/wingpanel/"
 "wingpanel-indicator-sound/tr/>\n"
@@ -18,18 +18,18 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.5.1\n"
+"X-Generator: Weblate 3.9.1\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 
-#: src/Indicator.vala:46
+#: src/Indicator.vala:47
 msgid "Indicator Sound"
 msgstr "Ses Göstergesi"
 
-#: src/Indicator.vala:47
+#: src/Indicator.vala:48
 msgid "The sound indicator"
 msgstr "Ses göstergesi"
 
-#: src/Indicator.vala:343
+#: src/Indicator.vala:347
 msgid "Sound Settings…"
 msgstr "Ses Ayarları…"
 
@@ -41,9 +41,9 @@ msgstr "Şu anda çalınmıyor"
 msgid "Music player"
 msgstr "Müzik çalar"
 
-#: src/Widgets/MprisGui.vala:540
-msgid "Unknown Title"
-msgstr "Bilinmeyen Başlık"
+#: src/Widgets/MprisGui.vala:552
+msgid "Unknown Artist"
+msgstr "Bilinmeyen Sanatçı"
 
 #~ msgid "by "
 #~ msgstr "üretici "

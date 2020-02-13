@@ -48,9 +48,9 @@
     public bool headphone_plugged { get; protected set; default = false; }
 
     public abstract void set_mute (bool mute);
- }
+}
 
-[CCode(cname="pa_cvolume_set", cheader_filename = "pulse/volume.h")]
+[CCode (cname="pa_cvolume_set", cheader_filename = "pulse/volume.h")]
 extern unowned PulseAudio.CVolume? vol_set (PulseAudio.CVolume? cv, uint channels, PulseAudio.Volume v);
 
 public class Sound.Services.VolumeControlPulse : VolumeControl {
@@ -60,11 +60,11 @@ public class Sound.Services.VolumeControlPulse : VolumeControl {
     private uint _reconnect_timer = 0;
 
     private PulseAudio.Context context;
-    private bool   _mute = true;
-    private bool   _mute_mic = true;
-    private bool   _is_playing = false;
-    private bool   _is_listening = false;
-    private VolumeControl.Volume _volume = new VolumeControl.Volume();
+    private bool _mute = true;
+    private bool _mute_mic = true;
+    private bool _is_playing = false;
+    private bool _is_listening = false;
+    private VolumeControl.Volume _volume = new VolumeControl.Volume ();
     private double _mic_volume = 0.0;
 
     /* Used by the pulseaudio stream restore extension */
@@ -133,7 +133,7 @@ public class Sound.Services.VolumeControlPulse : VolumeControl {
             Source.remove (_reconnect_timer);
             _reconnect_timer = 0;
         }
-        stop_local_volume_timer();
+        stop_local_volume_timer ();
     }
 
     /* PulseAudio logic*/
@@ -217,7 +217,7 @@ public class Sound.Services.VolumeControlPulse : VolumeControl {
 
         if (_pulse_use_stream_restore == false &&
                 _volume.volume != volume_to_double (i.volume.max ())) {
-            var vol = new VolumeControl.Volume();
+            var vol = new VolumeControl.Volume ();
             vol.volume = volume_to_double (i.volume.max ());
             vol.reason = VolumeControl.VolumeReasons.PULSE_CHANGE;
             this.volume = vol;
@@ -266,8 +266,7 @@ public class Sound.Services.VolumeControlPulse : VolumeControl {
             context.get_source_info_list (source_info_cb);
     }
 
-    private void update_source ()
-    {
+    private void update_source () {
         context.get_server_info (update_source_get_server_info_cb);
     }
 
@@ -359,8 +358,7 @@ public class Sound.Services.VolumeControlPulse : VolumeControl {
         if (role != null && role in _valid_roles) {
             if (role == "phone") { //sink_input.corked == 0 || role == "phone") {
                 _sink_input_list.insert (0, sink_input.index);
-                switch (role)
-                {
+                switch (role) {
                     case "multimedia":
                         _sink_input_hash.set (sink_input.index, _objp_role_multimedia);
                         break;
@@ -375,9 +373,9 @@ public class Sound.Services.VolumeControlPulse : VolumeControl {
                         break;
                 }
                 /* Only switch the active sink input in case a phone one is not active */
-                if (_active_sink_input == -1 ||
-                        _sink_input_hash.get (_active_sink_input) != _objp_role_phone)
+                if (_active_sink_input == -1 || _sink_input_hash.get (_active_sink_input) != _objp_role_phone) {
                     update_active_sink_input.begin ((int32)sink_input.index);
+                }
             }
         }
     }
@@ -477,11 +475,11 @@ public class Sound.Services.VolumeControlPulse : VolumeControl {
 
         // reconnect_pulse_dbus ();
 
-        this.context = new PulseAudio.Context (loop.get_api(), null, props);
+        this.context = new PulseAudio.Context (loop.get_api (), null, props);
         this.context.set_state_callback (context_state_callback);
 
-        if (context.connect(null, PulseAudio.Context.Flags.NOFAIL, null) < 0)
-            warning( "pa_context_connect() failed: %s\n", PulseAudio.strerror(context.errno()));
+        if (context.connect (null, PulseAudio.Context.Flags.NOFAIL, null) < 0)
+            warning ("pa_context_connect() failed: %s\n", PulseAudio.strerror (context.errno ()));
     }
 
     void sink_info_list_callback_set_mute (PulseAudio.Context context, PulseAudio.SinkInfo? sink, int eol) {
@@ -587,7 +585,7 @@ public class Sound.Services.VolumeControlPulse : VolumeControl {
 
     private void set_volume_success_cb (PulseAudio.Context c, int success) {
         if ((bool)success)
-            this.notify_property("volume");
+            this.notify_property ("volume");
     }
 
     private void sink_info_set_volume_cb (PulseAudio.Context c, PulseAudio.SinkInfo? i, int eol) {
@@ -600,8 +598,7 @@ public class Sound.Services.VolumeControlPulse : VolumeControl {
     }
 
     private void server_info_cb_for_set_volume (PulseAudio.Context c, PulseAudio.ServerInfo? i) {
-        if (i == null)
-        {
+        if (i == null) {
             warning ("Could not get PulseAudio server info");
             return;
         }
@@ -659,7 +656,7 @@ public class Sound.Services.VolumeControlPulse : VolumeControl {
         }
         set {
             var volume_changed = (value.volume != _volume.volume);
-            debug("Setting volume to %f for profile %d because %d", value.volume, _active_sink_input, value.reason);
+            debug ("Setting volume to %f for profile %d because %d", value.volume, _active_sink_input, value.reason);
 
             var old_high_volume = this.high_volume;
             _volume = value;
@@ -674,11 +671,11 @@ public class Sound.Services.VolumeControlPulse : VolumeControl {
                     context.get_server_info (server_info_cb_for_set_volume);
 
             if (this.high_volume != old_high_volume)
-                this.notify_property("high-volume");
+                this.notify_property ("high-volume");
 
             if (volume.reason != VolumeControl.VolumeReasons.ACCOUNTS_SERVICE_SET
                 && volume_changed) {
-                start_local_volume_timer();
+                start_local_volume_timer ();
             }
         }
     }
@@ -815,7 +812,7 @@ public class Sound.Services.VolumeControlPulse : VolumeControl {
             // }
         }
 
-    private void start_local_volume_timer() {
+    private void start_local_volume_timer () {
         if (_local_volume_timer == 0) {
             _local_volume_timer = Timeout.add_seconds (1, local_volume_changed_timeout);
         } else {
@@ -823,14 +820,14 @@ public class Sound.Services.VolumeControlPulse : VolumeControl {
         }
     }
 
-    private void stop_local_volume_timer() {
+    private void stop_local_volume_timer () {
         if (_local_volume_timer != 0) {
             Source.remove (_local_volume_timer);
             _local_volume_timer = 0;
         }
     }
 
-    bool local_volume_changed_timeout() {
+    bool local_volume_changed_timeout () {
         _local_volume_timer = 0;
         if (_send_next_local_volume) {
             _send_next_local_volume = false;

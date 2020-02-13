@@ -27,13 +27,13 @@ public class Sound.Widgets.MprisWidget : Gtk.Box {
 
     public Sound.Services.ObjectManager object_manager;
 
-    public MprisWidget() {
+    public MprisWidget () {
         Object (orientation: Gtk.Orientation.VERTICAL, spacing: 1);
 
-        ifaces = new HashTable<string,ClientWidget>(str_hash, str_equal);
+        ifaces = new HashTable<string,ClientWidget> (str_hash, str_equal);
 
-        Idle.add(()=> {
-            setup_dbus();
+        Idle.add (() => {
+            setup_dbus ();
             return false;
         });
 
@@ -45,8 +45,8 @@ public class Sound.Widgets.MprisWidget : Gtk.Box {
                 close ();
             });
 
-            default_widget.show_all();
-            pack_start(default_widget, false, false, 0);
+            default_widget.show_all ();
+            pack_start (default_widget, false, false, 0);
         }
 
         object_manager = new Services.ObjectManager ();
@@ -82,14 +82,14 @@ public class Sound.Widgets.MprisWidget : Gtk.Box {
             }
         });
 
-        show_all();
+        show_all ();
     }
 
     public void pause_all () {
         foreach (var cw in ifaces.get_values ()) {
             try {
                 cw.client.player.pause ();
-            } catch  (Error e) {
+            } catch (Error e) {
                 warning ("Could not pause: %s", e.message);
             }
         }
@@ -102,10 +102,10 @@ public class Sound.Widgets.MprisWidget : Gtk.Box {
      * @param iface The constructed MprisClient instance
      */
     void add_iface (string name, Services.MprisClient iface) {
-        if (iface.player.desktop_entry == default_music.get_id ().replace (".desktop","")) {
+        if (iface.player.desktop_entry == default_music.get_id ().replace (".desktop", "")) {
             default_widget.mpris_name = name;
             default_widget.client = iface;
-            ifaces.insert(name, default_widget);
+            ifaces.insert (name, default_widget);
             default_widget.no_show_all = false;
             default_widget.visible = true;
         } else {
@@ -118,9 +118,9 @@ public class Sound.Widgets.MprisWidget : Gtk.Box {
             widg.close.connect (() => {
                 close ();
             });
-            widg.show_all();
-            pack_start(widg, false, false, 0);
-            ifaces.insert(name, widg);
+            widg.show_all ();
+            pack_start (widg, false, false, 0);
+            ifaces.insert (name, widg);
         }
     }
 
@@ -129,17 +129,17 @@ public class Sound.Widgets.MprisWidget : Gtk.Box {
      *
      * @param name DBUS name to remove handler for
      */
-    void destroy_iface(string name) {
+    void destroy_iface (string name) {
         if (default_widget.mpris_name == name) {
             default_widget.client = null;
         } else {
             var widg = ifaces[name];
-            if (widg  != null) {
-                remove(widg);
+            if (widg != null) {
+                remove (widg);
             }
         }
 
-        ifaces.remove(name);
+        ifaces.remove (name);
 
         if (ifaces.length != 0 && default_widget.mpris_name == "") {
             default_widget.no_show_all = true;
@@ -154,14 +154,14 @@ public class Sound.Widgets.MprisWidget : Gtk.Box {
     /**
      * Do basic dbus initialisation
      */
-    public void setup_dbus() {
+    public void setup_dbus () {
         try {
-            impl = Bus.get_proxy_sync(BusType.SESSION, "org.freedesktop.DBus", "/org/freedesktop/DBus");
-            var names = impl.list_names();
+            impl = Bus.get_proxy_sync (BusType.SESSION, "org.freedesktop.DBus", "/org/freedesktop/DBus");
+            var names = impl.list_names ();
 
             /* Search for existing players (launched prior to our start) */
             foreach (var name in names) {
-                if (name.has_prefix("org.mpris.MediaPlayer2.")) {
+                if (name.has_prefix ("org.mpris.MediaPlayer2.")) {
                     bool add = true;
                     foreach (string name2 in ifaces.get_keys ()) {
                         // skip if already a interface is present.
@@ -171,18 +171,18 @@ public class Sound.Widgets.MprisWidget : Gtk.Box {
                         }
                     }
                     if (add) {
-                        var iface = new_iface(name);
+                        var iface = new_iface (name);
                         if (iface != null) {
-                            add_iface(name, iface);
+                            add_iface (name, iface);
                         }
                     }
                 }
             }
 
             /* Also check for new mpris clients coming up while we're up */
-            impl.name_owner_changed.connect((n,o,ne)=> {
+            impl.name_owner_changed.connect ((n, o, ne) => {
                 /* Separate.. */
-                if (n.has_prefix("org.mpris.MediaPlayer2.")) {
+                if (n.has_prefix ("org.mpris.MediaPlayer2.")) {
                     if (o == "") {
                         // delay the sync because otherwise the dbus properties are not yet intialized!
                         Timeout.add (100, () => {
@@ -193,22 +193,22 @@ public class Sound.Widgets.MprisWidget : Gtk.Box {
                                     return false;
                                 }
                             }
-                            var iface = new_iface(n);
+                            var iface = new_iface (n);
                             if (iface != null) {
-                                add_iface(n,iface);
+                                add_iface (n, iface);
                             }
                             return false;
                         });
                     } else {
-                        Idle.add(()=> {
-                            destroy_iface(n);
+                        Idle.add (() => {
+                            destroy_iface (n);
                             return false;
                         });
                     }
                 }
             });
         } catch (Error e) {
-            warning("Failed to initialise dbus: %s", e.message);
+            warning ("Failed to initialise dbus: %s", e.message);
         }
     }
 
@@ -219,24 +219,24 @@ public class Sound.Widgets.MprisWidget : Gtk.Box {
      * @param busname The busname to instaniate ifaces from
      * @return a new MprisClient, or null if errors occurred.
      */
-    public Services.MprisClient? new_iface(string busname) {
+    public Services.MprisClient? new_iface (string busname) {
         Services.PlayerIface? play = null;
         Services.MprisClient? cl = null;
         Services.DbusPropIface? prop = null;
 
         try {
-            play = Bus.get_proxy_sync(BusType.SESSION, busname, "/org/mpris/MediaPlayer2");
+            play = Bus.get_proxy_sync (BusType.SESSION, busname, "/org/mpris/MediaPlayer2");
         } catch (Error e) {
-            message(e.message);
+            message (e.message);
             return null;
         }
         try {
-            prop = Bus.get_proxy_sync(BusType.SESSION, busname, "/org/mpris/MediaPlayer2");
+            prop = Bus.get_proxy_sync (BusType.SESSION, busname, "/org/mpris/MediaPlayer2");
         } catch (Error e) {
-            message(e.message);
+            message (e.message);
             return null;
         }
-        cl = new Services.MprisClient(play, prop);
+        cl = new Services.MprisClient (play, prop);
 
         return cl;
     }
