@@ -24,7 +24,6 @@ public class Sound.Indicator : Wingpanel.Indicator {
     private Wingpanel.Widgets.Separator first_separator;
     private Wingpanel.Widgets.Separator mic_separator;
     private Notify.Notification? notification;
-    private Services.Settings settings;
     private Services.VolumeControlPulse volume_control;
     public bool natural_scroll_touchpad { get; set; }
     public bool natural_scroll_mouse { get; set; }
@@ -33,7 +32,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
     uint sound_was_blocked_timeout_id;
 
     double max_volume = 1.0;
-    const double volume_step_percentage = 0.06;
+    const double VOLUME_STEP_PERCENTAGE = 0.06;
 
     unowned Canberra.Context? ca_context = null;
 
@@ -41,10 +40,16 @@ public class Sound.Indicator : Wingpanel.Indicator {
     double total_x_delta = 0;
     double total_y_delta= 0;
 
+    public static GLib.Settings settings;
+
     public Indicator () {
         Object (code_name: Wingpanel.Indicator.SOUND,
                 display_name: _("Indicator Sound"),
                 description: _("The sound indicator"));
+    }
+
+    static construct {
+        settings = new GLib.Settings ("io.elementary.desktop.wingpanel.sound");
     }
 
     construct {
@@ -62,12 +67,11 @@ public class Sound.Indicator : Wingpanel.Indicator {
         volume_control.notify["mic-volume"].connect (on_mic_volume_change);
         volume_control.notify["mute"].connect (on_mute_change);
         volume_control.notify["micMute"].connect (on_mic_mute_change);
-        volume_control.notify["is-playing"].connect(on_is_playing_change);
-        volume_control.notify["is-listening"].connect(update_mic_visibility);
+        volume_control.notify["is-playing"].connect (on_is_playing_change);
+        volume_control.notify["is-listening"].connect (update_mic_visibility);
 
         Notify.init ("wingpanel-indicator-sound");
 
-        settings = new Services.Settings ();
         settings.notify["max-volume"].connect (set_max_volume);
 
         var locale = Intl.setlocale (LocaleCategory.MESSAGES, null);
@@ -112,9 +116,9 @@ public class Sound.Indicator : Wingpanel.Indicator {
     }
 
     private void set_max_volume () {
-        var max = settings.max_volume / 100;
+        var max = settings.get_double ("max-volume") / 100;
         // we do not allow more than 11db over the NORM volume
-        var cap_volume = (double)PulseAudio.Volume.sw_from_dB(11.0) / PulseAudio.Volume.NORM;
+        var cap_volume = (double)PulseAudio.Volume.sw_from_dB (11.0) / PulseAudio.Volume.NORM;
         if (max > cap_volume) {
             max = cap_volume;
         }
@@ -204,13 +208,13 @@ public class Sound.Indicator : Wingpanel.Indicator {
     private void update_mic_visibility () {
         if (volume_control.is_listening) {
             mic_scale.no_show_all = false;
-            mic_scale.show_all();
+            mic_scale.show_all ();
             mic_separator.no_show_all = false;
             mic_separator.show ();
             display_widget.show_mic = true;
         } else {
             mic_scale.no_show_all = true;
-            mic_scale.hide();
+            mic_scale.hide ();
             mic_separator.no_show_all = true;
             mic_separator.hide ();
             display_widget.show_mic = false;
@@ -260,7 +264,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
             mpris.close.connect (() => {
                 close ();
             });
-            volume_control.notify["headphone-plugged"].connect(() => {
+            volume_control.notify["headphone-plugged"].connect (() => {
                 if (!volume_control.headphone_plugged)
                     mpris.pause_all ();
             });
@@ -278,7 +282,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
             volume_scale.notify["active"].connect (on_volume_switch_change);
 
             volume_scale.scale_widget.value_changed.connect (() => {
-                var vol = new Services.VolumeControl.Volume();
+                var vol = new Services.VolumeControl.Volume ();
                 var v = volume_scale.scale_widget.get_value () * max_volume;
                 vol.volume = v.clamp (0.0, max_volume);
                 vol.reason = Services.VolumeControl.VolumeReasons.USER_KEYPRESS;
@@ -424,7 +428,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
             v = volume_control.volume.volume;
         }
 
-        var new_v = (v + volume_step_percentage * change).clamp (0.0, max_volume);
+        var new_v = (v + VOLUME_STEP_PERCENTAGE * change).clamp (0.0, max_volume);
 
         if (new_v == v) {
             /* Ignore if no volume change will result */
@@ -519,9 +523,9 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
             int32 volume;
             if (is_mic) {
-                volume = (int32)Math.round(volume_control.mic_volume / max_volume * 100.0);
+                volume = (int32)Math.round (volume_control.mic_volume / max_volume * 100.0);
             } else {
-                volume = (int32)Math.round(volume_control.volume.volume / max_volume * 100.0);
+                volume = (int32)Math.round (volume_control.volume.volume / max_volume * 100.0);
             }
 
             notification.set_hint ("value", new Variant.int32 (volume));

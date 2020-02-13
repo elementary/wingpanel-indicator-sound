@@ -1,5 +1,5 @@
 # Wingpanel Sound Indicator
-[![l10n](https://l10n.elementary.io/widgets/desktop/wingpanel-indicator-sound/svg-badge.svg)](https://l10n.elementary.io/projects/desktop/wingpanel-indicator-sound)
+[![Translation status](https://l10n.elementary.io/widgets/wingpanel/-/wingpanel-indicator-sound/svg-badge.svg)](https://l10n.elementary.io/engage/wingpanel/?utm_source=widget)
 
 ![Screenshot](data/screenshot.png?raw=true)
 

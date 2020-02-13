@@ -42,7 +42,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Grid {
 
     private bool launched_by_indicator = false;
     private string app_name = _("Music player");
-    private string last_artUrl;
+    private string last_art_url;
 
     public string mpris_name = "";
 
@@ -77,7 +77,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Grid {
             this.client_ = value;
             if (value != null) {
                 string? desktop_entry = client.player.desktop_entry;
-                if  (desktop_entry != null && desktop_entry != "") {
+                if (desktop_entry != null && desktop_entry != "") {
                     app_info = new DesktopAppInfo ("%s.desktop".printf (desktop_entry));
                 }
 
@@ -91,7 +91,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Grid {
                         try {
                             launched_by_indicator = false;
                             client.player.play_pause ();
-                        } catch  (Error e) {
+                        } catch (Error e) {
                             warning ("Could not play/pause: %s", e.message);
                         }
 
@@ -99,15 +99,21 @@ public class Sound.Widgets.ClientWidget : Gtk.Grid {
                     });
                 }
             } else {
-                (play_btn.get_image () as Gtk.Image).set_from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
+                (play_btn.get_image () as Gtk.Image).set_from_icon_name (
+                    "media-playback-start-symbolic",
+                    Gtk.IconSize.LARGE_TOOLBAR
+                );
                 prev_btn.sensitive = false;
                 next_btn.sensitive = false;
-                Sound.Services.Settings.get_instance ().last_title_info = {
-                    app_info.get_id (),
-                    title_label.get_text (),
-                    artist_label.get_text (),
-                    last_artUrl
-                };
+                Sound.Indicator.settings.set_strv (
+                    "last-title-info",
+                    {
+                        app_info.get_id (),
+                        title_label.get_text (),
+                        artist_label.get_text (),
+                        last_art_url
+                    }
+                );
                 this.mpris_name = "";
             }
         }
@@ -149,8 +155,8 @@ public class Sound.Widgets.ClientWidget : Gtk.Grid {
             client: null
         );
 
-        if (Sound.Services.Settings.get_instance ().last_title_info.length == 4) {
-            string[] title_info = Sound.Services.Settings.get_instance ().last_title_info;
+        var title_info = Sound.Indicator.settings.get_strv ("last-title-info");
+        if (title_info.length == 4) {
             if (title_info[0] == app_info.get_id ()) {
                 title_label.label = title_info[1];
                 artist_label.label = title_info[2];
@@ -187,7 +193,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Grid {
         overlay.add_overlay (mask);
 
         var markup_attribute = new Pango.AttrList ();
-        markup_attribute.insert(Pango.attr_weight_new (Pango.Weight.BOLD));
+        markup_attribute.insert (Pango.attr_weight_new (Pango.Weight.BOLD));
 
         title_label = new MaxWidthLabel (MAX_WIDTH_TITLE);
         title_label.ellipsize = Pango.EllipsizeMode.END;
@@ -244,7 +250,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Grid {
                         } else if (mp_client != null) {
                             mp_client.previous ();
                         }
-                    } catch  (Error e) {
+                    } catch (Error e) {
                         warning ("Going to previous track probably failed (faulty MPRIS interface): %s", e.message);
                     }
                 } else {
@@ -345,10 +351,10 @@ public class Sound.Widgets.ClientWidget : Gtk.Grid {
     }
 
     private void connect_to_client () {
-        client.prop.properties_changed.connect ((i,p,inv) => {
+        client.prop.properties_changed.connect ((i, p, inv) => {
             if (i == "org.mpris.MediaPlayer2.Player") {
                 /* Handle mediaplayer2 iface */
-                p.foreach ((k,v) => {
+                p.foreach ((k, v) => {
                     if (k == "Metadata") {
                         Idle.add (() => {
                             update_from_meta ();
@@ -378,7 +384,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Grid {
                     warning ("Threading is not supported. DBus timeout could be blocking UI");
                     try {
                         client.player.raise ();
-                    } catch  (Error e) {
+                    } catch (Error e) {
                         warning ("Raising the player probably failed (faulty MPRIS interface): %s", e.message);
                     }
                 } else {
@@ -428,13 +434,19 @@ public class Sound.Widgets.ClientWidget : Gtk.Grid {
      * Update play status based on player requirements
      */
     private void update_play_status () {
-        switch  (client.player.playback_status) {
+        switch (client.player.playback_status) {
             case "Playing":
-                (play_btn.get_image () as Gtk.Image).set_from_icon_name ("media-playback-pause-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
+                (play_btn.get_image () as Gtk.Image).set_from_icon_name (
+                    "media-playback-pause-symbolic",
+                    Gtk.IconSize.LARGE_TOOLBAR
+                );
                 break;
             default:
                 /* Stopped, Paused */
-                (play_btn.get_image () as Gtk.Image).set_from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
+                (play_btn.get_image () as Gtk.Image).set_from_icon_name (
+                    "media-playback-start-symbolic",
+                    Gtk.IconSize.LARGE_TOOLBAR
+                );
                 break;
         }
     }
@@ -465,7 +477,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Grid {
             return;
         }
 
-        if (uri.has_prefix  ("file://")) {
+        if (uri.has_prefix ("file://")) {
             string fname = uri.split ("file://")[1];
             try {
                 var pbuf = new Gdk.Pixbuf.from_file_at_size (fname, ICON_SIZE * scale, ICON_SIZE * scale);
@@ -473,7 +485,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Grid {
                 background.get_style_context ().set_scale (1);
                 mask.no_show_all = false;
                 mask.show ();
-            } catch  (Error e) {
+            } catch (Error e) {
                 //background.set_from_gicon (app_icon, Gtk.IconSize.DIALOG);
             }
         } else {
@@ -508,14 +520,14 @@ public class Sound.Widgets.ClientWidget : Gtk.Grid {
      */
     protected void update_from_meta () {
         var metadata = client.player.metadata;
-        if  ("mpris:artUrl" in metadata) {
+        if ("mpris:artUrl" in metadata) {
             var url = metadata["mpris:artUrl"].get_string ();
-            if (url != last_artUrl) {
+            if (url != last_art_url) {
                 update_art (url);
-                last_artUrl = url;
+                last_art_url = url;
             }
         } else {
-            last_artUrl = "";
+            last_art_url = "";
             background.pixel_size = ICON_SIZE;
             background.set_from_gicon (app_icon, Gtk.IconSize.DIALOG);
             mask.no_show_all = true;
@@ -523,7 +535,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Grid {
         }
 
         string title;
-        if  ("xesam:title" in metadata && metadata["xesam:title"].is_of_type (VariantType.STRING)
+        if ("xesam:title" in metadata && metadata["xesam:title"].is_of_type (VariantType.STRING)
             && metadata["xesam:title"].get_string () != "") {
             title = metadata["xesam:title"].get_string ();
         } else {
@@ -532,12 +544,12 @@ public class Sound.Widgets.ClientWidget : Gtk.Grid {
 
         title_label.label = title;
 
-        if  ("xesam:artist" in metadata && metadata["xesam:artist"].is_of_type (VariantType.STRING_ARRAY)) {
+        if ("xesam:artist" in metadata && metadata["xesam:artist"].is_of_type (VariantType.STRING_ARRAY)) {
             (unowned string)[] artists = metadata["xesam:artist"].get_strv ();
             artist_label.label = string.joinv (", ", artists);
         } else {
-            if  (client.player.playback_status == "Playing") {
-                artist_label.label = _("Unknown Title");
+            if (client.player.playback_status == "Playing") {
+                artist_label.label = _("Unknown Artist");
             } else {
                 artist_label.label = NOT_PLAYING;
             }
@@ -570,11 +582,17 @@ public class Sound.Widgets.ClientWidget : Gtk.Grid {
         if (playing != "") {
             switch (playing) {
                 case "playing":
-                    (play_btn.get_image () as Gtk.Image).set_from_icon_name ("media-playback-pause-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
+                    (play_btn.get_image () as Gtk.Image).set_from_icon_name (
+                        "media-playback-pause-symbolic",
+                        Gtk.IconSize.LARGE_TOOLBAR
+                    );
                     break;
                 default:
                     /* Stopped, Paused */
-                    (play_btn.get_image () as Gtk.Image).set_from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
+                    (play_btn.get_image () as Gtk.Image).set_from_icon_name (
+                        "media-playback-start-symbolic",
+                        Gtk.IconSize.LARGE_TOOLBAR
+                    );
                     break;
             }
         }

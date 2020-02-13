@@ -35,9 +35,9 @@ public class Sound.Services.ObjectManager : Object {
     public signal void media_player_status_changed (string status, string title, string album);
 
     public bool has_object { get; private set; default = false; }
-    public string media_player_status { get;  private set; default = "stopped";}
-    public string current_track_title { get;  private set; default = "Not playing";}
-    public string current_track_artist { get;  private set;}
+    public string media_player_status { get; private set; default = "stopped";}
+    public string current_track_title { get; private set; default = "Not playing";}
+    public string current_track_artist { get; private set;}
 
     private Services.DBusInterface object_interface;
     private Gee.HashMap<string, Services.Adapter> adapters;
@@ -51,23 +51,35 @@ public class Sound.Services.ObjectManager : Object {
         devices = new Gee.HashMap<string, Services.Device> (null, null);
         media_players = new Gee.HashMap<string, Services.MediaPlayer> (null, null);
 
-        Bus.get_proxy.begin<Services.DBusInterface> (BusType.SYSTEM, "org.bluez", "/", DBusProxyFlags.NONE, null, (obj, res) => {
-            try {
-                object_interface = Bus.get_proxy.end (res);
-                object_interface.get_managed_objects ().foreach (add_path);
-                object_interface.interfaces_added.connect (add_path);
-                object_interface.interfaces_removed.connect (remove_path);
-            } catch (Error e) {
-                critical (e.message);
+        Bus.get_proxy.begin<Services.DBusInterface> (
+            BusType.SYSTEM,
+            "org.bluez",
+            "/",
+            DBusProxyFlags.NONE,
+            null,
+            (obj, res) => {
+                try {
+                    object_interface = Bus.get_proxy.end (res);
+                    object_interface.get_managed_objects ().foreach (add_path);
+                    object_interface.interfaces_added.connect (add_path);
+                    object_interface.interfaces_removed.connect (remove_path);
+                } catch (Error e) {
+                    critical (e.message);
+                }
             }
-        });
+        );
     }
 
     [CCode (instance_pos = -1)]
     private void add_path (ObjectPath path, HashTable<string, HashTable<string, Variant>> param) {
         if ("org.bluez.Adapter1" in param) {
             try {
-                Services.Adapter adapter = Bus.get_proxy_sync (BusType.SYSTEM, "org.bluez", path, DBusProxyFlags.GET_INVALIDATED_PROPERTIES);
+                Services.Adapter adapter = Bus.get_proxy_sync (
+                    BusType.SYSTEM,
+                    "org.bluez",
+                    path,
+                    DBusProxyFlags.GET_INVALIDATED_PROPERTIES
+                );
                 lock (adapters) {
                     adapters.set (path, adapter);
                 }
@@ -85,7 +97,12 @@ public class Sound.Services.ObjectManager : Object {
             }
         } else if ("org.bluez.Device1" in param) {
             try {
-                Services.Device device = Bus.get_proxy_sync (BusType.SYSTEM, "org.bluez", path, DBusProxyFlags.GET_INVALIDATED_PROPERTIES);
+                Services.Device device = Bus.get_proxy_sync (
+                    BusType.SYSTEM,
+                    "org.bluez",
+                    path,
+                    DBusProxyFlags.GET_INVALIDATED_PROPERTIES
+                );
                 if (device.paired) {
                     lock (devices) {
                         devices.set (path, device);
@@ -121,13 +138,23 @@ public class Sound.Services.ObjectManager : Object {
                 warning ("Connecting to bluetooth device failed: %s", e.message);
             }
         } else if ("org.bluez.MediaPlayer1" in param) {
-            try {           
-                Services.MediaPlayer media_player = Bus.get_proxy_sync (BusType.SYSTEM, "org.bluez", path, DBusProxyFlags.GET_INVALIDATED_PROPERTIES);
+            try {
+                Services.MediaPlayer media_player = Bus.get_proxy_sync (
+                    BusType.SYSTEM,
+                    "org.bluez",
+                    path,
+                    DBusProxyFlags.GET_INVALIDATED_PROPERTIES
+                );
                 lock (media_players) {
                     media_players.set (path, media_player);
                 }
-                string device_name = path.substring (0, path.last_index_of("/"));
-                Services.Device cur_device = Bus.get_proxy_sync (BusType.SYSTEM, "org.bluez", device_name, DBusProxyFlags.GET_INVALIDATED_PROPERTIES);
+                string device_name = path.substring (0, path.last_index_of ("/"));
+                Services.Device cur_device = Bus.get_proxy_sync (
+                    BusType.SYSTEM,
+                    "org.bluez",
+                    device_name,
+                    DBusProxyFlags.GET_INVALIDATED_PROPERTIES
+                );
                 media_player_status = media_player.track.lookup ("Title").get_string (null);
                 media_player_added (media_player, cur_device.name, cur_device.icon);
 
@@ -139,7 +166,7 @@ public class Sound.Services.ObjectManager : Object {
                         current_track_title = title;
                         current_track_artist = artist;
                         media_player_status_changed ("", title, artist);
-                    } else if (changed.lookup("Status", "s")) {
+                    } else if (changed.lookup ("Status", "s")) {
                         string status = changed.lookup_value ("Status", VariantType.STRING).get_string (null);
                         media_player_status = status;
                         media_player_status_changed (status, "", "");

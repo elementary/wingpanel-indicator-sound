@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wingpanel-indicator-sound\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-26 22:47+0200\n"
+"POT-Creation-Date: 2019-12-15 20:29+0000\n"
 "PO-Revision-Date: 2016-11-28 13:41+0000\n"
 "Last-Translator: Waqar Ahmed <waqar.17a@gmail.com>\n"
 "Language-Team: Urdu <ur@li.org>\n"
@@ -18,15 +18,15 @@ msgstr ""
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 "X-Generator: Launchpad (build 18335)\n"
 
-#: src/Indicator.vala:46
+#: src/Indicator.vala:47
 msgid "Indicator Sound"
 msgstr ""
 
-#: src/Indicator.vala:47
+#: src/Indicator.vala:48
 msgid "The sound indicator"
 msgstr "آواز انڈیکیٹر"
 
-#: src/Indicator.vala:343
+#: src/Indicator.vala:347
 msgid "Sound Settings…"
 msgstr "آواز کی ترتیبات"
 
@@ -38,8 +38,9 @@ msgstr "فی الحال چالو نہیں"
 msgid "Music player"
 msgstr "موسیقی پلیئر"
 
-#: src/Widgets/MprisGui.vala:540
-msgid "Unknown Title"
+#: src/Widgets/MprisGui.vala:552
+#, fuzzy
+msgid "Unknown Artist"
 msgstr "نامعلوم عنوان"
 
 #~ msgid "by "

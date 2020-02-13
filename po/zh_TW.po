@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wingpanel-indicator-sound\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-26 22:47+0200\n"
+"POT-Creation-Date: 2019-12-15 20:29+0000\n"
 "PO-Revision-Date: 2018-02-09 00:12+0000\n"
 "Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://weblate.elementary.io/projects/"
@@ -20,15 +20,15 @@ msgstr ""
 "X-Generator: Weblate 2.18\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 
-#: src/Indicator.vala:46
+#: src/Indicator.vala:47
 msgid "Indicator Sound"
 msgstr "指示器音效"
 
-#: src/Indicator.vala:47
+#: src/Indicator.vala:48
 msgid "The sound indicator"
 msgstr "音效指示器"
 
-#: src/Indicator.vala:343
+#: src/Indicator.vala:347
 msgid "Sound Settings…"
 msgstr "音效設定值…"
 
@@ -40,8 +40,9 @@ msgstr "目前沒有音效在播放"
 msgid "Music player"
 msgstr "音樂播放器"
 
-#: src/Widgets/MprisGui.vala:540
-msgid "Unknown Title"
+#: src/Widgets/MprisGui.vala:552
+#, fuzzy
+msgid "Unknown Artist"
 msgstr "未知曲名"
 
 #~ msgid "by "

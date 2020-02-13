@@ -1,9 +1,10 @@
+# Jernej Virag <jernej@virag.si>, 2020.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-26 22:47+0200\n"
-"PO-Revision-Date: 2017-05-31 21:13+0000\n"
+"POT-Creation-Date: 2019-12-15 20:29+0000\n"
+"PO-Revision-Date: 2020-01-08 00:07+0000\n"
 "Last-Translator: Jernej Virag <jernej@virag.si>\n"
 "Language-Team: Slovenian <https://l10n.elementary.io/projects/wingpanel/"
 "wingpanel-indicator-sound/sl/>\n"
@@ -11,20 +12,20 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
-"%100==4 ? 2 : 3;\n"
-"X-Generator: Weblate 2.14\n"
+"Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 3.9.1\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 
-#: src/Indicator.vala:46
+#: src/Indicator.vala:47
 msgid "Indicator Sound"
 msgstr "Indikator zvoka"
 
-#: src/Indicator.vala:47
+#: src/Indicator.vala:48
 msgid "The sound indicator"
 msgstr "Indikator zvoka"
 
-#: src/Indicator.vala:343
+#: src/Indicator.vala:347
 msgid "Sound Settings…"
 msgstr "Nastavitve zvoka…"
 
@@ -36,9 +37,9 @@ msgstr "Trenutno ni predvajanja"
 msgid "Music player"
 msgstr "Predvajalnik glasbe"
 
-#: src/Widgets/MprisGui.vala:540
-msgid "Unknown Title"
-msgstr "Neznan naslov"
+#: src/Widgets/MprisGui.vala:552
+msgid "Unknown Artist"
+msgstr "Neznan izvajalec"
 
 #~ msgid "by "
 #~ msgstr "od "
