@@ -99,10 +99,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Grid {
                     });
                 }
             } else {
-                (play_btn.get_image () as Gtk.Image).set_from_icon_name (
-                    "media-playback-start-symbolic",
-                    Gtk.IconSize.LARGE_TOOLBAR
-                );
+                ((Gtk.Image) play_btn.image).icon_name = "media-playback-start-symbolic";
                 prev_btn.sensitive = false;
                 next_btn.sensitive = false;
                 Sound.Indicator.settings.set_strv (
