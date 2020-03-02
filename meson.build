@@ -32,7 +32,6 @@ shared_module(
     meson.project_name(),
     'src/Indicator.vala',
     'src/Widgets/DisplayWidget.vala',
-    'src/Widgets/MaxWidthLabel.vala',
     'src/Widgets/Scale.vala',
     'src/Widgets/MprisGui.vala',
     'src/Widgets/MprisWidget.vala',
