@@ -17,7 +17,6 @@
  */
 
 const int ICON_SIZE = 48;
-const int MAX_WIDTH_TITLE = 200;
 
 /**
  * A ClientWidget is simply used to control and display information in a two-way
