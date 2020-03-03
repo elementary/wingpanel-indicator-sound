@@ -28,7 +28,6 @@ public class Sound.Indicator : Wingpanel.Indicator {
     private Services.VolumeControlPulse volume_control;
 
     private bool open = false;
-    private bool mute_blocks_sound = false;
     private uint sound_was_blocked_timeout_id;
 
     private double max_volume = 1.0;
@@ -168,24 +167,10 @@ public class Sound.Indicator : Wingpanel.Indicator {
     }
 
     private void on_is_playing_change () {
-        if (!volume_control.mute) {
-            mute_blocks_sound = false;
-            return;
-        }
-        if (volume_control.is_playing) {
-            mute_blocks_sound = true;
-        } else if (mute_blocks_sound) {
-            /* Continue to show the blocking icon five seconds after a player has tried to play something */
-            if (sound_was_blocked_timeout_id > 0) {
-                Source.remove (sound_was_blocked_timeout_id);
-            }
-
-            sound_was_blocked_timeout_id = Timeout.add_seconds (5, () => {
-                mute_blocks_sound = false;
-                sound_was_blocked_timeout_id = 0;
-                display_widget.icon_name = get_volume_icon (volume_control.volume.volume);
-                return false;
-            });
+        if (volume_control.is_playing && volume_control.mute) {
+            display_widget.get_style_context ().add_class ("blocking");
+        } else {
+            display_widget.get_style_context ().remove_class ("blocking");
         }
 
         display_widget.icon_name = get_volume_icon (volume_control.volume.volume);
@@ -223,7 +208,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
     private unowned string get_volume_icon (double volume) {
         if (volume <= 0 || this.volume_control.mute) {
-            return this.mute_blocks_sound ? "audio-volume-muted-blocking-symbolic" : "audio-volume-muted-symbolic";
+            return "audio-volume-muted-symbolic";
         } else if (volume <= 0.3) {
             return "audio-volume-low-symbolic";
         } else if (volume <= 0.7) {
