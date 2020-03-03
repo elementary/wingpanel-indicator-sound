@@ -66,7 +66,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
         volume_control.notify["mic-volume"].connect (on_mic_volume_change);
         volume_control.notify["mute"].connect (on_mute_change);
         volume_control.notify["micMute"].connect (on_mic_mute_change);
-        volume_control.notify["is-playing"].connect (on_is_playing_change);
+        volume_control.notify["is-playing"].connect (style_blocking);
         volume_control.notify["is-listening"].connect (update_mic_visibility);
 
         Notify.init ("wingpanel-indicator-sound");
@@ -165,12 +165,8 @@ public class Sound.Indicator : Wingpanel.Indicator {
         }
     }
 
-    private void on_is_playing_change () {
-        style_blocking ();
-    }
-
     private void style_blocking () {
-        if (volume_control.is_playing && (volume_control.mute || volume_control.volume.volume == 0)) {
+        if (volume_control.is_playing && volume_control.mute) {
             display_widget.get_style_context ().add_class ("blocking");
         } else {
             display_widget.get_style_context ().remove_class ("blocking");
