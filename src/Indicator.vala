@@ -132,6 +132,8 @@ public class Sound.Indicator : Wingpanel.Indicator {
             volume_scale.scale_widget.set_value (volume);
             display_widget.icon_name = get_volume_icon (volume);
         }
+
+        style_blocking ();
     }
 
     private void on_mic_volume_change () {
@@ -147,12 +149,9 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
         string volume_icon = get_volume_icon (volume_control.volume.volume);
         display_widget.icon_name = volume_icon;
+        volume_scale.icon = volume_icon;
 
-        if (volume_control.mute) {
-            volume_scale.icon = "audio-volume-muted-symbolic";
-        } else {
-            volume_scale.icon = volume_icon;
-        }
+        style_blocking ();
     }
 
     private void on_mic_mute_change () {
@@ -167,13 +166,15 @@ public class Sound.Indicator : Wingpanel.Indicator {
     }
 
     private void on_is_playing_change () {
-        if (volume_control.is_playing && volume_control.mute) {
+        style_blocking ();
+    }
+
+    private void style_blocking () {
+        if (volume_control.is_playing && (volume_control.mute || volume_control.volume.volume == 0)) {
             display_widget.get_style_context ().add_class ("blocking");
         } else {
             display_widget.get_style_context ().remove_class ("blocking");
         }
-
-        display_widget.icon_name = get_volume_icon (volume_control.volume.volume);
     }
 
     private void on_volume_icon_scroll_event (Gdk.EventScroll e) {
