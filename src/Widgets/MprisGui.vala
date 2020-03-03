@@ -17,7 +17,6 @@
  */
 
 const int ICON_SIZE = 48;
-const int MAX_WIDTH_TITLE = 200;
 
 /**
  * A ClientWidget is simply used to control and display information in a two-way
@@ -192,18 +191,20 @@ public class Sound.Widgets.ClientWidget : Gtk.Grid {
         var markup_attribute = new Pango.AttrList ();
         markup_attribute.insert (Pango.attr_weight_new (Pango.Weight.BOLD));
 
-        title_label = new MaxWidthLabel (MAX_WIDTH_TITLE);
+        title_label = new Gtk.Label (null);
+        title_label.attributes = markup_attribute;
         title_label.ellipsize = Pango.EllipsizeMode.END;
-        title_label.halign = Gtk.Align.START;
+        title_label.max_width_chars = 20;
         title_label.use_markup = false;
         title_label.valign = Gtk.Align.END;
-        title_label.attributes = markup_attribute;
+        title_label.xalign = 0;
 
-        artist_label = new MaxWidthLabel (MAX_WIDTH_TITLE);
+        artist_label = new Gtk.Label (null);
         artist_label.ellipsize = Pango.EllipsizeMode.END;
-        artist_label.halign = Gtk.Align.START;
+        artist_label.max_width_chars = 20;
         artist_label.use_markup = false;
         artist_label.valign = Gtk.Align.START;
+        artist_label.xalign = 0;
 
         var titles = new Gtk.Grid ();
         titles.column_spacing = 3;
