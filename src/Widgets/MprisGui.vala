@@ -17,7 +17,6 @@
  */
 
 const int ICON_SIZE = 48;
-const int MAX_WIDTH_TITLE = 200;
 
 /**
  * A ClientWidget is simply used to control and display information in a two-way
@@ -99,10 +98,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Grid {
                     });
                 }
             } else {
-                (play_btn.get_image () as Gtk.Image).set_from_icon_name (
-                    "media-playback-start-symbolic",
-                    Gtk.IconSize.LARGE_TOOLBAR
-                );
+                ((Gtk.Image) play_btn.image).icon_name = "media-playback-start-symbolic";
                 prev_btn.sensitive = false;
                 next_btn.sensitive = false;
                 Sound.Indicator.settings.set_strv (
@@ -195,18 +191,20 @@ public class Sound.Widgets.ClientWidget : Gtk.Grid {
         var markup_attribute = new Pango.AttrList ();
         markup_attribute.insert (Pango.attr_weight_new (Pango.Weight.BOLD));
 
-        title_label = new MaxWidthLabel (MAX_WIDTH_TITLE);
+        title_label = new Gtk.Label (null);
+        title_label.attributes = markup_attribute;
         title_label.ellipsize = Pango.EllipsizeMode.END;
-        title_label.halign = Gtk.Align.START;
+        title_label.max_width_chars = 20;
         title_label.use_markup = false;
         title_label.valign = Gtk.Align.END;
-        title_label.attributes = markup_attribute;
+        title_label.xalign = 0;
 
-        artist_label = new MaxWidthLabel (MAX_WIDTH_TITLE);
+        artist_label = new Gtk.Label (null);
         artist_label.ellipsize = Pango.EllipsizeMode.END;
-        artist_label.halign = Gtk.Align.START;
+        artist_label.max_width_chars = 20;
         artist_label.use_markup = false;
         artist_label.valign = Gtk.Align.START;
+        artist_label.xalign = 0;
 
         var titles = new Gtk.Grid ();
         titles.column_spacing = 3;
@@ -218,12 +216,26 @@ public class Sound.Widgets.ClientWidget : Gtk.Grid {
         titles_events.hexpand = true;
         titles_events.add (titles);
 
-        prev_btn = make_control_button ("media-skip-backward-symbolic");
+        prev_btn = new Gtk.Button.from_icon_name (
+            "media-skip-backward-symbolic",
+            Gtk.IconSize.LARGE_TOOLBAR
+        );
+        prev_btn.sensitive = false;
+        prev_btn.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
 
-        play_btn = make_control_button ("media-playback-start-symbolic");
+        play_btn = new Gtk.Button.from_icon_name (
+            "media-playback-start-symbolic",
+            Gtk.IconSize.LARGE_TOOLBAR
+        );
         play_btn.sensitive = true;
+        play_btn.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
 
-        next_btn = make_control_button ("media-skip-forward-symbolic");
+        next_btn = new Gtk.Button.from_icon_name (
+            "media-skip-forward-symbolic",
+            Gtk.IconSize.LARGE_TOOLBAR
+        );
+        next_btn.sensitive = false;
+        next_btn.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
 
         margin_end = 6;
         add (titles_events);
@@ -407,47 +419,14 @@ public class Sound.Widgets.ClientWidget : Gtk.Grid {
         return Gdk.EVENT_STOP;
     }
 
-    private Gtk.Button make_control_button (string icon) {
-        var btn = new Gtk.Button.from_icon_name (icon, Gtk.IconSize.LARGE_TOOLBAR);
-        btn.can_focus = false;
-        btn.relief = Gtk.ReliefStyle.NONE;
-        btn.sensitive = false;
-
-        btn.enter_notify_event.connect ((e) => {
-            btn.can_focus = true;
-            btn.grab_focus ();
-
-            return Gdk.EVENT_STOP;
-        });
-
-        btn.leave_notify_event.connect ((e) => {
-            btn.can_focus = false;
-            background.grab_focus ();
-
-            return Gdk.EVENT_STOP;
-        });
-
-        return btn;
-    }
-
     /**
      * Update play status based on player requirements
      */
     private void update_play_status () {
-        switch (client.player.playback_status) {
-            case "Playing":
-                (play_btn.get_image () as Gtk.Image).set_from_icon_name (
-                    "media-playback-pause-symbolic",
-                    Gtk.IconSize.LARGE_TOOLBAR
-                );
-                break;
-            default:
-                /* Stopped, Paused */
-                (play_btn.get_image () as Gtk.Image).set_from_icon_name (
-                    "media-playback-start-symbolic",
-                    Gtk.IconSize.LARGE_TOOLBAR
-                );
-                break;
+        if (client.player.playback_status == "Playing") {
+            ((Gtk.Image) play_btn.image).icon_name = "media-playback-pause-symbolic";
+        } else {
+            ((Gtk.Image) play_btn.image).icon_name = "media-playback-start-symbolic";
         }
     }
 
