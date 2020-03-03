@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2015-2017 elementary LLC. (http://launchpad.net/wingpanel-indicator-sound)
+* Copyright 2015-2020 elementary, Inc. (https://elementary.io)
 *
 * This program is free software; you can redistribute it and/or
 * modify it under the terms of the GNU General Public
@@ -16,29 +16,29 @@
 */
 
 public class Sound.Indicator : Wingpanel.Indicator {
+    public bool natural_scroll_touchpad { get; set; }
+    public bool natural_scroll_mouse { get; set; }
+
     private DisplayWidget display_widget;
     private Gtk.Grid main_grid;
     private Widgets.Scale volume_scale;
     private Widgets.Scale mic_scale;
-    private Gtk.ModelButton settings_button;
-    private Wingpanel.Widgets.Separator first_separator;
     private Wingpanel.Widgets.Separator mic_separator;
     private Notify.Notification? notification;
     private Services.VolumeControlPulse volume_control;
-    public bool natural_scroll_touchpad { get; set; }
-    public bool natural_scroll_mouse { get; set; }
-    bool open = false;
-    bool mute_blocks_sound = false;
-    uint sound_was_blocked_timeout_id;
 
-    double max_volume = 1.0;
-    const double VOLUME_STEP_PERCENTAGE = 0.06;
+    private bool open = false;
+    private bool mute_blocks_sound = false;
+    private uint sound_was_blocked_timeout_id;
 
-    unowned Canberra.Context? ca_context = null;
+    private double max_volume = 1.0;
+    private const double VOLUME_STEP_PERCENTAGE = 0.06;
+
+    private unowned Canberra.Context? ca_context = null;
 
     /* Smooth scrolling support */
-    double total_x_delta = 0;
-    double total_y_delta= 0;
+    private double total_x_delta = 0;
+    private double total_y_delta= 0;
 
     public static GLib.Settings settings;
 
@@ -272,7 +272,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
             main_grid.attach (mpris, 0, position++, 1, 1);
 
             if (mpris.get_children ().length () > 0) {
-                first_separator = new Wingpanel.Widgets.Separator ();
+                var first_separator = new Wingpanel.Widgets.Separator ();
 
                 main_grid.attach (first_separator, 0, position++, 1, 1);
             }
@@ -343,7 +343,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
             main_grid.attach (mic_separator, 0, position++, 1, 1);
 
-            settings_button = new Gtk.ModelButton ();
+            var settings_button = new Gtk.ModelButton ();
             settings_button.text = _("Sound Settings…");
             settings_button.clicked.connect (() => {
                 show_settings ();
