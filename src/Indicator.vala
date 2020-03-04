@@ -431,7 +431,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
         var new_v = (v + VOLUME_STEP_PERCENTAGE * change).clamp (0.0, max_volume);
 
         if (new_v == v) {
-            /* Ignore if no volume change will result */
+            notify_change (is_mic);
             return;
         }
 
