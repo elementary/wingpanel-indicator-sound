@@ -1,18 +1,19 @@
+# Ciarán Ainsworth <ciaranainsworth@posteo.net>, 2020.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-15 20:29+0000\n"
-"PO-Revision-Date: 2017-12-13 04:39+0000\n"
-"Last-Translator: Joe Osborne <reachjoe.o@gmail.com>\n"
-"Language-Team: English (United Kingdom) <https://weblate.elementary.io/"
-"projects/wingpanel/wingpanel-indicator-sound/en_GB/>\n"
+"PO-Revision-Date: 2020-03-19 20:09+0000\n"
+"Last-Translator: Ciarán Ainsworth <ciaranainsworth@posteo.net>\n"
+"Language-Team: English (United Kingdom) <https://l10n.elementary.io/projects/"
+"wingpanel/wingpanel-indicator-sound/en_GB/>\n"
 "Language: en_GB\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.17.1\n"
+"X-Generator: Weblate 3.9.1\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 
 #: src/Indicator.vala:47
@@ -36,9 +37,8 @@ msgid "Music player"
 msgstr "Music player"
 
 #: src/Widgets/MprisGui.vala:552
-#, fuzzy
 msgid "Unknown Artist"
-msgstr "Unknown Title"
+msgstr "Unknown Artist"
 
 #~ msgid "by "
 #~ msgstr "by "
