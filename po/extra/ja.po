@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-15 20:29+0000\n"
+"POT-Creation-Date: 2020-03-29 19:30+0000\n"
 "PO-Revision-Date: 2019-12-17 19:17+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementary.io/projects/wingpanel/"
@@ -32,13 +32,19 @@ msgstr ""
 "ロールを表示したりします"
 
 #: data/sound.appdata.xml.in:11
-msgid "Correctly show \"Unknown Artist\" when artist info isn't available"
-msgstr "アーティスト情報が利用可能でないときに、\"不明なアーティスト\"を正しく表示するように修正"
+msgid "Performance improvements"
+msgstr ""
 
-#: data/sound.appdata.xml.in:16
+#: data/sound.appdata.xml.in:12 data/sound.appdata.xml.in:22
 msgid "Updated translations"
 msgstr "翻訳の更新"
 
-#: data/sound.appdata.xml.in:25
+#: data/sound.appdata.xml.in:17
+msgid "Correctly show \"Unknown Artist\" when artist info isn't available"
+msgstr ""
+"アーティスト情報が利用可能でないときに、\"不明なアーティスト\"を正しく表示す"
+"るように修正"
+
+#: data/sound.appdata.xml.in:31
 msgid "elementary, Inc."
 msgstr "elementary, Inc."

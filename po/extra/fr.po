@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-15 20:29+0000\n"
+"POT-Creation-Date: 2020-03-29 19:30+0000\n"
 "PO-Revision-Date: 2019-12-17 19:17+0000\n"
 "Last-Translator: Nathan <bonnemainsnathan@gmail.com>\n"
 "Language-Team: French <https://l10n.elementary.io/projects/wingpanel/"
@@ -32,15 +32,19 @@ msgstr ""
 "médias en-cours"
 
 #: data/sound.appdata.xml.in:11
+msgid "Performance improvements"
+msgstr ""
+
+#: data/sound.appdata.xml.in:12 data/sound.appdata.xml.in:22
+msgid "Updated translations"
+msgstr "Mise à jour des traductions"
+
+#: data/sound.appdata.xml.in:17
 msgid "Correctly show \"Unknown Artist\" when artist info isn't available"
 msgstr ""
 "Affichage correct de « Artiste inconnu » lorsque les informations sur "
 "l'artiste ne sont pas disponibles"
 
-#: data/sound.appdata.xml.in:16
-msgid "Updated translations"
-msgstr "Mise à jour des traductions"
-
-#: data/sound.appdata.xml.in:25
+#: data/sound.appdata.xml.in:31
 msgid "elementary, Inc."
 msgstr "elementary, Inc."

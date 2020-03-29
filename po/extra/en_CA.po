@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-15 20:29+0000\n"
+"POT-Creation-Date: 2020-03-29 19:30+0000\n"
 "PO-Revision-Date: 2019-11-07 11:39-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -30,13 +30,17 @@ msgstr ""
 "media controls"
 
 #: data/sound.appdata.xml.in:11
-msgid "Correctly show \"Unknown Artist\" when artist info isn't available"
+msgid "Performance improvements"
 msgstr ""
 
-#: data/sound.appdata.xml.in:16
+#: data/sound.appdata.xml.in:12 data/sound.appdata.xml.in:22
 msgid "Updated translations"
 msgstr "Updated translations"
 
-#: data/sound.appdata.xml.in:25
+#: data/sound.appdata.xml.in:17
+msgid "Correctly show \"Unknown Artist\" when artist info isn't available"
+msgstr ""
+
+#: data/sound.appdata.xml.in:31
 msgid "elementary, Inc."
 msgstr "elementary, Inc."

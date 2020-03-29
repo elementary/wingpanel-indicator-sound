@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-15 20:29+0000\n"
+"POT-Creation-Date: 2020-03-29 19:30+0000\n"
 "PO-Revision-Date: 2020-02-01 02:08+0000\n"
 "Last-Translator: Rodrigo Oliveira <rod.oliveira@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://l10n.elementary.io/projects/"
@@ -32,15 +32,19 @@ msgstr ""
 "Agora informações e controles de mídia"
 
 #: data/sound.appdata.xml.in:11
+msgid "Performance improvements"
+msgstr ""
+
+#: data/sound.appdata.xml.in:12 data/sound.appdata.xml.in:22
+msgid "Updated translations"
+msgstr "Traduções atualizadas"
+
+#: data/sound.appdata.xml.in:17
 msgid "Correctly show \"Unknown Artist\" when artist info isn't available"
 msgstr ""
 "Mostra \"Artista desconhecido\" corretamente quando as informações do "
 "artista não estiverem disponíveis"
 
-#: data/sound.appdata.xml.in:16
-msgid "Updated translations"
-msgstr "Traduções atualizadas"
-
-#: data/sound.appdata.xml.in:25
+#: data/sound.appdata.xml.in:31
 msgid "elementary, Inc."
 msgstr "elementary, Inc."
