@@ -52,10 +52,6 @@ public class Sound.Widgets.MprisWidget : Gtk.Box {
         object_manager = new Services.ObjectManager ();
         object_manager.bind_property ("has-object", this, "visible", GLib.BindingFlags.SYNC_CREATE);
 
-        if (object_manager.has_object) {
-            object_manager.set_last_state ();
-        }
-
         object_manager.media_player_added.connect ((media_player, name, icon) => {
             bluetooth_widget = new ClientWidget.bluetooth (media_player, name, icon);
             bluetooth_widget.close.connect (() => {
