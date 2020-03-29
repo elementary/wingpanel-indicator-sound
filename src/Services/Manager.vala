@@ -16,20 +16,8 @@
  *
  */
 
-[DBus (name = "org.freedesktop.DBus.ObjectManager")]
-public interface Sound.Services.DBusInterface : Object {
-    public signal void interfaces_added (ObjectPath object_path, HashTable<string, HashTable<string, Variant>> param);
-    public signal void interfaces_removed (ObjectPath object_path, string[] string_array);
-
-    public abstract HashTable<ObjectPath, HashTable<string, HashTable<string, Variant>>> get_managed_objects () throws GLib.Error;
-}
-
 public class Sound.Services.ObjectManager : Object {
     public signal void global_state_changed (bool enabled, bool connected);
-    public signal void adapter_added (Services.Adapter adapter);
-    public signal void adapter_removed (Services.Adapter adapter);
-    public signal void device_added (Services.Device adapter);
-    public signal void device_removed (Services.Device adapter);
     public signal void media_player_added (Services.MediaPlayer media_player, string name, string icon);
     public signal void media_player_removed (Services.MediaPlayer media_player);
     public signal void media_player_status_changed (string status, string title, string album);
@@ -39,246 +27,108 @@ public class Sound.Services.ObjectManager : Object {
     public string current_track_title { get; private set; default = "Not playing";}
     public string current_track_artist { get; private set;}
 
-    private Services.DBusInterface object_interface;
-    private Gee.HashMap<string, Services.Adapter> adapters;
-    private Gee.HashMap<string, Services.Device> devices;
-    private Gee.HashMap<string, Services.MediaPlayer> media_players;
+    private GLib.DBusObjectManagerClient object_manager;
 
     public ObjectManager () { }
 
     construct {
-        adapters = new Gee.HashMap<string, Services.Adapter> (null, null);
-        devices = new Gee.HashMap<string, Services.Device> (null, null);
-        media_players = new Gee.HashMap<string, Services.MediaPlayer> (null, null);
-
-        Bus.get_proxy.begin<Services.DBusInterface> (
-            BusType.SYSTEM,
-            "org.bluez",
-            "/",
-            DBusProxyFlags.NONE,
-            null,
-            (obj, res) => {
-                try {
-                    object_interface = Bus.get_proxy.end (res);
-                    object_interface.get_managed_objects ().foreach (add_path);
-                    object_interface.interfaces_added.connect (add_path);
-                    object_interface.interfaces_removed.connect (remove_path);
-                } catch (Error e) {
-                    critical (e.message);
-                }
-            }
-        );
+        create_manager.begin ();
     }
 
-    [CCode (instance_pos = -1)]
-    private void add_path (ObjectPath path, HashTable<string, HashTable<string, Variant>> param) {
-        if ("org.bluez.Adapter1" in param) {
-            try {
-                Services.Adapter adapter = Bus.get_proxy_sync (
-                    BusType.SYSTEM,
-                    "org.bluez",
-                    path,
-                    DBusProxyFlags.GET_INVALIDATED_PROPERTIES
-                );
-                lock (adapters) {
-                    adapters.set (path, adapter);
-                }
-                has_object = true;
-
-                adapter_added (adapter);
-                (adapter as DBusProxy).g_properties_changed.connect ((changed, invalid) => {
-                    var powered = changed.lookup_value ("Powered", new VariantType ("b"));
-                    if (powered != null) {
-                        check_global_state ();
-                    }
-                });
-            } catch (Error e) {
-                warning ("Connecting to bluetooth adapter failed: %s", e.message);
-            }
-        } else if ("org.bluez.Device1" in param) {
-            try {
-                Services.Device device = Bus.get_proxy_sync (
-                    BusType.SYSTEM,
-                    "org.bluez",
-                    path,
-                    DBusProxyFlags.GET_INVALIDATED_PROPERTIES
-                );
-                if (device.paired) {
-                    lock (devices) {
-                        devices.set (path, device);
-                    }
-
-                    device_added (device);
-                }
-
-                (device as DBusProxy).g_properties_changed.connect ((changed, invalid) => {
-                    var connected = changed.lookup_value ("Connected", new VariantType ("b"));
-                    if (connected != null) {
-                        check_global_state ();
-                    }
-
-                    var paired = changed.lookup_value ("Paired", new VariantType ("b"));
-                    if (paired != null) {
-                        if (device.paired) {
-                            lock (devices) {
-                                devices.set (path, device);
-                            }
-
-                            device_added (device);
-                        } else {
-                            lock (devices) {
-                                devices.unset (path);
-                            }
-
-                            device_removed (device);
-                        }
-                    }
-                });
-            } catch (Error e) {
-                warning ("Connecting to bluetooth device failed: %s", e.message);
-            }
-        } else if ("org.bluez.MediaPlayer1" in param) {
-            try {
-                Services.MediaPlayer media_player = Bus.get_proxy_sync (
-                    BusType.SYSTEM,
-                    "org.bluez",
-                    path,
-                    DBusProxyFlags.GET_INVALIDATED_PROPERTIES
-                );
-                lock (media_players) {
-                    media_players.set (path, media_player);
-                }
-                string device_name = path.substring (0, path.last_index_of ("/"));
-                Services.Device cur_device = Bus.get_proxy_sync (
-                    BusType.SYSTEM,
-                    "org.bluez",
-                    device_name,
-                    DBusProxyFlags.GET_INVALIDATED_PROPERTIES
-                );
-                media_player_status = media_player.track.lookup ("Title").get_string (null);
-                media_player_added (media_player, cur_device.name, cur_device.icon);
-
-                (media_player as DBusProxy).g_properties_changed.connect ((changed, invalid) => {
-                    if (changed.print (true).contains ("Track")) {
-                        Variant tmp = changed.lookup_value ("Track", VariantType.DICTIONARY);
-                        string title = tmp.lookup_value ("Title", VariantType.STRING).get_string (null);
-                        string artist = tmp.lookup_value ("Artist", VariantType.STRING).get_string (null);
-                        current_track_title = title;
-                        current_track_artist = artist;
-                        media_player_status_changed ("", title, artist);
-                    } else if (changed.lookup ("Status", "s")) {
-                        string status = changed.lookup_value ("Status", VariantType.STRING).get_string (null);
-                        media_player_status = status;
-                        media_player_status_changed (status, "", "");
-                    }
-                });
-            } catch (Error e) {
-                warning ("Connecting to bluetooth media player failed: %s", e.message);
-            }
+    private async void create_manager () {
+        try {
+            object_manager = yield new GLib.DBusObjectManagerClient.for_bus.begin (
+                BusType.SYSTEM,
+                GLib.DBusObjectManagerClientFlags.NONE,
+                "org.bluez",
+                "/",
+                object_manager_proxy_get_type,
+                null
+            );
+            object_manager.get_objects ().foreach ((object) => {
+                object.get_interfaces ().foreach ((iface) => on_interface_added (object, iface));
+            });
+            object_manager.interface_added.connect (on_interface_added);
+            object_manager.interface_removed.connect (on_interface_removed);
+            object_manager.object_added.connect ((object) => {
+                object.get_interfaces ().foreach ((iface) => on_interface_added (object, iface));
+            });
+            object_manager.object_removed.connect ((object) => {
+                object.get_interfaces ().foreach ((iface) => on_interface_removed (object, iface));
+            });
+        } catch (Error e) {
+            critical (e.message);
         }
     }
 
-    [CCode (instance_pos = -1)]
-    public void remove_path (ObjectPath path) {
-        lock (adapters) {
-            var adapter = adapters.get (path);
-            if (adapter != null) {
-                adapters.unset (path);
-                has_object = !adapters.is_empty;
+    //TODO: Do not rely on this when it is possible to do it natively in Vala
+    [CCode (cname="sound_services_device_proxy_get_type")]
+    extern static GLib.Type get_device_proxy_type ();
+    [CCode (cname="sound_services_media_player_proxy_get_type")]
+    extern static GLib.Type get_media_player_proxy_type ();
 
-                adapter_removed (adapter);
+    private GLib.Type object_manager_proxy_get_type (DBusObjectManagerClient manager, string object_path, string? interface_name) {
+        if (interface_name == null)
+            return typeof (GLib.DBusObjectProxy);
+
+        switch (interface_name) {
+            case "org.bluez.Device1":
+                return get_device_proxy_type ();
+            case "org.bluez.MediaPlayer1":
+                return get_media_player_proxy_type ();
+            default:
+                return typeof (GLib.DBusProxy);
+        }
+    }
+
+    private void on_interface_added (GLib.DBusObject object, GLib.DBusInterface iface) {
+        if (iface is Sound.Services.MediaPlayer) {
+            unowned Sound.Services.MediaPlayer media_player = (Sound.Services.MediaPlayer) iface;
+            has_object = true;
+            var device_object = object_manager.get_object (media_player.device);
+            Sound.Services.Device cur_device = (Sound.Services.Device) device_object.get_interface ("org.bluez.Device1");
+            media_player_status = media_player.track.lookup ("Title").get_string ();
+            media_player_added (media_player, cur_device.name, cur_device.icon);
+
+            ((DBusProxy) media_player).g_properties_changed.connect ((changed, invalid) => {
+                var track = changed.lookup_value ("Track", VariantType.DICTIONARY);
+                if (track != null) {
+                    string title, artist;
+                    track.lookup ("Title", "s", out title);
+                    track.lookup ("Artist", "s", out artist);
+                    current_track_title = title;
+                    current_track_artist = artist;
+                    media_player_status_changed ("", title, artist);
+                }
+
+                var status_v = changed.lookup_value ("Status", VariantType.STRING);
+                if (status_v != null) {
+                    string status;
+                    status_v.get ("s", out status);
+                    media_player_status = status;
+                    media_player_status_changed (status, "", "");
+                }
+            });
+        }
+    }
+
+    private void on_interface_removed (GLib.DBusObject object, GLib.DBusInterface iface) {
+        if (iface is Sound.Services.MediaPlayer) {
+            media_player_removed ((Sound.Services.MediaPlayer) iface);
+            has_object = !get_media_players ().is_empty;
+        }
+    }
+
+    public Gee.Collection<Sound.Services.MediaPlayer> get_media_players () {
+        var players = new Gee.LinkedList<Sound.Services.MediaPlayer> ();
+        object_manager.get_objects ().foreach ((object) => {
+            GLib.DBusInterface? iface = object.get_interface ("org.bluez.MediaPlayer1");
+            if (iface == null)
                 return;
-            }
-        }
 
-        lock (devices) {
-            var device = devices.get (path);
-            if (device != null) {
-                devices.unset (path);
-                device_removed (device);
-            }
-        }
-
-        lock (media_players) {
-            var media_player = media_players.get (path);
-            if (media_player != null) {
-                media_players.unset (path);
-                media_player_removed (media_player);
-            }
-        }
-    }
-
-    public Gee.Collection<Services.Adapter> get_adapters () {
-        lock (adapters) {
-            return adapters.values;
-        }
-    }
-
-    public Gee.Collection<Services.Device> get_devices () {
-        lock (devices) {
-            return devices.values;
-        }
-    }
-
-    public Services.Adapter? get_adapter_from_path (string path) {
-        lock (adapters) {
-            return adapters.get (path);
-        }
-    }
-
-    private void check_global_state () {
-        global_state_changed (get_global_state (), get_connected ());
-    }
-
-    public bool get_connected () {
-        lock (devices) {
-            foreach (var device in devices.values) {
-                if (device.connected) {
-                    return true;
-                }
-            }
-        }
-
-        return false;
-    }
-
-    public bool get_global_state () {
-        lock (adapters) {
-            foreach (var adapter in adapters.values) {
-                if (adapter.powered) {
-                    return true;
-                }
-            }
-        }
-
-        return false;
-    }
-
-    public void set_global_state (bool state) {
-        new Thread<void*> (null, () => {
-            lock (devices) {
-                foreach (var device in devices.values) {
-                    if (device.connected) {
-                        try {
-                            device.disconnect ();
-                        } catch (Error e) {
-                            critical (e.message);
-                        }
-                    }
-                }
-            }
-
-            lock (adapters) {
-                foreach (var adapter in adapters.values) {
-                    adapter.powered = state;
-                }
-            }
-
-            return null;
+            players.add (((Sound.Services.MediaPlayer) iface));
         });
-    }
 
-    public void set_last_state () {
-        check_global_state ();
+        return (owned) players;
     }
 }
