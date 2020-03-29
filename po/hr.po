@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wingpanel-indicator-sound\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-15 20:29+0000\n"
+"POT-Creation-Date: 2020-03-29 19:30+0000\n"
 "PO-Revision-Date: 2016-07-04 13:07+0000\n"
 "Last-Translator: gogo <trebelnik2@gmail.com>\n"
 "Language-Team: Croatian <hr@li.org>\n"
@@ -30,15 +30,15 @@ msgstr "Indikator zvuka"
 msgid "Sound Settings…"
 msgstr "Postavke zvuka..."
 
-#: src/Widgets/MprisGui.vala:29
+#: src/Widgets/MprisGui.vala:28
 msgid "Not currently playing"
 msgstr "Trenutno se ne reproducira"
 
-#: src/Widgets/MprisGui.vala:44
+#: src/Widgets/MprisGui.vala:43
 msgid "Music player"
 msgstr "Glazbeni reproduktor"
 
-#: src/Widgets/MprisGui.vala:552
+#: src/Widgets/MprisGui.vala:531
 #, fuzzy
 msgid "Unknown Artist"
 msgstr "Nepoznat naslov"
