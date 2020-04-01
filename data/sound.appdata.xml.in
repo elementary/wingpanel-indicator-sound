@@ -6,7 +6,7 @@
   <name>Sound Indicator</name>
   <summary>Adjust speaker and microphone volume or see Now Playing information and media controls</summary>
   <releases>
-    <release version="2.1.6" date="2020-03-29" urgency="medium">
+    <release version="2.1.6" date="2020-04-01" urgency="medium">
       <description>
         <p>Performance improvements</p>
         <p>Updated translations</p>
