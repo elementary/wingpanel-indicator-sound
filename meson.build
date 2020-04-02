@@ -1,7 +1,7 @@
 project(
     'sound',
     'vala', 'c',
-    version: '2.1.6'
+    version: '2.1.5'
 )
 
 gettext_name = meson.project_name() + '-indicator'
