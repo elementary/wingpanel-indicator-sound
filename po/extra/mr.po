@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-29 19:30+0000\n"
+"POT-Creation-Date: 2020-04-03 18:41+0000\n"
 "PO-Revision-Date: 2019-12-17 19:17+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
 "Language-Team: Marathi <https://l10n.elementary.io/projects/wingpanel/"
@@ -32,17 +32,17 @@ msgstr ""
 "मीडिया नियंत्रणे पहा"
 
 #: data/sound.appdata.xml.in:11
-msgid "Performance improvements"
-msgstr ""
-
-#: data/sound.appdata.xml.in:12 data/sound.appdata.xml.in:22
-msgid "Updated translations"
-msgstr "अद्ययावत भाषांतर"
-
-#: data/sound.appdata.xml.in:17
 msgid "Correctly show \"Unknown Artist\" when artist info isn't available"
 msgstr "कलाकारांची माहिती उपलब्ध नसते तेव्हा \"अज्ञात कलाकार\" योग्यरित्या दर्शवा"
 
-#: data/sound.appdata.xml.in:31
+#: data/sound.appdata.xml.in:12
+msgid "Performance improvements"
+msgstr ""
+
+#: data/sound.appdata.xml.in:13 data/sound.appdata.xml.in:18
+msgid "Updated translations"
+msgstr "अद्ययावत भाषांतर"
+
+#: data/sound.appdata.xml.in:27
 msgid "elementary, Inc."
 msgstr "एलिमेंटरी, Inc."
