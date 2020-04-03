@@ -1,3 +1,23 @@
+wingpanel-indicator-sound (2.1.5) bionic; urgency=medium
+
+  * Release 2.1.5 (#144)
+  * Update translation files
+  * Update translation files
+  * Update translation template
+  * Update sound.appdata.xml.in
+  * Update POTFILES
+  * Use GLib.DBusObjectManagerClient instead of doing everything by
+    ourself (#143)
+  * Indicator: Reduce variable scope (#133)
+  * Replace MaxWidthLabel with max_width_chars (#134)
+  * MprisGui: Simplify buttons (#135)
+  * Update translation files
+  * Update translation files
+  * Update translation template
+  * Correct mpris text to Unkown Artist (#129)
+
+ -- elementary LLC <builds@elementary.io>  Fri, 03 Apr 2020 18:41:54 +0000
+
 wingpanel-indicator-sound (2.1.4) bionic; urgency=medium
 
   * Release 2.1.4 (#126)
