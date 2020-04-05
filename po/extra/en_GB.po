@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-04-03 18:41+0000\n"
-"PO-Revision-Date: 2020-03-19 20:09+0000\n"
+"PO-Revision-Date: 2020-04-06 15:10+0000\n"
 "Last-Translator: Ciarán Ainsworth <ciaranainsworth@posteo.net>\n"
 "Language-Team: English (United Kingdom) <https://l10n.elementary.io/projects/"
 "wingpanel/indicator-sound-extra/en_GB/>\n"
@@ -37,7 +37,7 @@ msgstr "Correctly show \"Unknown Artist\" when artist info isn't available"
 
 #: data/sound.appdata.xml.in:12
 msgid "Performance improvements"
-msgstr ""
+msgstr "Performance improvements"
 
 #: data/sound.appdata.xml.in:13 data/sound.appdata.xml.in:18
 msgid "Updated translations"
