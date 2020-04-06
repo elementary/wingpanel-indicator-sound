@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wingpanel-indicator-sound\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-15 20:29+0000\n"
+"POT-Creation-Date: 2020-03-29 19:30+0000\n"
 "PO-Revision-Date: 2016-09-02 08:17+0000\n"
 "Last-Translator: Indrit Bashkimi <indrit.bashkimi@gmail.com>\n"
 "Language-Team: Albanian <sq@li.org>\n"
@@ -30,15 +30,15 @@ msgstr "Treguesi i zërit"
 msgid "Sound Settings…"
 msgstr "Parametrat e zërit…"
 
-#: src/Widgets/MprisGui.vala:29
+#: src/Widgets/MprisGui.vala:28
 msgid "Not currently playing"
 msgstr ""
 
-#: src/Widgets/MprisGui.vala:44
+#: src/Widgets/MprisGui.vala:43
 msgid "Music player"
 msgstr ""
 
-#: src/Widgets/MprisGui.vala:552
+#: src/Widgets/MprisGui.vala:531
 #, fuzzy
 msgid "Unknown Artist"
 msgstr "Titull i panjohur"

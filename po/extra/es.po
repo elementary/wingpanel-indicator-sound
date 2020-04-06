@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-15 20:29+0000\n"
-"PO-Revision-Date: 2020-01-06 19:07+0000\n"
-"Last-Translator: Daniel R. <riesp@pm.me>\n"
+"POT-Creation-Date: 2020-04-03 18:41+0000\n"
+"PO-Revision-Date: 2020-03-31 14:09+0000\n"
+"Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Spanish <https://l10n.elementary.io/projects/wingpanel/"
 "indicator-sound-extra/es/>\n"
 "Language: es\n"
@@ -28,19 +28,23 @@ msgid ""
 "Adjust speaker and microphone volume or see Now Playing information and "
 "media controls"
 msgstr ""
-"Ajuste el volumen del altavoz y del micrófono o vea Información de "
+"Ajuste el volumen del altavoz y del micrófono o vea información de "
 "reproducción y controles multimedia"
 
 #: data/sound.appdata.xml.in:11
 msgid "Correctly show \"Unknown Artist\" when artist info isn't available"
 msgstr ""
-"Mostrar correctamente \"Artista desconocido\" cuando la información del "
+"Se muestra correctamente «Artista desconocido» cuando la información del "
 "artista no está disponible"
 
-#: data/sound.appdata.xml.in:16
+#: data/sound.appdata.xml.in:12
+msgid "Performance improvements"
+msgstr "Mejoras de rendimiento"
+
+#: data/sound.appdata.xml.in:13 data/sound.appdata.xml.in:18
 msgid "Updated translations"
 msgstr "Traducciones actualizadas"
 
-#: data/sound.appdata.xml.in:25
+#: data/sound.appdata.xml.in:27
 msgid "elementary, Inc."
 msgstr "elementary, Inc."

@@ -6,9 +6,11 @@
   <name>Sound Indicator</name>
   <summary>Adjust speaker and microphone volume or see Now Playing information and media controls</summary>
   <releases>
-    <release version="2.1.5" date="2019-12-15" urgency="medium">
+    <release version="2.1.5" date="2020-04-02" urgency="medium">
       <description>
         <p>Correctly show "Unknown Artist" when artist info isn't available</p>
+        <p>Performance improvements</p>
+        <p>Updated translations</p>
       </description>
     </release>
     <release version="2.1.4" date="2019-11-25" urgency="medium">

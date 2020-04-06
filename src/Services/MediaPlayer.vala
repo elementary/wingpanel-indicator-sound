@@ -27,7 +27,20 @@ public interface Sound.Services.MediaPlayer : Object {
     public abstract void previous () throws GLib.Error;
     public abstract void fast_forward () throws GLib.Error;
     public abstract void rewind () throws GLib.Error;
-    public abstract string name { public owned get; }
-    public abstract string status { public owned get; }
-    public abstract HashTable<string,Variant> track { public owned get; }
+
+    public abstract string name { owned get; }
+    [DBus (name = "Type")]
+    public abstract string _type { owned get; }
+    public abstract string subtype { owned get; }
+    public abstract uint position { get; }
+    public abstract string status { owned get; }
+    public abstract string equalizer { owned get; set; }
+    public abstract string repeat { owned get; set; }
+    public abstract string shuffle { owned get; set; }
+    public abstract string scan { owned get; set; }
+    public abstract HashTable<string,Variant> track { owned get; }
+    public abstract GLib.ObjectPath device { owned get; }
+    public abstract bool browsable { get; }
+    public abstract bool searchable { get; }
+    public abstract GLib.ObjectPath playlist { owned get; }
 }

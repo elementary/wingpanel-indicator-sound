@@ -38,7 +38,6 @@ shared_module(
     'src/Services/MprisClient.vala',
     'src/Services/Volume-control.vala',
     'src/Services/Manager.vala',
-    'src/Services/Adapter.vala',
     'src/Services/Device.vala',
     'src/Services/MediaPlayer.vala',
     asresources,

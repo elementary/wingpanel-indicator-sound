@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wingpanel-indicator-sound\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-15 20:29+0000\n"
+"POT-Creation-Date: 2020-03-29 19:30+0000\n"
 "PO-Revision-Date: 2016-05-24 20:21+0000\n"
 "Last-Translator: yavinfour <anjelo.passionist@gmail.com>\n"
 "Language-Team: Tagalog <tl@li.org>\n"
@@ -30,15 +30,15 @@ msgstr "Ang sound indicator"
 msgid "Sound Settings…"
 msgstr "Setting ng Tunog..."
 
-#: src/Widgets/MprisGui.vala:29
+#: src/Widgets/MprisGui.vala:28
 msgid "Not currently playing"
 msgstr "Hindi nagpapatugtog"
 
-#: src/Widgets/MprisGui.vala:44
+#: src/Widgets/MprisGui.vala:43
 msgid "Music player"
 msgstr "Tagapatugtog ng Musika"
 
-#: src/Widgets/MprisGui.vala:552
+#: src/Widgets/MprisGui.vala:531
 #, fuzzy
 msgid "Unknown Artist"
 msgstr "Hindi Kilalang Pamagat"

@@ -7,11 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wingpanel-indicator-sound\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-15 20:29+0000\n"
+"POT-Creation-Date: 2020-03-29 19:30+0000\n"
 "PO-Revision-Date: 2017-05-04 20:05+0000\n"
 "Last-Translator: Rokar <rokartv10@gmail.com>\n"
-"Language-Team: ku (generated) <https://l10n.elementary.io/projects/wingpanel/"
-"wingpanel-indicator-sound/ku/>\n"
+"Language-Team: ku (generated) <https://l10n.elementary.io/projects/wingpanel/wingpanel-indicator-sound/ku/>\n"
 "Language: ku\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,15 +31,15 @@ msgstr "we nîşane deng"
 msgid "Sound Settings…"
 msgstr "deste dengî…"
 
-#: src/Widgets/MprisGui.vala:29
+#: src/Widgets/MprisGui.vala:28
 msgid "Not currently playing"
 msgstr "niha na Lêderê"
 
-#: src/Widgets/MprisGui.vala:44
+#: src/Widgets/MprisGui.vala:43
 msgid "Music player"
 msgstr "Lêderê Mûzîkê"
 
-#: src/Widgets/MprisGui.vala:552
+#: src/Widgets/MprisGui.vala:531
 #, fuzzy
 msgid "Unknown Artist"
 msgstr "Navê nenas"

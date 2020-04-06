@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-15 20:29+0000\n"
-"PO-Revision-Date: 2019-12-17 19:17+0000\n"
+"POT-Creation-Date: 2020-04-03 18:41+0000\n"
+"PO-Revision-Date: 2020-03-31 14:09+0000\n"
 "Last-Translator: David M <rbndavid@gmail.com>\n"
 "Language-Team: Catalan <https://l10n.elementary.io/projects/wingpanel/"
 "indicator-sound-extra/ca/>\n"
@@ -37,10 +37,14 @@ msgstr ""
 "Es mostra correctament \"Artista desconegut\" quan la informació de "
 "l'artista no estigui disponible."
 
-#: data/sound.appdata.xml.in:16
+#: data/sound.appdata.xml.in:12
+msgid "Performance improvements"
+msgstr "Millores de rendiment"
+
+#: data/sound.appdata.xml.in:13 data/sound.appdata.xml.in:18
 msgid "Updated translations"
 msgstr "Traduccions actualitzades"
 
-#: data/sound.appdata.xml.in:25
+#: data/sound.appdata.xml.in:27
 msgid "elementary, Inc."
 msgstr "elementary, Inc."
