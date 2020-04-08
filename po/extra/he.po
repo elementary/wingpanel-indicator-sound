@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-04-03 18:41+0000\n"
-"PO-Revision-Date: 2020-03-26 22:09+0000\n"
+"PO-Revision-Date: 2020-04-08 21:10+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://l10n.elementary.io/projects/wingpanel/"
 "indicator-sound-extra/he/>\n"
@@ -37,7 +37,7 @@ msgstr "הצגת „אמן לא ידוע” בצורה נכונה אם אין מ
 
 #: data/sound.appdata.xml.in:12
 msgid "Performance improvements"
-msgstr ""
+msgstr "שיפורי ביצועים"
 
 #: data/sound.appdata.xml.in:13 data/sound.appdata.xml.in:18
 msgid "Updated translations"
