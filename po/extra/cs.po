@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-04-03 18:41+0000\n"
-"PO-Revision-Date: 2020-05-29 15:11+0000\n"
+"PO-Revision-Date: 2020-06-07 20:11+0000\n"
 "Last-Translator: p-bo <pavel.borecki@gmail.com>\n"
 "Language-Team: Czech <https://l10n.elementary.io/projects/wingpanel/"
 "indicator-sound-extra/cs/>\n"
@@ -39,7 +39,7 @@ msgstr ""
 
 #: data/sound.appdata.xml.in:12
 msgid "Performance improvements"
-msgstr "Vylepšení výkonnosti"
+msgstr "Vylepšení odezvy"
 
 #: data/sound.appdata.xml.in:13 data/sound.appdata.xml.in:18
 msgid "Updated translations"
