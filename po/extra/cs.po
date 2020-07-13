@@ -8,37 +8,43 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-04-03 18:41+0000\n"
-"PO-Revision-Date: 2019-11-07 11:39-0800\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2020-06-07 20:11+0000\n"
+"Last-Translator: p-bo <pavel.borecki@gmail.com>\n"
+"Language-Team: Czech <https://l10n.elementary.io/projects/wingpanel/"
+"indicator-sound-extra/cs/>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ASCII\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Weblate 3.9.1\n"
 
 #: data/sound.appdata.xml.in:6
 msgid "Sound Indicator"
-msgstr ""
+msgstr "Indikátor pro zvuk"
 
 #: data/sound.appdata.xml.in:7
 msgid ""
 "Adjust speaker and microphone volume or see Now Playing information and "
 "media controls"
 msgstr ""
+"Úprava hlasitosti reprodukce zvuku a zesílení mikrofonu. Dále zobrazení "
+"informace o právě přehrávané skladbě a ovládacích prvků přehrávání"
 
 #: data/sound.appdata.xml.in:11
 msgid "Correctly show \"Unknown Artist\" when artist info isn't available"
 msgstr ""
+"Pokud není k dispozici informace dílo kterého umělce je právě přehráváno, "
+"správně zobrazit „Neznámý umělec“"
 
 #: data/sound.appdata.xml.in:12
 msgid "Performance improvements"
-msgstr ""
+msgstr "Vylepšení odezvy"
 
 #: data/sound.appdata.xml.in:13 data/sound.appdata.xml.in:18
 msgid "Updated translations"
-msgstr ""
+msgstr "Aktualizovány překlady"
 
 #: data/sound.appdata.xml.in:27
 msgid "elementary, Inc."
-msgstr ""
+msgstr "elementary, Inc."
