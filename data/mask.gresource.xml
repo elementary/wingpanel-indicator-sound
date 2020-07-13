@@ -30,5 +30,4 @@
     <file alias="48x48/status/audio-input-microphone-symbolic.svg" compressed="true" preprocess="xml-stripblanks">48/audio-input-microphone-symbolic.svg</file>
     <file alias="48x48/status/microphone-sensitivity-muted-symbolic.svg" compressed="true" preprocess="xml-stripblanks">48/microphone-sensitivity-muted-symbolic.svg</file>
   </gresource>
-  </gresource>
 </gresources>
