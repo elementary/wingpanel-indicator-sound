@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sound-indicator\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-03 18:41+0000\n"
+"POT-Creation-Date: 2020-07-14 15:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,15 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/Indicator.vala:47
-msgid "Indicator Sound"
-msgstr ""
-
-#: src/Indicator.vala:48
-msgid "The sound indicator"
-msgstr ""
-
-#: src/Indicator.vala:347
+#: src/Indicator.vala:346
 msgid "Sound Settings…"
 msgstr ""
 
