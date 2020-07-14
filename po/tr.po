@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wingpanel-indicator-sound\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-29 19:30+0000\n"
+"POT-Creation-Date: 2020-07-14 15:48+0000\n"
 "PO-Revision-Date: 2019-12-17 19:17+0000\n"
 "Last-Translator: Ozgur Baskin <bebeto_baskin@yahoo.com>\n"
 "Language-Team: Turkish <https://l10n.elementary.io/projects/wingpanel/wingpanel-indicator-sound/tr/>\n"
@@ -20,15 +20,7 @@ msgstr ""
 "X-Generator: Weblate 3.9.1\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 
-#: src/Indicator.vala:47
-msgid "Indicator Sound"
-msgstr "Ses Göstergesi"
-
-#: src/Indicator.vala:48
-msgid "The sound indicator"
-msgstr "Ses göstergesi"
-
-#: src/Indicator.vala:347
+#: src/Indicator.vala:346
 msgid "Sound Settings…"
 msgstr "Ses Ayarları…"
 
@@ -43,6 +35,12 @@ msgstr "Müzik çalar"
 #: src/Widgets/MprisGui.vala:531
 msgid "Unknown Artist"
 msgstr "Bilinmeyen Sanatçı"
+
+#~ msgid "Indicator Sound"
+#~ msgstr "Ses Göstergesi"
+
+#~ msgid "The sound indicator"
+#~ msgstr "Ses göstergesi"
 
 #~ msgid "by "
 #~ msgstr "üretici "

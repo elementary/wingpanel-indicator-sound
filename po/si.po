@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-29 19:30+0000\n"
+"POT-Creation-Date: 2020-07-14 15:48+0000\n"
 "PO-Revision-Date: 2018-06-10 00:14+0000\n"
 "Last-Translator: Gamunu Balagalla <gamunu.balagalla@gmail.com>\n"
 "Language-Team: Sinhala <https://weblate.elementary.io/projects/wingpanel/wingpanel-indicator-sound/si/>\n"
@@ -14,15 +14,7 @@ msgstr ""
 "X-Generator: Weblate 2.18\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 
-#: src/Indicator.vala:47
-msgid "Indicator Sound"
-msgstr "ශබ්ද දර්ශකය"
-
-#: src/Indicator.vala:48
-msgid "The sound indicator"
-msgstr "ශබ්ද දර්ශකය"
-
-#: src/Indicator.vala:347
+#: src/Indicator.vala:346
 msgid "Sound Settings…"
 msgstr "ශබ්ද සකස් කිරීම…"
 
@@ -38,6 +30,12 @@ msgstr "සංගීත සන්දර්ශකය"
 #, fuzzy
 msgid "Unknown Artist"
 msgstr "නොදන්නා මාතෘකාවක්"
+
+#~ msgid "Indicator Sound"
+#~ msgstr "ශබ්ද දර්ශකය"
+
+#~ msgid "The sound indicator"
+#~ msgstr "ශබ්ද දර්ශකය"
 
 #~ msgid "by "
 #~ msgstr "විසින් "

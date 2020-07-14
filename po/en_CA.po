@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-29 19:30+0000\n"
+"POT-Creation-Date: 2020-07-14 15:48+0000\n"
 "PO-Revision-Date: 2016-03-19 19:21+0000\n"
 "Last-Translator: chilledfrogs <Unknown>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -13,15 +13,7 @@ msgstr ""
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 "X-Generator: Launchpad (build 18335)\n"
 
-#: src/Indicator.vala:47
-msgid "Indicator Sound"
-msgstr "Indicator Sound"
-
-#: src/Indicator.vala:48
-msgid "The sound indicator"
-msgstr "The sound indicator"
-
-#: src/Indicator.vala:347
+#: src/Indicator.vala:346
 msgid "Sound Settings…"
 msgstr "Sound Settings…"
 
@@ -37,6 +29,12 @@ msgstr "Music player"
 #, fuzzy
 msgid "Unknown Artist"
 msgstr "Unknown Title"
+
+#~ msgid "Indicator Sound"
+#~ msgstr "Indicator Sound"
+
+#~ msgid "The sound indicator"
+#~ msgstr "The sound indicator"
 
 #~ msgid "by "
 #~ msgstr "by "

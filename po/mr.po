@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-29 19:30+0000\n"
+"POT-Creation-Date: 2020-07-14 15:48+0000\n"
 "PO-Revision-Date: 2019-12-17 19:17+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
 "Language-Team: Marathi <https://l10n.elementary.io/projects/wingpanel/wingpanel-indicator-sound/mr/>\n"
@@ -15,15 +15,7 @@ msgstr ""
 "X-Generator: Weblate 3.9.1\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 
-#: src/Indicator.vala:47
-msgid "Indicator Sound"
-msgstr "दर्शक ध्वनी"
-
-#: src/Indicator.vala:48
-msgid "The sound indicator"
-msgstr "आवाज सूचक"
-
-#: src/Indicator.vala:347
+#: src/Indicator.vala:346
 msgid "Sound Settings…"
 msgstr "आवाजाच्या सॆटींग्स…"
 
@@ -38,6 +30,12 @@ msgstr "संगीतपटू"
 #: src/Widgets/MprisGui.vala:531
 msgid "Unknown Artist"
 msgstr "अज्ञात कलाकार"
+
+#~ msgid "Indicator Sound"
+#~ msgstr "दर्शक ध्वनी"
+
+#~ msgid "The sound indicator"
+#~ msgstr "आवाज सूचक"
 
 #~ msgid "by "
 #~ msgstr "कडून "

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-29 19:30+0000\n"
+"POT-Creation-Date: 2020-07-14 15:48+0000\n"
 "PO-Revision-Date: 2018-10-28 19:11+0000\n"
 "Last-Translator: Jesse ALTER <jesse@jessealter.com>\n"
 "Language-Team: Esperanto <https://weblate.elementary.io/projects/wingpanel/wingpanel-indicator-sound/eo/>\n"
@@ -15,15 +15,7 @@ msgstr ""
 "X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 
-#: src/Indicator.vala:47
-msgid "Indicator Sound"
-msgstr "Sonindikilo"
-
-#: src/Indicator.vala:48
-msgid "The sound indicator"
-msgstr "La sonindikilo"
-
-#: src/Indicator.vala:347
+#: src/Indicator.vala:346
 msgid "Sound Settings…"
 msgstr "Agordoj de sono…"
 
@@ -39,6 +31,12 @@ msgstr "Muzikludilo"
 #, fuzzy
 msgid "Unknown Artist"
 msgstr "Nekonata titolo"
+
+#~ msgid "Indicator Sound"
+#~ msgstr "Sonindikilo"
+
+#~ msgid "The sound indicator"
+#~ msgstr "La sonindikilo"
 
 #~ msgid "by "
 #~ msgstr "de "

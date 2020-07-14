@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-29 19:30+0000\n"
+"POT-Creation-Date: 2020-07-14 15:48+0000\n"
 "PO-Revision-Date: 2020-02-22 19:08+0000\n"
 "Last-Translator: gkkulik <g.kulik@o2.pl>\n"
 "Language-Team: Silesian <https://l10n.elementary.io/projects/wingpanel/wingpanel-indicator-sound/szl/>\n"
@@ -13,15 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-#: src/Indicator.vala:47
-msgid "Indicator Sound"
-msgstr "Klang skaźnika"
-
-#: src/Indicator.vala:48
-msgid "The sound indicator"
-msgstr "Skaźnik źwiynku"
-
-#: src/Indicator.vala:347
+#: src/Indicator.vala:346
 msgid "Sound Settings…"
 msgstr "Sztelōnki źwiynku…"
 
@@ -36,3 +28,9 @@ msgstr "Ôdgrowocz muzyki"
 #: src/Widgets/MprisGui.vala:531
 msgid "Unknown Artist"
 msgstr "Niyznōmy artysta"
+
+#~ msgid "Indicator Sound"
+#~ msgstr "Klang skaźnika"
+
+#~ msgid "The sound indicator"
+#~ msgstr "Skaźnik źwiynku"

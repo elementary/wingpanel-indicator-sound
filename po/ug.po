@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wingpanel-indicator-sound\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-29 19:30+0000\n"
+"POT-Creation-Date: 2020-07-14 15:48+0000\n"
 "PO-Revision-Date: 2016-12-07 09:50+0000\n"
 "Last-Translator: ablimet <Unknown>\n"
 "Language-Team: Uyghur <ug@li.org>\n"
@@ -18,15 +18,7 @@ msgstr ""
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 "X-Generator: Launchpad (build 18335)\n"
 
-#: src/Indicator.vala:47
-msgid "Indicator Sound"
-msgstr "كۆرسەتكۈچ ئاۋازى"
-
-#: src/Indicator.vala:48
-msgid "The sound indicator"
-msgstr "ئاۋاز كۆرسەتكۈچى"
-
-#: src/Indicator.vala:347
+#: src/Indicator.vala:346
 msgid "Sound Settings…"
 msgstr "ئاۋاز تەڭشىكى…"
 
@@ -42,6 +34,12 @@ msgstr "مۇزىكا قويغۇچ"
 #, fuzzy
 msgid "Unknown Artist"
 msgstr "نامەلۇم كۈي"
+
+#~ msgid "Indicator Sound"
+#~ msgstr "كۆرسەتكۈچ ئاۋازى"
+
+#~ msgid "The sound indicator"
+#~ msgstr "ئاۋاز كۆرسەتكۈچى"
 
 #~ msgid "by "
 #~ msgstr "ئارىلىق "

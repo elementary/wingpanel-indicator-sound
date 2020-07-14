@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wingpanel-indicator-sound\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-29 19:30+0000\n"
+"POT-Creation-Date: 2020-07-14 15:48+0000\n"
 "PO-Revision-Date: 2015-09-22 17:46+0000\n"
 "Last-Translator: Kristjan Vool <tictac7x@gmail.com>\n"
 "Language-Team: Estonian <et@li.org>\n"
@@ -18,15 +18,7 @@ msgstr ""
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 "X-Generator: Launchpad (build 18335)\n"
 
-#: src/Indicator.vala:47
-msgid "Indicator Sound"
-msgstr "Heliindikaator"
-
-#: src/Indicator.vala:48
-msgid "The sound indicator"
-msgstr "Heli indikaator"
-
-#: src/Indicator.vala:347
+#: src/Indicator.vala:346
 msgid "Sound Settings…"
 msgstr "Heliseaded…"
 
@@ -42,6 +34,12 @@ msgstr "Muusika mängija"
 #, fuzzy
 msgid "Unknown Artist"
 msgstr "Tundmatu pealkiri"
+
+#~ msgid "Indicator Sound"
+#~ msgstr "Heliindikaator"
+
+#~ msgid "The sound indicator"
+#~ msgstr "Heli indikaator"
 
 #~ msgid "by "
 #~ msgstr "autorilt "

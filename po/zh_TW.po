@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wingpanel-indicator-sound\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-29 19:30+0000\n"
+"POT-Creation-Date: 2020-07-14 15:48+0000\n"
 "PO-Revision-Date: 2018-02-09 00:12+0000\n"
 "Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://weblate.elementary.io/projects/wingpanel/wingpanel-indicator-sound/zh_TW/>\n"
@@ -19,15 +19,7 @@ msgstr ""
 "X-Generator: Weblate 2.18\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 
-#: src/Indicator.vala:47
-msgid "Indicator Sound"
-msgstr "指示器音效"
-
-#: src/Indicator.vala:48
-msgid "The sound indicator"
-msgstr "音效指示器"
-
-#: src/Indicator.vala:347
+#: src/Indicator.vala:346
 msgid "Sound Settings…"
 msgstr "音效設定值…"
 
@@ -43,6 +35,12 @@ msgstr "音樂播放器"
 #, fuzzy
 msgid "Unknown Artist"
 msgstr "未知曲名"
+
+#~ msgid "Indicator Sound"
+#~ msgstr "指示器音效"
+
+#~ msgid "The sound indicator"
+#~ msgstr "音效指示器"
 
 #~ msgid "by "
 #~ msgstr "來自 "

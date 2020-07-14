@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-29 19:30+0000\n"
+"POT-Creation-Date: 2020-07-14 15:48+0000\n"
 "PO-Revision-Date: 2017-01-06 08:17+0000\n"
 "Last-Translator: Мирослав Николић <miroslavnikolic@rocketmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -13,15 +13,7 @@ msgstr ""
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 "X-Generator: Launchpad (build 18335)\n"
 
-#: src/Indicator.vala:47
-msgid "Indicator Sound"
-msgstr "Указивач звука"
-
-#: src/Indicator.vala:48
-msgid "The sound indicator"
-msgstr "Указивач за звук"
-
-#: src/Indicator.vala:347
+#: src/Indicator.vala:346
 msgid "Sound Settings…"
 msgstr "Подешавања звука…"
 
@@ -37,6 +29,12 @@ msgstr "Програм за пуштање музике"
 #, fuzzy
 msgid "Unknown Artist"
 msgstr "Непознат наслов"
+
+#~ msgid "Indicator Sound"
+#~ msgstr "Указивач звука"
+
+#~ msgid "The sound indicator"
+#~ msgstr "Указивач за звук"
 
 #~ msgid "by "
 #~ msgstr "од "

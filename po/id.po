@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-29 19:30+0000\n"
+"POT-Creation-Date: 2020-07-14 15:48+0000\n"
 "PO-Revision-Date: 2017-07-06 07:54+0000\n"
 "Last-Translator: Kukuh Syafaat <syafaatkukuh@gmail.com>\n"
 "Language-Team: Indonesian <https://l10n.elementary.io/projects/wingpanel/wingpanel-indicator-sound/id/>\n"
@@ -14,15 +14,7 @@ msgstr ""
 "X-Generator: Weblate 2.14\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 
-#: src/Indicator.vala:47
-msgid "Indicator Sound"
-msgstr "Indikator Suara"
-
-#: src/Indicator.vala:48
-msgid "The sound indicator"
-msgstr "Indikator suara"
-
-#: src/Indicator.vala:347
+#: src/Indicator.vala:346
 msgid "Sound Settings…"
 msgstr "Pengaturan Suara…"
 
@@ -38,6 +30,12 @@ msgstr "Pemutar musik"
 #, fuzzy
 msgid "Unknown Artist"
 msgstr "Judul Tidak Diketahui"
+
+#~ msgid "Indicator Sound"
+#~ msgstr "Indikator Suara"
+
+#~ msgid "The sound indicator"
+#~ msgstr "Indikator suara"
 
 #~ msgid "by "
 #~ msgstr "oleh "
