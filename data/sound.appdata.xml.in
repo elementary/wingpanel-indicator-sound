@@ -5,6 +5,7 @@
   <extends>io.elementary.wingpanel</extends>
   <name>Sound Indicator</name>
   <summary>Adjust speaker and microphone volume or see Now Playing information and media controls</summary>
+  <icon type="stock">preferences-desktop-sound</icon>
   <releases>
     <release version="2.1.5" date="2020-04-02" urgency="medium">
       <description>
