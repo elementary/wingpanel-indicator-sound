@@ -23,6 +23,8 @@ public class Sound.Indicator : Wingpanel.Indicator {
     private Gtk.Grid main_grid;
     private Widgets.MprisWidget mpris;
     private Widgets.Scale volume_scale;
+    private Gtk.ListBox output_list;
+    private Gtk.ScrolledWindow scrolled_box;
     private Widgets.Scale mic_scale;
     private Wingpanel.Widgets.Separator mic_separator;
     private Notify.Notification? notification;
@@ -35,6 +37,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
     private double max_volume = 1.0;
     private const double VOLUME_STEP_PERCENTAGE = 0.06;
 
+    private unowned PulseAudioManager pam;
     private unowned Canberra.Context? ca_context = null;
 
     /* Smooth scrolling support */
@@ -68,6 +71,20 @@ public class Sound.Indicator : Wingpanel.Indicator {
         volume_control.notify["micMute"].connect (on_mic_mute_change);
         volume_control.notify["is-playing"].connect (on_is_playing_change);
         volume_control.notify["is-listening"].connect (update_mic_visibility);
+
+        output_list = new Gtk.ListBox ();
+        output_list.show_all ();
+
+        scrolled_box = new Gtk.ScrolledWindow (null, null);
+        scrolled_box.hscrollbar_policy = Gtk.PolicyType.NEVER;
+        scrolled_box.max_content_height = 256;
+        scrolled_box.propagate_natural_height = true;
+        scrolled_box.add (output_list);
+
+        pam = PulseAudioManager.get_default ();
+        pam.new_device.connect (add_device);
+        pam.notify["default-output"].connect (default_changed);
+        pam.start ();
 
         Notify.init ("wingpanel-indicator-sound");
 
@@ -112,6 +129,48 @@ public class Sound.Indicator : Wingpanel.Indicator {
         if (notify_timeout_id > 0) {
             Source.remove (notify_timeout_id);
         }
+    }
+
+    private void add_device (Device device) {
+        if (device.input) {
+            return;
+        }
+
+        Gtk.ListBoxRow? row = output_list.get_row_at_index (0);
+        var output_device = new OutputDeviceItem (device.display_name, device.is_default, device.form_factor, row);
+        output_list.add (output_device);
+        output_list.show_all ();
+        show_hide_output_list ();
+
+        output_device.activated.connect(() => {
+            pam.set_default_device.begin (device);
+        });
+
+        device.removed.connect (() => {
+            output_list.remove (output_device);
+            output_list.show_all ();
+            show_hide_output_list ();
+        });
+
+        device.defaulted.connect (() => {
+            output_device.set_default ();
+        });
+    }
+
+    private void show_hide_output_list () {
+        if (output_list.get_children ().length () <= 1) {
+            scrolled_box.visible = false;
+            scrolled_box.no_show_all = true;
+            scrolled_box.hide ();
+        } else {
+            scrolled_box.visible = true;
+            scrolled_box.no_show_all = false;
+            scrolled_box.show ();
+        }
+    }
+
+    private void default_changed () {
+        pam.default_output.defaulted ();
     }
 
     private void set_max_volume () {
@@ -309,6 +368,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
             set_max_volume ();
 
             main_grid.attach (volume_scale, 0, position++, 1, 1);
+            main_grid.attach (scrolled_box, 0, position++, 1, 1);
             main_grid.attach (new Wingpanel.Widgets.Separator (), 0, position++, 1, 1);
 
             mic_scale.margin_start = 6;
