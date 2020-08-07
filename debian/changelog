@@ -1,3 +1,16 @@
+wingpanel-indicator-sound (2.1.6) bionic; urgency=medium
+
+  * Release 2.1.6 (#155)
+  * Appdata: Add icon (#153)
+  * Update translation files
+  * Update translation template
+  * Indicator: Remove deprecated display_name and description (#152)
+  * MprisWidget: Update default player on open (#150)
+  * Update translation files
+  * Update translation template
+
+ -- elementary LLC <builds@elementary.io>  Fri, 07 Aug 2020 18:10:14 +0000
+
 wingpanel-indicator-sound (2.1.5) bionic; urgency=medium
 
   * Release 2.1.5 (#144)
