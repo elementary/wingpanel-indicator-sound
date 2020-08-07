@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-03 18:41+0000\n"
+"POT-Creation-Date: 2020-08-07 18:09+0000\n"
 "PO-Revision-Date: 2020-05-27 17:11+0000\n"
 "Last-Translator: Rantyrant <diseasemonger@gmail.com>\n"
 "Language-Team: Danish <https://l10n.elementary.io/projects/wingpanel/"
@@ -31,18 +31,23 @@ msgstr ""
 "Juster højttaler- og mikrofonvolumen eller se Nu Afspilller information og "
 "mediekontroller"
 
-#: data/sound.appdata.xml.in:11
-msgid "Correctly show \"Unknown Artist\" when artist info isn't available"
-msgstr "Vis korrekt \"Ukendt kunstner\", når kunstnerinfo ikke er tilgængelig"
-
 #: data/sound.appdata.xml.in:12
-msgid "Performance improvements"
-msgstr "Ydelsesforbedringer"
+msgid "Update default music player when changed"
+msgstr ""
 
-#: data/sound.appdata.xml.in:13 data/sound.appdata.xml.in:18
+#: data/sound.appdata.xml.in:13 data/sound.appdata.xml.in:20
+#: data/sound.appdata.xml.in:25
 msgid "Updated translations"
 msgstr "Opdaterede oversættelser"
 
-#: data/sound.appdata.xml.in:27
+#: data/sound.appdata.xml.in:18
+msgid "Correctly show \"Unknown Artist\" when artist info isn't available"
+msgstr "Vis korrekt \"Ukendt kunstner\", når kunstnerinfo ikke er tilgængelig"
+
+#: data/sound.appdata.xml.in:19
+msgid "Performance improvements"
+msgstr "Ydelsesforbedringer"
+
+#: data/sound.appdata.xml.in:34
 msgid "elementary, Inc."
 msgstr "elementary, Inc."

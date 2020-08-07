@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-03 18:41+0000\n"
+"POT-Creation-Date: 2020-08-07 18:09+0000\n"
 "PO-Revision-Date: 2020-04-06 15:10+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
 "Language-Team: Marathi <https://l10n.elementary.io/projects/wingpanel/"
@@ -31,18 +31,23 @@ msgstr ""
 "स्पीकर आणि मायक्रोफोन व्हॉल्यूम समायोजित करा किंवा आता प्ले होत असणाऱ्यांची माहिती आणि "
 "मीडिया नियंत्रणे पहा"
 
-#: data/sound.appdata.xml.in:11
-msgid "Correctly show \"Unknown Artist\" when artist info isn't available"
-msgstr "कलाकारांची माहिती उपलब्ध नसते तेव्हा \"अज्ञात कलाकार\" योग्यरित्या दर्शवा"
-
 #: data/sound.appdata.xml.in:12
-msgid "Performance improvements"
-msgstr "कामगिरी सुधारणा"
+msgid "Update default music player when changed"
+msgstr ""
 
-#: data/sound.appdata.xml.in:13 data/sound.appdata.xml.in:18
+#: data/sound.appdata.xml.in:13 data/sound.appdata.xml.in:20
+#: data/sound.appdata.xml.in:25
 msgid "Updated translations"
 msgstr "अद्ययावत भाषांतर"
 
-#: data/sound.appdata.xml.in:27
+#: data/sound.appdata.xml.in:18
+msgid "Correctly show \"Unknown Artist\" when artist info isn't available"
+msgstr "कलाकारांची माहिती उपलब्ध नसते तेव्हा \"अज्ञात कलाकार\" योग्यरित्या दर्शवा"
+
+#: data/sound.appdata.xml.in:19
+msgid "Performance improvements"
+msgstr "कामगिरी सुधारणा"
+
+#: data/sound.appdata.xml.in:34
 msgid "elementary, Inc."
 msgstr "एलिमेंटरी, Inc."

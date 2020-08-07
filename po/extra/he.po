@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-03 18:41+0000\n"
+"POT-Creation-Date: 2020-08-07 18:09+0000\n"
 "PO-Revision-Date: 2020-04-08 21:10+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://l10n.elementary.io/projects/wingpanel/"
@@ -31,18 +31,23 @@ msgstr ""
 "כוונון עצמת הרמקולים והמיקרופון או הצגת הפרטים על מה שמתנגן לרבות האפשרות "
 "לפקד על המדיה"
 
-#: data/sound.appdata.xml.in:11
-msgid "Correctly show \"Unknown Artist\" when artist info isn't available"
-msgstr "הצגת „אמן לא ידוע” בצורה נכונה אם אין מידע על האמן"
-
 #: data/sound.appdata.xml.in:12
-msgid "Performance improvements"
-msgstr "שיפורי ביצועים"
+msgid "Update default music player when changed"
+msgstr ""
 
-#: data/sound.appdata.xml.in:13 data/sound.appdata.xml.in:18
+#: data/sound.appdata.xml.in:13 data/sound.appdata.xml.in:20
+#: data/sound.appdata.xml.in:25
 msgid "Updated translations"
 msgstr "התרגומים עודכנו"
 
-#: data/sound.appdata.xml.in:27
+#: data/sound.appdata.xml.in:18
+msgid "Correctly show \"Unknown Artist\" when artist info isn't available"
+msgstr "הצגת „אמן לא ידוע” בצורה נכונה אם אין מידע על האמן"
+
+#: data/sound.appdata.xml.in:19
+msgid "Performance improvements"
+msgstr "שיפורי ביצועים"
+
+#: data/sound.appdata.xml.in:34
 msgid "elementary, Inc."
 msgstr "elementary בע״מ."

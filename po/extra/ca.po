@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-03 18:41+0000\n"
+"POT-Creation-Date: 2020-08-07 18:09+0000\n"
 "PO-Revision-Date: 2020-03-31 14:09+0000\n"
 "Last-Translator: David M <rbndavid@gmail.com>\n"
 "Language-Team: Catalan <https://l10n.elementary.io/projects/wingpanel/"
@@ -31,20 +31,25 @@ msgstr ""
 "Ajusteu el volum de l'altaveu i el micròfon o vegeu la informació del que es "
 "reprodueix i els controls."
 
-#: data/sound.appdata.xml.in:11
+#: data/sound.appdata.xml.in:12
+msgid "Update default music player when changed"
+msgstr ""
+
+#: data/sound.appdata.xml.in:13 data/sound.appdata.xml.in:20
+#: data/sound.appdata.xml.in:25
+msgid "Updated translations"
+msgstr "Traduccions actualitzades"
+
+#: data/sound.appdata.xml.in:18
 msgid "Correctly show \"Unknown Artist\" when artist info isn't available"
 msgstr ""
 "Es mostra correctament \"Artista desconegut\" quan la informació de "
 "l'artista no estigui disponible."
 
-#: data/sound.appdata.xml.in:12
+#: data/sound.appdata.xml.in:19
 msgid "Performance improvements"
 msgstr "Millores de rendiment"
 
-#: data/sound.appdata.xml.in:13 data/sound.appdata.xml.in:18
-msgid "Updated translations"
-msgstr "Traduccions actualitzades"
-
-#: data/sound.appdata.xml.in:27
+#: data/sound.appdata.xml.in:34
 msgid "elementary, Inc."
 msgstr "elementary, Inc."

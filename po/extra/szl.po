@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-03 18:41+0000\n"
+"POT-Creation-Date: 2020-08-07 18:09+0000\n"
 "PO-Revision-Date: 2020-06-12 22:11+0000\n"
 "Last-Translator: Grzegorz Kulik <g.kulik@o2.pl>\n"
 "Language-Team: Silesian <https://l10n.elementary.io/projects/wingpanel/"
@@ -32,19 +32,24 @@ msgstr ""
 "Szteluj głośność głośnika i mikrofōnu abo wejzdrzij na informacyjo ô tym, co "
 "prawie gro, i na kōntrolki mediōw"
 
-#: data/sound.appdata.xml.in:11
+#: data/sound.appdata.xml.in:12
+msgid "Update default music player when changed"
+msgstr ""
+
+#: data/sound.appdata.xml.in:13 data/sound.appdata.xml.in:20
+#: data/sound.appdata.xml.in:25
+msgid "Updated translations"
+msgstr "Zaktualizowane przekłady"
+
+#: data/sound.appdata.xml.in:18
 msgid "Correctly show \"Unknown Artist\" when artist info isn't available"
 msgstr ""
 "Akuratnie pokazuje „Niyznōmy Artysta”, jak brakuje informacyje ô artyście"
 
-#: data/sound.appdata.xml.in:12
+#: data/sound.appdata.xml.in:19
 msgid "Performance improvements"
 msgstr "Ulepszōno wartkość"
 
-#: data/sound.appdata.xml.in:13 data/sound.appdata.xml.in:18
-msgid "Updated translations"
-msgstr "Zaktualizowane przekłady"
-
-#: data/sound.appdata.xml.in:27
+#: data/sound.appdata.xml.in:34
 msgid "elementary, Inc."
 msgstr "elementary, Inc."
