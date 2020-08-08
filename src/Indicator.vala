@@ -137,12 +137,12 @@ public class Sound.Indicator : Wingpanel.Indicator {
         }
 
         Gtk.ListBoxRow? row = output_list.get_row_at_index (0);
-        var output_device = new OutputDeviceItem (device.display_name, device.is_default, device.form_factor, row);
+        var output_device = new OutputDeviceItem (device.display_name, device.is_default, device.get_nice_icon (), row);
         output_list.add (output_device);
         output_list.show_all ();
         show_hide_output_list ();
 
-        output_device.activated.connect(() => {
+        output_device.activated.connect (() => {
             pam.set_default_device.begin (device);
         });
 

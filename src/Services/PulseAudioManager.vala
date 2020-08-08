@@ -793,4 +793,3 @@ public class Sound.PulseAudioManager : GLib.Object {
         return (PulseAudio.Volume)tmp + PulseAudio.Volume.MUTED;
     }
 }
-
