@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-08-07 18:09+0000\n"
-"PO-Revision-Date: 2020-03-31 14:09+0000\n"
+"PO-Revision-Date: 2020-08-11 12:13+0000\n"
 "Last-Translator: Nathan <bonnemainsnathan@gmail.com>\n"
 "Language-Team: French <https://l10n.elementary.io/projects/wingpanel/"
 "indicator-sound-extra/fr/>\n"
@@ -34,6 +34,7 @@ msgstr ""
 #: data/sound.appdata.xml.in:12
 msgid "Update default music player when changed"
 msgstr ""
+"Mise à jour du lecteur de musique par défaut lorsque celui-ci est modifié"
 
 #: data/sound.appdata.xml.in:13 data/sound.appdata.xml.in:20
 #: data/sound.appdata.xml.in:25
