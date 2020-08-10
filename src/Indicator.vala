@@ -312,7 +312,6 @@ public class Sound.Indicator : Wingpanel.Indicator {
             set_max_volume ();
 
             main_grid.attach (volume_scale, 0, position++, 1, 1);
-            main_grid.attach (new Wingpanel.Widgets.Separator (), 0, position++, 1, 1);
             main_grid.attach (output_device_manager, 0, position++, 1, 1);
             main_grid.attach (new Wingpanel.Widgets.Separator (), 0, position++, 1, 1);
 
@@ -470,6 +469,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
     public override void closed () {
         open = false;
         notification = null;
+        output_device_manager.close ();
     }
 
     private void show_settings () {

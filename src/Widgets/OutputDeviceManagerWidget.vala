@@ -3,27 +3,30 @@ public class Sound.Widgets.OutputDeviceManagerWidget : Gtk.Grid {
     private Gtk.ListBox output_list;
     private Gtk.ScrolledWindow scrolled_box;
     private Gtk.Label output_list_label;
+    private Widgets.Toggler toggler;
+    private Gtk.Revealer revealer;
 
     private Gtk.Expander expander;
 
     private unowned PulseAudioManager pam;
 
-	construct {
-		pam = PulseAudioManager.get_default ();
+    construct {
+        pam = PulseAudioManager.get_default ();
         pam.new_device.connect (add_device);
         pam.notify["default-output"].connect (default_changed);
         pam.start ();
 
-	    expander = new Gtk.Expander (pam.default_output.display_name);
-	    expander.label_fill = true;
-	    expander.margin_start = 6;
-	    expander.margin_end = 6;
-        expander.get_style_context ().add_class (Gtk.STYLE_CLASS_MENUITEM);
-	    expander.notify["expanded"].connect (() => {
+        toggler = new Widgets.Toggler ();
+        toggler.clicked.connect (() => {
+            toggler.expanded = !toggler.expanded;
             on_expanded ();
-	    });
+        });
 
-		output_grid = new Gtk.Grid ();
+        revealer = new Gtk.Revealer ();
+        revealer.transition_type = Gtk.RevealerTransitionType.SLIDE_DOWN;
+
+        output_grid = new Gtk.Grid ();
+        revealer.add (output_grid);
 
         output_list = new Gtk.ListBox ();
         output_list.activate_on_single_click = true;
@@ -40,23 +43,22 @@ public class Sound.Widgets.OutputDeviceManagerWidget : Gtk.Grid {
         output_grid.attach (scrolled_box, 0, oi++, 1, 1);
 
         oi = 0;
+        attach (new Wingpanel.Widgets.Separator (), 0, oi++, 1, 1);
+        attach (toggler, 0, oi++, 1, 1);
         attach (expander, 0, oi++, 1, 1);
-        attach (output_grid, 0, oi++, 1, 1);
+        attach (revealer, 0, oi++, 1, 1);
 
         on_expanded ();
-	}
+    }
 
-	private void on_expanded () {
-	    if (expander.get_expanded ()) {
-            output_grid.visible = true;
-            output_grid.no_show_all = false;
-            output_grid.show_all ();
-        } else {
-            output_grid.visible = false;
-            output_grid.no_show_all = true;
-            output_grid.hide ();
-        }
-	}
+    public void close () {
+        toggler.expanded = false;
+        on_expanded ();
+    }
+
+    private void on_expanded () {
+        revealer.reveal_child = toggler.expanded;
+    }
 
     private void add_device (Device device) {
         if (device.input) {
@@ -98,6 +100,7 @@ public class Sound.Widgets.OutputDeviceManagerWidget : Gtk.Grid {
 
     private void default_changed () {
         pam.default_output.defaulted ();
+        toggler.change_primary_device (pam.default_output.display_name);
         expander.set_label (pam.default_output.display_name);
         expander.label_widget.get_style_context ().add_class (Granite.STYLE_CLASS_H4_LABEL);
     }

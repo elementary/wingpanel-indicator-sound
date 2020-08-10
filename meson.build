@@ -36,6 +36,7 @@ shared_module(
     'src/Widgets/Scale.vala',
     'src/Widgets/MprisGui.vala',
     'src/Widgets/MprisWidget.vala',
+    'src/Widgets/Toggler.vala',
     'src/Widgets/OutputDeviceManagerWidget.vala',
     'src/Widgets/OutputDeviceItem.vala',
     'src/Services/PulseAudioManager.vala',
