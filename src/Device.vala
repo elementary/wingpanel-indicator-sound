@@ -84,28 +84,19 @@ public class Sound.Device : GLib.Object {
         }
     }
 
-    private const string BASE_ICON_NAME = "audio-";
-    private const string SYMBOLIC = "-symbolic";
     public string get_nice_icon () {
-        string modifier;
         switch (form_factor) {
             case "handset":
-                modifier = "headset";
-                break;
+                return "audio-headset-symbolic";
             case "headset":
-                modifier = "headset";
-                break;
+                return "audio-headset-symbolic";
             case "headphone":
-                modifier = "headphones";
-                break;
+                return "audio-headphones-symbolic";
             case "hifi":
-                modifier = "card";
-                break;
+                return "audio-card-symbolic";
             default:
-                modifier = "speakers";
-                break;
+                return "audio-speakers-symbolic";
         }
-        return BASE_ICON_NAME + modifier + SYMBOLIC;
     }
 
     public string? get_matching_profile (Device? other_device) {

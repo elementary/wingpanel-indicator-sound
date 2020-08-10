@@ -5,10 +5,13 @@ public class OutputDeviceItem : Gtk.ListBoxRow {
     Gtk.RadioButton radio_button;
 
     public OutputDeviceItem (string display_name, bool is_default, string icon_name, Gtk.ListBoxRow? row) {
+        selectable = false;
+
         radio_button = new Gtk.RadioButton.with_label (null, display_name);
         radio_button.active = is_default;
-        radio_button.margin_start = 6;
+        radio_button.margin_start = 8;
         radio_button.hexpand = true;
+        radio_button.xalign = 0;
 
         if (row != null) {
             var item = (OutputDeviceItem) row;
@@ -18,10 +21,10 @@ public class OutputDeviceItem : Gtk.ListBoxRow {
         img_type = new Gtk.Image ();
         img_type.icon_name = icon_name;
         img_type.icon_size = Gtk.IconSize.MENU;
-        img_type.margin_end = 6;
+        img_type.margin_end = 8;
 
         var grid = new Gtk.Grid ();
-        grid.column_spacing = 6;
+        grid.column_spacing = 8;
         grid.add (radio_button);
         grid.add (img_type);
 
