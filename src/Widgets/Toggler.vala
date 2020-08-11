@@ -21,9 +21,14 @@ public class Sound.Widgets.Toggler : Gtk.Button {
         secondary_level.valign = Gtk.Align.START;
         secondary_level.vexpand = true;
 
-        toggler_image = new Gtk.Image.from_icon_name ("view-more-symbolic", Gtk.IconSize.MENU);
+        toggler_image = new Gtk.Image.from_icon_name ("pan-end-symbolic", Gtk.IconSize.MENU);
         toggler_image.halign = Gtk.Align.END;
         toggler_image.valign = Gtk.Align.CENTER;
+
+        var provider = new Gtk.CssProvider ();
+        provider.load_from_resource ("io/elementary/wingpanel/sound/indicator.css");
+        toggler_image.get_style_context ().add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+        toggler_image.get_style_context ().add_class ("toggler-icon");
 
         var grid = new Gtk.Grid ();
         grid.column_spacing = 6;
@@ -35,6 +40,21 @@ public class Sound.Widgets.Toggler : Gtk.Button {
         add (grid);
 
         get_style_context ().add_class (Gtk.STYLE_CLASS_MENUITEM);
+    }
+
+    public void reset () {
+        expanded = false;
+        toggler_image.get_style_context ().remove_class ("open");
+    }
+
+    public void toggle () {
+        expanded = !expanded;
+
+        if (expanded) {
+            toggler_image.get_style_context ().add_class ("open");
+        } else {
+            toggler_image.get_style_context ().remove_class ("open");
+        }
     }
 
     public void change_primary_device (string name) {

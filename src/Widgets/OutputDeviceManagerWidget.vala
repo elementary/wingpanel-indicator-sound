@@ -6,8 +6,6 @@ public class Sound.Widgets.OutputDeviceManagerWidget : Gtk.Grid {
     private Widgets.Toggler toggler;
     private Gtk.Revealer revealer;
 
-    private Gtk.Expander expander;
-
     private unowned PulseAudioManager pam;
 
     construct {
@@ -18,7 +16,7 @@ public class Sound.Widgets.OutputDeviceManagerWidget : Gtk.Grid {
 
         toggler = new Widgets.Toggler ();
         toggler.clicked.connect (() => {
-            toggler.expanded = !toggler.expanded;
+            toggler.toggle ();
             on_expanded ();
         });
 
@@ -45,14 +43,13 @@ public class Sound.Widgets.OutputDeviceManagerWidget : Gtk.Grid {
         oi = 0;
         attach (new Wingpanel.Widgets.Separator (), 0, oi++, 1, 1);
         attach (toggler, 0, oi++, 1, 1);
-        attach (expander, 0, oi++, 1, 1);
         attach (revealer, 0, oi++, 1, 1);
 
         on_expanded ();
     }
 
     public void close () {
-        toggler.expanded = false;
+        toggler.reset ();
         on_expanded ();
     }
 
@@ -101,7 +98,5 @@ public class Sound.Widgets.OutputDeviceManagerWidget : Gtk.Grid {
     private void default_changed () {
         pam.default_output.defaulted ();
         toggler.change_primary_device (pam.default_output.display_name);
-        expander.set_label (pam.default_output.display_name);
-        expander.label_widget.get_style_context ().add_class (Granite.STYLE_CLASS_H4_LABEL);
     }
 }
