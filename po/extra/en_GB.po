@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-08-07 18:09+0000\n"
-"PO-Revision-Date: 2020-04-06 15:10+0000\n"
+"PO-Revision-Date: 2020-08-11 12:13+0000\n"
 "Last-Translator: Ciarán Ainsworth <ciaranainsworth@posteo.net>\n"
 "Language-Team: English (United Kingdom) <https://l10n.elementary.io/projects/"
 "wingpanel/indicator-sound-extra/en_GB/>\n"
@@ -33,7 +33,7 @@ msgstr ""
 
 #: data/sound.appdata.xml.in:12
 msgid "Update default music player when changed"
-msgstr ""
+msgstr "Update default music player when changed"
 
 #: data/sound.appdata.xml.in:13 data/sound.appdata.xml.in:20
 #: data/sound.appdata.xml.in:25
