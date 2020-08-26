@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-29 19:30+0000\n"
+"POT-Creation-Date: 2020-07-14 15:48+0000\n"
 "PO-Revision-Date: 2018-06-15 00:13+0000\n"
 "Last-Translator: Majer Tamás <mtamas@disroot.org>\n"
 "Language-Team: Hungarian <https://weblate.elementary.io/projects/wingpanel/wingpanel-indicator-sound/hu/>\n"
@@ -14,15 +14,7 @@ msgstr ""
 "X-Generator: Weblate 2.18\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 
-#: src/Indicator.vala:47
-msgid "Indicator Sound"
-msgstr "Hang kijelző"
-
-#: src/Indicator.vala:48
-msgid "The sound indicator"
-msgstr "A hang indikátor"
-
-#: src/Indicator.vala:347
+#: src/Indicator.vala:346
 msgid "Sound Settings…"
 msgstr "Hangbeállítások…"
 
@@ -38,6 +30,12 @@ msgstr "Zene lejátszó"
 #, fuzzy
 msgid "Unknown Artist"
 msgstr "Ismeretlen cím"
+
+#~ msgid "Indicator Sound"
+#~ msgstr "Hang kijelző"
+
+#~ msgid "The sound indicator"
+#~ msgstr "A hang indikátor"
 
 #~ msgid "by "
 #~ msgstr "előadó "

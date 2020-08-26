@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-29 19:30+0000\n"
+"POT-Creation-Date: 2020-07-14 15:48+0000\n"
 "PO-Revision-Date: 2020-03-26 22:09+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://l10n.elementary.io/projects/wingpanel/wingpanel-indicator-sound/he/>\n"
@@ -15,15 +15,7 @@ msgstr ""
 "X-Generator: Weblate 3.9.1\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 
-#: src/Indicator.vala:47
-msgid "Indicator Sound"
-msgstr "מחוון צליל"
-
-#: src/Indicator.vala:48
-msgid "The sound indicator"
-msgstr "מחוון הצליל"
-
-#: src/Indicator.vala:347
+#: src/Indicator.vala:346
 msgid "Sound Settings…"
 msgstr "הגדרות צליל…"
 
@@ -38,6 +30,12 @@ msgstr "נגן מוזיקה"
 #: src/Widgets/MprisGui.vala:531
 msgid "Unknown Artist"
 msgstr "אמן לא ידוע"
+
+#~ msgid "Indicator Sound"
+#~ msgstr "מחוון צליל"
+
+#~ msgid "The sound indicator"
+#~ msgstr "מחוון הצליל"
 
 #~ msgid "by "
 #~ msgstr "על ידי "

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-29 19:30+0000\n"
+"POT-Creation-Date: 2020-07-14 15:48+0000\n"
 "PO-Revision-Date: 2018-11-04 22:43+0000\n"
 "Last-Translator: Elvis Mujanović <elvis.mujanovic@gmail.com>\n"
 "Language-Team: Bosnian <https://weblate.elementary.io/projects/wingpanel/wingpanel-indicator-sound/bs/>\n"
@@ -15,15 +15,7 @@ msgstr ""
 "X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 
-#: src/Indicator.vala:47
-msgid "Indicator Sound"
-msgstr "Indikator zvuka"
-
-#: src/Indicator.vala:48
-msgid "The sound indicator"
-msgstr "Indikator zvuka"
-
-#: src/Indicator.vala:347
+#: src/Indicator.vala:346
 msgid "Sound Settings…"
 msgstr "Podešavanja zvuka…"
 
@@ -39,3 +31,9 @@ msgstr "Muzički plejer"
 #, fuzzy
 msgid "Unknown Artist"
 msgstr "Nepoznat naslov"
+
+#~ msgid "Indicator Sound"
+#~ msgstr "Indikator zvuka"
+
+#~ msgid "The sound indicator"
+#~ msgstr "Indikator zvuka"

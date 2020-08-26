@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-03 18:41+0000\n"
+"POT-Creation-Date: 2020-08-07 18:09+0000\n"
 "PO-Revision-Date: 2020-05-08 13:10+0000\n"
 "Last-Translator: Jaimie85 <alsemgeest@gmail.com>\n"
 "Language-Team: Dutch <https://l10n.elementary.io/projects/wingpanel/"
@@ -31,20 +31,25 @@ msgstr ""
 "Pas het volume van de speakers en microfoon aan, zie informatie over het "
 "huidige nummer en bedien media"
 
-#: data/sound.appdata.xml.in:11
+#: data/sound.appdata.xml.in:12
+msgid "Update default music player when changed"
+msgstr ""
+
+#: data/sound.appdata.xml.in:13 data/sound.appdata.xml.in:20
+#: data/sound.appdata.xml.in:25
+msgid "Updated translations"
+msgstr "Bijgewerkte vertalingen"
+
+#: data/sound.appdata.xml.in:18
 msgid "Correctly show \"Unknown Artist\" when artist info isn't available"
 msgstr ""
 "Toon “onbekende artiest” als er geen informatie beschikbaar is over de "
 "artiest"
 
-#: data/sound.appdata.xml.in:12
+#: data/sound.appdata.xml.in:19
 msgid "Performance improvements"
 msgstr "Prestatieverbeteringen"
 
-#: data/sound.appdata.xml.in:13 data/sound.appdata.xml.in:18
-msgid "Updated translations"
-msgstr "Bijgewerkte vertalingen"
-
-#: data/sound.appdata.xml.in:27
+#: data/sound.appdata.xml.in:34
 msgid "elementary, Inc."
 msgstr "elementary, Inc."

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-29 19:30+0000\n"
+"POT-Creation-Date: 2020-07-14 15:48+0000\n"
 "PO-Revision-Date: 2017-09-08 14:59+0000\n"
 "Last-Translator: Thiago Galvani <thiagopaiva99@gmail.com>\n"
 "Language-Team: Galician <https://weblate.elementary.io/projects/wingpanel/wingpanel-indicator-sound/gl/>\n"
@@ -14,15 +14,7 @@ msgstr ""
 "X-Generator: Weblate 2.16\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 
-#: src/Indicator.vala:47
-msgid "Indicator Sound"
-msgstr "Son de indicador"
-
-#: src/Indicator.vala:48
-msgid "The sound indicator"
-msgstr "O indicador de son"
-
-#: src/Indicator.vala:347
+#: src/Indicator.vala:346
 msgid "Sound Settings…"
 msgstr "Configuración de son …"
 
@@ -38,6 +30,12 @@ msgstr "Reprodutor de música"
 #, fuzzy
 msgid "Unknown Artist"
 msgstr "Título descoñecido"
+
+#~ msgid "Indicator Sound"
+#~ msgstr "Son de indicador"
+
+#~ msgid "The sound indicator"
+#~ msgstr "O indicador de son"
 
 #~ msgid "by "
 #~ msgstr "por "

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wingpanel-indicator-sound\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-29 19:30+0000\n"
+"POT-Creation-Date: 2020-07-14 15:48+0000\n"
 "PO-Revision-Date: 2017-05-04 20:05+0000\n"
 "Last-Translator: Rokar <rokartv10@gmail.com>\n"
 "Language-Team: ku (generated) <https://l10n.elementary.io/projects/wingpanel/wingpanel-indicator-sound/ku/>\n"
@@ -19,15 +19,7 @@ msgstr ""
 "X-Generator: Weblate 2.13-dev\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 
-#: src/Indicator.vala:47
-msgid "Indicator Sound"
-msgstr "nîşane deng"
-
-#: src/Indicator.vala:48
-msgid "The sound indicator"
-msgstr "we nîşane deng"
-
-#: src/Indicator.vala:347
+#: src/Indicator.vala:346
 msgid "Sound Settings…"
 msgstr "deste dengî…"
 
@@ -43,6 +35,12 @@ msgstr "Lêderê Mûzîkê"
 #, fuzzy
 msgid "Unknown Artist"
 msgstr "Navê nenas"
+
+#~ msgid "Indicator Sound"
+#~ msgstr "nîşane deng"
+
+#~ msgid "The sound indicator"
+#~ msgstr "we nîşane deng"
 
 #~ msgid "by "
 #~ msgstr "ji "

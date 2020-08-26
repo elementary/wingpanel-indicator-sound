@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wingpanel-indicator-sound\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-29 19:30+0000\n"
+"POT-Creation-Date: 2020-07-14 15:48+0000\n"
 "PO-Revision-Date: 2020-02-22 19:08+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <https://l10n.elementary.io/projects/wingpanel/wingpanel-indicator-sound/fi/>\n"
@@ -19,15 +19,7 @@ msgstr ""
 "X-Generator: Weblate 3.9.1\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 
-#: src/Indicator.vala:47
-msgid "Indicator Sound"
-msgstr "Ääni-ilmaisin"
-
-#: src/Indicator.vala:48
-msgid "The sound indicator"
-msgstr "Ääni-ilmaisin"
-
-#: src/Indicator.vala:347
+#: src/Indicator.vala:346
 msgid "Sound Settings…"
 msgstr "Ääniasetukset…"
 
@@ -42,6 +34,12 @@ msgstr "Musiikkisoitin"
 #: src/Widgets/MprisGui.vala:531
 msgid "Unknown Artist"
 msgstr "Tuntematon esittäjä"
+
+#~ msgid "Indicator Sound"
+#~ msgstr "Ääni-ilmaisin"
+
+#~ msgid "The sound indicator"
+#~ msgstr "Ääni-ilmaisin"
 
 #~ msgid "by "
 #~ msgstr "esittäjä "
