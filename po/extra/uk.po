@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-08-07 18:09+0000\n"
-"PO-Revision-Date: 2020-09-12 18:14+0000\n"
+"PO-Revision-Date: 2020-09-19 20:14+0000\n"
 "Last-Translator: Ihor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: Ukrainian <https://l10n.elementary.io/projects/wingpanel/"
 "indicator-sound-extra/uk/>\n"
@@ -29,7 +29,7 @@ msgid ""
 "Adjust speaker and microphone volume or see Now Playing information and "
 "media controls"
 msgstr ""
-"Налаштуйте гучність динаміка та мікрофона або перегляньте інформацію про "
+"Налаштуйте гучність динаміка та мікрофона або перегляньте відомості про "
 "звукову доріжку, яка зараз грає та елементи керування медіа"
 
 #: data/sound.appdata.xml.in:12
@@ -44,8 +44,8 @@ msgstr "Оновлено переклади"
 #: data/sound.appdata.xml.in:18
 msgid "Correctly show \"Unknown Artist\" when artist info isn't available"
 msgstr ""
-"Виправлено показ елемента \"Невідомий виконавець\", коли інформація про "
-"виконавця недоступна"
+"Виправлено показ елемента \"Невідомий виконавець\", коли відомості про "
+"виконавця недоступні"
 
 #: data/sound.appdata.xml.in:19
 msgid "Performance improvements"
