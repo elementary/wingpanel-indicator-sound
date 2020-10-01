@@ -33,7 +33,7 @@
 @keyframes microphone-disabled {
     0% { -gtk-icon-source: -gtk-icontheme("audio-input-microphone-symbolic"); }
     10% { -gtk-icon-source: -gtk-icontheme("microphone-sensitivity-muted-10-symbolic"); opacity: 0.94; }
-    20% { -gtk-icon-source: -gtk-icontheme("microphone-sensitivity-muted-20-symbolic"); opacity: 0.78; }
+    20% { -gtk-icon-source: -gtk-icontheme("microphone-sensitivity-muted-20-symbolic"); opacity: 0.88; }
     30% { -gtk-icon-source: -gtk-icontheme("microphone-sensitivity-muted-30-symbolic"); opacity: 0.82; }
     40% { -gtk-icon-source: -gtk-icontheme("microphone-sensitivity-muted-40-symbolic"); opacity: 0.76; }
     50% { -gtk-icon-source: -gtk-icontheme("microphone-sensitivity-muted-50-symbolic"); opacity: 0.70; }
