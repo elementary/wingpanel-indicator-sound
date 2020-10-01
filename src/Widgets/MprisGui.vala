@@ -561,14 +561,14 @@ public class Sound.Widgets.ClientWidget : Gtk.Grid {
         if (playing != "") {
             switch (playing) {
                 case "playing":
-                    (play_btn.get_image () as Gtk.Image).set_from_icon_name (
+                    ((Gtk.Image)play_btn.image).set_from_icon_name (
                         "media-playback-pause-symbolic",
                         Gtk.IconSize.LARGE_TOOLBAR
                     );
                     break;
                 default:
                     /* Stopped, Paused */
-                    (play_btn.get_image () as Gtk.Image).set_from_icon_name (
+                    ((Gtk.Image)play_btn.image).set_from_icon_name (
                         "media-playback-start-symbolic",
                         Gtk.IconSize.LARGE_TOOLBAR
                     );
