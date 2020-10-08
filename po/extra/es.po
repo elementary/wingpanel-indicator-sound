@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-07 18:09+0000\n"
+"POT-Creation-Date: 2020-10-08 18:20+0000\n"
 "PO-Revision-Date: 2020-08-14 09:13+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Spanish <https://l10n.elementary.io/projects/wingpanel/"
@@ -32,24 +32,32 @@ msgstr ""
 "reproducción y controles multimedia"
 
 #: data/sound.appdata.xml.in:12
-msgid "Update default music player when changed"
-msgstr "Se actualiza el reproductor de música predeterminado cuando se cambia"
+msgid "Minor updates"
+msgstr ""
 
-#: data/sound.appdata.xml.in:13 data/sound.appdata.xml.in:20
-#: data/sound.appdata.xml.in:25
+#: data/sound.appdata.xml.in:14
+msgid "Fix opacity flash during icon animation"
+msgstr ""
+
+#: data/sound.appdata.xml.in:15 data/sound.appdata.xml.in:22
+#: data/sound.appdata.xml.in:29 data/sound.appdata.xml.in:34
 msgid "Updated translations"
 msgstr "Traducciones actualizadas"
 
-#: data/sound.appdata.xml.in:18
+#: data/sound.appdata.xml.in:21
+msgid "Update default music player when changed"
+msgstr "Se actualiza el reproductor de música predeterminado cuando se cambia"
+
+#: data/sound.appdata.xml.in:27
 msgid "Correctly show \"Unknown Artist\" when artist info isn't available"
 msgstr ""
 "Se muestra correctamente «Artista desconocido» cuando la información del "
 "artista no está disponible"
 
-#: data/sound.appdata.xml.in:19
+#: data/sound.appdata.xml.in:28
 msgid "Performance improvements"
 msgstr "Mejoras de rendimiento"
 
-#: data/sound.appdata.xml.in:34
+#: data/sound.appdata.xml.in:43
 msgid "elementary, Inc."
 msgstr "elementary, Inc."

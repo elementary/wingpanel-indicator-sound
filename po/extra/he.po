@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-07 18:09+0000\n"
+"POT-Creation-Date: 2020-10-08 18:20+0000\n"
 "PO-Revision-Date: 2020-08-11 12:13+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://l10n.elementary.io/projects/wingpanel/"
@@ -32,22 +32,30 @@ msgstr ""
 "לפקד על המדיה"
 
 #: data/sound.appdata.xml.in:12
-msgid "Update default music player when changed"
-msgstr "עדכון בררת המחדל של נגן המוזיקה בעת החלפתו"
+msgid "Minor updates"
+msgstr ""
 
-#: data/sound.appdata.xml.in:13 data/sound.appdata.xml.in:20
-#: data/sound.appdata.xml.in:25
+#: data/sound.appdata.xml.in:14
+msgid "Fix opacity flash during icon animation"
+msgstr ""
+
+#: data/sound.appdata.xml.in:15 data/sound.appdata.xml.in:22
+#: data/sound.appdata.xml.in:29 data/sound.appdata.xml.in:34
 msgid "Updated translations"
 msgstr "התרגומים עודכנו"
 
-#: data/sound.appdata.xml.in:18
+#: data/sound.appdata.xml.in:21
+msgid "Update default music player when changed"
+msgstr "עדכון בררת המחדל של נגן המוזיקה בעת החלפתו"
+
+#: data/sound.appdata.xml.in:27
 msgid "Correctly show \"Unknown Artist\" when artist info isn't available"
 msgstr "הצגת „אמן לא ידוע” בצורה נכונה אם אין מידע על האמן"
 
-#: data/sound.appdata.xml.in:19
+#: data/sound.appdata.xml.in:28
 msgid "Performance improvements"
 msgstr "שיפורי ביצועים"
 
-#: data/sound.appdata.xml.in:34
+#: data/sound.appdata.xml.in:43
 msgid "elementary, Inc."
 msgstr "elementary בע״מ."
