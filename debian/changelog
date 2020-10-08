@@ -1,3 +1,14 @@
+wingpanel-indicator-sound (2.1.7) bionic; urgency=medium
+
+  * Release 2.1.7 (#161)
+  * Indicator.css: Fix flashing animation (#159)
+  * Fix compiler warnings (#160)
+  * Gresource animated mic icons (#151)
+  * Update translation files
+  * Update translation template
+
+ -- elementary LLC <builds@elementary.io>  Thu, 08 Oct 2020 18:20:38 +0000
+
 wingpanel-indicator-sound (2.1.6) bionic; urgency=medium
 
   * Release 2.1.6 (#155)
