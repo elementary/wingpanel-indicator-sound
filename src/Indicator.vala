@@ -255,64 +255,35 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
     public override Gtk.Widget? get_widget () {
         if (main_grid == null) {
-            int position = 0;
-            main_grid = new Gtk.Grid ();
-
             mpris = new Widgets.MprisWidget ();
-
-            mpris.close.connect (() => {
-                close ();
-            });
-            volume_control.notify["headphone-plugged"].connect (() => {
-                if (!volume_control.headphone_plugged)
-                    mpris.pause_all ();
-            });
-
-            main_grid.attach (mpris, 0, position++, 1, 1);
-
-            if (mpris.get_children ().length () > 0) {
-                var first_separator = new Wingpanel.Widgets.Separator ();
-
-                main_grid.attach (first_separator, 0, position++, 1, 1);
-            }
 
             volume_scale.margin_start = 6;
             volume_scale.active = !volume_control.mute;
-            volume_scale.notify["active"].connect (on_volume_switch_change);
-
-            volume_scale.scale_widget.value_changed.connect (() => {
-                var vol = new Services.VolumeControl.Volume ();
-                var v = volume_scale.scale_widget.get_value () * max_volume;
-                vol.volume = v.clamp (0.0, max_volume);
-                vol.reason = Services.VolumeControl.VolumeReasons.USER_KEYPRESS;
-                volume_control.volume = vol;
-                volume_scale.icon = get_volume_icon (volume_scale.scale_widget.get_value ());
-            });
-
             volume_scale.scale_widget.set_value (volume_control.volume.volume);
-            volume_scale.scale_widget.button_release_event.connect ((e) => {
-                notify_change (false);
-                return false;
-            });
-
-
-            volume_scale.scroll_event.connect_after ((e) => {
-                double dir = 0.0;
-                if (handle_scroll_event (e, out dir)) {
-                    handle_change (dir, false);
-                }
-
-                return true;
-            });
-
             volume_scale.icon = get_volume_icon (volume_scale.scale_widget.get_value ());
-            set_max_volume ();
 
-            main_grid.attach (volume_scale, 0, position++, 1, 1);
-            main_grid.attach (new Wingpanel.Widgets.Separator (), 0, position++, 1, 1);
+            set_max_volume ();
 
             mic_scale.margin_start = 6;
             mic_scale.active = !volume_control.micMute;
+
+            mic_separator = new Wingpanel.Widgets.Separator ();
+
+            update_mic_visibility ();
+
+            var settings_button = new Gtk.ModelButton () {
+                text = _("Sound Settings…")
+            };
+
+            main_grid = new Gtk.Grid ();
+            main_grid.attach (mpris, 0, 0);
+            main_grid.attach (new Wingpanel.Widgets.Separator (), 0, 1);
+            main_grid.attach (volume_scale, 0, 2);
+            main_grid.attach (new Wingpanel.Widgets.Separator (), 0, 3);
+            main_grid.attach (mic_scale, 0, 4);
+            main_grid.attach (mic_separator, 0, 5);
+            main_grid.attach (settings_button, 0, 6);
+
             mic_scale.notify["active"].connect (on_mic_switch_change);
 
             mic_scale.scale_widget.value_changed.connect (() => {
@@ -333,22 +304,44 @@ public class Sound.Indicator : Wingpanel.Indicator {
                 return true;
             });
 
+            mpris.close.connect (() => {
+                close ();
+            });
 
-            main_grid.attach (mic_scale, 0, position++, 1, 1);
-
-            mic_separator = new Wingpanel.Widgets.Separator ();
-
-            update_mic_visibility ();
-
-            main_grid.attach (mic_separator, 0, position++, 1, 1);
-
-            var settings_button = new Gtk.ModelButton ();
-            settings_button.text = _("Sound Settings…");
             settings_button.clicked.connect (() => {
                 show_settings ();
             });
 
-            main_grid.attach (settings_button, 0, position++, 1, 1);
+            volume_control.notify["headphone-plugged"].connect (() => {
+                if (!volume_control.headphone_plugged)
+                    mpris.pause_all ();
+            });
+
+            volume_scale.scale_widget.button_release_event.connect ((e) => {
+                notify_change (false);
+                return false;
+            });
+
+
+            volume_scale.scroll_event.connect_after ((e) => {
+                double dir = 0.0;
+                if (handle_scroll_event (e, out dir)) {
+                    handle_change (dir, false);
+                }
+
+                return true;
+            });
+
+            volume_scale.notify["active"].connect (on_volume_switch_change);
+
+            volume_scale.scale_widget.value_changed.connect (() => {
+                var vol = new Services.VolumeControl.Volume ();
+                var v = volume_scale.scale_widget.get_value () * max_volume;
+                vol.volume = v.clamp (0.0, max_volume);
+                vol.reason = Services.VolumeControl.VolumeReasons.USER_KEYPRESS;
+                volume_control.volume = vol;
+                volume_scale.icon = get_volume_icon (volume_scale.scale_widget.get_value ());
+            });
         }
 
         return main_grid;
