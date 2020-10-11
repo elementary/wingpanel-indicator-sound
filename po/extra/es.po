@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-10-08 18:20+0000\n"
-"PO-Revision-Date: 2020-08-14 09:13+0000\n"
+"PO-Revision-Date: 2020-10-12 10:14+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Spanish <https://l10n.elementary.io/projects/wingpanel/"
 "indicator-sound-extra/es/>\n"
@@ -33,11 +33,11 @@ msgstr ""
 
 #: data/sound.appdata.xml.in:12
 msgid "Minor updates"
-msgstr ""
+msgstr "Actualizaciones menores"
 
 #: data/sound.appdata.xml.in:14
 msgid "Fix opacity flash during icon animation"
-msgstr ""
+msgstr "Se arregló el cambio súbito de opacidad durante la animación del icono"
 
 #: data/sound.appdata.xml.in:15 data/sound.appdata.xml.in:22
 #: data/sound.appdata.xml.in:29 data/sound.appdata.xml.in:34
