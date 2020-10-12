@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-07 18:09+0000\n"
-"PO-Revision-Date: 2020-08-11 12:13+0000\n"
+"POT-Creation-Date: 2020-10-08 18:20+0000\n"
+"PO-Revision-Date: 2020-10-10 13:26+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementary.io/projects/wingpanel/"
 "indicator-sound-extra/ja/>\n"
@@ -32,24 +32,34 @@ msgstr ""
 "ロールを表示したりします"
 
 #: data/sound.appdata.xml.in:12
-msgid "Update default music player when changed"
-msgstr "デフォルトのミュージックプレーヤーが変更されたときに、表示を更新するように修正"
+msgid "Minor updates"
+msgstr "軽微なアップデート:"
 
-#: data/sound.appdata.xml.in:13 data/sound.appdata.xml.in:20
-#: data/sound.appdata.xml.in:25
+#: data/sound.appdata.xml.in:14
+msgid "Fix opacity flash during icon animation"
+msgstr "アイコンのアニメーション表示中に、下がっていた透明度が突然上がったりする不具合を修正"
+
+#: data/sound.appdata.xml.in:15 data/sound.appdata.xml.in:22
+#: data/sound.appdata.xml.in:29 data/sound.appdata.xml.in:34
 msgid "Updated translations"
 msgstr "翻訳の更新"
 
-#: data/sound.appdata.xml.in:18
+#: data/sound.appdata.xml.in:21
+msgid "Update default music player when changed"
+msgstr ""
+"デフォルトのミュージックプレーヤーが変更されたときに、表示を更新するように修"
+"正"
+
+#: data/sound.appdata.xml.in:27
 msgid "Correctly show \"Unknown Artist\" when artist info isn't available"
 msgstr ""
 "アーティスト情報が利用可能でないときに、\"不明なアーティスト\"を正しく表示す"
 "るように修正"
 
-#: data/sound.appdata.xml.in:19
+#: data/sound.appdata.xml.in:28
 msgid "Performance improvements"
 msgstr "パフォーマンスの改善"
 
-#: data/sound.appdata.xml.in:34
+#: data/sound.appdata.xml.in:43
 msgid "elementary, Inc."
 msgstr "elementary, Inc."

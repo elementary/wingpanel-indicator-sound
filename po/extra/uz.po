@@ -7,42 +7,57 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-07 18:09+0000\n"
-"PO-Revision-Date: 2019-11-07 11:39-0800\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"POT-Creation-Date: 2020-10-08 18:20+0000\n"
+"PO-Revision-Date: 2020-09-22 13:14+0000\n"
+"Last-Translator: Shukrullo <shukrullo@umail.uz>\n"
+"Language-Team: Uzbek <https://l10n.elementary.io/projects/wingpanel/"
+"indicator-sound-extra/uz/>\n"
 "Language: uz\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ASCII\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
 
 #: data/sound.appdata.xml.in:6
 msgid "Sound Indicator"
-msgstr ""
+msgstr "Ovoz indikatori"
 
 #: data/sound.appdata.xml.in:7
 msgid ""
 "Adjust speaker and microphone volume or see Now Playing information and "
 "media controls"
 msgstr ""
+"Dinamik va mikrofon ovoz balandligini o'zgartirish yoki hozir ijro "
+"etilayotgan fayl haqida ma'lumotlar va ularni boshqarish tugmalarini ko'rish"
 
 #: data/sound.appdata.xml.in:12
-msgid "Update default music player when changed"
+msgid "Minor updates"
 msgstr ""
 
-#: data/sound.appdata.xml.in:13 data/sound.appdata.xml.in:20
-#: data/sound.appdata.xml.in:25
+#: data/sound.appdata.xml.in:14
+msgid "Fix opacity flash during icon animation"
+msgstr ""
+
+#: data/sound.appdata.xml.in:15 data/sound.appdata.xml.in:22
+#: data/sound.appdata.xml.in:29 data/sound.appdata.xml.in:34
 msgid "Updated translations"
-msgstr ""
+msgstr "Yangilangan tarjimalar"
 
-#: data/sound.appdata.xml.in:18
+#: data/sound.appdata.xml.in:21
+msgid "Update default music player when changed"
+msgstr "Odatiy musiqa ijrochisi o'zgartirilganda yangilash"
+
+#: data/sound.appdata.xml.in:27
 msgid "Correctly show \"Unknown Artist\" when artist info isn't available"
 msgstr ""
+"Ijrochi haqidagi ma'lumotni olishni imkoni bo'lmaganda \"Noma'lum ijrochi\" "
+"ni to'g'ri ko'rsatish"
 
-#: data/sound.appdata.xml.in:19
+#: data/sound.appdata.xml.in:28
 msgid "Performance improvements"
-msgstr ""
+msgstr "Samaradorlikni oshirish"
 
-#: data/sound.appdata.xml.in:34
+#: data/sound.appdata.xml.in:43
 msgid "elementary, Inc."
-msgstr ""
+msgstr "elementary Inc."
