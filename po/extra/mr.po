@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-10-08 18:20+0000\n"
-"PO-Revision-Date: 2020-04-06 15:10+0000\n"
+"PO-Revision-Date: 2020-10-12 10:14+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
 "Language-Team: Marathi <https://l10n.elementary.io/projects/wingpanel/"
 "indicator-sound-extra/mr/>\n"
@@ -33,11 +33,11 @@ msgstr ""
 
 #: data/sound.appdata.xml.in:12
 msgid "Minor updates"
-msgstr ""
+msgstr "किरकोळ अद्यतने"
 
 #: data/sound.appdata.xml.in:14
 msgid "Fix opacity flash during icon animation"
-msgstr ""
+msgstr "चिन्ह अ‍ॅनिमेशन दरम्यान अस्पष्ट फ्लॅशशी संबंधित समस्येचे निराकरण करा"
 
 #: data/sound.appdata.xml.in:15 data/sound.appdata.xml.in:22
 #: data/sound.appdata.xml.in:29 data/sound.appdata.xml.in:34
@@ -46,7 +46,7 @@ msgstr "अद्ययावत भाषांतर"
 
 #: data/sound.appdata.xml.in:21
 msgid "Update default music player when changed"
-msgstr ""
+msgstr "डीफॉल्ट संगीत प्लेअर बदलल्यावर अद्यतनित करा"
 
 #: data/sound.appdata.xml.in:27
 msgid "Correctly show \"Unknown Artist\" when artist info isn't available"
