@@ -21,7 +21,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
     private DisplayWidget display_widget;
     private Gtk.Grid main_grid;
-    private Widgets.MprisWidget mpris;
+    private Widgets.PlayerList mpris;
     private Widgets.Scale volume_scale;
     private Widgets.Scale mic_scale;
     private Wingpanel.Widgets.Separator mic_separator;
@@ -258,7 +258,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
             int position = 0;
             main_grid = new Gtk.Grid ();
 
-            mpris = new Widgets.MprisWidget ();
+            mpris = new Widgets.PlayerList ();
 
             mpris.close.connect (() => {
                 close ();

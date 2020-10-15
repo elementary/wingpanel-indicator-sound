@@ -19,12 +19,12 @@
 const int ICON_SIZE = 48;
 
 /**
- * A ClientWidget is simply used to control and display information in a two-way
+ * A PlayerRow is simply used to control and display information in a two-way
  * fashion with an underlying MPRIS provider (MediaPlayer2)
  * It is "designed" to be self contained and added to a large UI, enabling multiple
  * MPRIS clients to be controlled with multiple widgets
  */
-public class Sound.Widgets.ClientWidget : Gtk.Grid {
+public class Sound.Widgets.PlayerRow : Gtk.Grid {
     private const string NOT_PLAYING = _("Not currently playing");
 
     public signal void close ();
@@ -116,20 +116,20 @@ public class Sound.Widgets.ClientWidget : Gtk.Grid {
     }
 
     /**
-     * Create a new ClientWidget
+     * Create a new PlayerRow
      *
      * @param client The underlying MprisClient instance to use
      */
-    public ClientWidget (Services.MprisClient mpris_client) {
+    public PlayerRow (Services.MprisClient mpris_client) {
         Object (client: mpris_client);
     }
 
     /**
-     * Create a new ClientWidget for bluetooth controls
+     * Create a new PlayerRow for bluetooth controls
      *
      * @param client The underlying MediaPlayer instance to use
      */
-    public ClientWidget.bluetooth (Services.MediaPlayer media_player_client, string name, string icon) {
+    public PlayerRow.bluetooth (Services.MediaPlayer media_player_client, string name, string icon) {
         mp_client = media_player_client;
 
         app_icon = new ThemedIcon (icon);
@@ -141,11 +141,11 @@ public class Sound.Widgets.ClientWidget : Gtk.Grid {
     }
 
     /**
-     * Create a new ClientWidget for the default player
+     * Create a new PlayerRow for the default player
      *
      * @param info The AppInfo of the default music player
      */
-    public ClientWidget.default (AppInfo info) {
+    public PlayerRow.default (AppInfo info) {
         Object (
             app_info: info,
             client: null
