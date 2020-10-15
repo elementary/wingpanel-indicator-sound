@@ -30,7 +30,6 @@ public class Sound.Indicator : Wingpanel.Indicator {
     private Services.VolumeControlPulse volume_control;
 
     private bool open = false;
-    private int position = 0;
     private bool mute_blocks_sound = false;
     private uint sound_was_blocked_timeout_id;
 
@@ -257,6 +256,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
     public override Gtk.Widget? get_widget () {
         if (main_grid == null) {
+            int position = 0;
             main_grid = new Gtk.Grid ();
 
             mpris = new Widgets.MprisWidget ();
