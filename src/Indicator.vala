@@ -24,11 +24,13 @@ public class Sound.Indicator : Wingpanel.Indicator {
     private Widgets.MprisWidget mpris;
     private Widgets.Scale volume_scale;
     private Widgets.Scale mic_scale;
+    private Wingpanel.Widgets.Separator first_separator;
     private Wingpanel.Widgets.Separator mic_separator;
     private Notify.Notification? notification;
     private Services.VolumeControlPulse volume_control;
 
     private bool open = false;
+    private int position = 0;
     private bool mute_blocks_sound = false;
     private uint sound_was_blocked_timeout_id;
 
@@ -255,7 +257,6 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
     public override Gtk.Widget? get_widget () {
         if (main_grid == null) {
-            int position = 0;
             main_grid = new Gtk.Grid ();
 
             mpris = new Widgets.MprisWidget ();
@@ -269,12 +270,6 @@ public class Sound.Indicator : Wingpanel.Indicator {
             });
 
             main_grid.attach (mpris, 0, position++, 1, 1);
-
-            if (mpris.get_children ().length () > 0) {
-                var first_separator = new Wingpanel.Widgets.Separator ();
-
-                main_grid.attach (first_separator, 0, position++, 1, 1);
-            }
 
             volume_scale.margin_start = 6;
             volume_scale.active = !volume_control.mute;
@@ -450,6 +445,13 @@ public class Sound.Indicator : Wingpanel.Indicator {
         open = true;
 
         mpris.update_default_player ();
+
+        if (mpris.get_children ().length () > 0 && first_separator == null) {
+            first_separator = new Wingpanel.Widgets.Separator ();
+
+            main_grid.attach_next_to (first_separator, mpris, Gtk.PositionType.BOTTOM, 1, 1);
+            first_separator.show ();
+        }
 
         if (notification != null) {
             try {
