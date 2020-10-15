@@ -313,8 +313,9 @@ public class Sound.Indicator : Wingpanel.Indicator {
             });
 
             volume_control.notify["headphone-plugged"].connect (() => {
-                if (!volume_control.headphone_plugged)
+                if (!volume_control.headphone_plugged) {
                     mpris.pause_all ();
+                }
             });
 
             volume_scale.scale_widget.button_release_event.connect ((e) => {
