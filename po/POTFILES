@@ -5,6 +5,6 @@ src/Services/MediaPlayer.vala
 src/Services/MprisClient.vala
 src/Services/Volume-control.vala
 src/Widgets/DisplayWidget.vala
-src/Widgets/MprisGui.vala
-src/Widgets/MprisWidget.vala
+src/Widgets/PlayerList.vala
+src/Widgets/PlayerRow.vala
 src/Widgets/Scale.vala

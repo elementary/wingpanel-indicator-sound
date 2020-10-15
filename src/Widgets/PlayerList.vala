@@ -16,19 +16,19 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class Sound.Widgets.MprisWidget : Gtk.Box {
+public class Sound.Widgets.PlayerList : Gtk.Box {
     public signal void close ();
 
     public Sound.Services.ObjectManager object_manager;
 
     private AppInfo? default_player;
-    private ClientWidget bluetooth_widget;
-    private ClientWidget default_widget;
-    private HashTable<string,ClientWidget> ifaces;
+    private PlayerRow bluetooth_widget;
+    private PlayerRow default_widget;
+    private HashTable<string,PlayerRow> ifaces;
     private Services.DBusImpl impl;
 
     construct {
-        ifaces = new HashTable<string,ClientWidget> (str_hash, str_equal);
+        ifaces = new HashTable<string,PlayerRow> (str_hash, str_equal);
 
         Idle.add (() => {
             setup_dbus ();
@@ -39,7 +39,7 @@ public class Sound.Widgets.MprisWidget : Gtk.Box {
         object_manager.bind_property ("has-object", this, "visible", GLib.BindingFlags.SYNC_CREATE);
 
         object_manager.media_player_added.connect ((media_player, name, icon) => {
-            bluetooth_widget = new ClientWidget.bluetooth (media_player, name, icon);
+            bluetooth_widget = new PlayerRow.bluetooth (media_player, name, icon);
             bluetooth_widget.close.connect (() => {
                 close ();
             });
@@ -77,7 +77,7 @@ public class Sound.Widgets.MprisWidget : Gtk.Box {
                 default_widget.destroy ();
             }
 
-            default_widget = new ClientWidget.default (new_player);
+            default_widget = new PlayerRow.default (new_player);
 
             default_widget.close.connect (() => {
                 close ();
@@ -117,7 +117,7 @@ public class Sound.Widgets.MprisWidget : Gtk.Box {
                 default_widget.visible = false;
             }
 
-            ClientWidget widg = new ClientWidget (iface);
+            PlayerRow widg = new PlayerRow (iface);
             widg.close.connect (() => {
                 close ();
             });

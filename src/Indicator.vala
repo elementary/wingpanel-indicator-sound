@@ -21,7 +21,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
     private DisplayWidget display_widget;
     private Gtk.Grid main_grid;
-    private Widgets.MprisWidget mpris;
+    private Widgets.PlayerList mpris;
     private Widgets.Scale volume_scale;
     private Widgets.Scale mic_scale;
     private Wingpanel.Widgets.Separator mic_separator;
@@ -92,8 +92,13 @@ public class Sound.Indicator : Wingpanel.Indicator {
         display_widget.volume_scroll_event.connect_after (on_volume_icon_scroll_event);
         display_widget.mic_scroll_event.connect_after (on_mic_icon_scroll_event);
 
-        volume_scale = new Widgets.Scale ("audio-volume-high-symbolic", true, 0.0, max_volume, 0.01);
-        mic_scale = new Widgets.Scale ("audio-input-microphone-symbolic", true, 0.0, 1.0, 0.01);
+        volume_scale = new Widgets.Scale ("audio-volume-high-symbolic", true, 0.0, max_volume, 0.01) {
+            margin_start = 6
+        };
+
+        mic_scale = new Widgets.Scale ("audio-input-microphone-symbolic", true, 0.0, 1.0, 0.01) {
+            margin_start = 6
+        };
 
         ca_context = CanberraGtk.context_get ();
         ca_context.change_props (Canberra.PROP_APPLICATION_NAME, "indicator-sound",
@@ -255,16 +260,14 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
     public override Gtk.Widget? get_widget () {
         if (main_grid == null) {
-            mpris = new Widgets.MprisWidget ();
+            mpris = new Widgets.PlayerList ();
 
-            volume_scale.margin_start = 6;
             volume_scale.active = !volume_control.mute;
             volume_scale.scale_widget.set_value (volume_control.volume.volume);
             volume_scale.icon = get_volume_icon (volume_scale.scale_widget.get_value ());
 
             set_max_volume ();
 
-            mic_scale.margin_start = 6;
             mic_scale.active = !volume_control.micMute;
 
             mic_separator = new Wingpanel.Widgets.Separator ();
@@ -322,7 +325,6 @@ public class Sound.Indicator : Wingpanel.Indicator {
                 notify_change (false);
                 return false;
             });
-
 
             volume_scale.scroll_event.connect_after ((e) => {
                 double dir = 0.0;
