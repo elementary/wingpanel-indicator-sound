@@ -70,7 +70,7 @@ public class Sound.Widgets.PlayerList : Gtk.Box {
 
     public void update_default_player () {
         var new_player = AppInfo.get_default_for_type ("audio/x-vorbis+ogg", false);
-        if (new_player != null && (new_player != default_player)) {
+        if (new_player != null && (default_player == null || new_player.get_id () != default_player.get_id ())) {
             default_player = new_player;
 
             if (default_widget != null) {
