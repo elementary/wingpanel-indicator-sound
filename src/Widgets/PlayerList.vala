@@ -135,6 +135,7 @@ public class Sound.Widgets.PlayerList : Gtk.Box {
     void destroy_iface (string name) {
         if (default_widget.mpris_name == name) {
             default_widget.client = null;
+            default_widget.reset_default ();
         } else {
             var widg = ifaces[name];
             if (widg != null) {

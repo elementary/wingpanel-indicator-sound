@@ -164,8 +164,7 @@ public class Sound.Widgets.PlayerRow : Gtk.Grid {
             }
         }
 
-        title_label.label = app_name;
-        artist_label.label = NOT_PLAYING;
+        reset_default ();
     }
 
     construct {
@@ -360,6 +359,11 @@ public class Sound.Widgets.PlayerRow : Gtk.Grid {
                 return false;
             });
         });
+    }
+
+    public void reset_default () {
+        title_label.label = app_name;
+        artist_label.label = NOT_PLAYING;
     }
 
     private void connect_to_client () {
