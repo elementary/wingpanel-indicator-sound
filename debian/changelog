@@ -1,3 +1,15 @@
+wingpanel-indicator-sound (2.1.8) bionic; urgency=medium
+
+  * Release 2.1.8 (#174)
+  * PlayerList: Fix always updating the default player (#168)
+  * Indicator: code style fixes (#163)
+  * MprisWidget/Gui → PlayerList/Row (#164)
+  * MprisWidget: Fix duplicated default player entry (#166)
+  * Update translation files
+  * Update translation template
+
+ -- elementary LLC <builds@elementary.io>  Tue, 05 Jan 2021 22:08:21 +0000
+
 wingpanel-indicator-sound (2.1.7) bionic; urgency=medium
 
   * Release 2.1.7 (#161)
