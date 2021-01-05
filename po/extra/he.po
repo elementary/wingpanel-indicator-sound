@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-10-08 18:20+0000\n"
-"PO-Revision-Date: 2020-08-11 12:13+0000\n"
+"PO-Revision-Date: 2020-12-29 08:16+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://l10n.elementary.io/projects/wingpanel/"
 "indicator-sound-extra/he/>\n"
@@ -33,11 +33,11 @@ msgstr ""
 
 #: data/sound.appdata.xml.in:12
 msgid "Minor updates"
-msgstr ""
+msgstr "עדכונים משניים"
 
 #: data/sound.appdata.xml.in:14
 msgid "Fix opacity flash during icon animation"
-msgstr ""
+msgstr "הבהוב האטימות במהלך הנפשת סמלים תוקן"
 
 #: data/sound.appdata.xml.in:15 data/sound.appdata.xml.in:22
 #: data/sound.appdata.xml.in:29 data/sound.appdata.xml.in:34
@@ -58,4 +58,4 @@ msgstr "שיפורי ביצועים"
 
 #: data/sound.appdata.xml.in:43
 msgid "elementary, Inc."
-msgstr "elementary בע״מ."
+msgstr "elementary בע״מ"
