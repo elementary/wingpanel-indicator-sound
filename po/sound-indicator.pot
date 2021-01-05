@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sound-indicator\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-08 18:20+0000\n"
+"POT-Creation-Date: 2021-01-05 22:08+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,18 +17,18 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/Indicator.vala:346
+#: src/Indicator.vala:278
 msgid "Sound Settings…"
 msgstr ""
 
-#: src/Widgets/MprisGui.vala:28
+#: src/Widgets/PlayerRow.vala:28
 msgid "Not currently playing"
 msgstr ""
 
-#: src/Widgets/MprisGui.vala:43
+#: src/Widgets/PlayerRow.vala:43
 msgid "Music player"
 msgstr ""
 
-#: src/Widgets/MprisGui.vala:531
+#: src/Widgets/PlayerRow.vala:531
 msgid "Unknown Artist"
 msgstr ""
