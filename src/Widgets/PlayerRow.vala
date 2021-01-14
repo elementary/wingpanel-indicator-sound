@@ -25,7 +25,7 @@ const int ICON_SIZE = 48;
  * MPRIS clients to be controlled with multiple widgets
  */
 public class Sound.Widgets.PlayerRow : Gtk.Grid {
-    private const string NOT_PLAYING = _("Not currently playing");
+    private const string NOT_PLAYING = _("Not playing");
 
     public signal void close ();
 
