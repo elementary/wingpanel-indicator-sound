@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sound-indicator\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-05 22:08+0000\n"
+"POT-Creation-Date: 2021-01-14 20:41+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,7 +22,7 @@ msgid "Sound Settings…"
 msgstr ""
 
 #: src/Widgets/PlayerRow.vala:28
-msgid "Not currently playing"
+msgid "Not playing"
 msgstr ""
 
 #: src/Widgets/PlayerRow.vala:43
