@@ -69,6 +69,10 @@ public class Sound.Indicator : Wingpanel.Indicator {
         volume_control.notify["is-playing"].connect (on_is_playing_change);
         volume_control.notify["is-listening"].connect (update_mic_visibility);
 
+        // Tooltip-related
+        volume_control.notify["volume"].connect (update_tooltip);
+        volume_control.notify["mute"].connect (update_tooltip);
+
         Notify.init ("wingpanel-indicator-sound");
 
         settings.notify["max-volume"].connect (set_max_volume);
@@ -540,6 +544,20 @@ public class Sound.Indicator : Wingpanel.Indicator {
         }
 
         return true;
+    }
+
+    private void update_tooltip () {
+        debug ("VolumeControl ready? %s".printf (volume_control.ready.to_string ()));
+
+        string description = _("Volume: %.0f%%").printf (
+            (volume_control.mute) ? 0 : volume_control.volume.volume * 100
+        );
+        string accel_label = _("Middle-click to %s").printf (
+            (volume_control.mute) ? _("mute") : _("unmute")
+        );
+
+        accel_label = Granite.TOOLTIP_SECONDARY_TEXT_MARKUP.printf (accel_label);
+        display_widget.tooltip_markup = "%s\n%s".printf (description, accel_label);
     }
 }
 
