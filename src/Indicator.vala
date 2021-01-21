@@ -553,7 +553,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
             (volume_control.mute) ? 0 : volume_control.volume.volume * 100
         );
         string accel_label = _("Middle-click to %s").printf (
-            (volume_control.mute) ? _("mute") : _("unmute")
+            (volume_control.mute) ? _("unmute") : _("mute")
         );
 
         accel_label = Granite.TOOLTIP_SECONDARY_TEXT_MARKUP.printf (accel_label);
