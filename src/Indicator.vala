@@ -552,9 +552,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
         string description = _("Volume: %.0f%%").printf (
             (volume_control.mute) ? 0 : volume_control.volume.volume * 100
         );
-        string accel_label = _("Middle-click to %s").printf (
-            (volume_control.mute) ? _("unmute") : _("mute")
-        );
+        string accel_label = (volume_control.mute) ? _("Middle-click to unmute") : _("Middle-click to mute");
 
         accel_label = Granite.TOOLTIP_SECONDARY_TEXT_MARKUP.printf (accel_label);
         display_widget.tooltip_markup = "%s\n%s".printf (description, accel_label);
