@@ -8,6 +8,7 @@
 You'll need the following dependencies:
 
     libcanberra-gtk-dev
+    libcanberra-gtk3-dev
     libgranite-dev
     libglib2.0-dev
     libgtk-3-dev
