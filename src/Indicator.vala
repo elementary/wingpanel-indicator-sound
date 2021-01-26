@@ -547,8 +547,6 @@ public class Sound.Indicator : Wingpanel.Indicator {
     }
 
     private void update_tooltip () {
-        debug ("VolumeControl ready? %s".printf (volume_control.ready.to_string ()));
-
         string description = _("Volume: %.0f%%").printf (
             (volume_control.mute) ? 0 : volume_control.volume.volume * 100
         );
