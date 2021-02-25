@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-02-25 18:33+0000\n"
-"PO-Revision-Date: 2020-12-29 08:16+0000\n"
+"PO-Revision-Date: 2021-02-26 13:35+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://l10n.elementary.io/projects/wingpanel/"
 "indicator-sound-extra/he/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.4.2\n"
 
 #: data/sound.appdata.xml.in:6
 msgid "Sound Indicator"
@@ -37,7 +37,7 @@ msgstr "עדכונים משניים"
 
 #: data/sound.appdata.xml.in:14
 msgid "Fix duplicate default player"
-msgstr ""
+msgstr "תיקון כפילות נגן בררת מחדל"
 
 #: data/sound.appdata.xml.in:15 data/sound.appdata.xml.in:24
 #: data/sound.appdata.xml.in:31 data/sound.appdata.xml.in:38
