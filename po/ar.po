@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-14 15:48+0000\n"
+"POT-Creation-Date: 2021-02-25 18:33+0000\n"
 "PO-Revision-Date: 2018-12-06 06:00+0000\n"
 "Last-Translator: Mohelm97 <mohelm97@gmail.com>\n"
 "Language-Team: Arabic <https://weblate.elementary.io/projects/wingpanel/wingpanel-indicator-sound/ar/>\n"
@@ -16,19 +16,34 @@ msgstr ""
 "X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 
-#: src/Indicator.vala:346
+#: src/Indicator.vala:282
 msgid "Sound Settings…"
 msgstr "إعدادات الصوت…"
 
-#: src/Widgets/MprisGui.vala:28
-msgid "Not currently playing"
+#: src/Indicator.vala:550
+#, c-format
+msgid "Volume: %.0f%%"
+msgstr ""
+
+#: src/Indicator.vala:553
+msgid "Middle-click to unmute"
+msgstr ""
+
+#: src/Indicator.vala:553
+msgid "Middle-click to mute"
+msgstr ""
+
+#: src/Widgets/PlayerRow.vala:28
+#, fuzzy
+#| msgid "Not currently playing"
+msgid "Not playing"
 msgstr "ليس في وضع التشغيل"
 
-#: src/Widgets/MprisGui.vala:43
+#: src/Widgets/PlayerRow.vala:43
 msgid "Music player"
 msgstr "مشغل الموسيقى"
 
-#: src/Widgets/MprisGui.vala:531
+#: src/Widgets/PlayerRow.vala:531
 #, fuzzy
 msgid "Unknown Artist"
 msgstr "عنوان غير معروف"
