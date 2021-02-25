@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-08 18:20+0000\n"
+"POT-Creation-Date: 2021-02-25 18:33+0000\n"
 "PO-Revision-Date: 2020-10-10 13:26+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <https://l10n.elementary.io/projects/wingpanel/"
@@ -31,33 +31,38 @@ msgstr ""
 "Ajuste o volume do altifalante e do microfone ou veja Agora a reproduzir "
 "informações e controlos de multimédia"
 
-#: data/sound.appdata.xml.in:12
+#: data/sound.appdata.xml.in:12 data/sound.appdata.xml.in:21
 msgid "Minor updates"
 msgstr "Pequenas atualizações"
 
 #: data/sound.appdata.xml.in:14
-msgid "Fix opacity flash during icon animation"
-msgstr "Corrige a opacidade do flash durante a animação do ícone"
+msgid "Fix duplicate default player"
+msgstr ""
 
-#: data/sound.appdata.xml.in:15 data/sound.appdata.xml.in:22
-#: data/sound.appdata.xml.in:29 data/sound.appdata.xml.in:34
+#: data/sound.appdata.xml.in:15 data/sound.appdata.xml.in:24
+#: data/sound.appdata.xml.in:31 data/sound.appdata.xml.in:38
+#: data/sound.appdata.xml.in:43
 msgid "Updated translations"
 msgstr "Traduções atualizadas"
 
-#: data/sound.appdata.xml.in:21
+#: data/sound.appdata.xml.in:23
+msgid "Fix opacity flash during icon animation"
+msgstr "Corrige a opacidade do flash durante a animação do ícone"
+
+#: data/sound.appdata.xml.in:30
 msgid "Update default music player when changed"
 msgstr "Atualiza o reprodutor de música predefinido quando alterado"
 
-#: data/sound.appdata.xml.in:27
+#: data/sound.appdata.xml.in:36
 msgid "Correctly show \"Unknown Artist\" when artist info isn't available"
 msgstr ""
 "Mostrar corretamente \"Artista Desconhecido\" quando a informação do artista "
 "não está disponível"
 
-#: data/sound.appdata.xml.in:28
+#: data/sound.appdata.xml.in:37
 msgid "Performance improvements"
 msgstr "Melhorias de desempenho"
 
-#: data/sound.appdata.xml.in:43
+#: data/sound.appdata.xml.in:52
 msgid "elementary, Inc."
 msgstr "elementary, Inc."

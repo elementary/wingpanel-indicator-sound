@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-08 18:20+0000\n"
+"POT-Creation-Date: 2021-02-25 18:33+0000\n"
 "PO-Revision-Date: 2020-10-27 10:15+0000\n"
 "Last-Translator: Fabio Zaramella <fabiozaramella@hotmail.it>\n"
 "Language-Team: Italian <https://l10n.elementary.io/projects/wingpanel/"
@@ -31,34 +31,39 @@ msgstr ""
 "Regola il volume dell'altoparlante e del microfono o consulta le "
 "informazioni di riproduzione e i controlli multimediali"
 
-#: data/sound.appdata.xml.in:12
+#: data/sound.appdata.xml.in:12 data/sound.appdata.xml.in:21
 msgid "Minor updates"
 msgstr "Aggiornamenti minori"
 
 #: data/sound.appdata.xml.in:14
+msgid "Fix duplicate default player"
+msgstr ""
+
+#: data/sound.appdata.xml.in:15 data/sound.appdata.xml.in:24
+#: data/sound.appdata.xml.in:31 data/sound.appdata.xml.in:38
+#: data/sound.appdata.xml.in:43
+msgid "Updated translations"
+msgstr "Traduzioni aggiornate"
+
+#: data/sound.appdata.xml.in:23
 msgid "Fix opacity flash during icon animation"
 msgstr ""
 "Risolto il problema con il flash di opacità durante l'animazione dell'icona"
 
-#: data/sound.appdata.xml.in:15 data/sound.appdata.xml.in:22
-#: data/sound.appdata.xml.in:29 data/sound.appdata.xml.in:34
-msgid "Updated translations"
-msgstr "Traduzioni aggiornate"
-
-#: data/sound.appdata.xml.in:21
+#: data/sound.appdata.xml.in:30
 msgid "Update default music player when changed"
 msgstr "Aggiorna il lettore musicale predefinito quando viene modificato"
 
-#: data/sound.appdata.xml.in:27
+#: data/sound.appdata.xml.in:36
 msgid "Correctly show \"Unknown Artist\" when artist info isn't available"
 msgstr ""
 "Mostra correttamente \"Artista sconosciuto\" quando le informazioni "
 "sull'artista non sono disponibili"
 
-#: data/sound.appdata.xml.in:28
+#: data/sound.appdata.xml.in:37
 msgid "Performance improvements"
 msgstr "Miglioramenti delle prestazioni"
 
-#: data/sound.appdata.xml.in:43
+#: data/sound.appdata.xml.in:52
 msgid "elementary, Inc."
 msgstr "elementary, Inc."
