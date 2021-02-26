@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-02-25 18:33+0000\n"
-"PO-Revision-Date: 2020-10-12 10:14+0000\n"
-"Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
+"PO-Revision-Date: 2021-02-26 13:35+0000\n"
+"Last-Translator: Alvaro <alvaroaraoz_92@hotmail.com>\n"
 "Language-Team: Spanish <https://l10n.elementary.io/projects/wingpanel/"
 "indicator-sound-extra/es/>\n"
 "Language: es\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.4.2\n"
 
 #: data/sound.appdata.xml.in:6
 msgid "Sound Indicator"
@@ -37,7 +37,7 @@ msgstr "Actualizaciones menores"
 
 #: data/sound.appdata.xml.in:14
 msgid "Fix duplicate default player"
-msgstr ""
+msgstr "Corregir reproductor predeterminado duplicado"
 
 #: data/sound.appdata.xml.in:15 data/sound.appdata.xml.in:24
 #: data/sound.appdata.xml.in:31 data/sound.appdata.xml.in:38
