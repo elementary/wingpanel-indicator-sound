@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-02-25 18:33+0000\n"
-"PO-Revision-Date: 2021-02-04 21:50+0000\n"
+"PO-Revision-Date: 2021-02-27 09:03+0000\n"
 "Last-Translator: Ozgur Baskin <bebeto_baskin@yahoo.com>\n"
 "Language-Team: Turkish <https://l10n.elementary.io/projects/wingpanel/"
 "indicator-sound-extra/tr/>\n"
@@ -37,7 +37,7 @@ msgstr "Küçük düzeltmeler"
 
 #: data/sound.appdata.xml.in:14
 msgid "Fix duplicate default player"
-msgstr ""
+msgstr "Yinelenen varsayılan oynatıcı düzeltildi"
 
 #: data/sound.appdata.xml.in:15 data/sound.appdata.xml.in:24
 #: data/sound.appdata.xml.in:31 data/sound.appdata.xml.in:38
