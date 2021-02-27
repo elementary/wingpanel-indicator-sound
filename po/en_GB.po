@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-02-25 18:33+0000\n"
-"PO-Revision-Date: 2021-02-27 15:31+0000\n"
+"PO-Revision-Date: 2021-02-27 18:49+0000\n"
 "Last-Translator: Ciarán Ainsworth <ciaranainsworth@outlook.com>\n"
 "Language-Team: English (United Kingdom) <https://l10n.elementary.io/projects/"
 "wingpanel/wingpanel-indicator-sound/en_GB/>\n"
@@ -35,10 +35,8 @@ msgid "Middle-click to mute"
 msgstr "Middle-click to mute"
 
 #: src/Widgets/PlayerRow.vala:28
-#, fuzzy
-#| msgid "Not currently playing"
 msgid "Not playing"
-msgstr "Not currently playing"
+msgstr "Not playing"
 
 #: src/Widgets/PlayerRow.vala:43
 msgid "Music player"
