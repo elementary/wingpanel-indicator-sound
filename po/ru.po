@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the wingpanel-indicator-sound package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2015.
 # Ernest Shefer <shef-er@ya.ru>, 2021.
+# DartDeaDia <jorydit@gmail.com>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: wingpanel-indicator-sound\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-02-25 18:33+0000\n"
 "PO-Revision-Date: 2021-03-04 23:26+0000\n"
-"Last-Translator: Ernest Shefer <shef-er@ya.ru>\n"
+"Last-Translator: DartDeaDia <jorydit@gmail.com>\n"
 "Language-Team: Russian <https://l10n.elementary.io/projects/wingpanel/"
 "wingpanel-indicator-sound/ru/>\n"
 "Language: ru\n"
@@ -28,21 +29,19 @@ msgstr "Параметры звука…"
 #: src/Indicator.vala:550
 #, c-format
 msgid "Volume: %.0f%%"
-msgstr ""
+msgstr "Громкость: %.0f%%"
 
 #: src/Indicator.vala:553
 msgid "Middle-click to unmute"
-msgstr ""
+msgstr "Нажмите средней кнопкой мыши, чтобы включить звук"
 
 #: src/Indicator.vala:553
 msgid "Middle-click to mute"
-msgstr ""
+msgstr "Нажмите средней кнопкой мыши, чтобы выключить звук"
 
 #: src/Widgets/PlayerRow.vala:28
-#, fuzzy
-#| msgid "Not currently playing"
 msgid "Not playing"
-msgstr "Ничего не воспроизводится"
+msgstr "Не воспроизводится"
 
 #: src/Widgets/PlayerRow.vala:43
 msgid "Music player"
