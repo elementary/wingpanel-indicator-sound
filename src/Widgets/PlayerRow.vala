@@ -468,7 +468,7 @@ public class Sound.Widgets.PlayerRow : Gtk.Grid {
                 //background.set_from_gicon (app_icon, Gtk.IconSize.DIALOG);
             }
         } else if (uri.has_prefix ("https://open.spotify.com/image/")) {
-            string fixed = uri.replace ("https://open.spotify.com/", "https://i.scdn.co/")
+            string fixed = uri.replace ("https://open.spotify.com/", "https://i.scdn.co/");
             load_remote_art_cancel.cancel ();
             load_remote_art_cancel.reset ();
             load_remote_art.begin (fixed);
