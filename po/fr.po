@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the wingpanel-indicator-sound package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2015.
 # Nathan <bonnemainsnathan@gmail.com>, 2019, 2021.
+# Corentin Noël <corentin@elementary.io>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: wingpanel-indicator-sound\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-02-25 18:33+0000\n"
-"PO-Revision-Date: 2021-03-05 13:33+0000\n"
-"Last-Translator: Nathan <bonnemainsnathan@gmail.com>\n"
+"PO-Revision-Date: 2021-03-12 09:56+0000\n"
+"Last-Translator: Corentin Noël <corentin@elementary.io>\n"
 "Language-Team: French <https://l10n.elementary.io/projects/wingpanel/"
 "wingpanel-indicator-sound/fr/>\n"
 "Language: fr\n"
@@ -31,11 +32,11 @@ msgstr "Volume : %.0f%%"
 
 #: src/Indicator.vala:553
 msgid "Middle-click to unmute"
-msgstr "Cliquez sur la molette pour réactiver le son"
+msgstr "Clic central pour réactiver le son"
 
 #: src/Indicator.vala:553
 msgid "Middle-click to mute"
-msgstr "Cliquez sur la molette pour désactiver le son"
+msgstr "Clic central pour désactiver le son"
 
 #: src/Widgets/PlayerRow.vala:28
 msgid "Not playing"
