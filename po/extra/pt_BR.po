@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-02-25 18:33+0000\n"
-"PO-Revision-Date: 2020-04-08 21:10+0000\n"
-"Last-Translator: Rodrigo Oliveira <rod.oliveira@gmail.com>\n"
+"PO-Revision-Date: 2021-03-12 20:18+0000\n"
+"Last-Translator: Leonardo <leonardo@elementary.io>\n"
 "Language-Team: Portuguese (Brazil) <https://l10n.elementary.io/projects/"
 "wingpanel/indicator-sound-extra/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.4.2\n"
 
 #: data/sound.appdata.xml.in:6
 msgid "Sound Indicator"
@@ -33,11 +33,11 @@ msgstr ""
 
 #: data/sound.appdata.xml.in:12 data/sound.appdata.xml.in:21
 msgid "Minor updates"
-msgstr ""
+msgstr "Atualizações menores"
 
 #: data/sound.appdata.xml.in:14
 msgid "Fix duplicate default player"
-msgstr ""
+msgstr "Corrige duplicação do tocador padrão"
 
 #: data/sound.appdata.xml.in:15 data/sound.appdata.xml.in:24
 #: data/sound.appdata.xml.in:31 data/sound.appdata.xml.in:38
@@ -47,11 +47,11 @@ msgstr "Traduções atualizadas"
 
 #: data/sound.appdata.xml.in:23
 msgid "Fix opacity flash during icon animation"
-msgstr ""
+msgstr "Corrige flash de opacidade durante animação de um ícone"
 
 #: data/sound.appdata.xml.in:30
 msgid "Update default music player when changed"
-msgstr ""
+msgstr "Atualiza o tocador padrão de música quando mudado"
 
 #: data/sound.appdata.xml.in:36
 msgid "Correctly show \"Unknown Artist\" when artist info isn't available"
