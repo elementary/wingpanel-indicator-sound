@@ -14,6 +14,7 @@ public class Sound.Device : GLib.Object {
     public string card_name { get; set; }
     public uint32 card_index { get; construct; }
     public string port_name { get; construct; }
+    public bool is_priority { get; set; }
     public string display_name { get; set; }
     public string form_factor { get; set; }
     public Gee.ArrayList<string> profiles { get; set; }

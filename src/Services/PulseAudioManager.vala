@@ -587,11 +587,19 @@ public class Sound.PulseAudioManager : GLib.Object {
 
         // retrieve relevant ports
         PulseAudio.CardPortInfo*[] relevant_ports = {};
+        uint32 highest_output_priority = 0;
+        uint32 highest_input_priority = 0;
         foreach (var port in card.ports) {
             if (port.available == PulseAudio.PortAvailable.NO) {
                 continue;
             }
-
+            bool is_input = (PulseAudio.Direction.INPUT in port.direction);
+            if (is_input && port.priority > highest_input_priority) {
+                highest_input_priority = port.priority;
+            }
+            if (!is_input && port.priority > highest_output_priority) {
+                highest_output_priority = port.priority;
+            }
             relevant_ports += port;
         }
 
@@ -614,6 +622,7 @@ public class Sound.PulseAudioManager : GLib.Object {
             device.card_active_profile_name = card_active_profile_name;
             device.input = is_input;
             device.card_name = card.name;
+            device.is_priority = port.priority == (is_input? highest_input_priority : highest_output_priority);
             var card_description = card.proplist.gets (PulseAudio.Proplist.PROP_DEVICE_DESCRIPTION);
             device.display_name = @"$(card_description): $(port.description)";
             device.form_factor = port.proplist.gets (PulseAudio.Proplist.PROP_DEVICE_FORM_FACTOR);
