@@ -12,16 +12,18 @@ public class Sound.Widgets.DeviceManagerWidget : Gtk.Grid {
         pam.notify["default-input"].connect (default_input_changed);
         pam.start ();
 
-        device_list = new Gtk.ListBox ();
-        device_list.activate_on_single_click = true;
-        device_list.show ();
+        device_list = new Gtk.ListBox () {
+            activate_on_single_click = true,
+            visible = true
+        };
 
-        scrolled_box = new Gtk.ScrolledWindow (null, null);
-        scrolled_box.hscrollbar_policy = Gtk.PolicyType.NEVER;
-        scrolled_box.max_content_height = 256;
-        scrolled_box.propagate_natural_height = true;
+        scrolled_box = new Gtk.ScrolledWindow (null, null) {
+            hscrollbar_policy = Gtk.PolicyType.NEVER,
+            propagate_natural_height = true,
+            max_content_height = 256,
+            no_show_all = true
+        };
         scrolled_box.add (device_list);
-        scrolled_box.no_show_all = true;
 
         attach (scrolled_box, 0, 1, 1);
 
