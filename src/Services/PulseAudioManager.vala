@@ -485,7 +485,8 @@ public class Sound.PulseAudioManager : GLib.Object {
         }
 
         debug ("card info update");
-        debug ("\tcard: %u %s (%s)", card.index, card.proplist.gets (PulseAudio.Proplist.PROP_DEVICE_DESCRIPTION), card.name);
+        debug ("\tcard: %u %s (%s)", card.index, card.proplist.gets (PulseAudio.Proplist.PROP_DEVICE_DESCRIPTION),
+               card.name);
         debug ("\t\tactive profile: %s", card.active_profile2.name);
 
         debug ("\t\tcard form factor: %s", card.proplist.gets (PulseAudio.Proplist.PROP_DEVICE_FORM_FACTOR));
@@ -556,7 +557,9 @@ public class Sound.PulseAudioManager : GLib.Object {
     }
 
     // remove devices which port has dissappeared
-    private void cleanup_devices (Gee.HashMap<string, Device> devices, PulseAudio.CardInfo card, PulseAudio.CardPortInfo*[] relevant_ports) {
+    private void cleanup_devices (Gee.HashMap<string, Device> devices,
+                                  PulseAudio.CardInfo card,
+                                  PulseAudio.CardPortInfo*[] relevant_ports) {
         var iter = devices.map_iterator ();
         while (iter.next ()) {
             var device = iter.get_value ();
@@ -661,7 +664,9 @@ public class Sound.PulseAudioManager : GLib.Object {
      * Change the Source
      */
 
-    private void ext_stream_restore_read_sink_callback (PulseAudio.Context c, PulseAudio.ExtStreamRestoreInfo? info, int eol) {
+    private void ext_stream_restore_read_sink_callback (PulseAudio.Context c,
+                                                        PulseAudio.ExtStreamRestoreInfo? info,
+                                                        int eol) {
         if (eol != 0 || !info.name.has_prefix ("sink-input-by")) {
             return;
         }
@@ -680,7 +685,9 @@ public class Sound.PulseAudioManager : GLib.Object {
         });
     }
 
-    private void ext_stream_restore_read_source_callback (PulseAudio.Context c, PulseAudio.ExtStreamRestoreInfo? info, int eol) {
+    private void ext_stream_restore_read_source_callback (PulseAudio.Context c,
+                                                          PulseAudio.ExtStreamRestoreInfo? info,
+                                                          int eol) {
         if (eol != 0 || !info.name.has_prefix ("source-output-by")) {
             return;
         }
