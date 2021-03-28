@@ -69,9 +69,9 @@ public class Sound.Widgets.DeviceManagerWidget : Gtk.Grid {
 
     private void update_showable () {
         if (n_visible_items () <= 1) {
-            scrolled_box.hide();
+            scrolled_box.hide ();
         } else {
-            scrolled_box.show();
+            scrolled_box.show ();
         }
     }
 
