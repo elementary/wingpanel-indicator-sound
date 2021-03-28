@@ -30,11 +30,16 @@ wingpanel_indicatorsdir = wingpanel_dep.get_pkgconfig_variable('indicatorsdir', 
 
 shared_module(
     meson.project_name(),
+    'src/Device.vala',
     'src/Indicator.vala',
     'src/Widgets/DisplayWidget.vala',
     'src/Widgets/Scale.vala',
     'src/Widgets/PlayerRow.vala',
     'src/Widgets/PlayerList.vala',
+    'src/Widgets/Toggler.vala',
+    'src/Widgets/OutputDeviceManagerWidget.vala',
+    'src/Widgets/OutputDeviceItem.vala',
+    'src/Services/PulseAudioManager.vala',
     'src/Services/MprisClient.vala',
     'src/Services/Volume-control.vala',
     'src/Services/Manager.vala',
@@ -43,6 +48,7 @@ shared_module(
     asresources,
     dependencies: [
         dependency('glib-2.0'),
+        dependency('gio-2.0'),
         dependency('gobject-2.0'),
         dependency('granite', version: '>=6.0.0'),
         dependency('gtk+-3.0'),
@@ -51,6 +57,7 @@ shared_module(
         dependency('libnotify'),
         dependency('libcanberra'),
         dependency('libcanberra-gtk3'),
+        meson.get_compiler('vala').find_library('libpulse-ext', dirs: join_paths(meson.source_root(), 'vapi')),
         wingpanel_dep
     ],
     install: true,

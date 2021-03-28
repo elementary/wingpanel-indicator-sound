@@ -30,6 +30,26 @@
     -gtk-icon-source: -gtk-icontheme("microphone-sensitivity-muted-symbolic");
 }
 
+.toggler-icon {
+    animation: toggler-close 160ms linear;
+    -gtk-icon-source: -gtk-icontheme("pan-end-symbolic");
+}
+
+.toggler-icon.open {
+    animation: toggler-open 160ms linear;
+    animation-fill-mode: both;
+}
+
+@keyframes toggler-close {
+    from { -gtk-icon-transform: rotate(0.25turn); }
+    to { -gtk-icon-transform: rotate(0); }
+}
+
+@keyframes toggler-open {
+    from { -gtk-icon-transform: rotate(0); }
+    to { -gtk-icon-transform: rotate(0.25turn); }
+}
+
 @keyframes microphone-disabled {
     0% { -gtk-icon-source: -gtk-icontheme("audio-input-microphone-symbolic"); }
     10% { -gtk-icon-source: -gtk-icontheme("microphone-sensitivity-muted-10-symbolic"); opacity: 0.94; }

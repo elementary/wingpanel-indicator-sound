@@ -24,6 +24,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
     private Widgets.PlayerList mpris;
     private Widgets.Scale volume_scale;
     private Widgets.Scale mic_scale;
+    private Widgets.OutputDeviceManagerWidget output_device_manager;
     private Wingpanel.Widgets.Separator mic_separator;
     private Notify.Notification? notification;
     private Services.VolumeControlPulse volume_control;
@@ -72,6 +73,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
         // Tooltip-related
         volume_control.notify["volume"].connect (update_tooltip);
         volume_control.notify["mute"].connect (update_tooltip);
+        output_device_manager = new Widgets.OutputDeviceManagerWidget ();
 
         Notify.init ("wingpanel-indicator-sound");
 
@@ -286,10 +288,11 @@ public class Sound.Indicator : Wingpanel.Indicator {
             main_grid.attach (mpris, 0, 0);
             main_grid.attach (new Wingpanel.Widgets.Separator (), 0, 1);
             main_grid.attach (volume_scale, 0, 2);
-            main_grid.attach (new Wingpanel.Widgets.Separator (), 0, 3);
-            main_grid.attach (mic_scale, 0, 4);
-            main_grid.attach (mic_separator, 0, 5);
-            main_grid.attach (settings_button, 0, 6);
+            main_grid.attach (output_device_manager, 0, 3, 1, 1);
+            main_grid.attach (new Wingpanel.Widgets.Separator (), 0, 4);
+            main_grid.attach (mic_scale, 0, 5);
+            main_grid.attach (mic_separator, 0, 6);
+            main_grid.attach (settings_button, 0, 7);
 
             mic_scale.notify["active"].connect (on_mic_switch_change);
 
@@ -465,6 +468,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
     public override void closed () {
         open = false;
         notification = null;
+        output_device_manager.close ();
     }
 
     private void show_settings () {
