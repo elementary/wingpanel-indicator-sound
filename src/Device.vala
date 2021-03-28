@@ -94,8 +94,10 @@ public class Sound.Device : GLib.Object {
                 return "audio-headphones-symbolic";
             case "hifi":
                 return "audio-card-symbolic";
+            case "microphone":
+                return "audio-input-microphone-symbolic";
             default:
-                return "audio-speakers-symbolic";
+                return input? "audio-input-microphone-symbolic" : "audio-speakers-symbolic";
         }
     }
 
