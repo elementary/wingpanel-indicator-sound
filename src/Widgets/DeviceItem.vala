@@ -28,6 +28,8 @@ public class DeviceItem : Gtk.ListBoxRow {
         grid.add (img_type);
 
         add (grid);
+        show_all ();
+        no_show_all = true;
 
         radio_button.toggled.connect (() => {
             if (radio_button.active) {
@@ -48,7 +50,6 @@ public class DeviceItem : Gtk.ListBoxRow {
 
     public void update_visible (bool is_default) {
         visible = is_priority || is_default;
-        no_show_all = !visible;
     }
 
     unowned SList get_group () {
