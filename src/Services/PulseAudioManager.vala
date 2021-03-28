@@ -50,7 +50,6 @@ public class Sound.PulseAudioManager : GLib.Object {
     public Device default_input { get; private set; }
     private string default_source_name;
     private string default_sink_name;
-    private Gee.HashMap<uint32, PulseAudio.Operation> volume_operations;
 
     private PulseAudioManager () {
 
@@ -60,7 +59,6 @@ public class Sound.PulseAudioManager : GLib.Object {
         loop = new PulseAudio.GLibMainLoop ();
         input_devices = new Gee.HashMap<string, Device> ();
         output_devices = new Gee.HashMap<string, Device> ();
-        volume_operations = new Gee.HashMap<uint32, PulseAudio.Operation> ();
 
         string messages_debug_raw = GLib.Environment.get_variable ("G_MESSAGES_DEBUG");
         if (messages_debug_raw != null) {
@@ -206,65 +204,6 @@ public class Sound.PulseAudioManager : GLib.Object {
         });
 
         yield;
-    }
-
-    public void change_device_mute (Device? device, bool mute = true) {
-        if (device == null) {
-            return;
-        }
-
-        if (device.input) {
-            context.set_source_mute_by_name (device.source_name, mute, null);
-        } else {
-            context.set_sink_mute_by_name (device.sink_name, mute, null);
-        }
-    }
-
-    public void change_device_volume (Device? device, double volume) {
-        if (device == null) {
-            return;
-        }
-
-        device.volume_operations.foreach ((operation) => {
-            if (operation.get_state () == PulseAudio.Operation.State.RUNNING) {
-                operation.cancel ();
-            }
-
-            device.volume_operations.remove (operation);
-            return GLib.Source.CONTINUE;
-        });
-
-        var cvol = device.cvolume;
-        cvol.scale (double_to_volume (volume));
-        PulseAudio.Operation? operation = null;
-        if (device.input) {
-            operation = context.set_source_volume_by_name (device.source_name, cvol, null);
-        } else {
-            operation = context.set_sink_volume_by_name (device.sink_name, cvol, null);
-        }
-
-        if (operation != null) {
-            device.volume_operations.add (operation);
-        }
-    }
-
-    public void change_device_balance (Device? device, float balance) {
-        if (device == null) {
-            return;
-        }
-
-        var cvol = device.cvolume;
-        cvol = cvol.set_balance (device.channel_map, balance);
-        PulseAudio.Operation? operation = null;
-        if (device.input) {
-            operation = context.set_source_volume_by_name (device.source_name, cvol, null);
-        } else {
-            operation = context.set_sink_volume_by_name (device.sink_name, cvol, null);
-        }
-
-        if (operation != null) {
-            device.volume_operations.add (operation);
-        }
     }
 
     /*
@@ -474,22 +413,6 @@ public class Sound.PulseAudioManager : GLib.Object {
                     device.is_default = (source.name == default_source_name);
                     debug ("\t\t\tis_default: %s", device.is_default ? "true" : "false");
 
-                    device.is_muted = (source.mute != 0);
-                    device.cvolume = source.volume;
-                    device.channel_map = source.channel_map;
-                    device.balance = source.volume.get_balance (source.channel_map);
-                    device.volume_operations.foreach ((operation) => {
-                        if (operation.get_state () != PulseAudio.Operation.State.RUNNING) {
-                            device.volume_operations.remove (operation);
-                        }
-
-                        return GLib.Source.CONTINUE;
-                    });
-
-                    if (device.volume_operations.is_empty) {
-                        device.volume = volume_to_double (source.volume.max ());
-                    }
-
                     if (device.is_default) {
                         default_input = device;
                     }
@@ -542,21 +465,6 @@ public class Sound.PulseAudioManager : GLib.Object {
                     device.sink_index = (int)sink.index;
                     device.is_default = (sink.name == default_sink_name);
                     debug ("\t\t\tis_default: %s", device.is_default ? "true" : "false");
-                    device.is_muted = (sink.mute != 0);
-                    device.cvolume = sink.volume;
-                    device.channel_map = sink.channel_map;
-                    device.balance = sink.volume.get_balance (sink.channel_map);
-                    device.volume_operations.foreach ((operation) => {
-                        if (operation.get_state () != PulseAudio.Operation.State.RUNNING) {
-                            device.volume_operations.remove (operation);
-                        }
-
-                        return GLib.Source.CONTINUE;
-                    });
-
-                    if (device.volume_operations.is_empty) {
-                        device.volume = volume_to_double (sink.volume.max ());
-                    }
 
                     if (device.is_default) {
                         default_output = device;
@@ -621,7 +529,6 @@ public class Sound.PulseAudioManager : GLib.Object {
 
             device.card_active_profile_name = card_active_profile_name;
             device.input = is_input;
-            device.card_name = card.name;
             device.is_priority = port.priority == (is_input? highest_input_priority : highest_output_priority);
             var card_description = card.proplist.gets (PulseAudio.Proplist.PROP_DEVICE_DESCRIPTION);
             device.display_name = @"$(card_description): $(port.description)";
@@ -788,17 +695,4 @@ public class Sound.PulseAudioManager : GLib.Object {
         PulseAudio.ext_stream_restore_write (c, PulseAudio.UpdateMode.REPLACE, {new_info}, 1, null);
     }
 
-    /*
-     * Volume utils
-     */
-
-    private static double volume_to_double (PulseAudio.Volume vol) {
-        double tmp = (double)(vol - PulseAudio.Volume.MUTED);
-        return 100 * tmp / (double)(PulseAudio.Volume.NORM - PulseAudio.Volume.MUTED);
-    }
-
-    private static PulseAudio.Volume double_to_volume (double vol) {
-        double tmp = (double)(PulseAudio.Volume.NORM - PulseAudio.Volume.MUTED) * vol / 100;
-        return (PulseAudio.Volume)tmp + PulseAudio.Volume.MUTED;
-    }
 }

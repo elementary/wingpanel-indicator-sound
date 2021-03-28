@@ -1,5 +1,4 @@
 public class Sound.Widgets.DeviceManagerWidget : Gtk.Grid {
-    private Gtk.Grid device_grid;
     private Gtk.ListBox device_list;
     private Gtk.ScrolledWindow scrolled_box;
     public bool is_input_manager;
