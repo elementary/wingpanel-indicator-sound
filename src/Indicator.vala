@@ -24,7 +24,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
     private Widgets.PlayerList mpris;
     private Widgets.Scale volume_scale;
     private Widgets.Scale mic_scale;
-    private Widgets.OutputDeviceManagerWidget output_device_manager;
+    private Widgets.DeviceManagerWidget output_device_manager;
     private Wingpanel.Widgets.Separator mic_separator;
     private Notify.Notification? notification;
     private Services.VolumeControlPulse volume_control;
@@ -73,7 +73,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
         // Tooltip-related
         volume_control.notify["volume"].connect (update_tooltip);
         volume_control.notify["mute"].connect (update_tooltip);
-        output_device_manager = new Widgets.OutputDeviceManagerWidget ();
+        output_device_manager = new Widgets.DeviceManagerWidget ();
 
         Notify.init ("wingpanel-indicator-sound");
 

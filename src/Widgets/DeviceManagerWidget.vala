@@ -1,4 +1,4 @@
-public class Sound.Widgets.OutputDeviceManagerWidget : Gtk.Grid {
+public class Sound.Widgets.DeviceManagerWidget : Gtk.Grid {
     private Gtk.Grid output_grid;
     private Gtk.ListBox output_list;
     private Gtk.ScrolledWindow scrolled_box;
@@ -39,7 +39,7 @@ public class Sound.Widgets.OutputDeviceManagerWidget : Gtk.Grid {
         }
 
         Gtk.ListBoxRow? row = output_list.get_row_at_index (0);
-        var output_device = new OutputDeviceItem (device.display_name, device.is_default, device.get_nice_icon (), row);
+        var output_device = new DeviceItem (device.display_name, device.is_default, device.get_nice_icon (), row);
         output_list.add (output_device);
         output_list.show_all ();
         show_hide_output_list ();

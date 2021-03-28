@@ -1,10 +1,10 @@
-public class OutputDeviceItem : Gtk.ListBoxRow {
+public class DeviceItem : Gtk.ListBoxRow {
     public signal void activated ();
 
     Gtk.Image img_type;
     Gtk.RadioButton radio_button;
 
-    public OutputDeviceItem (string display_name, bool is_default, string icon_name, Gtk.ListBoxRow? row) {
+    public DeviceItem (string display_name, bool is_default, string icon_name, Gtk.ListBoxRow? row) {
         selectable = false;
 
         radio_button = new Gtk.RadioButton.with_label (null, display_name);
@@ -13,7 +13,7 @@ public class OutputDeviceItem : Gtk.ListBoxRow {
         radio_button.xalign = 0;
 
         if (row != null) {
-            var item = (OutputDeviceItem) row;
+            var item = (DeviceItem) row;
             radio_button.set_group (item.get_group ());
         }
 
