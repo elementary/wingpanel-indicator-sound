@@ -25,6 +25,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
     private Widgets.Scale volume_scale;
     private Widgets.Scale mic_scale;
     private Widgets.DeviceManagerWidget output_device_manager;
+    private Widgets.DeviceManagerWidget input_device_manager;
     private Wingpanel.Widgets.Separator mic_separator;
     private Notify.Notification? notification;
     private Services.VolumeControlPulse volume_control;
@@ -73,7 +74,13 @@ public class Sound.Indicator : Wingpanel.Indicator {
         // Tooltip-related
         volume_control.notify["volume"].connect (update_tooltip);
         volume_control.notify["mute"].connect (update_tooltip);
-        output_device_manager = new Widgets.DeviceManagerWidget ();
+
+        output_device_manager = new Widgets.DeviceManagerWidget () {
+            is_input_manager = false
+        };
+        input_device_manager = new Widgets.DeviceManagerWidget () {
+            is_input_manager = true
+        };
 
         Notify.init ("wingpanel-indicator-sound");
 
@@ -221,12 +228,16 @@ public class Sound.Indicator : Wingpanel.Indicator {
             mic_scale.show_all ();
             mic_separator.no_show_all = false;
             mic_separator.show ();
+            input_device_manager.no_show_all = false;
+            input_device_manager.show ();
             display_widget.show_mic = true;
         } else {
             mic_scale.no_show_all = true;
             mic_scale.hide ();
             mic_separator.no_show_all = true;
             mic_separator.hide ();
+            input_device_manager.no_show_all = true;
+            input_device_manager.hide ();
             display_widget.show_mic = false;
         }
     }
@@ -291,8 +302,9 @@ public class Sound.Indicator : Wingpanel.Indicator {
             main_grid.attach (output_device_manager, 0, 3, 1, 1);
             main_grid.attach (new Wingpanel.Widgets.Separator (), 0, 4);
             main_grid.attach (mic_scale, 0, 5);
-            main_grid.attach (mic_separator, 0, 6);
-            main_grid.attach (settings_button, 0, 7);
+            main_grid.attach (input_device_manager, 0, 6, 1, 1);
+            main_grid.attach (mic_separator, 0, 7);
+            main_grid.attach (settings_button, 0, 8);
 
             mic_scale.notify["active"].connect (on_mic_switch_change);
 
