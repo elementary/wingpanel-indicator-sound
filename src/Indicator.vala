@@ -468,7 +468,6 @@ public class Sound.Indicator : Wingpanel.Indicator {
     public override void closed () {
         open = false;
         notification = null;
-        output_device_manager.close ();
     }
 
     private void show_settings () {

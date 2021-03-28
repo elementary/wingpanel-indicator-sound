@@ -3,8 +3,6 @@ public class Sound.Widgets.OutputDeviceManagerWidget : Gtk.Grid {
     private Gtk.ListBox output_list;
     private Gtk.ScrolledWindow scrolled_box;
     private Gtk.Label output_list_label;
-    private Widgets.Toggler toggler;
-    private Gtk.Revealer revealer;
 
     private unowned PulseAudioManager pam;
 
@@ -14,17 +12,8 @@ public class Sound.Widgets.OutputDeviceManagerWidget : Gtk.Grid {
         pam.notify["default-output"].connect (default_changed);
         pam.start ();
 
-        toggler = new Widgets.Toggler ();
-        toggler.clicked.connect (() => {
-            toggler.toggle ();
-            on_expanded ();
-        });
-
-        revealer = new Gtk.Revealer ();
-        revealer.transition_type = Gtk.RevealerTransitionType.SLIDE_DOWN;
-
         output_grid = new Gtk.Grid ();
-        revealer.add (output_grid);
+        output_grid.show_all ();
 
         output_list = new Gtk.ListBox ();
         output_list.activate_on_single_click = true;
@@ -41,20 +30,7 @@ public class Sound.Widgets.OutputDeviceManagerWidget : Gtk.Grid {
         output_grid.attach (scrolled_box, 0, oi++, 1, 1);
 
         oi = 0;
-        attach (new Wingpanel.Widgets.Separator (), 0, oi++, 1, 1);
-        attach (toggler, 0, oi++, 1, 1);
-        attach (revealer, 0, oi++, 1, 1);
-
-        on_expanded ();
-    }
-
-    public void close () {
-        toggler.reset ();
-        on_expanded ();
-    }
-
-    private void on_expanded () {
-        revealer.reveal_child = toggler.expanded;
+        attach (output_grid, 0, 1, 1);
     }
 
     private void add_device (Device device) {
@@ -97,6 +73,5 @@ public class Sound.Widgets.OutputDeviceManagerWidget : Gtk.Grid {
 
     private void default_changed () {
         pam.default_output.defaulted ();
-        toggler.change_primary_device (pam.default_output.display_name);
     }
 }

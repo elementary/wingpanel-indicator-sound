@@ -9,7 +9,6 @@ public class OutputDeviceItem : Gtk.ListBoxRow {
 
         radio_button = new Gtk.RadioButton.with_label (null, display_name);
         radio_button.active = is_default;
-        radio_button.margin_start = 8;
         radio_button.hexpand = true;
         radio_button.xalign = 0;
 
@@ -21,7 +20,6 @@ public class OutputDeviceItem : Gtk.ListBoxRow {
         img_type = new Gtk.Image ();
         img_type.icon_name = icon_name;
         img_type.icon_size = Gtk.IconSize.MENU;
-        img_type.margin_end = 8;
 
         var grid = new Gtk.Grid ();
         grid.column_spacing = 8;

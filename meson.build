@@ -36,7 +36,6 @@ shared_module(
     'src/Widgets/Scale.vala',
     'src/Widgets/PlayerRow.vala',
     'src/Widgets/PlayerList.vala',
-    'src/Widgets/Toggler.vala',
     'src/Widgets/OutputDeviceManagerWidget.vala',
     'src/Widgets/OutputDeviceItem.vala',
     'src/Services/PulseAudioManager.vala',
