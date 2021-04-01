@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: wingpanel-indicator-sound\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-02-25 18:33+0000\n"
-"PO-Revision-Date: 2021-02-26 13:35+0000\n"
+"PO-Revision-Date: 2021-04-01 10:29+0000\n"
 "Last-Translator: Alvaro <alvaroaraoz_92@hotmail.com>\n"
 "Language-Team: Spanish <https://l10n.elementary.io/projects/wingpanel/"
 "wingpanel-indicator-sound/es/>\n"
@@ -32,11 +32,11 @@ msgstr "Volumen: %.0f%%"
 
 #: src/Indicator.vala:553
 msgid "Middle-click to unmute"
-msgstr "Haz clic con el botón central para activar el sonido"
+msgstr "Pulse con el botón central del ratón para activar el sonido"
 
 #: src/Indicator.vala:553
 msgid "Middle-click to mute"
-msgstr "Haz clic con el botón central para desactivar el sonido"
+msgstr "Pulse con el botón central del ratón para desactivar el sonido"
 
 #: src/Widgets/PlayerRow.vala:28
 msgid "Not playing"
