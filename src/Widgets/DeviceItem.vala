@@ -38,7 +38,7 @@ public class DeviceItem : Gtk.ListBoxRow {
 
         if (row != null) {
             var item = (DeviceItem) row;
-            radio_button.set_group (item.get_group ());
+            radio_button.set_group (item.radio_button.get_group ());
         }
 
         img_type = new Gtk.Image () {
@@ -77,7 +77,4 @@ public class DeviceItem : Gtk.ListBoxRow {
         visible = is_priority || is_default;
     }
 
-    unowned SList get_group () {
-        return radio_button.get_group ();
-    }
 }
