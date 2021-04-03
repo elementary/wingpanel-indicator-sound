@@ -40,7 +40,7 @@ public class Sound.PulseAudioManager : GLib.Object {
 
     public signal void new_device (Device dev);
 
-    public PulseAudio.Context context { get; private set; }
+    private PulseAudio.Context context;
     private PulseAudio.GLibMainLoop loop;
     private bool is_ready = false;
     private uint reconnect_timer_id = 0U;
