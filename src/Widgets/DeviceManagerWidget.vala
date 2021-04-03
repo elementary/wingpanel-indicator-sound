@@ -85,7 +85,7 @@ public class Sound.Widgets.DeviceManagerWidget : Gtk.Grid {
 
     private uint n_visible_items () {
         uint n = 0;
-        foreach (var device in device_list.get_children ()) {
+        foreach (unowned var device in device_list.get_children ()) {
             if (device.visible) {
                 n++;
             }

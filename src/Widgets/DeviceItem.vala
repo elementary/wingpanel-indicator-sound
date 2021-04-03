@@ -23,9 +23,9 @@
 public class DeviceItem : Gtk.ListBoxRow {
     public signal void activated ();
 
-    Gtk.Image img_type;
-    Gtk.RadioButton radio_button;
-    bool is_priority;
+    private Gtk.Image img_type;
+    private Gtk.RadioButton radio_button;
+    private bool is_priority;
 
     public DeviceItem (string display_name, bool is_default, bool _is_priority, string icon_name, Gtk.ListBoxRow? row) {
         is_priority = _is_priority;
