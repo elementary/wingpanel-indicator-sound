@@ -25,14 +25,22 @@ public class DeviceItem : Gtk.ListBoxRow {
 
     private Gtk.Image img_type;
     private Gtk.RadioButton radio_button;
-    private bool is_priority;
+
+    public Gtk.ListBoxRow row { get; construct; }
+    public string display_name { get; construct; }
+    public string icon_name { get; construct; }
+    public bool is_priority { get; construct; }
+    public bool is_default { get; construct; }
 
     class construct {
         set_css_name (Gtk.STYLE_CLASS_MENUITEM);
     }
 
-    public DeviceItem (string display_name, bool is_default, bool _is_priority, string icon_name, Gtk.ListBoxRow? row) {
-        is_priority = _is_priority;
+    public DeviceItem (string display_name, bool is_default, bool is_priority, string icon_name, Gtk.ListBoxRow? row) {
+        Object (display_name: display_name, is_default: is_default, is_priority: is_priority, icon_name: icon_name, row: row);
+    }
+
+    construct {
         selectable = false;
         radio_button = new Gtk.RadioButton.with_label (null, display_name) {
             active = is_default,
