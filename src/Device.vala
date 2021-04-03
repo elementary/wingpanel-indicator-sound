@@ -31,7 +31,7 @@ public class Sound.Device : GLib.Object {
     public signal void defaulted ();
 
     // info from card and ports
-    public bool input { get; set; default=true; }
+    public bool input { get; set; default = true; }
     public string id { get; construct; }
     public uint32 card_index { get; construct; }
     public string port_name { get; construct; }
@@ -55,8 +55,8 @@ public class Sound.Device : GLib.Object {
     public int card_source_index { get; set; }
 
     // info from source or sink
-    public bool is_default { get; set; default=false; }
-    public bool is_priority { get; set; default=false; }
+    public bool is_default { get; set; default = false; }
+    public bool is_priority { get; set; default = false; }
 
     public Device (string id, uint32 card_index, string port_name) {
         Object (id: id, card_index: card_index, port_name: port_name);
