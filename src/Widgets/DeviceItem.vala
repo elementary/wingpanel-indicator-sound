@@ -27,6 +27,10 @@ public class DeviceItem : Gtk.ListBoxRow {
     private Gtk.RadioButton radio_button;
     private bool is_priority;
 
+    class construct {
+        set_css_name (Gtk.STYLE_CLASS_MENUITEM);
+    }
+
     public DeviceItem (string display_name, bool is_default, bool _is_priority, string icon_name, Gtk.ListBoxRow? row) {
         is_priority = _is_priority;
         selectable = false;
@@ -64,8 +68,6 @@ public class DeviceItem : Gtk.ListBoxRow {
         });
 
         update_visible (is_default);
-
-        get_style_context ().add_class (Gtk.STYLE_CLASS_MENUITEM);
     }
 
     public void set_default () {
