@@ -105,13 +105,9 @@ public class Sound.Indicator : Wingpanel.Indicator {
         display_widget.volume_scroll_event.connect_after (on_volume_icon_scroll_event);
         display_widget.mic_scroll_event.connect_after (on_mic_icon_scroll_event);
 
-        volume_scale = new Widgets.Scale ("audio-volume-high-symbolic", true, 0.0, max_volume, 0.01) {
-            margin_start = 6
-        };
+        volume_scale = new Widgets.Scale ("audio-volume-high-symbolic", true, 0.0, max_volume, 0.01);
 
-        mic_scale = new Widgets.Scale ("audio-input-microphone-symbolic", true, 0.0, 1.0, 0.01) {
-            margin_start = 6
-        };
+        mic_scale = new Widgets.Scale ("audio-input-microphone-symbolic", true, 0.0, 1.0, 0.01);
 
         ca_context = CanberraGtk.context_get ();
         ca_context.change_props (Canberra.PROP_APPLICATION_NAME, "indicator-sound",

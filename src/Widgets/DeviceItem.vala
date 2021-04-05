@@ -32,12 +32,12 @@ public class DeviceItem : Gtk.ListBoxRow {
     public bool is_priority { get; construct; }
     public bool is_default { get; construct; }
 
-    class construct {
-        set_css_name (Gtk.STYLE_CLASS_MENUITEM);
-    }
-
     public DeviceItem (string display_name, bool is_default, bool is_priority, string icon_name, Gtk.ListBoxRow? row) {
         Object (display_name: display_name, is_default: is_default, is_priority: is_priority, icon_name: icon_name, row: row);
+    }
+
+    class construct {
+        set_css_name (Gtk.STYLE_CLASS_MENUITEM);
     }
 
     construct {
