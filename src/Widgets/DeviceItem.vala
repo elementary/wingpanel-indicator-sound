@@ -29,7 +29,7 @@ public class DeviceItem : Gtk.ListBoxRow {
     public Gtk.ListBoxRow row { get; construct; }
     public string display_name { get; construct; }
     public string icon_name { get; construct; }
-    public bool is_priority { get; construct; }
+    public bool is_priority { get; set construct; }
     public bool is_default { get; construct; }
 
     public DeviceItem (string display_name, bool is_default, bool is_priority, string icon_name, Gtk.ListBoxRow? row) {
@@ -80,6 +80,7 @@ public class DeviceItem : Gtk.ListBoxRow {
 
     public void set_default () {
         radio_button.active = true;
+        is_priority = true;
         update_visible (true);
     }
 

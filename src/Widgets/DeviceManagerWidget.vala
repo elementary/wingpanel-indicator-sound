@@ -67,6 +67,7 @@ public class Sound.Widgets.DeviceManagerWidget : Gtk.Grid {
 
         device_item.activated.connect (() => {
             pam.set_default_device.begin (device);
+            update_preferred_devices (device);
         });
 
         device.removed.connect (() => {
@@ -77,10 +78,21 @@ public class Sound.Widgets.DeviceManagerWidget : Gtk.Grid {
 
         device.defaulted.connect (() => {
             device_item.set_default ();
+            update_preferred_devices (device);
             update_showable ();
         });
 
         update_showable ();
+    }
+
+    private void update_preferred_devices (Device device) {
+        var preferred_devices = Sound.Indicator.settings.get_strv ("preferred-devices");
+        if (device.id in preferred_devices) {
+            return;
+        }
+        preferred_devices += device.id;
+        device.is_priority = true;
+        Sound.Indicator.settings.set_strv ("preferred-devices", preferred_devices);
     }
 
     private uint n_visible_items () {
