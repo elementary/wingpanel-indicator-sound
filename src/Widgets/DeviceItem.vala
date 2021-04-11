@@ -42,11 +42,15 @@ public class DeviceItem : Gtk.ListBoxRow {
 
     construct {
         selectable = false;
-        radio_button = new Gtk.RadioButton.with_label (null, display_name) {
+        var label = new Gtk.Label (display_name) {
+            ellipsize = Pango.EllipsizeMode.MIDDLE
+        };
+        radio_button = new Gtk.RadioButton (null) {
             active = is_default,
             hexpand = true,
             xalign = 0
         };
+        radio_button.add (label);
 
         if (row != null) {
             var item = (DeviceItem) row;
