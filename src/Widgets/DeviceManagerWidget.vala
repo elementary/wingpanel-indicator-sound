@@ -30,6 +30,8 @@ public class Sound.Widgets.DeviceManagerWidget : Gtk.Grid {
     construct {
         pam = PulseAudioManager.get_default ();
         pam.new_device.connect (add_device);
+        pam.update_device.connect (update_device);
+        pam.disconnected.connect (disconnected);
         pam.notify["default-output"].connect (default_output_changed);
         pam.notify["default-input"].connect (default_input_changed);
         pam.start ();
@@ -50,6 +52,29 @@ public class Sound.Widgets.DeviceManagerWidget : Gtk.Grid {
         attach (scrolled_box, 0, 1, 1);
 
         update_showable ();
+    }
+
+    private void disconnected () {
+        if (null == device_list) {
+            return;
+        }
+        foreach (unowned var child in device_list.get_children ()) {
+            device_list.remove (child);
+        }
+    }
+
+    private void update_device (Device device) {
+        if (device.input != is_input_manager) {
+            return;
+        }
+        if (null != device_list) {
+            foreach (unowned var child in device_list.get_children ()) {
+                if (device.display_name == ((DeviceItem) child).display_name) {
+                    return;
+                }
+            }
+        }
+        add_device (device);
     }
 
     private void add_device (Device device) {
@@ -79,6 +104,10 @@ public class Sound.Widgets.DeviceManagerWidget : Gtk.Grid {
             device_item.set_default ();
             update_showable ();
         });
+
+        if (device.is_default) {
+            device_item.set_default ();
+        }
 
         update_showable ();
     }
