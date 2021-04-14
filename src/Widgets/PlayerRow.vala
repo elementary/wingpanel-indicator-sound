@@ -169,7 +169,7 @@ public class Sound.Widgets.PlayerRow : Gtk.Grid {
     }
 
     construct {
-        app_icon = new ThemedIcon ("multimedia-audio-player");
+        app_icon = new ThemedIcon ("application-default-icon");
 
         load_remote_art_cancel = new Cancellable ();
 
