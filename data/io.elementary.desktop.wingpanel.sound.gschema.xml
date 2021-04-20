@@ -11,7 +11,7 @@
             <default>[]</default>
             <summary>Last played title of the default media player.</summary>
         </key>
-        <key type="as" name="preferred-devices">
+        <key type="a{si}" name="preferred-devices">
             <default>[]</default>
             <summary>Previously used audio devices.</summary>
         </key>

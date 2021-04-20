@@ -86,13 +86,23 @@ public class Sound.Widgets.DeviceManagerWidget : Gtk.Grid {
     }
 
     private void update_preferred_devices (Device device) {
-        var preferred_devices = Sound.Indicator.settings.get_strv ("preferred-devices");
-        if (device.id in preferred_devices) {
-            return;
+        VariantBuilder builder = new VariantBuilder (new VariantType ("a{si}"));
+        var preferred_devices = Sound.Indicator.settings.get_value ("preferred-devices");
+        int32 now = (int32)(GLib.get_real_time () / 1000000);
+
+        builder.add ("{si}", device.id, now);
+        foreach (var dev in preferred_devices) {
+            var name = dev.get_child_value (0).get_string ();
+            var last_used = dev.get_child_value (1).get_int32 ();
+            if (name == device.id) {
+                continue;
+            }
+            builder.add ("{si}", name, last_used);
         }
-        preferred_devices += device.id;
+        Variant dictionary = builder.end ();
+
         device.is_priority = true;
-        Sound.Indicator.settings.set_strv ("preferred-devices", preferred_devices);
+        Sound.Indicator.settings.set_value ("preferred-devices", dictionary);
     }
 
     private uint n_visible_items () {

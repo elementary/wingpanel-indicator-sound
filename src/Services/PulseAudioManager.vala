@@ -512,7 +512,14 @@ public class Sound.PulseAudioManager : GLib.Object {
             relevant_ports += port;
         }
 
-        var preferred_devices = Sound.Indicator.settings.get_strv ("preferred-devices");
+        var preferred_devices = Sound.Indicator.settings.get_value ("preferred-devices");
+        var preferred_device_map = new Gee.HashMap<string, int32> ();
+        var preferred_expiry = (int32)(GLib.get_real_time () / 1000000) - (86400 * 7); // Expire unused after 7 days
+        foreach (var dev in preferred_devices) {
+            var name = dev.get_child_value (0).get_string ();
+            var last_used = dev.get_child_value (1).get_int32 ();
+            preferred_device_map.set (name, last_used);
+        }
 
         // add new / update devices
         foreach (var port in relevant_ports) {
@@ -533,7 +540,7 @@ public class Sound.PulseAudioManager : GLib.Object {
             device.card_active_profile_name = card_active_profile_name;
             device.input = is_input;
             device.is_priority = port.priority == (is_input? highest_input_priority : highest_output_priority);
-            if (id in preferred_devices) {
+            if (id in preferred_device_map.keys && preferred_device_map[id] > preferred_expiry) {
                 device.is_priority = true;
             }
             var card_description = card.proplist.gets (PulseAudio.Proplist.PROP_DEVICE_DESCRIPTION);
