@@ -89,12 +89,16 @@ public class Sound.Widgets.DeviceManagerWidget : Gtk.Grid {
         VariantBuilder builder = new VariantBuilder (new VariantType ("a{si}"));
         var preferred_devices = Sound.Indicator.settings.get_value ("preferred-devices");
         int32 now = (int32)(GLib.get_real_time () / 1000000);
+        int32 preferred_expiry = now - (86400 * 7); // Expire unused after 7 days
 
         builder.add ("{si}", device.id, now);
         foreach (var dev in preferred_devices) {
             var name = dev.get_child_value (0).get_string ();
             var last_used = dev.get_child_value (1).get_int32 ();
             if (name == device.id) {
+                continue;
+            }
+            if (last_used < preferred_expiry) {
                 continue;
             }
             builder.add ("{si}", name, last_used);
