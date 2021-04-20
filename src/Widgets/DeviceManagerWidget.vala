@@ -85,6 +85,16 @@ public class Sound.Widgets.DeviceManagerWidget : Gtk.Grid {
         update_showable ();
     }
 
+    /**
+     * Preferred devices are stored as:
+     * {
+     *   device_a: last_used_unix_timestamp,
+     *   device_b: last_used_unix_timestamp
+     * }
+     * If a device hasn't been selected in 7 days, it is removed from preferred devices.
+     * Device selection happens when the user selects the device, and when the plugin
+     * is initialized.
+     */
     private void update_preferred_devices (Device device) {
         VariantBuilder builder = new VariantBuilder (new VariantType ("a{si}"));
         var preferred_devices = Sound.Indicator.settings.get_value ("preferred-devices");
