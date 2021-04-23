@@ -2,46 +2,59 @@
 # Copyright (c) 2015 Rosetta Contributors and Canonical Ltd 2015
 # This file is distributed under the same license as the wingpanel-indicator-sound package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2015.
-#
+# p-bo <pavel.borecki@gmail.com>, 2020.
 msgid ""
 msgstr ""
 "Project-Id-Version: wingpanel-indicator-sound\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-15 20:29+0000\n"
-"PO-Revision-Date: 2017-03-03 14:16+0000\n"
-"Last-Translator: Jan Marek <janmarek28@gmail.com>\n"
-"Language-Team: Czech <cs@li.org>\n"
+"POT-Creation-Date: 2021-02-25 18:33+0000\n"
+"PO-Revision-Date: 2020-05-08 13:10+0000\n"
+"Last-Translator: p-bo <pavel.borecki@gmail.com>\n"
+"Language-Team: Czech <https://l10n.elementary.io/projects/wingpanel/wingpanel-indicator-sound/cs/>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Weblate 3.9.1\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
-"X-Generator: Launchpad (build 18335)\n"
 
-#: src/Indicator.vala:47
-msgid "Indicator Sound"
-msgstr "Indikátor zvuku"
-
-#: src/Indicator.vala:48
-msgid "The sound indicator"
-msgstr "Indikátor zvuku"
-
-#: src/Indicator.vala:347
+#: src/Indicator.vala:282
 msgid "Sound Settings…"
 msgstr "Nastavení zvuku…"
 
-#: src/Widgets/MprisGui.vala:29
-msgid "Not currently playing"
+#: src/Indicator.vala:550
+#, c-format
+msgid "Volume: %.0f%%"
+msgstr ""
+
+#: src/Indicator.vala:553
+msgid "Middle-click to unmute"
+msgstr ""
+
+#: src/Indicator.vala:553
+msgid "Middle-click to mute"
+msgstr ""
+
+#: src/Widgets/PlayerRow.vala:28
+#, fuzzy
+#| msgid "Not currently playing"
+msgid "Not playing"
 msgstr "Momentálně nepřehrává"
 
-#: src/Widgets/MprisGui.vala:44
+#: src/Widgets/PlayerRow.vala:43
 msgid "Music player"
 msgstr "Přehrávač hudby"
 
-#: src/Widgets/MprisGui.vala:552
-#, fuzzy
+#: src/Widgets/PlayerRow.vala:531
 msgid "Unknown Artist"
-msgstr "Neznámý název"
+msgstr "Neznámý umělec"
+
+#~ msgid "Indicator Sound"
+#~ msgstr "Indikátor zvuku"
+
+#~ msgid "The sound indicator"
+#~ msgstr "Indikátor zvuku"
 
 #~ msgid "by "
 #~ msgstr "od "

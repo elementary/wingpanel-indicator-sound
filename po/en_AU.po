@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-15 20:29+0000\n"
+"POT-Creation-Date: 2021-02-25 18:33+0000\n"
 "PO-Revision-Date: 2016-07-30 09:40+0000\n"
 "Last-Translator: Chris Smart <Unknown>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -13,30 +13,43 @@ msgstr ""
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 "X-Generator: Launchpad (build 18335)\n"
 
-#: src/Indicator.vala:47
-msgid "Indicator Sound"
-msgstr "Indicator Sound"
-
-#: src/Indicator.vala:48
-msgid "The sound indicator"
-msgstr "The sound indicator"
-
-#: src/Indicator.vala:347
+#: src/Indicator.vala:282
 msgid "Sound Settings…"
 msgstr "Sound Settings…"
 
-#: src/Widgets/MprisGui.vala:29
-msgid "Not currently playing"
+#: src/Indicator.vala:550
+#, c-format
+msgid "Volume: %.0f%%"
+msgstr ""
+
+#: src/Indicator.vala:553
+msgid "Middle-click to unmute"
+msgstr ""
+
+#: src/Indicator.vala:553
+msgid "Middle-click to mute"
+msgstr ""
+
+#: src/Widgets/PlayerRow.vala:28
+#, fuzzy
+#| msgid "Not currently playing"
+msgid "Not playing"
 msgstr "Not currently playing"
 
-#: src/Widgets/MprisGui.vala:44
+#: src/Widgets/PlayerRow.vala:43
 msgid "Music player"
 msgstr "Music player"
 
-#: src/Widgets/MprisGui.vala:552
+#: src/Widgets/PlayerRow.vala:531
 #, fuzzy
 msgid "Unknown Artist"
 msgstr "Unknown Title"
+
+#~ msgid "Indicator Sound"
+#~ msgstr "Indicator Sound"
+
+#~ msgid "The sound indicator"
+#~ msgstr "The sound indicator"
 
 #~ msgid "by "
 #~ msgstr "by "

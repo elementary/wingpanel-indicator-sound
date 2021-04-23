@@ -1,10 +1,10 @@
-# Ryo Nakano <ryonakaknock3@gmail.com>, 2019.
+# Ryo Nakano <ryonakaknock3@gmail.com>, 2019, 2020, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-15 20:29+0000\n"
-"PO-Revision-Date: 2019-12-17 19:17+0000\n"
+"POT-Creation-Date: 2021-02-25 18:33+0000\n"
+"PO-Revision-Date: 2021-02-26 13:35+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementary.io/projects/wingpanel/"
 "wingpanel-indicator-sound/ja/>\n"
@@ -13,32 +13,43 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 
-#: src/Indicator.vala:47
-msgid "Indicator Sound"
-msgstr "サウンドの通知"
-
-#: src/Indicator.vala:48
-msgid "The sound indicator"
-msgstr "サウンドインジケーター"
-
-#: src/Indicator.vala:347
+#: src/Indicator.vala:282
 msgid "Sound Settings…"
 msgstr "サウンドの設定…"
 
-#: src/Widgets/MprisGui.vala:29
-msgid "Not currently playing"
-msgstr "現在何も再生していません"
+#: src/Indicator.vala:550
+#, c-format
+msgid "Volume: %.0f%%"
+msgstr "音量: %.0f%%"
 
-#: src/Widgets/MprisGui.vala:44
+#: src/Indicator.vala:553
+msgid "Middle-click to unmute"
+msgstr "ミュートを解除するには中クリックしてください"
+
+#: src/Indicator.vala:553
+msgid "Middle-click to mute"
+msgstr "ミュートにするには中クリックしてください"
+
+#: src/Widgets/PlayerRow.vala:28
+msgid "Not playing"
+msgstr "何も再生していません"
+
+#: src/Widgets/PlayerRow.vala:43
 msgid "Music player"
 msgstr "ミュージックプレーヤー"
 
-#: src/Widgets/MprisGui.vala:552
+#: src/Widgets/PlayerRow.vala:531
 msgid "Unknown Artist"
 msgstr "不明なアーティスト"
+
+#~ msgid "Indicator Sound"
+#~ msgstr "サウンドの通知"
+
+#~ msgid "The sound indicator"
+#~ msgstr "サウンドインジケーター"
 
 #~ msgid "by "
 #~ msgstr "by "

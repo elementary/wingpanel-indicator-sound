@@ -1,7 +1,7 @@
 project(
     'sound',
     'vala', 'c',
-    version: '2.1.5'
+    version: '2.1.8'
 )
 
 gettext_name = meson.project_name() + '-indicator'
@@ -25,34 +25,38 @@ asresources = gnome.compile_resources(
     c_name: 'as'
 )
 
-wingpanel_dep = dependency('wingpanel-2.0', version: '>=2.1.0')
+wingpanel_dep = dependency('wingpanel', version: '>=2.1.0')
 wingpanel_indicatorsdir = wingpanel_dep.get_pkgconfig_variable('indicatorsdir', define_variable: ['libdir', libdir])
 
 shared_module(
     meson.project_name(),
+    'src/Device.vala',
     'src/Indicator.vala',
     'src/Widgets/DisplayWidget.vala',
-    'src/Widgets/MaxWidthLabel.vala',
     'src/Widgets/Scale.vala',
-    'src/Widgets/MprisGui.vala',
-    'src/Widgets/MprisWidget.vala',
+    'src/Widgets/PlayerRow.vala',
+    'src/Widgets/PlayerList.vala',
+    'src/Widgets/DeviceManagerWidget.vala',
+    'src/Widgets/DeviceItem.vala',
+    'src/Services/PulseAudioManager.vala',
     'src/Services/MprisClient.vala',
     'src/Services/Volume-control.vala',
     'src/Services/Manager.vala',
-    'src/Services/Adapter.vala',
     'src/Services/Device.vala',
     'src/Services/MediaPlayer.vala',
     asresources,
     dependencies: [
         dependency('glib-2.0'),
+        dependency('gio-2.0'),
         dependency('gobject-2.0'),
-        dependency('granite'),
+        dependency('granite', version: '>=6.0.0'),
         dependency('gtk+-3.0'),
         dependency('libpulse'),
         dependency('libpulse-mainloop-glib'),
         dependency('libnotify'),
         dependency('libcanberra'),
         dependency('libcanberra-gtk3'),
+        meson.get_compiler('vala').find_library('libpulse-ext', dirs: join_paths(meson.source_root(), 'vapi')),
         wingpanel_dep
     ],
     install: true,

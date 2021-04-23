@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the wingpanel-indicator-sound package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2015.
 # Rafael Bautista Martínez <iuninefrendor@gmail.com>, 2019.
+# Alvaro <alvaroaraoz_92@hotmail.com>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: wingpanel-indicator-sound\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-15 20:29+0000\n"
-"PO-Revision-Date: 2019-12-17 19:17+0000\n"
-"Last-Translator: Rafael Bautista Martínez <iuninefrendor@gmail.com>\n"
+"POT-Creation-Date: 2021-02-25 18:33+0000\n"
+"PO-Revision-Date: 2021-04-01 10:29+0000\n"
+"Last-Translator: Alvaro <alvaroaraoz_92@hotmail.com>\n"
 "Language-Team: Spanish <https://l10n.elementary.io/projects/wingpanel/"
 "wingpanel-indicator-sound/es/>\n"
 "Language: es\n"
@@ -17,32 +18,43 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 
-#: src/Indicator.vala:47
-msgid "Indicator Sound"
-msgstr "Indicador de sonido"
-
-#: src/Indicator.vala:48
-msgid "The sound indicator"
-msgstr "El indicador de sonido"
-
-#: src/Indicator.vala:347
+#: src/Indicator.vala:282
 msgid "Sound Settings…"
 msgstr "Configuración de sonido…"
 
-#: src/Widgets/MprisGui.vala:29
-msgid "Not currently playing"
-msgstr "Nada en reproducción"
+#: src/Indicator.vala:550
+#, c-format
+msgid "Volume: %.0f%%"
+msgstr "Volumen: %.0f%%"
 
-#: src/Widgets/MprisGui.vala:44
+#: src/Indicator.vala:553
+msgid "Middle-click to unmute"
+msgstr "Pulse con el botón central del ratón para activar el sonido"
+
+#: src/Indicator.vala:553
+msgid "Middle-click to mute"
+msgstr "Pulse con el botón central del ratón para desactivar el sonido"
+
+#: src/Widgets/PlayerRow.vala:28
+msgid "Not playing"
+msgstr "No se está reproduciendo"
+
+#: src/Widgets/PlayerRow.vala:43
 msgid "Music player"
 msgstr "Reproductor de música"
 
-#: src/Widgets/MprisGui.vala:552
+#: src/Widgets/PlayerRow.vala:531
 msgid "Unknown Artist"
 msgstr "Artista desconocido"
+
+#~ msgid "Indicator Sound"
+#~ msgstr "Indicador de sonido"
+
+#~ msgid "The sound indicator"
+#~ msgstr "El indicador de sonido"
 
 #~ msgid "by "
 #~ msgstr "de "

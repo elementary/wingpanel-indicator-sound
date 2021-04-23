@@ -2,11 +2,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-15 20:29+0000\n"
+"POT-Creation-Date: 2021-02-25 18:33+0000\n"
 "PO-Revision-Date: 2017-12-27 15:45+0000\n"
 "Last-Translator: Hải Hồ <hochihai1997@gmail.com>\n"
-"Language-Team: Vietnamese <https://weblate.elementary.io/projects/wingpanel/"
-"wingpanel-indicator-sound/vi/>\n"
+"Language-Team: Vietnamese <https://weblate.elementary.io/projects/wingpanel/wingpanel-indicator-sound/vi/>\n"
 "Language: vi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -15,30 +14,43 @@ msgstr ""
 "X-Generator: Weblate 2.18\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 
-#: src/Indicator.vala:47
-msgid "Indicator Sound"
-msgstr "Chỉ thị Âm thanh"
-
-#: src/Indicator.vala:48
-msgid "The sound indicator"
-msgstr "Chỉ thị âm thanh"
-
-#: src/Indicator.vala:347
+#: src/Indicator.vala:282
 msgid "Sound Settings…"
 msgstr "Cài đặt âm thanh…"
 
-#: src/Widgets/MprisGui.vala:29
-msgid "Not currently playing"
+#: src/Indicator.vala:550
+#, c-format
+msgid "Volume: %.0f%%"
+msgstr ""
+
+#: src/Indicator.vala:553
+msgid "Middle-click to unmute"
+msgstr ""
+
+#: src/Indicator.vala:553
+msgid "Middle-click to mute"
+msgstr ""
+
+#: src/Widgets/PlayerRow.vala:28
+#, fuzzy
+#| msgid "Not currently playing"
+msgid "Not playing"
 msgstr "Hiện chưa phát"
 
-#: src/Widgets/MprisGui.vala:44
+#: src/Widgets/PlayerRow.vala:43
 msgid "Music player"
 msgstr "Trình nghe nhạc"
 
-#: src/Widgets/MprisGui.vala:552
+#: src/Widgets/PlayerRow.vala:531
 #, fuzzy
 msgid "Unknown Artist"
 msgstr "Tiêu đề không xác định"
+
+#~ msgid "Indicator Sound"
+#~ msgstr "Chỉ thị Âm thanh"
+
+#~ msgid "The sound indicator"
+#~ msgstr "Chỉ thị âm thanh"
 
 #~ msgid "by "
 #~ msgstr "bởi "
