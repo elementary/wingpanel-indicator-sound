@@ -61,9 +61,6 @@ public class Sound.Widgets.DeviceManagerWidget : Gtk.Grid {
     }
 
     public void clear () {
-        if (device_list == null) {
-            return;
-        }
         foreach (Gtk.Widget child in device_list.get_children ()) {
             device_list.remove (child);
             child.destroy ();
@@ -76,9 +73,6 @@ public class Sound.Widgets.DeviceManagerWidget : Gtk.Grid {
 
     private void update_device (Device device) {
         if (device.input != is_input_manager) {
-            return;
-        }
-        if (device_list == null) {
             return;
         }
         foreach (unowned var child in device_list.get_children ()) {
