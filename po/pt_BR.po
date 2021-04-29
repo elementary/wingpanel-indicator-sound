@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the wingpanel-indicator-sound package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2015.
 # Rodrigo Oliveira <rod.oliveira@gmail.com>, 2018, 2020.
+# Leonardo <leonardo@elementary.io>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: wingpanel-indicator-sound\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-15 20:29+0000\n"
-"PO-Revision-Date: 2020-02-01 02:08+0000\n"
-"Last-Translator: Rodrigo Oliveira <rod.oliveira@gmail.com>\n"
+"POT-Creation-Date: 2021-02-25 18:33+0000\n"
+"PO-Revision-Date: 2021-03-12 20:18+0000\n"
+"Last-Translator: Leonardo <leonardo@elementary.io>\n"
 "Language-Team: Portuguese (Brazil) <https://l10n.elementary.io/projects/"
 "wingpanel/wingpanel-indicator-sound/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -17,32 +18,43 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 
-#: src/Indicator.vala:47
-msgid "Indicator Sound"
-msgstr "Indicador de som"
-
-#: src/Indicator.vala:48
-msgid "The sound indicator"
-msgstr "O indicador de som"
-
-#: src/Indicator.vala:347
+#: src/Indicator.vala:282
 msgid "Sound Settings…"
-msgstr "Configurações de Som…"
+msgstr "Configurações de som…"
 
-#: src/Widgets/MprisGui.vala:29
-msgid "Not currently playing"
+#: src/Indicator.vala:550
+#, c-format
+msgid "Volume: %.0f%%"
+msgstr "Volume: %.0f%%"
+
+#: src/Indicator.vala:553
+msgid "Middle-click to unmute"
+msgstr "Clicar com o botão do meio para desativar o mudo"
+
+#: src/Indicator.vala:553
+msgid "Middle-click to mute"
+msgstr "Clicar com o botão do meio para ativar o mudo"
+
+#: src/Widgets/PlayerRow.vala:28
+msgid "Not playing"
 msgstr "Nenhuma reprodução no momento"
 
-#: src/Widgets/MprisGui.vala:44
+#: src/Widgets/PlayerRow.vala:43
 msgid "Music player"
 msgstr "Reprodutor de música"
 
-#: src/Widgets/MprisGui.vala:552
+#: src/Widgets/PlayerRow.vala:531
 msgid "Unknown Artist"
 msgstr "Artista desconhecido"
+
+#~ msgid "Indicator Sound"
+#~ msgstr "Indicador de som"
+
+#~ msgid "The sound indicator"
+#~ msgstr "O indicador de som"
 
 #~ msgid "by "
 #~ msgstr "por "

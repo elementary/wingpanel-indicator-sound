@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2015-2019 elementary LLC. (https://elementary.io)
+* Copyright 2015-2021 elementary, Inc. (https://elementary.io)
 *
 * This program is free software; you can redistribute it and/or
 * modify it under the terms of the GNU General Public
@@ -33,35 +33,42 @@ public class Sound.Widgets.Scale : Gtk.EventBox {
         );
     }
 
-    construct {
-        set_above_child (false);
+    class construct {
+        set_css_name (Gtk.STYLE_CLASS_MENUITEM);
+    }
 
-        var image = new Gtk.Image.from_icon_name (icon, Gtk.IconSize.DIALOG);
-        image.pixel_size = 48;
+    construct {
+        var image = new Gtk.Image.from_icon_name (icon, Gtk.IconSize.DIALOG) {
+            pixel_size = 48
+        };
 
         var image_box = new Gtk.EventBox ();
         image_box.add (image);
 
-        scale_widget = new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL, min, max, step);
-        scale_widget.margin_start = 6;
-        scale_widget.set_size_request (175, -1);
-        scale_widget.set_draw_value (false);
-        scale_widget.hexpand = true;
+        scale_widget = new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL, min, max, step) {
+            draw_value = false,
+            hexpand = true,
+            width_request = 175
+        };
 
-        var switch_widget = new Gtk.Switch ();
-        switch_widget.valign = Gtk.Align.CENTER;
-        switch_widget.margin_start = 6;
-        switch_widget.margin_end = 12;
+        var switch_widget = new Gtk.Switch () {
+            margin_start = 6,
+            valign = Gtk.Align.CENTER
+        };
 
-        var grid = new Gtk.Grid ();
-        grid.hexpand = true;
-        grid.get_style_context ().add_class ("indicator-switch");
+        var grid = new Gtk.Grid () {
+            column_spacing = 6,
+            hexpand = true,
+            margin_start = 6,
+            margin_end = 12
+        };
         grid.add (image_box);
         grid.add (scale_widget);
         grid.add (switch_widget);
 
         add (grid);
         add_events (Gdk.EventMask.SMOOTH_SCROLL_MASK);
+        set_above_child (false);
 
         image_box.add_events (Gdk.EventMask.BUTTON_RELEASE_MASK);
         image_box.button_release_event.connect (() => {
@@ -77,8 +84,8 @@ public class Sound.Widgets.Scale : Gtk.EventBox {
 
         bind_property ("icon", image, "icon-name");
 
-        switch_widget.bind_property ("active", scale_widget, "sensitive", BindingFlags.SYNC_CREATE);
-        switch_widget.bind_property ("active", image, "sensitive", BindingFlags.SYNC_CREATE);
+        bind_property ("active", scale_widget, "sensitive", BindingFlags.SYNC_CREATE);
+        bind_property ("active", image, "sensitive", BindingFlags.SYNC_CREATE);
         switch_widget.bind_property ("active", this, "active", BindingFlags.BIDIRECTIONAL);
     }
 }

@@ -1,6 +1,6 @@
 /*
- * Copyright (c) 2014 Ikey Doherty <ikey.doherty@gmail.com>
- *               2015-2017 elementary LLC. (http://launchpad.net/wingpanel)
+ * Copyright 2015-2020 elementary, Inc. (https://elementary.io)
+ *           2014 Ikey Doherty <ikey.doherty@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,48 +16,30 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class Sound.Widgets.MprisWidget : Gtk.Box {
-    Services.DBusImpl impl;
-
-    AppInfo? default_music;
-    ClientWidget default_widget;
-    ClientWidget bluetooth_widget;
-    HashTable<string,ClientWidget> ifaces;
+public class Sound.Widgets.PlayerList : Gtk.Box {
     public signal void close ();
 
     public Sound.Services.ObjectManager object_manager;
 
-    public MprisWidget () {
-        Object (orientation: Gtk.Orientation.VERTICAL, spacing: 1);
+    private AppInfo? default_player;
+    private PlayerRow bluetooth_widget;
+    private PlayerRow default_widget;
+    private HashTable<string,PlayerRow> ifaces;
+    private Services.DBusImpl impl;
 
-        ifaces = new HashTable<string,ClientWidget> (str_hash, str_equal);
+    construct {
+        ifaces = new HashTable<string,PlayerRow> (str_hash, str_equal);
 
         Idle.add (() => {
             setup_dbus ();
             return false;
         });
 
-        default_music = AppInfo.get_default_for_type ("audio/x-vorbis+ogg", false);
-        if (default_music != null) {
-            default_widget = new ClientWidget.default (default_music);
-
-            default_widget.close.connect (() => {
-                close ();
-            });
-
-            default_widget.show_all ();
-            pack_start (default_widget, false, false, 0);
-        }
-
         object_manager = new Services.ObjectManager ();
         object_manager.bind_property ("has-object", this, "visible", GLib.BindingFlags.SYNC_CREATE);
 
-        if (object_manager.has_object) {
-            object_manager.set_last_state ();
-        }
-
         object_manager.media_player_added.connect ((media_player, name, icon) => {
-            bluetooth_widget = new ClientWidget.bluetooth (media_player, name, icon);
+            bluetooth_widget = new PlayerRow.bluetooth (media_player, name, icon);
             bluetooth_widget.close.connect (() => {
                 close ();
             });
@@ -82,7 +64,28 @@ public class Sound.Widgets.MprisWidget : Gtk.Box {
             }
         });
 
+        orientation = Gtk.Orientation.VERTICAL;
         show_all ();
+    }
+
+    public void update_default_player () {
+        var new_player = AppInfo.get_default_for_type ("audio/x-vorbis+ogg", false);
+        if (new_player != null && (default_player == null || new_player.get_id () != default_player.get_id ())) {
+            default_player = new_player;
+
+            if (default_widget != null) {
+                default_widget.destroy ();
+            }
+
+            default_widget = new PlayerRow.default (new_player);
+
+            default_widget.close.connect (() => {
+                close ();
+            });
+
+            default_widget.show_all ();
+            pack_start (default_widget, false, false, 0);
+        }
     }
 
     public void pause_all () {
@@ -102,7 +105,7 @@ public class Sound.Widgets.MprisWidget : Gtk.Box {
      * @param iface The constructed MprisClient instance
      */
     void add_iface (string name, Services.MprisClient iface) {
-        if (iface.player.desktop_entry == default_music.get_id ().replace (".desktop", "")) {
+        if (iface.player.desktop_entry == default_player.get_id ().replace (".desktop", "")) {
             default_widget.mpris_name = name;
             default_widget.client = iface;
             ifaces.insert (name, default_widget);
@@ -114,7 +117,7 @@ public class Sound.Widgets.MprisWidget : Gtk.Box {
                 default_widget.visible = false;
             }
 
-            ClientWidget widg = new ClientWidget (iface);
+            PlayerRow widg = new PlayerRow (iface);
             widg.close.connect (() => {
                 close ();
             });
