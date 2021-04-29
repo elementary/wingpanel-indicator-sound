@@ -80,7 +80,6 @@ public class Sound.PulseAudioManager : GLib.Object {
             reconnect_timer_id = 0U;
         }
         pam = null;
-        warning ("PulseAudio out!");
     }
 
     public void start () {

@@ -41,10 +41,6 @@ public class DeviceItem : Gtk.ListBoxRow {
         set_css_name (Gtk.STYLE_CLASS_MENUITEM);
     }
 
-    ~DeviceItem () {
-        warning ("DeviceItem (%s) out!", device_id);
-    }
-
     construct {
         selectable = false;
         var label = new Gtk.Label (display_name) {

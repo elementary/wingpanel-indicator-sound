@@ -60,10 +60,6 @@ public class Sound.Widgets.DeviceManagerWidget : Gtk.Grid {
         update_showable ();
     }
 
-    ~DeviceManagerWidget () {
-        warning ("DeviceManagerWidget (%s) out!", is_input_manager ? "Input" : "Output");
-    }
-
     public void clear () {
         if (device_list == null) {
             return;
