@@ -54,6 +54,8 @@ public class Sound.Indicator : Wingpanel.Indicator {
     }
 
     construct {
+        unowned PulseAudioManager pam;
+
         var touchpad_settings = new GLib.Settings ("org.gnome.desktop.peripherals.touchpad");
         touchpad_settings.bind ("natural-scroll", this, "natural-scroll-touchpad", SettingsBindFlags.DEFAULT);
         var mouse_settings = new GLib.Settings ("org.gnome.desktop.peripherals.mouse");
@@ -75,12 +77,10 @@ public class Sound.Indicator : Wingpanel.Indicator {
         volume_control.notify["volume"].connect (update_tooltip);
         volume_control.notify["mute"].connect (update_tooltip);
 
-        output_device_manager = new Widgets.DeviceManagerWidget () {
-            is_input_manager = false
-        };
-        input_device_manager = new Widgets.DeviceManagerWidget () {
-            is_input_manager = true
-        };
+        pam = PulseAudioManager.get_default ();
+        output_device_manager = new Widgets.DeviceManagerWidget (false);
+        input_device_manager = new Widgets.DeviceManagerWidget (true);
+        pam.start ();
 
         Notify.init ("wingpanel-indicator-sound");
 
@@ -126,6 +126,22 @@ public class Sound.Indicator : Wingpanel.Indicator {
         if (notify_timeout_id > 0) {
             Source.remove (notify_timeout_id);
         }
+
+        unowned PulseAudioManager? pam = PulseAudioManager.get_active ();
+        if (pam != null)
+            pam.stop ();
+
+        output_device_manager.clear ();
+        output_device_manager.destroy ();
+
+        input_device_manager.clear ();
+        input_device_manager.destroy ();
+
+        output_device_manager = null;
+        input_device_manager = null;
+
+        if (pam != null)
+            pam.unref ();
     }
 
     private void set_max_volume () {
