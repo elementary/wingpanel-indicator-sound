@@ -169,7 +169,7 @@ public class Sound.Widgets.PlayerRow : Gtk.Grid {
     }
 
     construct {
-        app_icon = new ThemedIcon ("multimedia-audio-player");
+        app_icon = new ThemedIcon ("application-default-icon");
 
         load_remote_art_cancel = new Cancellable ();
 
@@ -427,6 +427,19 @@ public class Sound.Widgets.PlayerRow : Gtk.Grid {
             ((Gtk.Image) play_btn.image).icon_name = "media-playback-pause-symbolic";
         } else {
             ((Gtk.Image) play_btn.image).icon_name = "media-playback-start-symbolic";
+        }
+
+        /**
+         * If a player is no longer playing and doesn't have a desktop info,
+         * hide it since it offers no value to display it. This applies for web
+         * browsers, but in theory any app could have temporary MPRIS playback.
+         */
+        if (client.player.playback_status == "Stopped" && app_info == null) {
+            no_show_all = true;
+            hide ();
+        } else {
+            no_show_all = false;
+            show ();
         }
     }
 
