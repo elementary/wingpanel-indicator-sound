@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-03 18:41+0000\n"
-"PO-Revision-Date: 2020-04-08 21:10+0000\n"
+"POT-Creation-Date: 2021-02-25 18:33+0000\n"
+"PO-Revision-Date: 2021-02-26 13:35+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://l10n.elementary.io/projects/wingpanel/"
 "indicator-sound-extra/he/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.4.2\n"
 
 #: data/sound.appdata.xml.in:6
 msgid "Sound Indicator"
@@ -31,18 +31,36 @@ msgstr ""
 "כוונון עצמת הרמקולים והמיקרופון או הצגת הפרטים על מה שמתנגן לרבות האפשרות "
 "לפקד על המדיה"
 
-#: data/sound.appdata.xml.in:11
-msgid "Correctly show \"Unknown Artist\" when artist info isn't available"
-msgstr "הצגת „אמן לא ידוע” בצורה נכונה אם אין מידע על האמן"
+#: data/sound.appdata.xml.in:12 data/sound.appdata.xml.in:21
+msgid "Minor updates"
+msgstr "עדכונים משניים"
 
-#: data/sound.appdata.xml.in:12
-msgid "Performance improvements"
-msgstr "שיפורי ביצועים"
+#: data/sound.appdata.xml.in:14
+msgid "Fix duplicate default player"
+msgstr "תיקון כפילות נגן בררת מחדל"
 
-#: data/sound.appdata.xml.in:13 data/sound.appdata.xml.in:18
+#: data/sound.appdata.xml.in:15 data/sound.appdata.xml.in:24
+#: data/sound.appdata.xml.in:31 data/sound.appdata.xml.in:38
+#: data/sound.appdata.xml.in:43
 msgid "Updated translations"
 msgstr "התרגומים עודכנו"
 
-#: data/sound.appdata.xml.in:27
+#: data/sound.appdata.xml.in:23
+msgid "Fix opacity flash during icon animation"
+msgstr "הבהוב האטימות במהלך הנפשת סמלים תוקן"
+
+#: data/sound.appdata.xml.in:30
+msgid "Update default music player when changed"
+msgstr "עדכון בררת המחדל של נגן המוזיקה בעת החלפתו"
+
+#: data/sound.appdata.xml.in:36
+msgid "Correctly show \"Unknown Artist\" when artist info isn't available"
+msgstr "הצגת „אמן לא ידוע” בצורה נכונה אם אין מידע על האמן"
+
+#: data/sound.appdata.xml.in:37
+msgid "Performance improvements"
+msgstr "שיפורי ביצועים"
+
+#: data/sound.appdata.xml.in:52
 msgid "elementary, Inc."
-msgstr "elementary בע״מ."
+msgstr "elementary בע״מ"

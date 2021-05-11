@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-03 18:41+0000\n"
-"PO-Revision-Date: 2020-06-07 20:11+0000\n"
+"POT-Creation-Date: 2021-02-25 18:33+0000\n"
+"PO-Revision-Date: 2020-08-25 06:13+0000\n"
 "Last-Translator: p-bo <pavel.borecki@gmail.com>\n"
 "Language-Team: Czech <https://l10n.elementary.io/projects/wingpanel/"
 "indicator-sound-extra/cs/>\n"
@@ -31,20 +31,39 @@ msgstr ""
 "Úprava hlasitosti reprodukce zvuku a zesílení mikrofonu. Dále zobrazení "
 "informace o právě přehrávané skladbě a ovládacích prvků přehrávání"
 
-#: data/sound.appdata.xml.in:11
+#: data/sound.appdata.xml.in:12 data/sound.appdata.xml.in:21
+msgid "Minor updates"
+msgstr ""
+
+#: data/sound.appdata.xml.in:14
+msgid "Fix duplicate default player"
+msgstr ""
+
+#: data/sound.appdata.xml.in:15 data/sound.appdata.xml.in:24
+#: data/sound.appdata.xml.in:31 data/sound.appdata.xml.in:38
+#: data/sound.appdata.xml.in:43
+msgid "Updated translations"
+msgstr "Aktualizovány překlady"
+
+#: data/sound.appdata.xml.in:23
+msgid "Fix opacity flash during icon animation"
+msgstr ""
+
+#: data/sound.appdata.xml.in:30
+msgid "Update default music player when changed"
+msgstr ""
+"Když je změněno, který přehrávač hudby je výchozí, je aktualizováno i zde"
+
+#: data/sound.appdata.xml.in:36
 msgid "Correctly show \"Unknown Artist\" when artist info isn't available"
 msgstr ""
 "Pokud není k dispozici informace dílo kterého umělce je právě přehráváno, "
 "správně zobrazit „Neznámý umělec“"
 
-#: data/sound.appdata.xml.in:12
+#: data/sound.appdata.xml.in:37
 msgid "Performance improvements"
 msgstr "Vylepšení odezvy"
 
-#: data/sound.appdata.xml.in:13 data/sound.appdata.xml.in:18
-msgid "Updated translations"
-msgstr "Aktualizovány překlady"
-
-#: data/sound.appdata.xml.in:27
+#: data/sound.appdata.xml.in:52
 msgid "elementary, Inc."
 msgstr "elementary, Inc."

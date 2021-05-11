@@ -1,6 +1,6 @@
 /*
- * Copyright (c) 2014 Ikey Doherty <ikey.doherty@gmail.com>
- *               2016-2018 elementary, Inc. (https://elementary.io)
+ * Copyright 2014 Ikey Doherty <ikey.doherty@gmail.com>
+ *           2016-2018 elementary, Inc. (https://elementary.io)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,13 +19,13 @@
 const int ICON_SIZE = 48;
 
 /**
- * A ClientWidget is simply used to control and display information in a two-way
+ * A PlayerRow is simply used to control and display information in a two-way
  * fashion with an underlying MPRIS provider (MediaPlayer2)
  * It is "designed" to be self contained and added to a large UI, enabling multiple
  * MPRIS clients to be controlled with multiple widgets
  */
-public class Sound.Widgets.ClientWidget : Gtk.Grid {
-    private const string NOT_PLAYING = _("Not currently playing");
+public class Sound.Widgets.PlayerRow : Gtk.Grid {
+    private const string NOT_PLAYING = _("Not playing");
 
     public signal void close ();
 
@@ -116,20 +116,20 @@ public class Sound.Widgets.ClientWidget : Gtk.Grid {
     }
 
     /**
-     * Create a new ClientWidget
+     * Create a new PlayerRow
      *
      * @param client The underlying MprisClient instance to use
      */
-    public ClientWidget (Services.MprisClient mpris_client) {
+    public PlayerRow (Services.MprisClient mpris_client) {
         Object (client: mpris_client);
     }
 
     /**
-     * Create a new ClientWidget for bluetooth controls
+     * Create a new PlayerRow for bluetooth controls
      *
      * @param client The underlying MediaPlayer instance to use
      */
-    public ClientWidget.bluetooth (Services.MediaPlayer media_player_client, string name, string icon) {
+    public PlayerRow.bluetooth (Services.MediaPlayer media_player_client, string name, string icon) {
         mp_client = media_player_client;
 
         app_icon = new ThemedIcon (icon);
@@ -141,11 +141,11 @@ public class Sound.Widgets.ClientWidget : Gtk.Grid {
     }
 
     /**
-     * Create a new ClientWidget for the default player
+     * Create a new PlayerRow for the default player
      *
      * @param info The AppInfo of the default music player
      */
-    public ClientWidget.default (AppInfo info) {
+    public PlayerRow.default (AppInfo info) {
         Object (
             app_info: info,
             client: null
@@ -169,7 +169,7 @@ public class Sound.Widgets.ClientWidget : Gtk.Grid {
     }
 
     construct {
-        app_icon = new ThemedIcon ("multimedia-audio-player");
+        app_icon = new ThemedIcon ("application-default-icon");
 
         load_remote_art_cancel = new Cancellable ();
 
@@ -428,6 +428,19 @@ public class Sound.Widgets.ClientWidget : Gtk.Grid {
         } else {
             ((Gtk.Image) play_btn.image).icon_name = "media-playback-start-symbolic";
         }
+
+        /**
+         * If a player is no longer playing and doesn't have a desktop info,
+         * hide it since it offers no value to display it. This applies for web
+         * browsers, but in theory any app could have temporary MPRIS playback.
+         */
+        if (client.player.playback_status == "Stopped" && app_info == null) {
+            no_show_all = true;
+            hide ();
+        } else {
+            no_show_all = false;
+            show ();
+        }
     }
 
     /**
@@ -561,14 +574,14 @@ public class Sound.Widgets.ClientWidget : Gtk.Grid {
         if (playing != "") {
             switch (playing) {
                 case "playing":
-                    (play_btn.get_image () as Gtk.Image).set_from_icon_name (
+                    ((Gtk.Image)play_btn.image).set_from_icon_name (
                         "media-playback-pause-symbolic",
                         Gtk.IconSize.LARGE_TOOLBAR
                     );
                     break;
                 default:
                     /* Stopped, Paused */
-                    (play_btn.get_image () as Gtk.Image).set_from_icon_name (
+                    ((Gtk.Image)play_btn.image).set_from_icon_name (
                         "media-playback-start-symbolic",
                         Gtk.IconSize.LARGE_TOOLBAR
                     );

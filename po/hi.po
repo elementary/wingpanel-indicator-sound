@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-29 19:30+0000\n"
+"POT-Creation-Date: 2021-02-25 18:33+0000\n"
 "PO-Revision-Date: 2018-03-20 00:14+0000\n"
 "Last-Translator: Anand Kumar <anand@anandkumar.net>\n"
 "Language-Team: Hindi <https://weblate.elementary.io/projects/wingpanel/wingpanel-indicator-sound/hi/>\n"
@@ -14,30 +14,43 @@ msgstr ""
 "X-Generator: Weblate 2.18\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 
-#: src/Indicator.vala:47
-msgid "Indicator Sound"
-msgstr "संकेतक ध्वनि"
-
-#: src/Indicator.vala:48
-msgid "The sound indicator"
-msgstr "ध्वनि संकेतक"
-
-#: src/Indicator.vala:347
+#: src/Indicator.vala:282
 msgid "Sound Settings…"
 msgstr "ध्वनि सेटिंग्स…"
 
-#: src/Widgets/MprisGui.vala:28
-msgid "Not currently playing"
+#: src/Indicator.vala:550
+#, c-format
+msgid "Volume: %.0f%%"
+msgstr ""
+
+#: src/Indicator.vala:553
+msgid "Middle-click to unmute"
+msgstr ""
+
+#: src/Indicator.vala:553
+msgid "Middle-click to mute"
+msgstr ""
+
+#: src/Widgets/PlayerRow.vala:28
+#, fuzzy
+#| msgid "Not currently playing"
+msgid "Not playing"
 msgstr "अभी प्ले नहीं कर रहा है"
 
-#: src/Widgets/MprisGui.vala:43
+#: src/Widgets/PlayerRow.vala:43
 msgid "Music player"
 msgstr "म्यूजिक प्लेयर"
 
-#: src/Widgets/MprisGui.vala:531
+#: src/Widgets/PlayerRow.vala:531
 #, fuzzy
 msgid "Unknown Artist"
 msgstr "अज्ञात शीर्षक"
+
+#~ msgid "Indicator Sound"
+#~ msgstr "संकेतक ध्वनि"
+
+#~ msgid "The sound indicator"
+#~ msgstr "ध्वनि संकेतक"
 
 #~ msgid "by "
 #~ msgstr "द्वारा "

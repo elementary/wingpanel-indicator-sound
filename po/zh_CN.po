@@ -2,47 +2,59 @@
 # Copyright (c) 2015 Rosetta Contributors and Canonical Ltd 2015
 # This file is distributed under the same license as the wingpanel-indicator-sound package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2015.
-#
+# colindemian <colindemian@outlook.com>, 2020.
+# imgradeone Yan <imgradeone@outlook.com>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: wingpanel-indicator-sound\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-29 19:30+0000\n"
-"PO-Revision-Date: 2017-04-14 02:05+0000\n"
-"Last-Translator: colindemian <colindemian@outlook.com>\n"
-"Language-Team: Chinese (Simplified) <https://l10n.elementary.io/projects/wingpanel/wingpanel-indicator-sound/zh_CN/>\n"
+"POT-Creation-Date: 2021-02-25 18:33+0000\n"
+"PO-Revision-Date: 2021-03-20 18:05+0000\n"
+"Last-Translator: imgradeone Yan <imgradeone@outlook.com>\n"
+"Language-Team: Chinese (Simplified) <https://l10n.elementary.io/projects/"
+"wingpanel/wingpanel-indicator-sound/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2.13-dev\n"
+"X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 
-#: src/Indicator.vala:47
-msgid "Indicator Sound"
-msgstr "指示声音"
-
-#: src/Indicator.vala:48
-msgid "The sound indicator"
-msgstr "声音指示器"
-
-#: src/Indicator.vala:347
+#: src/Indicator.vala:282
 msgid "Sound Settings…"
 msgstr "声音设置…"
 
-#: src/Widgets/MprisGui.vala:28
-msgid "Not currently playing"
-msgstr "尚未播放"
+#: src/Indicator.vala:550
+#, c-format
+msgid "Volume: %.0f%%"
+msgstr "音量：%.0f%%"
 
-#: src/Widgets/MprisGui.vala:43
+#: src/Indicator.vala:553
+msgid "Middle-click to unmute"
+msgstr "中键单击以取消静音"
+
+#: src/Indicator.vala:553
+msgid "Middle-click to mute"
+msgstr "中键单击以静音"
+
+#: src/Widgets/PlayerRow.vala:28
+msgid "Not playing"
+msgstr "未播放"
+
+#: src/Widgets/PlayerRow.vala:43
 msgid "Music player"
 msgstr "音乐播放器"
 
-#: src/Widgets/MprisGui.vala:531
-#, fuzzy
+#: src/Widgets/PlayerRow.vala:531
 msgid "Unknown Artist"
-msgstr "未知标题"
+msgstr "未知艺术家"
+
+#~ msgid "Indicator Sound"
+#~ msgstr "指示声音"
+
+#~ msgid "The sound indicator"
+#~ msgstr "声音指示器"
 
 #~ msgid "by "
 #~ msgstr "艺术家 "

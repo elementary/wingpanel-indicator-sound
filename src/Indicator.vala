@@ -21,9 +21,11 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
     private DisplayWidget display_widget;
     private Gtk.Grid main_grid;
-    private Widgets.MprisWidget mpris;
+    private Widgets.PlayerList mpris;
     private Widgets.Scale volume_scale;
     private Widgets.Scale mic_scale;
+    private Widgets.DeviceManagerWidget output_device_manager;
+    private Widgets.DeviceManagerWidget input_device_manager;
     private Wingpanel.Widgets.Separator mic_separator;
     private Notify.Notification? notification;
     private Services.VolumeControlPulse volume_control;
@@ -43,9 +45,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
     public static GLib.Settings settings;
 
     public Indicator () {
-        Object (code_name: Wingpanel.Indicator.SOUND,
-                display_name: _("Indicator Sound"),
-                description: _("The sound indicator"));
+        Object (code_name: Wingpanel.Indicator.SOUND);
     }
 
     static construct {
@@ -69,6 +69,17 @@ public class Sound.Indicator : Wingpanel.Indicator {
         volume_control.notify["micMute"].connect (on_mic_mute_change);
         volume_control.notify["is-playing"].connect (style_blocking);
         volume_control.notify["is-listening"].connect (update_mic_visibility);
+
+        // Tooltip-related
+        volume_control.notify["volume"].connect (update_tooltip);
+        volume_control.notify["mute"].connect (update_tooltip);
+
+        output_device_manager = new Widgets.DeviceManagerWidget () {
+            is_input_manager = false
+        };
+        input_device_manager = new Widgets.DeviceManagerWidget () {
+            is_input_manager = true
+        };
 
         Notify.init ("wingpanel-indicator-sound");
 
@@ -94,6 +105,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
         display_widget.mic_scroll_event.connect_after (on_mic_icon_scroll_event);
 
         volume_scale = new Widgets.Scale ("audio-volume-high-symbolic", true, 0.0, max_volume, 0.01);
+
         mic_scale = new Widgets.Scale ("audio-input-microphone-symbolic", true, 0.0, 1.0, 0.01);
 
         ca_context = CanberraGtk.context_get ();
@@ -194,12 +206,16 @@ public class Sound.Indicator : Wingpanel.Indicator {
             mic_scale.show_all ();
             mic_separator.no_show_all = false;
             mic_separator.show ();
+            input_device_manager.no_show_all = false;
+            input_device_manager.show ();
             display_widget.show_mic = true;
         } else {
             mic_scale.no_show_all = true;
             mic_scale.hide ();
             mic_separator.no_show_all = true;
             mic_separator.hide ();
+            input_device_manager.no_show_all = true;
+            input_device_manager.hide ();
             display_widget.show_mic = false;
         }
     }
@@ -239,64 +255,35 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
     public override Gtk.Widget? get_widget () {
         if (main_grid == null) {
-            int position = 0;
-            main_grid = new Gtk.Grid ();
+            mpris = new Widgets.PlayerList ();
 
-            mpris = new Widgets.MprisWidget ();
-
-            mpris.close.connect (() => {
-                close ();
-            });
-            volume_control.notify["headphone-plugged"].connect (() => {
-                if (!volume_control.headphone_plugged)
-                    mpris.pause_all ();
-            });
-
-            main_grid.attach (mpris, 0, position++, 1, 1);
-
-            if (mpris.get_children ().length () > 0) {
-                var first_separator = new Wingpanel.Widgets.Separator ();
-
-                main_grid.attach (first_separator, 0, position++, 1, 1);
-            }
-
-            volume_scale.margin_start = 6;
             volume_scale.active = !volume_control.mute;
-            volume_scale.notify["active"].connect (on_volume_switch_change);
-
-            volume_scale.scale_widget.value_changed.connect (() => {
-                var vol = new Services.VolumeControl.Volume ();
-                var v = volume_scale.scale_widget.get_value () * max_volume;
-                vol.volume = v.clamp (0.0, max_volume);
-                vol.reason = Services.VolumeControl.VolumeReasons.USER_KEYPRESS;
-                volume_control.volume = vol;
-                volume_scale.icon = get_volume_icon (volume_scale.scale_widget.get_value ());
-            });
-
             volume_scale.scale_widget.set_value (volume_control.volume.volume);
-            volume_scale.scale_widget.button_release_event.connect ((e) => {
-                notify_change (false);
-                return false;
-            });
-
-
-            volume_scale.scroll_event.connect_after ((e) => {
-                double dir = 0.0;
-                if (handle_scroll_event (e, out dir)) {
-                    handle_change (dir, false);
-                }
-
-                return true;
-            });
-
             volume_scale.icon = get_volume_icon (volume_scale.scale_widget.get_value ());
+
             set_max_volume ();
 
-            main_grid.attach (volume_scale, 0, position++, 1, 1);
-            main_grid.attach (new Wingpanel.Widgets.Separator (), 0, position++, 1, 1);
-
-            mic_scale.margin_start = 6;
             mic_scale.active = !volume_control.micMute;
+
+            mic_separator = new Wingpanel.Widgets.Separator ();
+
+            update_mic_visibility ();
+
+            var settings_button = new Gtk.ModelButton () {
+                text = _("Sound Settings…")
+            };
+
+            main_grid = new Gtk.Grid ();
+            main_grid.attach (mpris, 0, 0);
+            main_grid.attach (new Wingpanel.Widgets.Separator (), 0, 1);
+            main_grid.attach (volume_scale, 0, 2);
+            main_grid.attach (output_device_manager, 0, 3, 1, 1);
+            main_grid.attach (new Wingpanel.Widgets.Separator (), 0, 4);
+            main_grid.attach (mic_scale, 0, 5);
+            main_grid.attach (input_device_manager, 0, 6, 1, 1);
+            main_grid.attach (mic_separator, 0, 7);
+            main_grid.attach (settings_button, 0, 8);
+
             mic_scale.notify["active"].connect (on_mic_switch_change);
 
             mic_scale.scale_widget.value_changed.connect (() => {
@@ -317,22 +304,44 @@ public class Sound.Indicator : Wingpanel.Indicator {
                 return true;
             });
 
+            mpris.close.connect (() => {
+                close ();
+            });
 
-            main_grid.attach (mic_scale, 0, position++, 1, 1);
-
-            mic_separator = new Wingpanel.Widgets.Separator ();
-
-            update_mic_visibility ();
-
-            main_grid.attach (mic_separator, 0, position++, 1, 1);
-
-            var settings_button = new Gtk.ModelButton ();
-            settings_button.text = _("Sound Settings…");
             settings_button.clicked.connect (() => {
                 show_settings ();
             });
 
-            main_grid.attach (settings_button, 0, position++, 1, 1);
+            volume_control.notify["headphone-plugged"].connect (() => {
+                if (!volume_control.headphone_plugged) {
+                    mpris.pause_all ();
+                }
+            });
+
+            volume_scale.scale_widget.button_release_event.connect ((e) => {
+                notify_change (false);
+                return false;
+            });
+
+            volume_scale.scroll_event.connect_after ((e) => {
+                double dir = 0.0;
+                if (handle_scroll_event (e, out dir)) {
+                    handle_change (dir, false);
+                }
+
+                return true;
+            });
+
+            volume_scale.notify["active"].connect (on_volume_switch_change);
+
+            volume_scale.scale_widget.value_changed.connect (() => {
+                var vol = new Services.VolumeControl.Volume ();
+                var v = volume_scale.scale_widget.get_value () * max_volume;
+                vol.volume = v.clamp (0.0, max_volume);
+                vol.reason = Services.VolumeControl.VolumeReasons.USER_KEYPRESS;
+                volume_control.volume = vol;
+                volume_scale.icon = get_volume_icon (volume_scale.scale_widget.get_value ());
+            });
         }
 
         return main_grid;
@@ -528,6 +537,16 @@ public class Sound.Indicator : Wingpanel.Indicator {
         }
 
         return true;
+    }
+
+    private void update_tooltip () {
+        string description = _("Volume: %.0f%%").printf (
+            (volume_control.mute) ? 0 : volume_control.volume.volume * 100
+        );
+        string accel_label = (volume_control.mute) ? _("Middle-click to unmute") : _("Middle-click to mute");
+
+        accel_label = Granite.TOOLTIP_SECONDARY_TEXT_MARKUP.printf (accel_label);
+        display_widget.tooltip_markup = "%s\n%s".printf (description, accel_label);
     }
 }
 

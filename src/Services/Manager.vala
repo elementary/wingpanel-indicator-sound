@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015-2017 elementary LLC. (http://launchpad.net/wingpanel-indicator-sound)
+ * Copyright 2015-2017 elementary, Inc. (http://launchpad.net/wingpanel-indicator-sound)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public

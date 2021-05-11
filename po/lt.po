@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-29 19:30+0000\n"
+"POT-Creation-Date: 2021-02-25 18:33+0000\n"
 "PO-Revision-Date: 2017-04-10 21:30+0000\n"
 "Last-Translator: Moo <hazap@hotmail.com>\n"
 "Language-Team: Lithuanian <https://l10n.elementary.io/projects/wingpanel/wingpanel-indicator-sound/lt/>\n"
@@ -14,30 +14,43 @@ msgstr ""
 "X-Generator: Weblate 2.13-dev\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 
-#: src/Indicator.vala:47
-msgid "Indicator Sound"
-msgstr "Garso indikatorius"
-
-#: src/Indicator.vala:48
-msgid "The sound indicator"
-msgstr "Garso indikatorius"
-
-#: src/Indicator.vala:347
+#: src/Indicator.vala:282
 msgid "Sound Settings…"
 msgstr "Garso nustatymai…"
 
-#: src/Widgets/MprisGui.vala:28
-msgid "Not currently playing"
+#: src/Indicator.vala:550
+#, c-format
+msgid "Volume: %.0f%%"
+msgstr ""
+
+#: src/Indicator.vala:553
+msgid "Middle-click to unmute"
+msgstr ""
+
+#: src/Indicator.vala:553
+msgid "Middle-click to mute"
+msgstr ""
+
+#: src/Widgets/PlayerRow.vala:28
+#, fuzzy
+#| msgid "Not currently playing"
+msgid "Not playing"
 msgstr "Šiuo metu negroja"
 
-#: src/Widgets/MprisGui.vala:43
+#: src/Widgets/PlayerRow.vala:43
 msgid "Music player"
 msgstr "Muzikos grotuvas"
 
-#: src/Widgets/MprisGui.vala:531
+#: src/Widgets/PlayerRow.vala:531
 #, fuzzy
 msgid "Unknown Artist"
 msgstr "Nežinomas pavadinimas"
+
+#~ msgid "Indicator Sound"
+#~ msgstr "Garso indikatorius"
+
+#~ msgid "The sound indicator"
+#~ msgstr "Garso indikatorius"
 
 #~ msgid "by "
 #~ msgstr "atlieka "

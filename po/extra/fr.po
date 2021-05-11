@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-03 18:41+0000\n"
-"PO-Revision-Date: 2020-03-31 14:09+0000\n"
+"POT-Creation-Date: 2021-02-25 18:33+0000\n"
+"PO-Revision-Date: 2021-03-05 13:33+0000\n"
 "Last-Translator: Nathan <bonnemainsnathan@gmail.com>\n"
 "Language-Team: French <https://l10n.elementary.io/projects/wingpanel/"
 "indicator-sound-extra/fr/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.4.2\n"
 
 #: data/sound.appdata.xml.in:6
 msgid "Sound Indicator"
@@ -31,20 +31,39 @@ msgstr ""
 "Ajuster le volume de lecture et d'enregistrement ou voir et contrôler les "
 "médias en-cours"
 
-#: data/sound.appdata.xml.in:11
+#: data/sound.appdata.xml.in:12 data/sound.appdata.xml.in:21
+msgid "Minor updates"
+msgstr "Mises à jour mineures"
+
+#: data/sound.appdata.xml.in:14
+msgid "Fix duplicate default player"
+msgstr "Correction du lecteur par défaut dupliqué"
+
+#: data/sound.appdata.xml.in:15 data/sound.appdata.xml.in:24
+#: data/sound.appdata.xml.in:31 data/sound.appdata.xml.in:38
+#: data/sound.appdata.xml.in:43
+msgid "Updated translations"
+msgstr "Mise à jour des traductions"
+
+#: data/sound.appdata.xml.in:23
+msgid "Fix opacity flash during icon animation"
+msgstr "Correction de l'opacité de l'icône pendant l'animation"
+
+#: data/sound.appdata.xml.in:30
+msgid "Update default music player when changed"
+msgstr ""
+"Mise à jour du lecteur de musique par défaut lorsque celui-ci est modifié"
+
+#: data/sound.appdata.xml.in:36
 msgid "Correctly show \"Unknown Artist\" when artist info isn't available"
 msgstr ""
 "Affichage correct de « Artiste inconnu » lorsque les informations sur "
 "l'artiste ne sont pas disponibles"
 
-#: data/sound.appdata.xml.in:12
+#: data/sound.appdata.xml.in:37
 msgid "Performance improvements"
 msgstr "Améliorations des performances"
 
-#: data/sound.appdata.xml.in:13 data/sound.appdata.xml.in:18
-msgid "Updated translations"
-msgstr "Mise à jour des traductions"
-
-#: data/sound.appdata.xml.in:27
+#: data/sound.appdata.xml.in:52
 msgid "elementary, Inc."
 msgstr "elementary, Inc."
