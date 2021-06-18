@@ -99,6 +99,7 @@ public class Sound.Widgets.DeviceManagerWidget : Gtk.Grid {
 
         device_item.activated.connect (() => {
             pam.set_default_device.begin (device);
+            update_preferred_devices (device);
         });
 
         device.removed.connect (() => {
@@ -110,6 +111,7 @@ public class Sound.Widgets.DeviceManagerWidget : Gtk.Grid {
 
         device.defaulted.connect (() => {
             device_item.set_default ();
+            update_preferred_devices (device);
             update_showable ();
         });
 
@@ -118,6 +120,40 @@ public class Sound.Widgets.DeviceManagerWidget : Gtk.Grid {
         }
 
         update_showable ();
+    }
+
+    /**
+     * Preferred devices are stored as:
+     * {
+     *   device_a: last_used_unix_timestamp,
+     *   device_b: last_used_unix_timestamp
+     * }
+     * If a device hasn't been selected in 7 days, it is removed from preferred devices.
+     * Device selection happens when the user selects the device, and when the plugin
+     * is initialized.
+     */
+    private void update_preferred_devices (Device device) {
+        VariantBuilder builder = new VariantBuilder (new VariantType ("a{si}"));
+        var preferred_devices = Sound.Indicator.settings.get_value ("preferred-devices");
+        int32 now = (int32)(GLib.get_real_time () / 1000000);
+        int32 preferred_expiry = now - (86400 * 7); // Expire unused after 7 days
+
+        builder.add ("{si}", device.id, now);
+        foreach (var dev in preferred_devices) {
+            var name = dev.get_child_value (0).get_string ();
+            var last_used = dev.get_child_value (1).get_int32 ();
+            if (name == device.id) {
+                continue;
+            }
+            if (last_used < preferred_expiry) {
+                continue;
+            }
+            builder.add ("{si}", name, last_used);
+        }
+        Variant dictionary = builder.end ();
+
+        device.is_priority = true;
+        Sound.Indicator.settings.set_value ("preferred-devices", dictionary);
     }
 
     private uint n_visible_items () {
