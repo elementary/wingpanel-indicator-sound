@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: wingpanel-indicator-sound\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-02-25 18:33+0000\n"
-"PO-Revision-Date: 2021-05-10 10:46+0000\n"
+"PO-Revision-Date: 2021-06-21 18:39+0000\n"
 "Last-Translator: Uwe S <saabisto@gmx.de>\n"
 "Language-Team: German <https://l10n.elementary.io/projects/wingpanel/"
 "wingpanel-indicator-sound/de/>\n"
@@ -31,11 +31,11 @@ msgstr "Lautstärke: %.0f%%"
 
 #: src/Indicator.vala:553
 msgid "Middle-click to unmute"
-msgstr "Stummschaltung ausschalten mit Mittelklick"
+msgstr "Stummschaltung mit Mittelklick aufheben"
 
 #: src/Indicator.vala:553
 msgid "Middle-click to mute"
-msgstr "Stummschaltung mit Mittelklick"
+msgstr "Mit Mittelklick stummschalten"
 
 #: src/Widgets/PlayerRow.vala:28
 msgid "Not playing"
