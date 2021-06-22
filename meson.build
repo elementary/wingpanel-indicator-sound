@@ -19,6 +19,8 @@ add_project_arguments(
     language: 'vala'
 )
 
+add_project_arguments('-DG_LOG_DOMAIN="io.elementary.wingpanel.sound"', language:'c')
+
 asresources = gnome.compile_resources(
     'as-resources', 'data/mask.gresource.xml',
     source_dir: 'data',
