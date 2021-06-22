@@ -34,6 +34,7 @@ public class DisplayWidget : Gtk.Grid {
         volume_icon.pixel_size = 24;
 
         var mic_icon = new Gtk.Spinner ();
+        mic_icon.valign = Gtk.Align.CENTER;
         mic_icon.margin_end = 18;
 
         var mic_style_context = mic_icon.get_style_context ();
