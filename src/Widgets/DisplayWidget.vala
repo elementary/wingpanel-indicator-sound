@@ -33,6 +33,10 @@ public class DisplayWidget : Gtk.Grid {
         var volume_icon = new Gtk.Image ();
         volume_icon.pixel_size = 24;
 
+        var volume_style_context = volume_icon.get_style_context ();
+        volume_style_context.add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+        volume_style_context.add_class ("volume-icon");
+
         var mic_icon = new Gtk.Spinner ();
         mic_icon.margin_end = 18;
 
