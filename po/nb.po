@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: wingpanel-indicator-sound\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-02-25 18:33+0000\n"
-"PO-Revision-Date: 2021-02-26 13:35+0000\n"
+"PO-Revision-Date: 2021-07-03 07:24+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://l10n.elementary.io/projects/"
 "wingpanel/wingpanel-indicator-sound/nb/>\n"
@@ -48,7 +48,7 @@ msgstr "Musikkavspiller"
 #: src/Widgets/PlayerRow.vala:531
 #, fuzzy
 msgid "Unknown Artist"
-msgstr "Ukjent tittel"
+msgstr "Ukjent artist"
 
 #~ msgid "Indicator Sound"
 #~ msgstr "Indikator for lyd"
