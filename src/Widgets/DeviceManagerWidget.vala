@@ -23,16 +23,24 @@
 public class Sound.Widgets.DeviceManagerWidget : Gtk.Grid {
     private Gtk.ListBox device_list;
     private Gtk.ScrolledWindow scrolled_box;
-    public bool is_input_manager;
+    public bool is_input_manager { get; construct; }
 
     private unowned PulseAudioManager pam;
+
+    public DeviceManagerWidget (bool is_input_manager) {
+        Object (is_input_manager: is_input_manager);
+    }
 
     construct {
         pam = PulseAudioManager.get_default ();
         pam.new_device.connect (add_device);
-        pam.notify["default-output"].connect (default_output_changed);
-        pam.notify["default-input"].connect (default_input_changed);
-        pam.start ();
+        pam.update_device.connect (update_device);
+        pam.disconnected.connect (disconnected);
+        if (is_input_manager) {
+            pam.notify["default-input"].connect (default_changed);
+        } else {
+            pam.notify["default-output"].connect (default_changed);
+        }
 
         device_list = new Gtk.ListBox () {
             activate_on_single_click = true,
@@ -52,13 +60,37 @@ public class Sound.Widgets.DeviceManagerWidget : Gtk.Grid {
         update_showable ();
     }
 
+    public void clear () {
+        foreach (Gtk.Widget child in device_list.get_children ()) {
+            device_list.remove (child);
+            child.destroy ();
+        }
+    }
+
+    private void disconnected () {
+        clear ();
+    }
+
+    private void update_device (Device device) {
+        if (device.input != is_input_manager) {
+            return;
+        }
+        foreach (unowned var child in device_list.get_children ()) {
+            if (device.id == ((DeviceItem) child).device_id) {
+                return;
+            }
+        }
+        add_device (device);
+    }
+
     private void add_device (Device device) {
         if (device.input != is_input_manager) {
             return;
         }
 
         Gtk.ListBoxRow? row = device_list.get_row_at_index (0);
-        var device_item = new DeviceItem (device.display_name,
+        var device_item = new DeviceItem (device.id,
+                                          device.display_name,
                                           device.is_default,
                                           device.is_priority,
                                           device.get_nice_icon (),
@@ -74,6 +106,7 @@ public class Sound.Widgets.DeviceManagerWidget : Gtk.Grid {
             device_list.remove (device_item);
             device_list.show_all ();
             update_showable ();
+            device_item.destroy ();
         });
 
         device.defaulted.connect (() => {
@@ -81,6 +114,10 @@ public class Sound.Widgets.DeviceManagerWidget : Gtk.Grid {
             update_preferred_devices (device);
             update_showable ();
         });
+
+        if (device.is_default) {
+            device_item.set_default ();
+        }
 
         update_showable ();
     }
@@ -137,11 +174,10 @@ public class Sound.Widgets.DeviceManagerWidget : Gtk.Grid {
         }
     }
 
-    private void default_output_changed () {
-        pam.default_output.defaulted ();
+    private void default_changed () {
+        unowned var output = is_input_manager ? pam.default_input : pam.default_output;
+        if (output != null)
+            output.defaulted ();
     }
 
-    private void default_input_changed () {
-        pam.default_input.defaulted ();
-    }
 }

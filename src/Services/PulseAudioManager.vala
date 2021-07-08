@@ -34,14 +34,19 @@ public class Sound.PulseAudioManager : GLib.Object {
         if (pam == null) {
             pam = new PulseAudioManager ();
         }
+        return pam;
+    }
 
+    public static unowned PulseAudioManager? get_active () {
         return pam;
     }
 
     public signal void new_device (Device dev);
+    public signal void update_device (Device dev);
+    public signal void disconnected ();
 
     private PulseAudio.Context context;
-    private PulseAudio.GLibMainLoop loop;
+    private static PulseAudio.GLibMainLoop loop;
     private bool is_ready = false;
     private uint reconnect_timer_id = 0U;
     private Gee.HashMap<string, Device> input_devices;
@@ -56,7 +61,9 @@ public class Sound.PulseAudioManager : GLib.Object {
     }
 
     construct {
-        loop = new PulseAudio.GLibMainLoop ();
+        if (loop == null)
+            loop = new PulseAudio.GLibMainLoop ();
+
         input_devices = new Gee.HashMap<string, Device> ();
         output_devices = new Gee.HashMap<string, Device> ();
 
@@ -67,8 +74,37 @@ public class Sound.PulseAudioManager : GLib.Object {
         }
     }
 
+    ~PulseAudioManager () {
+        if (reconnect_timer_id != 0U) {
+            Source.remove (reconnect_timer_id);
+            reconnect_timer_id = 0U;
+        }
+        pam = null;
+    }
+
     public void start () {
         reconnect_to_pulse.begin ();
+    }
+
+    public void stop () {
+        if (reconnect_timer_id != 0U) {
+            Source.remove (reconnect_timer_id);
+            reconnect_timer_id = 0U;
+        }
+
+        foreach (var device in input_devices.values) {
+            device.unref ();
+        }
+        input_devices.clear ();
+        default_input = null;
+
+        foreach (var device in output_devices.values) {
+            device.unref ();
+        }
+        output_devices.clear ();
+        default_output = null;
+
+        is_ready = false;
     }
 
     public async void set_default_device (Device device) {
@@ -245,14 +281,23 @@ public class Sound.PulseAudioManager : GLib.Object {
                              PulseAudio.Context.SubscriptionMask.CARD);
                 context.get_server_info (server_info_callback);
                 is_ready = true;
+                if (reconnect_timer_id != 0U) {
+                    Source.remove (reconnect_timer_id);
+                    reconnect_timer_id = 0U;
+                }
                 break;
 
             case PulseAudio.Context.State.FAILED:
-            case PulseAudio.Context.State.TERMINATED:
+                disconnected ();
+                is_ready = false;
                 if (reconnect_timer_id == 0U) {
                     reconnect_timer_id = Timeout.add_seconds (2, reconnect_timeout);
                 }
+                break;
 
+            case PulseAudio.Context.State.TERMINATED:
+                stop ();
+                disconnected ();
                 break;
 
             default:
@@ -563,6 +608,8 @@ public class Sound.PulseAudioManager : GLib.Object {
             if (is_new) {
                 devices.set (id, device);
                 new_device (device);
+            } else {
+                update_device (device);
             }
         }
 
