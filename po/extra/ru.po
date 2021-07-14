@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-25 18:33+0000\n"
+"POT-Creation-Date: 2021-07-14 20:04+0000\n"
 "PO-Revision-Date: 2021-04-05 00:38+0000\n"
 "Last-Translator: DartDeaDia <jorydit@gmail.com>\n"
 "Language-Team: Russian <https://l10n.elementary.io/projects/wingpanel/"
@@ -32,38 +32,61 @@ msgstr ""
 "Настройте громкость динамика и микрофона или посмотрите информацию о "
 "воспроизведении и элементах управления медиа"
 
-#: data/sound.appdata.xml.in:12 data/sound.appdata.xml.in:21
+#: data/sound.appdata.xml.in:12
+msgid "New features"
+msgstr ""
+
+#: data/sound.appdata.xml.in:13
+msgid "select specific input and output devices"
+msgstr ""
+
+#: data/sound.appdata.xml.in:14 data/sound.appdata.xml.in:25
+#: data/sound.appdata.xml.in:34
 msgid "Minor updates"
 msgstr "Незначительные обновления"
 
-#: data/sound.appdata.xml.in:14
-msgid "Fix duplicate default player"
-msgstr "Исправлено дублирование проигрывателя по умолчанию"
+#: data/sound.appdata.xml.in:16
+msgid "Hide temporary audio players when they stop"
+msgstr ""
 
-#: data/sound.appdata.xml.in:15 data/sound.appdata.xml.in:24
-#: data/sound.appdata.xml.in:31 data/sound.appdata.xml.in:38
-#: data/sound.appdata.xml.in:43
+#: data/sound.appdata.xml.in:17
+msgid "Add a tooltip on hover"
+msgstr ""
+
+#: data/sound.appdata.xml.in:18
+#, fuzzy
+#| msgid "Performance improvements"
+msgid "Minor visual improvements"
+msgstr "Улучшения производительности"
+
+#: data/sound.appdata.xml.in:19 data/sound.appdata.xml.in:28
+#: data/sound.appdata.xml.in:37 data/sound.appdata.xml.in:44
+#: data/sound.appdata.xml.in:51 data/sound.appdata.xml.in:56
 msgid "Updated translations"
 msgstr "Обновлены переводы"
 
-#: data/sound.appdata.xml.in:23
+#: data/sound.appdata.xml.in:27
+msgid "Fix duplicate default player"
+msgstr "Исправлено дублирование проигрывателя по умолчанию"
+
+#: data/sound.appdata.xml.in:36
 msgid "Fix opacity flash during icon animation"
 msgstr "Исправлена непрозрачность во время анимации пиктограмм"
 
-#: data/sound.appdata.xml.in:30
+#: data/sound.appdata.xml.in:43
 msgid "Update default music player when changed"
 msgstr "Обновление стандартного музыкального проигрывателя, если он изменен"
 
-#: data/sound.appdata.xml.in:36
+#: data/sound.appdata.xml.in:49
 msgid "Correctly show \"Unknown Artist\" when artist info isn't available"
 msgstr ""
 "Исправлено отображение элемента «Неизвестный исполнитель», когда сведения об "
 "исполнителе недоступны"
 
-#: data/sound.appdata.xml.in:37
+#: data/sound.appdata.xml.in:50
 msgid "Performance improvements"
 msgstr "Улучшения производительности"
 
-#: data/sound.appdata.xml.in:52
+#: data/sound.appdata.xml.in:65
 msgid "elementary, Inc."
 msgstr "elementary, Inc."
