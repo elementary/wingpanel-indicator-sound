@@ -4,11 +4,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-25 18:33+0000\n"
+"POT-Creation-Date: 2021-07-14 20:04+0000\n"
 "PO-Revision-Date: 2021-02-26 13:35+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
-"Language-Team: Portuguese <https://l10n.elementary.io/projects/wingpanel/"
-"wingpanel-indicator-sound/pt/>\n"
+"Language-Team: Portuguese <https://l10n.elementary.io/projects/wingpanel/wingpanel-indicator-sound/pt/>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -17,20 +16,20 @@ msgstr ""
 "X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 
-#: src/Indicator.vala:282
+#: src/Indicator.vala:291
 msgid "Sound Settings…"
 msgstr "Definições de Som…"
 
-#: src/Indicator.vala:550
+#: src/Indicator.vala:561
 #, c-format
 msgid "Volume: %.0f%%"
 msgstr "Volume: %.0f%%"
 
-#: src/Indicator.vala:553
+#: src/Indicator.vala:564
 msgid "Middle-click to unmute"
 msgstr "Clique com o botão do meio para ativar o som"
 
-#: src/Indicator.vala:553
+#: src/Indicator.vala:564
 msgid "Middle-click to mute"
 msgstr "Clique com o botão do meio para silenciar"
 
@@ -42,7 +41,7 @@ msgstr "Não está a reproduzir"
 msgid "Music player"
 msgstr "Reprodutor de música"
 
-#: src/Widgets/PlayerRow.vala:531
+#: src/Widgets/PlayerRow.vala:544
 msgid "Unknown Artist"
 msgstr "Artista Desconhecido"
 

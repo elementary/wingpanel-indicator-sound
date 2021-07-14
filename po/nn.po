@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-25 18:33+0000\n"
+"POT-Creation-Date: 2021-07-14 20:04+0000\n"
 "PO-Revision-Date: 2020-07-17 06:12+0000\n"
 "Last-Translator: Martin Myrvold <myrvold.martin@gmail.com>\n"
 "Language-Team: Norwegian Nynorsk <https://l10n.elementary.io/projects/wingpanel/wingpanel-indicator-sound/nn/>\n"
@@ -15,20 +15,20 @@ msgstr ""
 "X-Generator: Weblate 3.9.1\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 
-#: src/Indicator.vala:282
+#: src/Indicator.vala:291
 msgid "Sound Settings…"
 msgstr "Lydinstillingar…"
 
-#: src/Indicator.vala:550
+#: src/Indicator.vala:561
 #, c-format
 msgid "Volume: %.0f%%"
 msgstr ""
 
-#: src/Indicator.vala:553
+#: src/Indicator.vala:564
 msgid "Middle-click to unmute"
 msgstr ""
 
-#: src/Indicator.vala:553
+#: src/Indicator.vala:564
 msgid "Middle-click to mute"
 msgstr ""
 
@@ -42,7 +42,7 @@ msgstr "Spelar ikkje"
 msgid "Music player"
 msgstr "Musikkavspelar"
 
-#: src/Widgets/PlayerRow.vala:531
+#: src/Widgets/PlayerRow.vala:544
 msgid "Unknown Artist"
 msgstr "Ukjend artist"
 

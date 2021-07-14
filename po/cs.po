@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wingpanel-indicator-sound\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-25 18:33+0000\n"
+"POT-Creation-Date: 2021-07-14 20:04+0000\n"
 "PO-Revision-Date: 2020-05-08 13:10+0000\n"
 "Last-Translator: p-bo <pavel.borecki@gmail.com>\n"
 "Language-Team: Czech <https://l10n.elementary.io/projects/wingpanel/wingpanel-indicator-sound/cs/>\n"
@@ -19,20 +19,20 @@ msgstr ""
 "X-Generator: Weblate 3.9.1\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 
-#: src/Indicator.vala:282
+#: src/Indicator.vala:291
 msgid "Sound Settings…"
 msgstr "Nastavení zvuku…"
 
-#: src/Indicator.vala:550
+#: src/Indicator.vala:561
 #, c-format
 msgid "Volume: %.0f%%"
 msgstr ""
 
-#: src/Indicator.vala:553
+#: src/Indicator.vala:564
 msgid "Middle-click to unmute"
 msgstr ""
 
-#: src/Indicator.vala:553
+#: src/Indicator.vala:564
 msgid "Middle-click to mute"
 msgstr ""
 
@@ -46,7 +46,7 @@ msgstr "Momentálně nepřehrává"
 msgid "Music player"
 msgstr "Přehrávač hudby"
 
-#: src/Widgets/PlayerRow.vala:531
+#: src/Widgets/PlayerRow.vala:544
 msgid "Unknown Artist"
 msgstr "Neznámý umělec"
 
