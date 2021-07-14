@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sound-indicator\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-25 18:33+0000\n"
+"POT-Creation-Date: 2021-07-14 20:04+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,20 +17,20 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/Indicator.vala:282
+#: src/Indicator.vala:291
 msgid "Sound Settings…"
 msgstr ""
 
-#: src/Indicator.vala:550
+#: src/Indicator.vala:561
 #, c-format
 msgid "Volume: %.0f%%"
 msgstr ""
 
-#: src/Indicator.vala:553
+#: src/Indicator.vala:564
 msgid "Middle-click to unmute"
 msgstr ""
 
-#: src/Indicator.vala:553
+#: src/Indicator.vala:564
 msgid "Middle-click to mute"
 msgstr ""
 
@@ -42,6 +42,6 @@ msgstr ""
 msgid "Music player"
 msgstr ""
 
-#: src/Widgets/PlayerRow.vala:531
+#: src/Widgets/PlayerRow.vala:544
 msgid "Unknown Artist"
 msgstr ""
