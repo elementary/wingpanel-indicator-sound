@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-14 20:04+0000\n"
-"PO-Revision-Date: 2021-07-02 00:12+0000\n"
+"PO-Revision-Date: 2021-07-15 06:10+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://l10n.elementary.io/projects/"
 "wingpanel/indicator-sound-extra/nb/>\n"
@@ -28,14 +28,16 @@ msgid ""
 "Adjust speaker and microphone volume or see Now Playing information and "
 "media controls"
 msgstr ""
+"Juster lydstyrke for høyttaler og mikrofon, eller se «Nå spilles»-info og "
+"mediakontroller"
 
 #: data/sound.appdata.xml.in:12
 msgid "New features"
-msgstr ""
+msgstr "Nye funksjoner"
 
 #: data/sound.appdata.xml.in:13
 msgid "select specific input and output devices"
-msgstr ""
+msgstr "velg spesifikke inngangs- og utgangs-enheter"
 
 #: data/sound.appdata.xml.in:14 data/sound.appdata.xml.in:25
 #: data/sound.appdata.xml.in:34
@@ -44,7 +46,7 @@ msgstr "Småoppdateringer"
 
 #: data/sound.appdata.xml.in:16
 msgid "Hide temporary audio players when they stop"
-msgstr ""
+msgstr "Skjul midlertidige lydspillere når de stopper"
 
 #: data/sound.appdata.xml.in:17
 msgid "Add a tooltip on hover"
@@ -84,4 +86,4 @@ msgstr "Ytelsesforbedringer"
 
 #: data/sound.appdata.xml.in:65
 msgid "elementary, Inc."
-msgstr ""
+msgstr "elementary, Inc."
