@@ -1,3 +1,23 @@
+wingpanel-indicator-sound (6.0.0) bionic; urgency=medium
+
+  * Release 6.0.0 (#211)
+  * DeviceManager: Remember previously selected devices (#192)
+  * Define log domain (#204)
+  * Fallback to application-default-icon (#198)
+  * Hide temporary MPRIS players that are stopped (#196)
+  * DeviceItem: Add middle ellipsize for long device labels (#193)
+  * Scale: Use small switch and code style (#188)
+  * Input/output device selectors (#187)
+  * Update translation files
+  * Update translation template
+  * Add an indicator tooltip (#178)
+  * Update for libwingpanel transition (#183)
+  * Add libcanberra-gtk3-dev to README (#179)
+  * LINGUAS: sort, remove en_US
+  * PlayerRow: Remove superfluous "currently" (#177)
+
+ -- elementary LLC <builds@elementary.io>  Wed, 14 Jul 2021 20:03:57 +0000
+
 wingpanel-indicator-sound (2.1.8) bionic; urgency=medium
 
   * Release 2.1.8 (#174)
