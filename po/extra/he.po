@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-14 20:04+0000\n"
-"PO-Revision-Date: 2021-02-26 13:35+0000\n"
+"PO-Revision-Date: 2021-07-15 06:10+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://l10n.elementary.io/projects/wingpanel/"
 "indicator-sound-extra/he/>\n"
@@ -33,11 +33,11 @@ msgstr ""
 
 #: data/sound.appdata.xml.in:12
 msgid "New features"
-msgstr ""
+msgstr "יכולות חדשות"
 
 #: data/sound.appdata.xml.in:13
 msgid "select specific input and output devices"
-msgstr ""
+msgstr "בחירה בהתקני קלט ופלט מסוימים"
 
 #: data/sound.appdata.xml.in:14 data/sound.appdata.xml.in:25
 #: data/sound.appdata.xml.in:34
@@ -46,17 +46,15 @@ msgstr "עדכונים משניים"
 
 #: data/sound.appdata.xml.in:16
 msgid "Hide temporary audio players when they stop"
-msgstr ""
+msgstr "נגני שמע זמניים יוסתרו כשהם נעצרים"
 
 #: data/sound.appdata.xml.in:17
 msgid "Add a tooltip on hover"
-msgstr ""
+msgstr "נוספה חלונית עצה בעת מעבר עם העכבר"
 
 #: data/sound.appdata.xml.in:18
-#, fuzzy
-#| msgid "Performance improvements"
 msgid "Minor visual improvements"
-msgstr "שיפורי ביצועים"
+msgstr "שיפורים חזותיים קלים"
 
 #: data/sound.appdata.xml.in:19 data/sound.appdata.xml.in:28
 #: data/sound.appdata.xml.in:37 data/sound.appdata.xml.in:44
