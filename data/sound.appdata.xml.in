@@ -7,6 +7,19 @@
   <summary>Adjust speaker and microphone volume or see Now Playing information and media controls</summary>
   <icon type="stock">preferences-desktop-sound</icon>
   <releases>
+    <release version="6.0.0" date="2021-07-14" urgency="medium">
+      <description>
+        <p>New features</p>
+          <li>select specific input and output devices</li>
+        <p>Minor updates</p>
+        <ul>
+          <li>Hide temporary audio players when they stop</li>
+          <li>Add a tooltip on hover</li>
+          <li>Minor visual improvements</li>
+          <li>Updated translations</li>
+        </ul>
+      </description>
+    </release>
     <release version="2.1.8" date="2020-12-23" urgency="medium">
       <description>
         <p>Minor updates</p>
