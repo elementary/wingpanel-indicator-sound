@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-14 20:04+0000\n"
-"PO-Revision-Date: 2021-03-11 08:34+0000\n"
-"Last-Translator: DartDeaDia <jorydit@gmail.com>\n"
+"PO-Revision-Date: 2021-07-15 06:10+0000\n"
+"Last-Translator: Ihor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: Ukrainian <https://l10n.elementary.io/projects/wingpanel/"
 "indicator-sound-extra/uk/>\n"
 "Language: uk\n"
@@ -34,11 +34,11 @@ msgstr ""
 
 #: data/sound.appdata.xml.in:12
 msgid "New features"
-msgstr ""
+msgstr "Нові можливості"
 
 #: data/sound.appdata.xml.in:13
 msgid "select specific input and output devices"
-msgstr ""
+msgstr "Вибір конкретних пристроїв введення та виведення"
 
 #: data/sound.appdata.xml.in:14 data/sound.appdata.xml.in:25
 #: data/sound.appdata.xml.in:34
@@ -47,17 +47,15 @@ msgstr "Незначні оновлення"
 
 #: data/sound.appdata.xml.in:16
 msgid "Hide temporary audio players when they stop"
-msgstr ""
+msgstr "Тимчасові аудіопрогравачі ховаються, коли вони зупиняються"
 
 #: data/sound.appdata.xml.in:17
 msgid "Add a tooltip on hover"
-msgstr ""
+msgstr "Додано підказки під час наведення"
 
 #: data/sound.appdata.xml.in:18
-#, fuzzy
-#| msgid "Performance improvements"
 msgid "Minor visual improvements"
-msgstr "Поліпшення швидкодії"
+msgstr "Незначні покращення вигляду"
 
 #: data/sound.appdata.xml.in:19 data/sound.appdata.xml.in:28
 #: data/sound.appdata.xml.in:37 data/sound.appdata.xml.in:44
