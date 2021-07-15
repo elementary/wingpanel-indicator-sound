@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-14 20:04+0000\n"
-"PO-Revision-Date: 2021-02-26 19:01+0000\n"
+"PO-Revision-Date: 2021-07-15 14:45+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <https://l10n.elementary.io/projects/wingpanel/"
 "indicator-sound-extra/pt/>\n"
@@ -33,11 +33,11 @@ msgstr ""
 
 #: data/sound.appdata.xml.in:12
 msgid "New features"
-msgstr ""
+msgstr "Novas funcionalidades"
 
 #: data/sound.appdata.xml.in:13
 msgid "select specific input and output devices"
-msgstr ""
+msgstr "seleciona dispositivos específicos de entrada e saída"
 
 #: data/sound.appdata.xml.in:14 data/sound.appdata.xml.in:25
 #: data/sound.appdata.xml.in:34
@@ -46,17 +46,15 @@ msgstr "Pequenas atualizações"
 
 #: data/sound.appdata.xml.in:16
 msgid "Hide temporary audio players when they stop"
-msgstr ""
+msgstr "Oculta temporariamente leitores de áudio quando param"
 
 #: data/sound.appdata.xml.in:17
 msgid "Add a tooltip on hover"
-msgstr ""
+msgstr "Adiciona dica ao pairar o rato"
 
 #: data/sound.appdata.xml.in:18
-#, fuzzy
-#| msgid "Performance improvements"
 msgid "Minor visual improvements"
-msgstr "Melhorias de desempenho"
+msgstr "Pequenas melhorias visuais"
 
 #: data/sound.appdata.xml.in:19 data/sound.appdata.xml.in:28
 #: data/sound.appdata.xml.in:37 data/sound.appdata.xml.in:44
