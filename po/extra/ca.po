@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-14 20:04+0000\n"
-"PO-Revision-Date: 2021-07-15 14:45+0000\n"
+"PO-Revision-Date: 2021-07-15 21:31+0000\n"
 "Last-Translator: David M <rbndavid@gmail.com>\n"
 "Language-Team: Catalan <https://l10n.elementary.io/projects/wingpanel/"
 "indicator-sound-extra/ca/>\n"
@@ -33,11 +33,11 @@ msgstr ""
 
 #: data/sound.appdata.xml.in:12
 msgid "New features"
-msgstr ""
+msgstr "Característiques noves:"
 
 #: data/sound.appdata.xml.in:13
 msgid "select specific input and output devices"
-msgstr ""
+msgstr "seleccioneu dispositius d’entrada i sortida específics"
 
 #: data/sound.appdata.xml.in:14 data/sound.appdata.xml.in:25
 #: data/sound.appdata.xml.in:34
@@ -46,17 +46,15 @@ msgstr "Actualitzacions menors"
 
 #: data/sound.appdata.xml.in:16
 msgid "Hide temporary audio players when they stop"
-msgstr ""
+msgstr "S'amaguen els reproductors d'àudio temporals quan s'aturen."
 
 #: data/sound.appdata.xml.in:17
 msgid "Add a tooltip on hover"
 msgstr "Addició d'una descripció emergent en passar-hi"
 
 #: data/sound.appdata.xml.in:18
-#, fuzzy
-#| msgid "Performance improvements"
 msgid "Minor visual improvements"
-msgstr "Millores de rendiment"
+msgstr "Millores visuals menors"
 
 #: data/sound.appdata.xml.in:19 data/sound.appdata.xml.in:28
 #: data/sound.appdata.xml.in:37 data/sound.appdata.xml.in:44
