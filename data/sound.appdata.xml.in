@@ -10,7 +10,9 @@
     <release version="6.0.0" date="2021-07-14" urgency="medium">
       <description>
         <p>New features</p>
+        <ul>
           <li>select specific input and output devices</li>
+        </ul>
         <p>Minor updates</p>
         <ul>
           <li>Hide temporary audio players when they stop</li>
