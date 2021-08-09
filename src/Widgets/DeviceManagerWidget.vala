@@ -53,7 +53,8 @@ public class Sound.Widgets.DeviceManagerWidget : Gtk.Grid {
     }
 
     private void add_device (Device device) {
-        if (device.input != is_input_manager) {
+        // Avoid Built-in Analog input - output devices
+        if (device.input != is_input_manager || device.port_name == "analog-output" || device.port_name == "analog-input") {
             return;
         }
 
