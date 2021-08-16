@@ -30,8 +30,18 @@ asresources = gnome.compile_resources(
 wingpanel_dep = dependency('wingpanel', version: '>=2.1.0')
 wingpanel_indicatorsdir = wingpanel_dep.get_pkgconfig_variable('indicatorsdir', define_variable: ['libdir', libdir])
 
+config_data = configuration_data()
+config_data.set_quoted('LOCALEDIR', join_paths(get_option('prefix'), get_option('localedir')))
+config_data.set_quoted('GETTEXT_PACKAGE', meson.project_name() + '-indicator')
+config_file = configure_file(
+    input: 'src/Config.vala.in',
+    output: '@BASENAME@',
+    configuration: config_data
+)
+
 shared_module(
     meson.project_name(),
+    config_file,
     'src/Device.vala',
     'src/Indicator.vala',
     'src/Widgets/DisplayWidget.vala',

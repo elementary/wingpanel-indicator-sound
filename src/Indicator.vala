@@ -54,6 +54,9 @@ public class Sound.Indicator : Wingpanel.Indicator {
     }
 
     construct {
+        GLib.Intl.bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
+        GLib.Intl.bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+
         var touchpad_settings = new GLib.Settings ("org.gnome.desktop.peripherals.touchpad");
         touchpad_settings.bind ("natural-scroll", this, "natural-scroll-touchpad", SettingsBindFlags.DEFAULT);
         var mouse_settings = new GLib.Settings ("org.gnome.desktop.peripherals.mouse");
