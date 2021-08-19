@@ -8,14 +8,16 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-14 20:04+0000\n"
-"PO-Revision-Date: 2019-11-07 11:39-0800\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2021-08-20 01:13+0000\n"
+"Last-Translator: JohnDumpling <john_dumpling@protonmail.com>\n"
+"Language-Team: Slovak <https://l10n.elementary.io/projects/wingpanel/"
+"indicator-sound-extra/sk/>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ASCII\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Weblate 4.4.2\n"
 
 #: data/sound.appdata.xml.in:6
 msgid "Sound Indicator"
@@ -38,7 +40,7 @@ msgstr ""
 #: data/sound.appdata.xml.in:14 data/sound.appdata.xml.in:25
 #: data/sound.appdata.xml.in:34
 msgid "Minor updates"
-msgstr ""
+msgstr "Drobné aktualizácie"
 
 #: data/sound.appdata.xml.in:16
 msgid "Hide temporary audio players when they stop"
@@ -56,7 +58,7 @@ msgstr ""
 #: data/sound.appdata.xml.in:37 data/sound.appdata.xml.in:44
 #: data/sound.appdata.xml.in:51 data/sound.appdata.xml.in:56
 msgid "Updated translations"
-msgstr ""
+msgstr "Aktualizované preklady"
 
 #: data/sound.appdata.xml.in:27
 msgid "Fix duplicate default player"
@@ -76,8 +78,8 @@ msgstr ""
 
 #: data/sound.appdata.xml.in:50
 msgid "Performance improvements"
-msgstr ""
+msgstr "Vylepšenia výkonu"
 
 #: data/sound.appdata.xml.in:65
 msgid "elementary, Inc."
-msgstr ""
+msgstr "elementary, Inc."
