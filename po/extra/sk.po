@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-14 20:04+0000\n"
-"PO-Revision-Date: 2021-08-20 12:05+0000\n"
+"PO-Revision-Date: 2021-08-20 14:25+0000\n"
 "Last-Translator: JohnDumpling <john_dumpling@protonmail.com>\n"
 "Language-Team: Slovak <https://l10n.elementary.io/projects/wingpanel/"
 "indicator-sound-extra/sk/>\n"
@@ -64,19 +64,19 @@ msgstr "Aktualizované preklady"
 
 #: data/sound.appdata.xml.in:27
 msgid "Fix duplicate default player"
-msgstr "Opraviť duplicitný predvolený prehrávač"
+msgstr "Opravený duplicitný predvolený prehrávač"
 
 #: data/sound.appdata.xml.in:36
 msgid "Fix opacity flash during icon animation"
-msgstr ""
+msgstr "Opravený „záblesk“ priehľadnosti počas animácie ikonky"
 
 #: data/sound.appdata.xml.in:43
 msgid "Update default music player when changed"
-msgstr ""
+msgstr "Po úprave predvoleného prehrávača sa nastavenie aktualizuje aj tu"
 
 #: data/sound.appdata.xml.in:49
 msgid "Correctly show \"Unknown Artist\" when artist info isn't available"
-msgstr ""
+msgstr "Správne zobraziť „Neznámy umelec“, keď nie je dostupné info o umelcovi"
 
 #: data/sound.appdata.xml.in:50
 msgid "Performance improvements"
