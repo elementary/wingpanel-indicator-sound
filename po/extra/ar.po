@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-14 20:04+0000\n"
-"PO-Revision-Date: 2021-08-26 22:37+0000\n"
+"PO-Revision-Date: 2021-08-27 13:57+0000\n"
 "Last-Translator: Muhammad Al-Jayyousi <m7md.j99@protonmail.com>\n"
 "Language-Team: Arabic <https://l10n.elementary.io/projects/wingpanel/"
 "indicator-sound-extra/ar/>\n"
@@ -22,21 +22,23 @@ msgstr ""
 
 #: data/sound.appdata.xml.in:6
 msgid "Sound Indicator"
-msgstr ""
+msgstr "مؤشر الصوت"
 
 #: data/sound.appdata.xml.in:7
 msgid ""
 "Adjust speaker and microphone volume or see Now Playing information and "
 "media controls"
 msgstr ""
+"قم بضبط مستوى صوت السماعات أو مكبر الصوت أو شاهد الملف الصوتي المشغل حالياً "
+"مع أزرار الوسائط"
 
 #: data/sound.appdata.xml.in:12
 msgid "New features"
-msgstr ""
+msgstr "ميزات جديدة"
 
 #: data/sound.appdata.xml.in:13
 msgid "select specific input and output devices"
-msgstr ""
+msgstr "اختيار أجهزة إدخال وإخراج محددة"
 
 #: data/sound.appdata.xml.in:14 data/sound.appdata.xml.in:25
 #: data/sound.appdata.xml.in:34
@@ -45,15 +47,15 @@ msgstr "تحديثات طفيفة"
 
 #: data/sound.appdata.xml.in:16
 msgid "Hide temporary audio players when they stop"
-msgstr ""
+msgstr "إخفاء مؤقت لمشغلات الصوت عند إيقافها"
 
 #: data/sound.appdata.xml.in:17
 msgid "Add a tooltip on hover"
-msgstr ""
+msgstr "إضافة تلميح عند التمرير"
 
 #: data/sound.appdata.xml.in:18
 msgid "Minor visual improvements"
-msgstr ""
+msgstr "تحديثات طفيفة على الشكل"
 
 #: data/sound.appdata.xml.in:19 data/sound.appdata.xml.in:28
 #: data/sound.appdata.xml.in:37 data/sound.appdata.xml.in:44
@@ -63,19 +65,19 @@ msgstr "تحديثات على الترجمة"
 
 #: data/sound.appdata.xml.in:27
 msgid "Fix duplicate default player"
-msgstr ""
+msgstr "إصلاح تكرار مشغل الوسائط الافتراضي"
 
 #: data/sound.appdata.xml.in:36
 msgid "Fix opacity flash during icon animation"
-msgstr ""
+msgstr "إصلاح وميض درجة العتمة عند تحرك الأيقونة"
 
 #: data/sound.appdata.xml.in:43
 msgid "Update default music player when changed"
-msgstr ""
+msgstr "تحديث مشغل الموسيقى الافتراضي عند تغييره"
 
 #: data/sound.appdata.xml.in:49
 msgid "Correctly show \"Unknown Artist\" when artist info isn't available"
-msgstr ""
+msgstr "إظهار \"فنان غير معروف\" بشكل صحيح عندما لا تكون معلومات الفنان متوفرة"
 
 #: data/sound.appdata.xml.in:50
 msgid "Performance improvements"
