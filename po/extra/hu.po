@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-14 20:04+0000\n"
-"PO-Revision-Date: 2021-08-28 22:49+0000\n"
+"PO-Revision-Date: 2021-09-02 21:53+0000\n"
 "Last-Translator: TomiOhl <ohlslager.tom@gmail.com>\n"
 "Language-Team: Hungarian <https://l10n.elementary.io/projects/wingpanel/"
 "indicator-sound-extra/hu/>\n"
@@ -58,7 +58,7 @@ msgstr ""
 #: data/sound.appdata.xml.in:37 data/sound.appdata.xml.in:44
 #: data/sound.appdata.xml.in:51 data/sound.appdata.xml.in:56
 msgid "Updated translations"
-msgstr "Fordítási frissítések"
+msgstr "Frissített fordítások"
 
 #: data/sound.appdata.xml.in:27
 msgid "Fix duplicate default player"
