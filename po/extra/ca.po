@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-14 20:04+0000\n"
-"PO-Revision-Date: 2021-07-15 21:31+0000\n"
+"PO-Revision-Date: 2021-09-12 04:42+0000\n"
 "Last-Translator: David M <rbndavid@gmail.com>\n"
 "Language-Team: Catalan <https://l10n.elementary.io/projects/wingpanel/"
 "indicator-sound-extra/ca/>\n"
@@ -33,7 +33,7 @@ msgstr ""
 
 #: data/sound.appdata.xml.in:12
 msgid "New features"
-msgstr "Característiques noves:"
+msgstr "Característiques noves"
 
 #: data/sound.appdata.xml.in:13
 msgid "select specific input and output devices"
