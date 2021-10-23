@@ -4,19 +4,22 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2015.
 # Ernest Shefer <shef-er@ya.ru>, 2021.
 # DartDeaDia <jorydit@gmail.com>, 2021.
+# DartDeaDia <dartdeadia@protonmail.com>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: wingpanel-indicator-sound\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-14 20:04+0000\n"
-"PO-Revision-Date: 2021-03-04 23:26+0000\n"
-"Last-Translator: DartDeaDia <jorydit@gmail.com>\n"
-"Language-Team: Russian <https://l10n.elementary.io/projects/wingpanel/wingpanel-indicator-sound/ru/>\n"
+"PO-Revision-Date: 2021-08-28 01:44+0000\n"
+"Last-Translator: DartDeaDia <dartdeadia@protonmail.com>\n"
+"Language-Team: Russian <https://l10n.elementary.io/projects/wingpanel/"
+"wingpanel-indicator-sound/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 
@@ -31,11 +34,11 @@ msgstr "Громкость: %.0f%%"
 
 #: src/Indicator.vala:564
 msgid "Middle-click to unmute"
-msgstr "Нажмите средней кнопкой мыши, чтобы включить звук"
+msgstr "Нажмите средней кнопкой, чтобы включить звук"
 
 #: src/Indicator.vala:564
 msgid "Middle-click to mute"
-msgstr "Нажмите средней кнопкой мыши, чтобы выключить звук"
+msgstr "Нажмите средней кнопкой, чтобы выключить звук"
 
 #: src/Widgets/PlayerRow.vala:28
 msgid "Not playing"

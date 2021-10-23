@@ -1,19 +1,22 @@
 # Yassine MRABET <yassine.mrabet@gmail.com>, 2018.
 # Mohelm97 <mohelm97@gmail.com>, 2018.
+# Muhammad Al-Jayyousi <m7md.j99@protonmail.com>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-14 20:04+0000\n"
-"PO-Revision-Date: 2018-12-06 06:00+0000\n"
-"Last-Translator: Mohelm97 <mohelm97@gmail.com>\n"
-"Language-Team: Arabic <https://weblate.elementary.io/projects/wingpanel/wingpanel-indicator-sound/ar/>\n"
+"PO-Revision-Date: 2021-08-27 13:57+0000\n"
+"Last-Translator: Muhammad Al-Jayyousi <m7md.j99@protonmail.com>\n"
+"Language-Team: Arabic <https://l10n.elementary.io/projects/wingpanel/"
+"wingpanel-indicator-sound/ar/>\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
-"X-Generator: Weblate 3.0.1\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+"X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 
 #: src/Indicator.vala:291
@@ -23,19 +26,17 @@ msgstr "إعدادات الصوت…"
 #: src/Indicator.vala:561
 #, c-format
 msgid "Volume: %.0f%%"
-msgstr ""
+msgstr "مستوى الصوت: %.0f%%"
 
 #: src/Indicator.vala:564
 msgid "Middle-click to unmute"
-msgstr ""
+msgstr "اضغط الزر الأوسط لإلغاء كتم الصوت"
 
 #: src/Indicator.vala:564
 msgid "Middle-click to mute"
-msgstr ""
+msgstr "اضغط الزر الأوسط لكتم الصوت"
 
 #: src/Widgets/PlayerRow.vala:28
-#, fuzzy
-#| msgid "Not currently playing"
 msgid "Not playing"
 msgstr "ليس في وضع التشغيل"
 
@@ -44,9 +45,8 @@ msgid "Music player"
 msgstr "مشغل الموسيقى"
 
 #: src/Widgets/PlayerRow.vala:544
-#, fuzzy
 msgid "Unknown Artist"
-msgstr "عنوان غير معروف"
+msgstr "فنان غير معروف"
 
 #~ msgid "Indicator Sound"
 #~ msgstr "مؤشر الصوت"
