@@ -37,6 +37,7 @@ public class Sound.Device : GLib.Object {
     public string port_name { get; construct; }
     public string display_name { get; set; }
     public string form_factor { get; set; }
+    public string icon_name { get; set; }
     public Gee.ArrayList<string> profiles { get; set; }
     public string card_active_profile_name { get; set; }
 
@@ -64,23 +65,6 @@ public class Sound.Device : GLib.Object {
 
     construct {
         profiles = new Gee.ArrayList<string> ();
-    }
-
-    public string get_nice_icon () {
-        switch (form_factor) {
-            case "handset":
-                return "audio-headset-symbolic";
-            case "headset":
-                return "audio-headset-symbolic";
-            case "headphone":
-                return "audio-headphones-symbolic";
-            case "hifi":
-                return "audio-card-symbolic";
-            case "microphone":
-                return "audio-input-microphone-symbolic";
-            default:
-                return input? "audio-input-microphone-symbolic" : "audio-speakers-symbolic";
-        }
     }
 
     public string? get_matching_profile (Device? other_device) {
