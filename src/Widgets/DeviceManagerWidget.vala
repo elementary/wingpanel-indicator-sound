@@ -62,7 +62,7 @@ public class Sound.Widgets.DeviceManagerWidget : Gtk.Grid {
         var device_item = new DeviceItem (device.display_name,
                                           device.is_default,
                                           device.is_priority,
-                                          device.get_nice_icon (),
+                                          device.icon_name,
                                           row);
         device_list.add (device_item);
 

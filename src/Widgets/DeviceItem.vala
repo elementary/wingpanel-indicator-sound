@@ -57,9 +57,8 @@ public class DeviceItem : Gtk.ListBoxRow {
             radio_button.set_group (item.radio_button.get_group ());
         }
 
-        img_type = new Gtk.Image () {
-            icon_name = icon_name,
-            icon_size = Gtk.IconSize.MENU
+        img_type = new Gtk.Image.from_icon_name (icon_name + "-symbolic", Gtk.IconSize.MENU) {
+            use_fallback = true
         };
 
         var grid = new Gtk.Grid () {
