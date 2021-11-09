@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-14 20:04+0000\n"
+"POT-Creation-Date: 2021-11-09 18:24+0000\n"
 "PO-Revision-Date: 2020-11-09 11:15+0000\n"
 "Last-Translator: Mejans <farga@mejans.fr>\n"
 "Language-Team: Occitan <https://l10n.elementary.io/projects/wingpanel/"
@@ -29,59 +29,64 @@ msgid ""
 "media controls"
 msgstr ""
 
-#: data/sound.appdata.xml.in:12
-msgid "New features"
-msgstr ""
-
-#: data/sound.appdata.xml.in:13
-msgid "select specific input and output devices"
-msgstr ""
-
-#: data/sound.appdata.xml.in:14 data/sound.appdata.xml.in:25
-#: data/sound.appdata.xml.in:34
+#: data/sound.appdata.xml.in:12 data/sound.appdata.xml.in:25
+#: data/sound.appdata.xml.in:36 data/sound.appdata.xml.in:45
 msgid "Minor updates"
 msgstr ""
 
-#: data/sound.appdata.xml.in:16
+#: data/sound.appdata.xml.in:14
+msgid "Show more specific icons for different types of devices"
+msgstr ""
+
+#: data/sound.appdata.xml.in:15 data/sound.appdata.xml.in:30
+#: data/sound.appdata.xml.in:39 data/sound.appdata.xml.in:48
+#: data/sound.appdata.xml.in:55 data/sound.appdata.xml.in:62
+#: data/sound.appdata.xml.in:67
+msgid "Updated translations"
+msgstr "Mesas a jorn de las traduccions"
+
+#: data/sound.appdata.xml.in:21
+msgid "New features"
+msgstr ""
+
+#: data/sound.appdata.xml.in:23
+msgid "select specific input and output devices"
+msgstr ""
+
+#: data/sound.appdata.xml.in:27
 msgid "Hide temporary audio players when they stop"
 msgstr ""
 
-#: data/sound.appdata.xml.in:17
+#: data/sound.appdata.xml.in:28
 msgid "Add a tooltip on hover"
 msgstr ""
 
-#: data/sound.appdata.xml.in:18
+#: data/sound.appdata.xml.in:29
 #, fuzzy
 #| msgid "Performance improvements"
 msgid "Minor visual improvements"
 msgstr "Melhoraments de la performanças"
 
-#: data/sound.appdata.xml.in:19 data/sound.appdata.xml.in:28
-#: data/sound.appdata.xml.in:37 data/sound.appdata.xml.in:44
-#: data/sound.appdata.xml.in:51 data/sound.appdata.xml.in:56
-msgid "Updated translations"
-msgstr "Mesas a jorn de las traduccions"
-
-#: data/sound.appdata.xml.in:27
+#: data/sound.appdata.xml.in:38
 msgid "Fix duplicate default player"
 msgstr ""
 
-#: data/sound.appdata.xml.in:36
+#: data/sound.appdata.xml.in:47
 msgid "Fix opacity flash during icon animation"
 msgstr ""
 
-#: data/sound.appdata.xml.in:43
+#: data/sound.appdata.xml.in:54
 msgid "Update default music player when changed"
 msgstr ""
 
-#: data/sound.appdata.xml.in:49
+#: data/sound.appdata.xml.in:60
 msgid "Correctly show \"Unknown Artist\" when artist info isn't available"
 msgstr ""
 
-#: data/sound.appdata.xml.in:50
+#: data/sound.appdata.xml.in:61
 msgid "Performance improvements"
 msgstr "Melhoraments de la performanças"
 
-#: data/sound.appdata.xml.in:65
+#: data/sound.appdata.xml.in:76
 msgid "elementary, Inc."
 msgstr "elementary, Inc."
