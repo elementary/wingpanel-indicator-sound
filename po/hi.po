@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-14 20:04+0000\n"
+"POT-Creation-Date: 2021-11-09 18:24+0000\n"
 "PO-Revision-Date: 2018-03-20 00:14+0000\n"
 "Last-Translator: Anand Kumar <anand@anandkumar.net>\n"
 "Language-Team: Hindi <https://weblate.elementary.io/projects/wingpanel/wingpanel-indicator-sound/hi/>\n"
@@ -14,20 +14,20 @@ msgstr ""
 "X-Generator: Weblate 2.18\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 
-#: src/Indicator.vala:291
+#: src/Indicator.vala:294
 msgid "Sound Settings…"
 msgstr "ध्वनि सेटिंग्स…"
 
-#: src/Indicator.vala:561
+#: src/Indicator.vala:564
 #, c-format
 msgid "Volume: %.0f%%"
 msgstr ""
 
-#: src/Indicator.vala:564
+#: src/Indicator.vala:567
 msgid "Middle-click to unmute"
 msgstr ""
 
-#: src/Indicator.vala:564
+#: src/Indicator.vala:567
 msgid "Middle-click to mute"
 msgstr ""
 
