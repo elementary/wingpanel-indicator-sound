@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-11-09 18:24+0000\n"
-"PO-Revision-Date: 2021-07-15 06:10+0000\n"
+"PO-Revision-Date: 2021-11-10 16:21+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://l10n.elementary.io/projects/wingpanel/"
 "indicator-sound-extra/he/>\n"
@@ -38,7 +38,7 @@ msgstr "עדכונים משניים"
 
 #: data/sound.appdata.xml.in:14
 msgid "Show more specific icons for different types of devices"
-msgstr ""
+msgstr "הצגת סמלים יותר מדויקים לסוגים שונים של התקנים"
 
 #: data/sound.appdata.xml.in:15 data/sound.appdata.xml.in:30
 #: data/sound.appdata.xml.in:39 data/sound.appdata.xml.in:48
