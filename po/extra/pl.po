@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-11-09 18:24+0000\n"
-"PO-Revision-Date: 2021-11-03 07:04+0000\n"
+"PO-Revision-Date: 2021-11-10 16:21+0000\n"
 "Last-Translator: Marcin Serwin <marcin.serwin0@protonmail.com>\n"
 "Language-Team: Polish <https://l10n.elementary.io/projects/wingpanel/"
 "indicator-sound-extra/pl/>\n"
@@ -22,22 +22,24 @@ msgstr ""
 
 #: data/sound.appdata.xml.in:6
 msgid "Sound Indicator"
-msgstr ""
+msgstr "Wskaźnik dźwięku"
 
 #: data/sound.appdata.xml.in:7
 msgid ""
 "Adjust speaker and microphone volume or see Now Playing information and "
 "media controls"
 msgstr ""
+"Dopasuj głośność głośnika oraz mikrofonu lub zobacz informację na temat "
+"aktualnie odtwarzanych mediów i kontroluj je"
 
 #: data/sound.appdata.xml.in:12 data/sound.appdata.xml.in:25
 #: data/sound.appdata.xml.in:36 data/sound.appdata.xml.in:45
 msgid "Minor updates"
-msgstr ""
+msgstr "Mniejsze aktualizacje"
 
 #: data/sound.appdata.xml.in:14
 msgid "Show more specific icons for different types of devices"
-msgstr ""
+msgstr "Pokaż dokładniejsze ikony dla różnych typów urządzeń"
 
 #: data/sound.appdata.xml.in:15 data/sound.appdata.xml.in:30
 #: data/sound.appdata.xml.in:39 data/sound.appdata.xml.in:48
@@ -48,39 +50,41 @@ msgstr "Zaktualizowano tłumaczenia"
 
 #: data/sound.appdata.xml.in:21
 msgid "New features"
-msgstr ""
+msgstr "Nowe funkcje"
 
 #: data/sound.appdata.xml.in:23
 msgid "select specific input and output devices"
-msgstr ""
+msgstr "Wybieranie konkretnych urządzeń wejścia i wyjścia"
 
 #: data/sound.appdata.xml.in:27
 msgid "Hide temporary audio players when they stop"
-msgstr ""
+msgstr "Tymczasowe odtwarzacze audio są chowane po zatrzymaniu"
 
 #: data/sound.appdata.xml.in:28
 msgid "Add a tooltip on hover"
-msgstr ""
+msgstr "Dodano tooltip przy najechaniu"
 
 #: data/sound.appdata.xml.in:29
 msgid "Minor visual improvements"
-msgstr ""
+msgstr "Mniejsze poprawki wizualne"
 
 #: data/sound.appdata.xml.in:38
 msgid "Fix duplicate default player"
-msgstr ""
+msgstr "Naprawiono zduplikowany odtwarzacz domyślny"
 
 #: data/sound.appdata.xml.in:47
 msgid "Fix opacity flash during icon animation"
-msgstr ""
+msgstr "Naprawiono błysk przeźroczystości podczas animacji ikony"
 
 #: data/sound.appdata.xml.in:54
 msgid "Update default music player when changed"
-msgstr ""
+msgstr "Domyślny odtwarzacz muzyki jest aktualizowany gdy się zmienia"
 
 #: data/sound.appdata.xml.in:60
 msgid "Correctly show \"Unknown Artist\" when artist info isn't available"
 msgstr ""
+"Poprawnie pokazuj „Nieznany artysta” gdy informacje o artyście nie są "
+"dostępne"
 
 #: data/sound.appdata.xml.in:61
 msgid "Performance improvements"
