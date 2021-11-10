@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-11-09 18:24+0000\n"
-"PO-Revision-Date: 2021-08-02 14:36+0000\n"
+"PO-Revision-Date: 2021-11-10 16:21+0000\n"
 "Last-Translator: Nathan <bonnemainsnathan@gmail.com>\n"
 "Language-Team: French <https://l10n.elementary.io/projects/wingpanel/"
 "indicator-sound-extra/fr/>\n"
@@ -39,6 +39,7 @@ msgstr "Mises à jour mineures"
 #: data/sound.appdata.xml.in:14
 msgid "Show more specific icons for different types of devices"
 msgstr ""
+"Affichage d'icônes plus spécifiques pour les différents types d'appareils"
 
 #: data/sound.appdata.xml.in:15 data/sound.appdata.xml.in:30
 #: data/sound.appdata.xml.in:39 data/sound.appdata.xml.in:48
