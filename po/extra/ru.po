@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-11-09 18:24+0000\n"
-"PO-Revision-Date: 2021-07-23 14:46+0000\n"
-"Last-Translator: DartDeaDia <jorydit@gmail.com>\n"
+"PO-Revision-Date: 2021-11-12 18:05+0000\n"
+"Last-Translator: DartDeaDia <dartdeadia@protonmail.com>\n"
 "Language-Team: Russian <https://l10n.elementary.io/projects/wingpanel/"
 "indicator-sound-extra/ru/>\n"
 "Language: ru\n"
@@ -39,7 +39,7 @@ msgstr "Незначительные обновления"
 
 #: data/sound.appdata.xml.in:14
 msgid "Show more specific icons for different types of devices"
-msgstr ""
+msgstr "Отображение большего количества значков для разных типов устройств"
 
 #: data/sound.appdata.xml.in:15 data/sound.appdata.xml.in:30
 #: data/sound.appdata.xml.in:39 data/sound.appdata.xml.in:48
