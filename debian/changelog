@@ -1,3 +1,17 @@
+wingpanel-indicator-sound (6.0.1) bionic; urgency=medium
+
+  * Release 6.0.1 (#227)
+  * Update translation files
+  * Update translation template
+  * DeviceItem: get icons from Pulse (#226)
+  * fix: remove anlog outputs-inputs (#215)
+  * MediaPlayer: Give type field valid name (#221)
+  * l10n: Correctly setup the locales (#216)
+  * Allow Horizontal scroll (#214)
+  * appdata: fix HTML syntax (li tag outside ul tag) (#212)
+
+ -- elementary LLC <builds@elementary.io>  Thu, 18 Nov 2021 18:37:51 +0000
+
 wingpanel-indicator-sound (6.0.0) bionic; urgency=medium
 
   * Release 6.0.0 (#211)
