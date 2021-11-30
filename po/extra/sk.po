@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-11-09 18:24+0000\n"
-"PO-Revision-Date: 2021-08-20 14:25+0000\n"
+"PO-Revision-Date: 2021-11-30 20:22+0000\n"
 "Last-Translator: JohnDumpling <john_dumpling@protonmail.com>\n"
 "Language-Team: Slovak <https://l10n.elementary.io/projects/wingpanel/"
 "indicator-sound-extra/sk/>\n"
@@ -38,7 +38,7 @@ msgstr "Drobné aktualizácie"
 
 #: data/sound.appdata.xml.in:14
 msgid "Show more specific icons for different types of devices"
-msgstr ""
+msgstr "Zobrazovať špecifické ikonky pre rôzne typy zariadení"
 
 #: data/sound.appdata.xml.in:15 data/sound.appdata.xml.in:30
 #: data/sound.appdata.xml.in:39 data/sound.appdata.xml.in:48
