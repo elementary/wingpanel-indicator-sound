@@ -2,15 +2,16 @@
 # Copyright (c) 2015 Rosetta Contributors and Canonical Ltd 2015
 # This file is distributed under the same license as the wingpanel-indicator-sound package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2015.
-# Uwe S <saabisto@gmx.de>, 2020, 2021.
+# Uwe S <saabisto@gmx.de>, 2020, 2021, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: wingpanel-indicator-sound\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-11-09 18:24+0000\n"
-"PO-Revision-Date: 2021-11-02 19:54+0000\n"
+"PO-Revision-Date: 2022-01-07 01:31+0000\n"
 "Last-Translator: Uwe S <saabisto@gmx.de>\n"
-"Language-Team: German <https://l10n.elementary.io/projects/wingpanel/wingpanel-indicator-sound/de/>\n"
+"Language-Team: German <https://l10n.elementary.io/projects/wingpanel/"
+"wingpanel-indicator-sound/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,7 +35,7 @@ msgstr "Stummschaltung mit Mittelklick aufheben"
 
 #: src/Indicator.vala:567
 msgid "Middle-click to mute"
-msgstr "Stummschalten mit Mittelklick"
+msgstr "Mit Mittelklick stummschalten"
 
 #: src/Widgets/PlayerRow.vala:28
 msgid "Not playing"
