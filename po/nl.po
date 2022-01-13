@@ -1,18 +1,20 @@
 # Jaimie85 <alsemgeest@gmail.com>, 2020.
+# Niels Van Laerhoven <niels1995@gmail.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-11-09 18:24+0000\n"
-"PO-Revision-Date: 2020-01-05 17:07+0000\n"
-"Last-Translator: Jaimie85 <alsemgeest@gmail.com>\n"
-"Language-Team: Dutch <https://l10n.elementary.io/projects/wingpanel/wingpanel-indicator-sound/nl/>\n"
+"PO-Revision-Date: 2022-01-13 21:09+0000\n"
+"Last-Translator: Niels Van Laerhoven <niels1995@gmail.com>\n"
+"Language-Team: Dutch <https://l10n.elementary.io/projects/wingpanel/"
+"wingpanel-indicator-sound/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 
 #: src/Indicator.vala:294
@@ -22,21 +24,19 @@ msgstr "Geluidsinstellingen…"
 #: src/Indicator.vala:564
 #, c-format
 msgid "Volume: %.0f%%"
-msgstr ""
+msgstr "Volume: %.0f%%"
 
 #: src/Indicator.vala:567
 msgid "Middle-click to unmute"
-msgstr ""
+msgstr "Middelklik om dempen op te heffen"
 
 #: src/Indicator.vala:567
 msgid "Middle-click to mute"
-msgstr ""
+msgstr "Middelklik om te dempen"
 
 #: src/Widgets/PlayerRow.vala:28
-#, fuzzy
-#| msgid "Not currently playing"
 msgid "Not playing"
-msgstr "Niet bezig met afspelen"
+msgstr "Niet aan het afspelen"
 
 #: src/Widgets/PlayerRow.vala:43
 msgid "Music player"
