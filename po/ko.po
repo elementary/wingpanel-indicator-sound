@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: wingpanel-indicator-sound\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-11-09 18:24+0000\n"
-"PO-Revision-Date: 2022-08-05 09:01+0000\n"
+"PO-Revision-Date: 2022-08-06 10:54+0000\n"
 "Last-Translator: Jung-Kyu Park <bagjunggyu@gmail.com>\n"
 "Language-Team: Korean <https://l10n.elementary.io/projects/wingpanel/"
 "wingpanel-indicator-sound/ko/>\n"
@@ -27,25 +27,23 @@ msgstr "소리 설정…"
 #: src/Indicator.vala:564
 #, c-format
 msgid "Volume: %.0f%%"
-msgstr ""
+msgstr "볼륨: %.0f%%"
 
 #: src/Indicator.vala:567
 msgid "Middle-click to unmute"
-msgstr ""
+msgstr "마우스 가운데 버튼 클릭으로 음소거 해제"
 
 #: src/Indicator.vala:567
 msgid "Middle-click to mute"
-msgstr ""
+msgstr "마우스 가운데 버튼 클릭으로 음소거"
 
 #: src/Widgets/PlayerRow.vala:28
-#, fuzzy
-#| msgid "Not currently playing"
 msgid "Not playing"
 msgstr "지금은 연주하고 있지 않습니다"
 
 #: src/Widgets/PlayerRow.vala:43
 msgid "Music player"
-msgstr "뮤직 플레이어"
+msgstr "뮤직 플레이어:"
 
 #: src/Widgets/PlayerRow.vala:544
 msgid "Unknown Artist"
