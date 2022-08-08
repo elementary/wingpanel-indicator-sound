@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-11-09 18:24+0000\n"
-"PO-Revision-Date: 2022-08-08 11:31+0000\n"
+"PO-Revision-Date: 2022-08-08 17:56+0000\n"
 "Last-Translator: Jung-Kyu Park <bagjunggyu@gmail.com>\n"
 "Language-Team: Korean <https://l10n.elementary.io/projects/wingpanel/"
 "indicator-sound-extra/ko/>\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: data/sound.appdata.xml.in:6
 msgid "Sound Indicator"
-msgstr ""
+msgstr "사운드 인디케이터"
 
 #: data/sound.appdata.xml.in:7
 msgid ""
