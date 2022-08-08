@@ -31,7 +31,6 @@ public class Sound.Indicator : Wingpanel.Indicator {
     private Services.VolumeControlPulse volume_control;
 
     private bool open = false;
-    private bool mute_blocks_sound = false;
     private uint sound_was_blocked_timeout_id;
 
     private double max_volume = 1.0;
@@ -71,7 +70,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
         volume_control.notify["mic-volume"].connect (on_mic_volume_change);
         volume_control.notify["mute"].connect (on_mute_change);
         volume_control.notify["micMute"].connect (on_mic_mute_change);
-        volume_control.notify["is-playing"].connect (on_is_playing_change);
+        volume_control.notify["is-playing"].connect (style_blocking);
         volume_control.notify["is-listening"].connect (update_mic_visibility);
 
         // Tooltip-related
@@ -149,6 +148,8 @@ public class Sound.Indicator : Wingpanel.Indicator {
             volume_scale.scale_widget.set_value (volume);
             display_widget.icon_name = get_volume_icon (volume);
         }
+
+        style_blocking ();
     }
 
     private void on_mic_volume_change () {
@@ -164,12 +165,9 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
         string volume_icon = get_volume_icon (volume_control.volume.volume);
         display_widget.icon_name = volume_icon;
+        volume_scale.icon = volume_icon;
 
-        if (volume_control.mute) {
-            volume_scale.icon = "audio-volume-muted-symbolic";
-        } else {
-            volume_scale.icon = volume_icon;
-        }
+        style_blocking ();
     }
 
     private void on_mic_mute_change () {
@@ -183,28 +181,12 @@ public class Sound.Indicator : Wingpanel.Indicator {
         }
     }
 
-    private void on_is_playing_change () {
-        if (!volume_control.mute) {
-            mute_blocks_sound = false;
-            return;
+    private void style_blocking () {
+        if (volume_control.is_playing && volume_control.mute) {
+            display_widget.get_style_context ().add_class ("blocking");
+        } else {
+            display_widget.get_style_context ().remove_class ("blocking");
         }
-        if (volume_control.is_playing) {
-            mute_blocks_sound = true;
-        } else if (mute_blocks_sound) {
-            /* Continue to show the blocking icon five seconds after a player has tried to play something */
-            if (sound_was_blocked_timeout_id > 0) {
-                Source.remove (sound_was_blocked_timeout_id);
-            }
-
-            sound_was_blocked_timeout_id = Timeout.add_seconds (5, () => {
-                mute_blocks_sound = false;
-                sound_was_blocked_timeout_id = 0;
-                display_widget.icon_name = get_volume_icon (volume_control.volume.volume);
-                return false;
-            });
-        }
-
-        display_widget.icon_name = get_volume_icon (volume_control.volume.volume);
     }
 
     private void on_volume_icon_scroll_event (Gdk.EventScroll e) {
@@ -243,7 +225,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
     private unowned string get_volume_icon (double volume) {
         if (volume <= 0 || this.volume_control.mute) {
-            return this.mute_blocks_sound ? "audio-volume-muted-blocking-symbolic" : "audio-volume-muted-symbolic";
+            return "audio-volume-muted-symbolic";
         } else if (volume <= 0.3) {
             return "audio-volume-low-symbolic";
         } else if (volume <= 0.7) {
