@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-11-09 18:24+0000\n"
-"PO-Revision-Date: 2022-08-05 09:01+0000\n"
+"PO-Revision-Date: 2022-08-08 11:31+0000\n"
 "Last-Translator: Jung-Kyu Park <bagjunggyu@gmail.com>\n"
 "Language-Team: Korean <https://l10n.elementary.io/projects/wingpanel/"
 "indicator-sound-extra/ko/>\n"
@@ -43,7 +43,7 @@ msgstr ""
 #: data/sound.appdata.xml.in:55 data/sound.appdata.xml.in:62
 #: data/sound.appdata.xml.in:67
 msgid "Updated translations"
-msgstr ""
+msgstr "최신 번역"
 
 #: data/sound.appdata.xml.in:21
 msgid "New features"
@@ -83,7 +83,7 @@ msgstr ""
 
 #: data/sound.appdata.xml.in:61
 msgid "Performance improvements"
-msgstr ""
+msgstr "성능 개선"
 
 #: data/sound.appdata.xml.in:76
 msgid "elementary, Inc."
