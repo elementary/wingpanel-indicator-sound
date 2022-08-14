@@ -65,6 +65,7 @@ public class Sound.Widgets.PlayerList : Gtk.Box {
         });
 
         orientation = Gtk.Orientation.VERTICAL;
+        margin_bottom = 3;
         show_all ();
     }
 

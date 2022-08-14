@@ -43,7 +43,8 @@ public class Sound.Widgets.DeviceManagerWidget : Gtk.Grid {
             hscrollbar_policy = Gtk.PolicyType.NEVER,
             propagate_natural_height = true,
             max_content_height = 256,
-            no_show_all = true
+            no_show_all = true,
+            margin_bottom = 3
         };
         scrolled_box.add (device_list);
 

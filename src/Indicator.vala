@@ -291,7 +291,8 @@ public class Sound.Indicator : Wingpanel.Indicator {
             update_mic_visibility ();
 
             var settings_button = new Gtk.ModelButton () {
-                text = _("Sound Settings…")
+                text = _("Sound Settings…"),
+                margin_top = 3
             };
 
             main_grid = new Gtk.Grid ();
