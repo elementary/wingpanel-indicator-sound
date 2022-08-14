@@ -72,7 +72,7 @@ public class Sound.Widgets.Scale : Gtk.EventBox {
 
         image_box.add_events (Gdk.EventMask.BUTTON_RELEASE_MASK);
         image_box.button_release_event.connect (() => {
-            switch_widget.active = !switch_widget.active;
+            switch_widget.activate ();
             return Gdk.EVENT_STOP;
         });
 
@@ -86,6 +86,10 @@ public class Sound.Widgets.Scale : Gtk.EventBox {
 
         bind_property ("active", scale_widget, "sensitive", BindingFlags.SYNC_CREATE);
         bind_property ("active", image, "sensitive", BindingFlags.SYNC_CREATE);
-        switch_widget.bind_property ("active", this, "active", BindingFlags.BIDIRECTIONAL);
+        switch_widget.bind_property ("active", this, "active", BindingFlags.BIDIRECTIONAL, null, () => {
+            if (switch_widget.active != active) {
+                switch_widget.activate ();
+            }
+        });
     }
 }
