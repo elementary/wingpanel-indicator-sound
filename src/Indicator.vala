@@ -18,6 +18,7 @@
 public class Sound.Indicator : Wingpanel.Indicator {
     public bool natural_scroll_touchpad { get; set; }
     public bool natural_scroll_mouse { get; set; }
+    public int volume_step { get; set; }
 
     private DisplayWidget display_widget;
     private Gtk.Grid main_grid;
@@ -35,7 +36,6 @@ public class Sound.Indicator : Wingpanel.Indicator {
     private uint sound_was_blocked_timeout_id;
 
     private double max_volume = 1.0;
-    private const double VOLUME_STEP_PERCENTAGE = 0.06;
 
     private unowned Canberra.Context? ca_context = null;
 
@@ -61,6 +61,8 @@ public class Sound.Indicator : Wingpanel.Indicator {
         touchpad_settings.bind ("natural-scroll", this, "natural-scroll-touchpad", SettingsBindFlags.DEFAULT);
         var mouse_settings = new GLib.Settings ("org.gnome.desktop.peripherals.mouse");
         mouse_settings.bind ("natural-scroll", this, "natural-scroll-mouse", SettingsBindFlags.DEFAULT);
+        var gnome_settings = new GLib.Settings ("org.gnome.settings-daemon.plugins.media-keys");
+        gnome_settings.bind ("volume-step", this, "volume-step", SettingsBindFlags.DEFAULT);
 
         visible = true;
 
@@ -442,7 +444,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
             v = volume_control.volume.volume;
         }
 
-        var new_v = (v + VOLUME_STEP_PERCENTAGE * change).clamp (0.0, max_volume);
+        var new_v = (v + (double)volume_step * change / 100.0).clamp (0.0, max_volume);
 
         if (new_v == v) {
             /* Ignore if no volume change will result */
