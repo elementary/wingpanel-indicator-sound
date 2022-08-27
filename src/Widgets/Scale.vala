@@ -56,19 +56,18 @@ public class Sound.Widgets.Scale : Gtk.EventBox {
             valign = Gtk.Align.CENTER
         };
 
-        var grid = new Gtk.Grid () {
-            column_spacing = 6,
+        var box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 6) {
             hexpand = true,
             margin_start = 6,
             margin_end = 12
         };
-        grid.add (image_box);
-        grid.add (scale_widget);
-        grid.add (switch_widget);
+        box.add (image_box);
+        box.add (scale_widget);
+        box.add (switch_widget);
 
-        add (grid);
+        add (box);
         add_events (Gdk.EventMask.SMOOTH_SCROLL_MASK);
-        set_above_child (false);
+        above_child = false;
 
         image_box.add_events (Gdk.EventMask.BUTTON_RELEASE_MASK);
         image_box.button_release_event.connect (() => {
@@ -79,7 +78,7 @@ public class Sound.Widgets.Scale : Gtk.EventBox {
         scale_widget.scroll_event.connect ((e) => {
             /* Re-emit the signal on the eventbox instead of using native handler */
             scroll_event (e);
-            return true;
+            return Gdk.EVENT_STOP;
         });
 
         bind_property ("icon", image, "icon-name");

@@ -23,7 +23,6 @@
 public class DeviceItem : Gtk.ListBoxRow {
     public signal void activated ();
 
-    private Gtk.Image img_type;
     private Gtk.RadioButton radio_button;
 
     public Gtk.ListBoxRow row { get; construct; }
@@ -41,7 +40,6 @@ public class DeviceItem : Gtk.ListBoxRow {
     }
 
     construct {
-        selectable = false;
         var label = new Gtk.Label (display_name) {
             ellipsize = Pango.EllipsizeMode.MIDDLE
         };
@@ -57,18 +55,17 @@ public class DeviceItem : Gtk.ListBoxRow {
             radio_button.set_group (item.radio_button.get_group ());
         }
 
-        img_type = new Gtk.Image.from_icon_name (icon_name + "-symbolic", Gtk.IconSize.MENU) {
+        var img_type = new Gtk.Image.from_icon_name (icon_name + "-symbolic", Gtk.IconSize.MENU) {
             use_fallback = true
         };
 
-        var grid = new Gtk.Grid () {
-            column_spacing = 8
-        };
-        grid.add (radio_button);
-        grid.add (img_type);
+        var box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 8);
+        box.add (radio_button);
+        box.add (img_type);
 
-        add (grid);
+        add (box);
         show_all ();
+        selectable = false;
         no_show_all = true;
 
         radio_button.toggled.connect (() => {
