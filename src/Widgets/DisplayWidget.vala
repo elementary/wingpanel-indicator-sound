@@ -15,7 +15,7 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-public class DisplayWidget : Gtk.Grid {
+public class DisplayWidget : Gtk.Box {
     public bool show_mic { get; set; }
     public bool mic_muted { get; set; }
     public string icon_name { get; set; }
@@ -30,18 +30,21 @@ public class DisplayWidget : Gtk.Grid {
         var provider = new Gtk.CssProvider ();
         provider.load_from_resource ("io/elementary/wingpanel/sound/indicator.css");
 
-        var volume_icon = new Gtk.Image ();
-        volume_icon.pixel_size = 24;
+        var volume_icon = new Gtk.Image () {
+            pixel_size = 24
+        };
 
-        var mic_icon = new Gtk.Spinner ();
-        mic_icon.margin_end = 18;
+        var mic_icon = new Gtk.Spinner () {
+            margin_end = 18
+        };
 
         var mic_style_context = mic_icon.get_style_context ();
         mic_style_context.add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
         mic_style_context.add_class ("mic-icon");
 
-        var mic_revealer = new Gtk.Revealer ();
-        mic_revealer.transition_type = Gtk.RevealerTransitionType.SLIDE_LEFT;
+        var mic_revealer = new Gtk.Revealer () {
+            transition_type = Gtk.RevealerTransitionType.SLIDE_LEFT
+        };
         mic_revealer.add (mic_icon);
 
         valign = Gtk.Align.CENTER;
@@ -59,7 +62,7 @@ public class DisplayWidget : Gtk.Grid {
                 volume_scroll_event (e);
             }
 
-            return true;
+            return Gdk.EVENT_STOP;
         });
 
         button_press_event.connect ((e) => {
@@ -69,6 +72,7 @@ public class DisplayWidget : Gtk.Grid {
             } else {
                 volume_press_event (e);
             }
+
             return Gdk.EVENT_PROPAGATE;
         });
 

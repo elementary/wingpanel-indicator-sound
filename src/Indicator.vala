@@ -21,7 +21,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
     public int volume_step { get; set; }
 
     private DisplayWidget display_widget;
-    private Gtk.Grid main_grid;
+    private Gtk.Box main_box;
     private Widgets.PlayerList mpris;
     private Widgets.Scale volume_scale;
     private Widgets.Scale mic_scale;
@@ -277,7 +277,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
 
     public override Gtk.Widget? get_widget () {
-        if (main_grid == null) {
+        if (main_box == null) {
             mpris = new Widgets.PlayerList ();
 
             volume_scale.active = !volume_control.mute;
@@ -297,16 +297,16 @@ public class Sound.Indicator : Wingpanel.Indicator {
                 margin_top = 3
             };
 
-            main_grid = new Gtk.Grid ();
-            main_grid.attach (mpris, 0, 0);
-            main_grid.attach (new Gtk.Separator (Gtk.Orientation.HORIZONTAL), 0, 1);
-            main_grid.attach (volume_scale, 0, 2);
-            main_grid.attach (output_device_manager, 0, 3, 1, 1);
-            main_grid.attach (new Gtk.Separator (Gtk.Orientation.HORIZONTAL), 0, 4);
-            main_grid.attach (mic_scale, 0, 5);
-            main_grid.attach (input_device_manager, 0, 6, 1, 1);
-            main_grid.attach (mic_separator, 0, 7);
-            main_grid.attach (settings_button, 0, 8);
+            main_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
+            main_box.add (mpris);
+            main_box.add (new Gtk.Separator (Gtk.Orientation.HORIZONTAL));
+            main_box.add (volume_scale);
+            main_box.add (output_device_manager);
+            main_box.add (new Gtk.Separator (Gtk.Orientation.HORIZONTAL));
+            main_box.add (mic_scale);
+            main_box.add (input_device_manager);
+            main_box.add (mic_separator);
+            main_box.add (settings_button);
 
             mic_scale.notify["active"].connect (on_mic_switch_change);
 
@@ -359,16 +359,17 @@ public class Sound.Indicator : Wingpanel.Indicator {
             volume_scale.notify["active"].connect (on_volume_switch_change);
 
             volume_scale.scale_widget.value_changed.connect (() => {
-                var vol = new Services.VolumeControl.Volume ();
-                var v = volume_scale.scale_widget.get_value () * max_volume;
-                vol.volume = v.clamp (0.0, max_volume);
-                vol.reason = Services.VolumeControl.VolumeReasons.USER_KEYPRESS;
+                var val = volume_scale.scale_widget.get_value () * max_volume;
+                var vol = new Services.VolumeControl.Volume () {
+                    volume = val.clamp (0.0, max_volume),
+                    reason = Services.VolumeControl.VolumeReasons.USER_KEYPRESS
+                };
                 volume_control.volume = vol;
                 volume_scale.icon = get_volume_icon (volume_scale.scale_widget.get_value ());
             });
         }
 
-        return main_grid;
+        return main_box;
     }
 
     /* Handles both SMOOTH and non-SMOOTH events.

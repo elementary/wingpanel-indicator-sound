@@ -24,7 +24,7 @@ const int ICON_SIZE = 48;
  * It is "designed" to be self contained and added to a large UI, enabling multiple
  * MPRIS clients to be controlled with multiple widgets
  */
-public class Sound.Widgets.PlayerRow : Gtk.Grid {
+public class Sound.Widgets.PlayerRow : Gtk.Box {
     private const string NOT_PLAYING = _("Not playing");
 
     public signal void close ();
@@ -173,68 +173,78 @@ public class Sound.Widgets.PlayerRow : Gtk.Grid {
 
         load_remote_art_cancel = new Cancellable ();
 
-        background = new Gtk.Image ();
-        background.pixel_size = ICON_SIZE;
+        background = new Gtk.Image () {
+            pixel_size = ICON_SIZE
+        };
 
-        mask = new Gtk.Image.from_resource ("/io/elementary/wingpanel/sound/image-mask.svg");
-        mask.no_show_all = true;
-        mask.pixel_size = 48;
+        mask = new Gtk.Image.from_resource ("/io/elementary/wingpanel/sound/image-mask.svg") {
+            no_show_all = true,
+            pixel_size = 48
+        };
 
-        var overlay = new Gtk.Overlay ();
-        overlay.can_focus = true;
-        overlay.margin_bottom = 2;
-        overlay.margin_end = 4;
-        overlay.margin_start = 4;
+        var overlay = new Gtk.Overlay () {
+            can_focus = true,
+            margin_bottom = 2,
+            margin_end = 4,
+            margin_start = 4
+        };
         overlay.add (background);
         overlay.add_overlay (mask);
 
         var markup_attribute = new Pango.AttrList ();
         markup_attribute.insert (Pango.attr_weight_new (Pango.Weight.BOLD));
 
-        title_label = new Gtk.Label (null);
-        title_label.attributes = markup_attribute;
-        title_label.ellipsize = Pango.EllipsizeMode.END;
-        title_label.max_width_chars = 20;
-        title_label.use_markup = false;
-        title_label.valign = Gtk.Align.END;
-        title_label.xalign = 0;
+        title_label = new Gtk.Label (null) {
+            attributes = markup_attribute,
+            ellipsize = Pango.EllipsizeMode.END,
+            max_width_chars = 20,
+            use_markup = false,
+            valign = Gtk.Align.END,
+            xalign = 0
+        };
 
-        artist_label = new Gtk.Label (null);
-        artist_label.ellipsize = Pango.EllipsizeMode.END;
-        artist_label.max_width_chars = 20;
-        artist_label.use_markup = false;
-        artist_label.valign = Gtk.Align.START;
-        artist_label.xalign = 0;
+        artist_label = new Gtk.Label (null) {
+            ellipsize = Pango.EllipsizeMode.END,
+            max_width_chars = 20,
+            use_markup = false,
+            valign = Gtk.Align.START,
+            xalign = 0
+        };
 
-        var titles = new Gtk.Grid ();
-        titles.column_spacing = 3;
+        var titles = new Gtk.Grid () {
+            column_spacing = 3
+        };
         titles.attach (overlay, 0, 0, 1, 2);
         titles.attach (title_label, 1, 0);
         titles.attach (artist_label, 1, 1);
 
-        var titles_events = new Gtk.EventBox ();
-        titles_events.hexpand = true;
+        var titles_events = new Gtk.EventBox () {
+            hexpand = true
+        };
         titles_events.add (titles);
 
         prev_btn = new Gtk.Button.from_icon_name (
             "media-skip-backward-symbolic",
             Gtk.IconSize.LARGE_TOOLBAR
-        );
-        prev_btn.sensitive = false;
+        ) {
+            sensitive = false
+        };
         prev_btn.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
 
         play_btn = new Gtk.Button.from_icon_name (
             "media-playback-start-symbolic",
             Gtk.IconSize.LARGE_TOOLBAR
-        );
-        play_btn.sensitive = true;
+        ) {
+            sensitive = true
+        };
         play_btn.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
 
         next_btn = new Gtk.Button.from_icon_name (
             "media-skip-forward-symbolic",
             Gtk.IconSize.LARGE_TOOLBAR
-        );
-        next_btn.sensitive = false;
+        ) {
+            sensitive = false
+        };
         next_btn.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
 
         margin_end = 6;
@@ -478,6 +488,7 @@ public class Sound.Widgets.PlayerRow : Gtk.Grid {
                 mask.no_show_all = false;
                 mask.show ();
             } catch (Error e) {
+                warning (e.message);
                 //background.set_from_gicon (app_icon, Gtk.IconSize.DIALOG);
             }
         } else {
@@ -574,14 +585,14 @@ public class Sound.Widgets.PlayerRow : Gtk.Grid {
         if (playing != "") {
             switch (playing) {
                 case "playing":
-                    ((Gtk.Image)play_btn.image).set_from_icon_name (
+                    ((Gtk.Image) play_btn.image).set_from_icon_name (
                         "media-playback-pause-symbolic",
                         Gtk.IconSize.LARGE_TOOLBAR
                     );
                     break;
                 default:
                     /* Stopped, Paused */
-                    ((Gtk.Image)play_btn.image).set_from_icon_name (
+                    ((Gtk.Image) play_btn.image).set_from_icon_name (
                         "media-playback-start-symbolic",
                         Gtk.IconSize.LARGE_TOOLBAR
                     );

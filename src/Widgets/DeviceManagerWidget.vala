@@ -20,7 +20,7 @@
  * Authored by: Sean Davis <sean@bluesabre.org>
  */
 
-public class Sound.Widgets.DeviceManagerWidget : Gtk.Grid {
+public class Sound.Widgets.DeviceManagerWidget : Gtk.Box {
     private Gtk.ListBox device_list;
     private Gtk.ScrolledWindow scrolled_box;
     public bool is_input_manager;
@@ -48,7 +48,7 @@ public class Sound.Widgets.DeviceManagerWidget : Gtk.Grid {
         };
         scrolled_box.add (device_list);
 
-        attach (scrolled_box, 0, 1, 1);
+        add (scrolled_box);
 
         update_showable ();
     }
@@ -100,7 +100,7 @@ public class Sound.Widgets.DeviceManagerWidget : Gtk.Grid {
     private void update_preferred_devices (Device device) {
         VariantBuilder builder = new VariantBuilder (new VariantType ("a{si}"));
         var preferred_devices = Sound.Indicator.settings.get_value ("preferred-devices");
-        int32 now = (int32)(GLib.get_real_time () / 1000000);
+        int32 now = (int32) (GLib.get_real_time () / 1000000);
         int32 preferred_expiry = now - (86400 * 7); // Expire unused after 7 days
 
         builder.add ("{si}", device.id, now);
