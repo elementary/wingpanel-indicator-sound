@@ -560,7 +560,7 @@ public class Sound.PulseAudioManager : GLib.Object {
 
             // Fallback to a generic icon name
             if (device.icon_name == null) {
-                device.icon_name = is_input ? "audio-input-microphone" : "audio-speakers";
+                device.icon_name = is_input ? "audio-input-microphone" : "audio-card";
             }
 
             // audio card is currently represented by a speaker
