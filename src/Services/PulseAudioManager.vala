@@ -558,6 +558,13 @@ public class Sound.PulseAudioManager : GLib.Object {
                 device.icon_name = card.proplist.gets (PulseAudio.Proplist.PROP_DEVICE_ICON_NAME);
             }
 
+            // Fallback to form_factor
+            if (device.icon_name == null && device.form_factor != null) {
+                if (device.form_factor == "headphone") {
+                    device.icon_name = "audio-headphones";
+                }
+            }
+
             // Fallback to a generic icon name
             if (device.icon_name == null) {
                 device.icon_name = is_input ? "audio-input-microphone" : "audio-card";
