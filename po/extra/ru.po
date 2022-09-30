@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-11-09 18:24+0000\n"
-"PO-Revision-Date: 2021-11-12 18:05+0000\n"
-"Last-Translator: DartDeaDia <dartdeadia@protonmail.com>\n"
+"PO-Revision-Date: 2022-09-30 14:30+0000\n"
+"Last-Translator: lenemter <lenemter@gmail.com>\n"
 "Language-Team: Russian <https://l10n.elementary.io/projects/wingpanel/"
 "indicator-sound-extra/ru/>\n"
 "Language: ru\n"
@@ -22,15 +22,15 @@ msgstr ""
 
 #: data/sound.appdata.xml.in:6
 msgid "Sound Indicator"
-msgstr "Индикатор громкости"
+msgstr "Индикатор звука"
 
 #: data/sound.appdata.xml.in:7
 msgid ""
 "Adjust speaker and microphone volume or see Now Playing information and "
 "media controls"
 msgstr ""
-"Настройте громкость динамика и микрофона или посмотрите информацию о "
-"воспроизведении и элементах управления медиа"
+"Отрегулируйте громкость динамика и микрофона или просмотрите информацию о "
+"воспроизведении и средствах управления мультимедиа"
 
 #: data/sound.appdata.xml.in:12 data/sound.appdata.xml.in:25
 #: data/sound.appdata.xml.in:36 data/sound.appdata.xml.in:45
