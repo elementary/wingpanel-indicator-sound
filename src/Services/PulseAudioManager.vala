@@ -558,50 +558,41 @@ public class Sound.PulseAudioManager : GLib.Object {
                 device.icon_name = card.proplist.gets (PulseAudio.Proplist.PROP_DEVICE_ICON_NAME);
             }
 
+            critical (device.form_factor);
+
             // Fallback to form_factor
             if (device.icon_name == null && device.form_factor != null) {
                 switch (device.form_factor) {
                     case "car":
-                        // FIXME: this is a workaround and should have a device icon name in the icon theme
-                        device.icon_name = "emoji-travel";
+                        device.icon_name = "audio-car";
                         break;
-
                     case "computer":
                     case "internal":
                         device.icon_name = "computer";
                         break;
-
                     case "handset":
                         device.icon_name = "phone";
                         break;
-
                     case "hands-free":
                     case "headphone":
                         device.icon_name = "audio-headphones";
                         break;
-
                     case "headset":
                         device.icon_name = "audio-headset";
                         break;
-
                     case "hifi":
-                        // FIXME: Needs a symbolic version
                         device.icon_name = "audio-subwoofer";
                         break;
-
                     case "microphone":
                         device.icon_name = "audio-input-microphone";
                         break;
-
                     case "portable":
                     case "speaker":
                         device.icon_name = "bluetooth";
                         break;
-
                     case "tv":
                         device.icon_name = "video-display-tv";
                         break;
-
                     case "webcam":
                         device.icon_name = "camera-web";
                         break;
