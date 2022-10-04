@@ -29,5 +29,10 @@
     <file alias="48x48@2/status/microphone-sensitivity-muted-symbolic.svg" compressed="true" preprocess="xml-stripblanks">48/microphone-sensitivity-muted-symbolic.svg</file>
     <file alias="48x48/status/audio-input-microphone-symbolic.svg" compressed="true" preprocess="xml-stripblanks">48/audio-input-microphone-symbolic.svg</file>
     <file alias="48x48/status/microphone-sensitivity-muted-symbolic.svg" compressed="true" preprocess="xml-stripblanks">48/microphone-sensitivity-muted-symbolic.svg</file>
+
+    <file alias="16x16@2/devices/audio-subwoofer-symbolic.svg" compressed="true" preprocess="xml-stripblanks">audio-subwoofer-symbolic.svg</file>
+    <file alias="16x16/devices/audio-subwoofer-symbolic.svg" compressed="true" preprocess="xml-stripblanks">audio-subwoofer-symbolic.svg</file>
+    <file alias="16x16@2/devices/audio-car-symbolicsvg" compressed="true" preprocess="xml-stripblanks">audio-car-symbolic.svg</file>
+    <file alias="16x16/devices/audio-car-symbolic.svg" compressed="true" preprocess="xml-stripblanks">audio-car-symbolic.svg</file>
   </gresource>
 </gresources>
