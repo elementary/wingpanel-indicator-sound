@@ -571,10 +571,10 @@ public class Sound.PulseAudioManager : GLib.Object {
                     case "handset":
                         device.icon_name = "phone";
                         break;
-                    case "hands-free":
                     case "headphone":
                         device.icon_name = "audio-headphones";
                         break;
+                    case "hands-free":
                     case "headset":
                         device.icon_name = "audio-headset";
                         break;
