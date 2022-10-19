@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-11-09 18:24+0000\n"
-"PO-Revision-Date: 2021-12-26 01:10+0000\n"
+"PO-Revision-Date: 2022-10-19 19:46+0000\n"
 "Last-Translator: TomiOhl <ohlslager.tom@gmail.com>\n"
 "Language-Team: Hungarian <https://l10n.elementary.io/projects/wingpanel/"
 "indicator-sound-extra/hu/>\n"
@@ -38,7 +38,7 @@ msgstr "Apróbb frissítések"
 
 #: data/sound.appdata.xml.in:14
 msgid "Show more specific icons for different types of devices"
-msgstr ""
+msgstr "Még specifikusabb ikonok kijelzése különböző típusú eszközökhöz"
 
 #: data/sound.appdata.xml.in:15 data/sound.appdata.xml.in:30
 #: data/sound.appdata.xml.in:39 data/sound.appdata.xml.in:48
@@ -49,39 +49,40 @@ msgstr "Frissített fordítások"
 
 #: data/sound.appdata.xml.in:21
 msgid "New features"
-msgstr ""
+msgstr "Új funkciók"
 
 #: data/sound.appdata.xml.in:23
 msgid "select specific input and output devices"
-msgstr ""
+msgstr "Különböző be- és kimeneti eszközök kiválasztása"
 
 #: data/sound.appdata.xml.in:27
 msgid "Hide temporary audio players when they stop"
-msgstr ""
+msgstr "Ideiglenes hanglejátszók elrejtése megállítás után"
 
 #: data/sound.appdata.xml.in:28
 msgid "Add a tooltip on hover"
-msgstr ""
+msgstr "Címke megjelenítése rámutatáskor"
 
 #: data/sound.appdata.xml.in:29
 msgid "Minor visual improvements"
-msgstr ""
+msgstr "Kisebb vizuális javítások"
 
 #: data/sound.appdata.xml.in:38
 msgid "Fix duplicate default player"
-msgstr ""
+msgstr "Duplikált alapértelmezett lejátszó javítva"
 
 #: data/sound.appdata.xml.in:47
 msgid "Fix opacity flash during icon animation"
-msgstr ""
+msgstr "Áttetszőség villanása javítva ikonanimációkor"
 
 #: data/sound.appdata.xml.in:54
 msgid "Update default music player when changed"
-msgstr ""
+msgstr "Alapértelmezett zenelejátszó frissítése, ha az változott"
 
 #: data/sound.appdata.xml.in:60
 msgid "Correctly show \"Unknown Artist\" when artist info isn't available"
 msgstr ""
+"\"Ismeretlen előadó\" helyes megjelenítése, ha nem érhető el előadóinformáció"
 
 #: data/sound.appdata.xml.in:61
 msgid "Performance improvements"
