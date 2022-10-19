@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-09 18:24+0000\n"
+"POT-Creation-Date: 2022-10-19 19:46+0000\n"
 "PO-Revision-Date: 2021-03-12 20:18+0000\n"
 "Last-Translator: Leonardo <leonardo@elementary.io>\n"
 "Language-Team: Portuguese (Brazil) <https://l10n.elementary.io/projects/"
@@ -32,65 +32,84 @@ msgstr ""
 "Agora informações e controles de mídia"
 
 #: data/sound.appdata.xml.in:12 data/sound.appdata.xml.in:25
-#: data/sound.appdata.xml.in:36 data/sound.appdata.xml.in:45
+#: data/sound.appdata.xml.in:38 data/sound.appdata.xml.in:49
+#: data/sound.appdata.xml.in:58
 msgid "Minor updates"
 msgstr "Atualizações menores"
 
 #: data/sound.appdata.xml.in:14
-msgid "Show more specific icons for different types of devices"
+msgid "Use device form factor when available to assign more accurate icons"
 msgstr ""
 
-#: data/sound.appdata.xml.in:15 data/sound.appdata.xml.in:30
-#: data/sound.appdata.xml.in:39 data/sound.appdata.xml.in:48
-#: data/sound.appdata.xml.in:55 data/sound.appdata.xml.in:62
-#: data/sound.appdata.xml.in:67
+#: data/sound.appdata.xml.in:15
+msgid "Provide a fallback device icon when none is available"
+msgstr ""
+
+#: data/sound.appdata.xml.in:16
+#, fuzzy
+#| msgid "Fix opacity flash during icon animation"
+msgid "Fix missing switch animations"
+msgstr "Corrige flash de opacidade durante animação de um ícone"
+
+#: data/sound.appdata.xml.in:17
+msgid "Use the volume step value from GNOME Settings Daemon"
+msgstr ""
+
+#: data/sound.appdata.xml.in:18 data/sound.appdata.xml.in:28
+#: data/sound.appdata.xml.in:43 data/sound.appdata.xml.in:52
+#: data/sound.appdata.xml.in:61 data/sound.appdata.xml.in:68
+#: data/sound.appdata.xml.in:75 data/sound.appdata.xml.in:80
 msgid "Updated translations"
 msgstr "Traduções atualizadas"
 
-#: data/sound.appdata.xml.in:21
+#: data/sound.appdata.xml.in:27
+msgid "Show more specific icons for different types of devices"
+msgstr ""
+
+#: data/sound.appdata.xml.in:34
 msgid "New features"
 msgstr ""
 
-#: data/sound.appdata.xml.in:23
+#: data/sound.appdata.xml.in:36
 msgid "select specific input and output devices"
 msgstr ""
 
-#: data/sound.appdata.xml.in:27
+#: data/sound.appdata.xml.in:40
 msgid "Hide temporary audio players when they stop"
 msgstr ""
 
-#: data/sound.appdata.xml.in:28
+#: data/sound.appdata.xml.in:41
 msgid "Add a tooltip on hover"
 msgstr ""
 
-#: data/sound.appdata.xml.in:29
+#: data/sound.appdata.xml.in:42
 #, fuzzy
 #| msgid "Performance improvements"
 msgid "Minor visual improvements"
 msgstr "Melhorias de desempenho"
 
-#: data/sound.appdata.xml.in:38
+#: data/sound.appdata.xml.in:51
 msgid "Fix duplicate default player"
 msgstr "Corrige duplicação do tocador padrão"
 
-#: data/sound.appdata.xml.in:47
+#: data/sound.appdata.xml.in:60
 msgid "Fix opacity flash during icon animation"
 msgstr "Corrige flash de opacidade durante animação de um ícone"
 
-#: data/sound.appdata.xml.in:54
+#: data/sound.appdata.xml.in:67
 msgid "Update default music player when changed"
 msgstr "Atualiza o tocador padrão de música quando mudado"
 
-#: data/sound.appdata.xml.in:60
+#: data/sound.appdata.xml.in:73
 msgid "Correctly show \"Unknown Artist\" when artist info isn't available"
 msgstr ""
 "Mostra \"Artista desconhecido\" corretamente quando as informações do "
 "artista não estiverem disponíveis"
 
-#: data/sound.appdata.xml.in:61
+#: data/sound.appdata.xml.in:74
 msgid "Performance improvements"
 msgstr "Melhorias de desempenho"
 
-#: data/sound.appdata.xml.in:76
+#: data/sound.appdata.xml.in:89
 msgid "elementary, Inc."
 msgstr "elementary, Inc."

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-09 18:24+0000\n"
+"POT-Creation-Date: 2022-10-19 19:46+0000\n"
 "PO-Revision-Date: 2022-10-19 09:57+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://l10n.elementary.io/projects/wingpanel/"
@@ -32,61 +32,80 @@ msgstr ""
 "לפקד על המדיה"
 
 #: data/sound.appdata.xml.in:12 data/sound.appdata.xml.in:25
-#: data/sound.appdata.xml.in:36 data/sound.appdata.xml.in:45
+#: data/sound.appdata.xml.in:38 data/sound.appdata.xml.in:49
+#: data/sound.appdata.xml.in:58
 msgid "Minor updates"
 msgstr "עדכונים משניים"
 
 #: data/sound.appdata.xml.in:14
-msgid "Show more specific icons for different types of devices"
-msgstr "הצגת סמלים יותר מדויקים לסוגים שונים של התקנים"
+msgid "Use device form factor when available to assign more accurate icons"
+msgstr ""
 
-#: data/sound.appdata.xml.in:15 data/sound.appdata.xml.in:30
-#: data/sound.appdata.xml.in:39 data/sound.appdata.xml.in:48
-#: data/sound.appdata.xml.in:55 data/sound.appdata.xml.in:62
-#: data/sound.appdata.xml.in:67
+#: data/sound.appdata.xml.in:15
+msgid "Provide a fallback device icon when none is available"
+msgstr ""
+
+#: data/sound.appdata.xml.in:16
+#, fuzzy
+#| msgid "Fix opacity flash during icon animation"
+msgid "Fix missing switch animations"
+msgstr "הבהוב האטימות במהלך הנפשת סמלים תוקן"
+
+#: data/sound.appdata.xml.in:17
+msgid "Use the volume step value from GNOME Settings Daemon"
+msgstr ""
+
+#: data/sound.appdata.xml.in:18 data/sound.appdata.xml.in:28
+#: data/sound.appdata.xml.in:43 data/sound.appdata.xml.in:52
+#: data/sound.appdata.xml.in:61 data/sound.appdata.xml.in:68
+#: data/sound.appdata.xml.in:75 data/sound.appdata.xml.in:80
 msgid "Updated translations"
 msgstr "עודכנו התרגומים"
 
-#: data/sound.appdata.xml.in:21
+#: data/sound.appdata.xml.in:27
+msgid "Show more specific icons for different types of devices"
+msgstr "הצגת סמלים יותר מדויקים לסוגים שונים של התקנים"
+
+#: data/sound.appdata.xml.in:34
 msgid "New features"
 msgstr "יכולות חדשות"
 
-#: data/sound.appdata.xml.in:23
+#: data/sound.appdata.xml.in:36
 msgid "select specific input and output devices"
 msgstr "בחירה בהתקני קלט ופלט מסוימים"
 
-#: data/sound.appdata.xml.in:27
+#: data/sound.appdata.xml.in:40
 msgid "Hide temporary audio players when they stop"
 msgstr "נגני שמע זמניים יוסתרו כשהם נעצרים"
 
-#: data/sound.appdata.xml.in:28
+#: data/sound.appdata.xml.in:41
 msgid "Add a tooltip on hover"
 msgstr "נוספה חלונית עצה בעת מעבר עם העכבר"
 
-#: data/sound.appdata.xml.in:29
+#: data/sound.appdata.xml.in:42
 msgid "Minor visual improvements"
 msgstr "שיפורים חזותיים קלים"
 
-#: data/sound.appdata.xml.in:38
+#: data/sound.appdata.xml.in:51
 msgid "Fix duplicate default player"
 msgstr "תיקון כפילות נגן בררת מחדל"
 
-#: data/sound.appdata.xml.in:47
+#: data/sound.appdata.xml.in:60
 msgid "Fix opacity flash during icon animation"
 msgstr "הבהוב האטימות במהלך הנפשת סמלים תוקן"
 
-#: data/sound.appdata.xml.in:54
+#: data/sound.appdata.xml.in:67
 msgid "Update default music player when changed"
 msgstr "עדכון בררת המחדל של נגן המוזיקה בעת החלפתו"
 
-#: data/sound.appdata.xml.in:60
+#: data/sound.appdata.xml.in:73
 msgid "Correctly show \"Unknown Artist\" when artist info isn't available"
 msgstr "הצגת „אמן לא ידוע” בצורה נכונה אם אין מידע על האמן"
 
-#: data/sound.appdata.xml.in:61
+#: data/sound.appdata.xml.in:74
 msgid "Performance improvements"
 msgstr "שיפורי ביצועים"
 
-#: data/sound.appdata.xml.in:76
+#: data/sound.appdata.xml.in:89
 msgid "elementary, Inc."
 msgstr "elementary בע״מ"

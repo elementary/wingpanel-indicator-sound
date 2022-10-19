@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-09 18:24+0000\n"
+"POT-Creation-Date: 2022-10-19 19:46+0000\n"
 "PO-Revision-Date: 2022-04-09 01:03+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementary.io/projects/wingpanel/"
@@ -32,67 +32,88 @@ msgstr ""
 "ロールを表示したりします"
 
 #: data/sound.appdata.xml.in:12 data/sound.appdata.xml.in:25
-#: data/sound.appdata.xml.in:36 data/sound.appdata.xml.in:45
+#: data/sound.appdata.xml.in:38 data/sound.appdata.xml.in:49
+#: data/sound.appdata.xml.in:58
 msgid "Minor updates"
 msgstr "そのほかのアップデート:"
 
 #: data/sound.appdata.xml.in:14
-msgid "Show more specific icons for different types of devices"
-msgstr "デバイスの種類を的確に示すアイコンを表示するように修正"
+msgid "Use device form factor when available to assign more accurate icons"
+msgstr ""
 
-#: data/sound.appdata.xml.in:15 data/sound.appdata.xml.in:30
-#: data/sound.appdata.xml.in:39 data/sound.appdata.xml.in:48
-#: data/sound.appdata.xml.in:55 data/sound.appdata.xml.in:62
-#: data/sound.appdata.xml.in:67
+#: data/sound.appdata.xml.in:15
+msgid "Provide a fallback device icon when none is available"
+msgstr ""
+
+#: data/sound.appdata.xml.in:16
+#, fuzzy
+#| msgid "Fix opacity flash during icon animation"
+msgid "Fix missing switch animations"
+msgstr ""
+"アイコンのアニメーション表示中に、下がっていた透明度が突然上がったりする不具"
+"合を修正"
+
+#: data/sound.appdata.xml.in:17
+msgid "Use the volume step value from GNOME Settings Daemon"
+msgstr ""
+
+#: data/sound.appdata.xml.in:18 data/sound.appdata.xml.in:28
+#: data/sound.appdata.xml.in:43 data/sound.appdata.xml.in:52
+#: data/sound.appdata.xml.in:61 data/sound.appdata.xml.in:68
+#: data/sound.appdata.xml.in:75 data/sound.appdata.xml.in:80
 msgid "Updated translations"
 msgstr "翻訳の更新"
 
-#: data/sound.appdata.xml.in:21
+#: data/sound.appdata.xml.in:27
+msgid "Show more specific icons for different types of devices"
+msgstr "デバイスの種類を的確に示すアイコンを表示するように修正"
+
+#: data/sound.appdata.xml.in:34
 msgid "New features"
 msgstr "新機能"
 
-#: data/sound.appdata.xml.in:23
+#: data/sound.appdata.xml.in:36
 msgid "select specific input and output devices"
 msgstr "インジケーターから入力・出力デバイスを選択できる機能を追加"
 
-#: data/sound.appdata.xml.in:27
+#: data/sound.appdata.xml.in:40
 msgid "Hide temporary audio players when they stop"
 msgstr "一時的なオーディオプレーヤーが停止した場合、非表示にするように変更"
 
-#: data/sound.appdata.xml.in:28
+#: data/sound.appdata.xml.in:41
 msgid "Add a tooltip on hover"
 msgstr "ホバー時のツールチップを追加"
 
-#: data/sound.appdata.xml.in:29
+#: data/sound.appdata.xml.in:42
 msgid "Minor visual improvements"
 msgstr "軽微な視覚上の改善"
 
-#: data/sound.appdata.xml.in:38
+#: data/sound.appdata.xml.in:51
 msgid "Fix duplicate default player"
 msgstr "デフォルトのプレーヤーが重複して表示される不具合を修正"
 
-#: data/sound.appdata.xml.in:47
+#: data/sound.appdata.xml.in:60
 msgid "Fix opacity flash during icon animation"
 msgstr ""
 "アイコンのアニメーション表示中に、下がっていた透明度が突然上がったりする不具"
 "合を修正"
 
-#: data/sound.appdata.xml.in:54
+#: data/sound.appdata.xml.in:67
 msgid "Update default music player when changed"
 msgstr ""
 "デフォルトのミュージックプレーヤーが変更されたときに、表示を更新するように修"
 "正"
 
-#: data/sound.appdata.xml.in:60
+#: data/sound.appdata.xml.in:73
 msgid "Correctly show \"Unknown Artist\" when artist info isn't available"
 msgstr ""
 "アーティスト情報が利用可能でないときに、\"不明なアーティスト\"を正しく表示す"
 "るように修正"
 
-#: data/sound.appdata.xml.in:61
+#: data/sound.appdata.xml.in:74
 msgid "Performance improvements"
 msgstr "パフォーマンスの改善"
 
-#: data/sound.appdata.xml.in:76
+#: data/sound.appdata.xml.in:89
 msgid "elementary, Inc."
 msgstr "elementary, Inc."
