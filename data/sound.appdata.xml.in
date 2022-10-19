@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Copyright 2019 elementary, Inc. <contact@elementary.io> -->
+<!-- Copyright 2019-2022 elementary, Inc. <contact@elementary.io> -->
 <component type="addon">
   <id>io.elementary.wingpanel.sound</id>
   <extends>io.elementary.wingpanel</extends>
@@ -7,6 +7,19 @@
   <summary>Adjust speaker and microphone volume or see Now Playing information and media controls</summary>
   <icon type="stock">preferences-desktop-sound</icon>
   <releases>
+    <release version="6.0.2" date="2022-10-18" urgency="medium">
+      <description>
+        <p>Minor updates</p>
+        <ul>
+          <li>Use device form factor when available to assign more accurate icons</li>
+          <li>Provide a fallback device icon when none is available</li>
+          <li>Fix missing switch animations</li>
+          <li>Use the volume step value from GNOME Settings Daemon</li>
+          <li>Updated translations</li>
+        </ul>
+      </description>
+    </release>
+
     <release version="6.0.1" date="2021-11-18" urgency="medium">
       <description>
         <p>Minor updates</p>
