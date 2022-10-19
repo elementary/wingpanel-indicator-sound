@@ -90,7 +90,7 @@
   <url type="homepage">https://elementary.io/</url>
   <url type="bugtracker">https://github.com/elementary/wingpanel-indicator-sound/issues</url>
   <url type="donation">https://elementary.io/get-involved#funding</url>
-  <url type="help">https://elementaryos.stackexchange.com/questions/tagged/wingpanel</url>
+  <url type="help">https://github.com/elementary/wingpanel-indicator-sound/discussions/categories/q-a</url>
   <url type="translate">https://l10n.elementary.io/projects/wingpanel/wingpanel-indicator-sound/</url>
   <update_contact>contact_AT_elementary.io</update_contact>
   <metadata_license>CC0-1.0</metadata_license>
