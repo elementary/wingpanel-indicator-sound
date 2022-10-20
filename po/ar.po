@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-09 18:24+0000\n"
+"POT-Creation-Date: 2022-10-19 19:46+0000\n"
 "PO-Revision-Date: 2021-08-27 13:57+0000\n"
 "Last-Translator: Muhammad Al-Jayyousi <m7md.j99@protonmail.com>\n"
 "Language-Team: Arabic <https://l10n.elementary.io/projects/wingpanel/wingpanel-indicator-sound/ar/>\n"
@@ -17,20 +17,20 @@ msgstr ""
 "X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 
-#: src/Indicator.vala:294
+#: src/Indicator.vala:296
 msgid "Sound Settings…"
 msgstr "إعدادات الصوت…"
 
-#: src/Indicator.vala:564
+#: src/Indicator.vala:568
 #, c-format
 msgid "Volume: %.0f%%"
 msgstr "مستوى الصوت: %.0f%%"
 
-#: src/Indicator.vala:567
+#: src/Indicator.vala:571
 msgid "Middle-click to unmute"
 msgstr "اضغط الزر الأوسط لإلغاء كتم الصوت"
 
-#: src/Indicator.vala:567
+#: src/Indicator.vala:571
 msgid "Middle-click to mute"
 msgstr "اضغط الزر الأوسط لكتم الصوت"
 
@@ -42,7 +42,7 @@ msgstr "ليس في وضع التشغيل"
 msgid "Music player"
 msgstr "مشغل الموسيقى"
 
-#: src/Widgets/PlayerRow.vala:544
+#: src/Widgets/PlayerRow.vala:555
 msgid "Unknown Artist"
 msgstr "فنان غير معروف"
 

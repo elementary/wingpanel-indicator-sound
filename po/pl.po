@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-09 18:24+0000\n"
+"POT-Creation-Date: 2022-10-19 19:46+0000\n"
 "PO-Revision-Date: 2021-09-27 14:35+0000\n"
 "Last-Translator: DarkKnightComes <darkknightcomes@gmail.com>\n"
 "Language-Team: Polish <https://l10n.elementary.io/projects/wingpanel/wingpanel-indicator-sound/pl/>\n"
@@ -15,20 +15,20 @@ msgstr ""
 "X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 
-#: src/Indicator.vala:294
+#: src/Indicator.vala:296
 msgid "Sound Settings…"
 msgstr "Ustawienia dźwięku…"
 
-#: src/Indicator.vala:564
+#: src/Indicator.vala:568
 #, c-format
 msgid "Volume: %.0f%%"
 msgstr "Głośność: %.0f%%"
 
-#: src/Indicator.vala:567
+#: src/Indicator.vala:571
 msgid "Middle-click to unmute"
 msgstr "Kliknij środkowy przycisk myszy, aby odciszyć"
 
-#: src/Indicator.vala:567
+#: src/Indicator.vala:571
 msgid "Middle-click to mute"
 msgstr "Kliknij środkowy przycisk myszy, aby wyciszyć"
 
@@ -40,7 +40,7 @@ msgstr "Nie odtwarza"
 msgid "Music player"
 msgstr "Odtwarzacz muzyki"
 
-#: src/Widgets/PlayerRow.vala:544
+#: src/Widgets/PlayerRow.vala:555
 msgid "Unknown Artist"
 msgstr "Nieznany wykonawca"
 

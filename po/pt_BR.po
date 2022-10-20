@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wingpanel-indicator-sound\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-09 18:24+0000\n"
+"POT-Creation-Date: 2022-10-19 19:46+0000\n"
 "PO-Revision-Date: 2021-03-12 20:18+0000\n"
 "Last-Translator: Leonardo <leonardo@elementary.io>\n"
 "Language-Team: Portuguese (Brazil) <https://l10n.elementary.io/projects/wingpanel/wingpanel-indicator-sound/pt_BR/>\n"
@@ -20,20 +20,20 @@ msgstr ""
 "X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 
-#: src/Indicator.vala:294
+#: src/Indicator.vala:296
 msgid "Sound Settings…"
 msgstr "Configurações de som…"
 
-#: src/Indicator.vala:564
+#: src/Indicator.vala:568
 #, c-format
 msgid "Volume: %.0f%%"
 msgstr "Volume: %.0f%%"
 
-#: src/Indicator.vala:567
+#: src/Indicator.vala:571
 msgid "Middle-click to unmute"
 msgstr "Clicar com o botão do meio para desativar o mudo"
 
-#: src/Indicator.vala:567
+#: src/Indicator.vala:571
 msgid "Middle-click to mute"
 msgstr "Clicar com o botão do meio para ativar o mudo"
 
@@ -45,7 +45,7 @@ msgstr "Nenhuma reprodução no momento"
 msgid "Music player"
 msgstr "Reprodutor de música"
 
-#: src/Widgets/PlayerRow.vala:544
+#: src/Widgets/PlayerRow.vala:555
 msgid "Unknown Artist"
 msgstr "Artista desconhecido"
 
