@@ -22,6 +22,7 @@ public class Sound.Widgets.Scale : Gtk.EventBox {
     public double min { get; construct; }
     public double step { get; construct; }
     public Gtk.Scale scale_widget { get; private set; }
+    public Gtk.Switch switch_widget { get; private set; }
 
     public Scale (string icon, bool active = false, double min, double max, double step) {
         Object (
@@ -51,7 +52,7 @@ public class Sound.Widgets.Scale : Gtk.EventBox {
             width_request = 175
         };
 
-        var switch_widget = new Gtk.Switch () {
+        switch_widget = new Gtk.Switch () {
             margin_start = 6,
             valign = Gtk.Align.CENTER
         };
@@ -86,8 +87,7 @@ public class Sound.Widgets.Scale : Gtk.EventBox {
         bind_property ("active", scale_widget, "sensitive", BindingFlags.SYNC_CREATE);
         bind_property ("active", image, "sensitive", BindingFlags.SYNC_CREATE);
 
-        switch_widget.active = active;
-        notify["active"].connect (() => {
+        bind_property ("active", switch_widget, "active", BindingFlags.DEFAULT, null, () => {
             if (switch_widget.active != active) {
                 switch_widget.activate ();
             }
