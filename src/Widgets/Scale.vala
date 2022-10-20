@@ -85,7 +85,9 @@ public class Sound.Widgets.Scale : Gtk.EventBox {
 
         bind_property ("active", scale_widget, "sensitive", BindingFlags.SYNC_CREATE);
         bind_property ("active", image, "sensitive", BindingFlags.SYNC_CREATE);
-        switch_widget.bind_property ("active", this, "active", BindingFlags.BIDIRECTIONAL, null, () => {
+
+        switch_widget.active = active;
+        notify["active"].connect (() => {
             if (switch_widget.active != active) {
                 switch_widget.activate ();
             }
