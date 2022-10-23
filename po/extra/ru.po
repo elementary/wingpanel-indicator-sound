@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-10-19 19:46+0000\n"
-"PO-Revision-Date: 2022-09-30 14:30+0000\n"
+"PO-Revision-Date: 2022-10-21 16:57+0000\n"
 "Last-Translator: lenemter <lenemter@gmail.com>\n"
 "Language-Team: Russian <https://l10n.elementary.io/projects/wingpanel/"
 "indicator-sound-extra/ru/>\n"
@@ -41,20 +41,20 @@ msgstr "Незначительные обновления"
 #: data/sound.appdata.xml.in:14
 msgid "Use device form factor when available to assign more accurate icons"
 msgstr ""
+"Использование форм-фактора устройства, если он доступен, чтобы показывать "
+"более точную иконку"
 
 #: data/sound.appdata.xml.in:15
 msgid "Provide a fallback device icon when none is available"
-msgstr ""
+msgstr "Значок резервного устройства, если значок устройства недоступен"
 
 #: data/sound.appdata.xml.in:16
-#, fuzzy
-#| msgid "Fix opacity flash during icon animation"
 msgid "Fix missing switch animations"
-msgstr "Исправлена непрозрачность во время анимации пиктограмм"
+msgstr "Исправлены отсутствующие анимации переключателей"
 
 #: data/sound.appdata.xml.in:17
 msgid "Use the volume step value from GNOME Settings Daemon"
-msgstr ""
+msgstr "Использование шага громкости из GNOME Settings Daemon"
 
 #: data/sound.appdata.xml.in:18 data/sound.appdata.xml.in:28
 #: data/sound.appdata.xml.in:43 data/sound.appdata.xml.in:52

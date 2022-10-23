@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-10-19 19:46+0000\n"
-"PO-Revision-Date: 2022-10-19 19:46+0000\n"
+"PO-Revision-Date: 2022-10-21 16:57+0000\n"
 "Last-Translator: TomiOhl <ohlslager.tom@gmail.com>\n"
 "Language-Team: Hungarian <https://l10n.elementary.io/projects/wingpanel/"
 "indicator-sound-extra/hu/>\n"
@@ -40,20 +40,20 @@ msgstr "Apróbb frissítések"
 #: data/sound.appdata.xml.in:14
 msgid "Use device form factor when available to assign more accurate icons"
 msgstr ""
+"A pontosabb ikonok hozzárendeléséhez használja az eszköz formai tényezőjét, "
+"ha az rendelkezésre áll"
 
 #: data/sound.appdata.xml.in:15
 msgid "Provide a fallback device icon when none is available"
-msgstr ""
+msgstr "Egy alapértelmezett eszközikon, ha nem lenne elérhető"
 
 #: data/sound.appdata.xml.in:16
-#, fuzzy
-#| msgid "Fix opacity flash during icon animation"
 msgid "Fix missing switch animations"
-msgstr "Áttetszőség villanása javítva ikonanimációkor"
+msgstr "Hiányzó ikonanimációk hozzáadva"
 
 #: data/sound.appdata.xml.in:17
 msgid "Use the volume step value from GNOME Settings Daemon"
-msgstr ""
+msgstr "A GNOME Beállításdémon hanglépték-beállításának használata"
 
 #: data/sound.appdata.xml.in:18 data/sound.appdata.xml.in:28
 #: data/sound.appdata.xml.in:43 data/sound.appdata.xml.in:52
