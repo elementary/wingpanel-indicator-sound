@@ -1,3 +1,22 @@
+wingpanel-indicator-sound (6.0.2) bionic; urgency=medium
+
+  * Release 6.0.2 (#242)
+  * Fix switch animation on first open (#243)
+  * Update translation files
+  * Update translation template
+  * PulseAudioManager: add more form factor icon fallbacks (#241)
+  * PulseAudioManager: fall back to device form factor when icon name
+    unavailable (#240)
+  * PulseAudioManager: fallback to fd.o icon name (#239)
+  * Update codestyle (#238)
+  * Bind volume step to gnome setting (#237)
+  * Consistent margin (#234)
+  * Animate switch (#235)
+  * PulseAudioManager: Provide a fallback icon in case none is available
+    (#228)
+
+ -- elementary LLC <builds@elementary.io>  Mon, 24 Oct 2022 17:22:05 +0000
+
 wingpanel-indicator-sound (6.0.1) bionic; urgency=medium
 
   * Release 6.0.1 (#227)
