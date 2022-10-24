@@ -21,7 +21,7 @@ Homepage: https://github.com/elementary/wingpanel-indicator-sound
 
 Package: wingpanel-indicator-sound
 Architecture: any
-Depends: ${misc:Depends}, ${shlibs:Depends}
+Depends: gnome-settings-daemon, ${misc:Depends}, ${shlibs:Depends}
 Enhances: wingpanel
 Description: WingPanel Sound Indicator
  WingPanel Sound Indicator
