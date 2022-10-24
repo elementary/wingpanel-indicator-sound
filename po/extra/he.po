@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-10-19 19:46+0000\n"
-"PO-Revision-Date: 2022-10-19 09:57+0000\n"
+"PO-Revision-Date: 2022-10-21 16:57+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://l10n.elementary.io/projects/wingpanel/"
 "indicator-sound-extra/he/>\n"
@@ -39,21 +39,19 @@ msgstr "עדכונים משניים"
 
 #: data/sound.appdata.xml.in:14
 msgid "Use device form factor when available to assign more accurate icons"
-msgstr ""
+msgstr "נעשה שימוש במתווה החיצוני של המוצר כשאפשר כדי להקצות סמלים מדויקים יותר"
 
 #: data/sound.appdata.xml.in:15
 msgid "Provide a fallback device icon when none is available"
-msgstr ""
+msgstr "אספקת סמל התקן נסיגה כשאין שום סמל אחר זמין"
 
 #: data/sound.appdata.xml.in:16
-#, fuzzy
-#| msgid "Fix opacity flash during icon animation"
 msgid "Fix missing switch animations"
-msgstr "הבהוב האטימות במהלך הנפשת סמלים תוקן"
+msgstr "הנפשות החלפה חסרות תוקנות"
 
 #: data/sound.appdata.xml.in:17
 msgid "Use the volume step value from GNOME Settings Daemon"
-msgstr ""
+msgstr "להשתמש בערך צעד של עוצמת השמע מסוכן ההגדרות של GNOME"
 
 #: data/sound.appdata.xml.in:18 data/sound.appdata.xml.in:28
 #: data/sound.appdata.xml.in:43 data/sound.appdata.xml.in:52
