@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-10-19 19:46+0000\n"
-"PO-Revision-Date: 2022-04-09 01:03+0000\n"
+"PO-Revision-Date: 2022-10-29 01:59+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementary.io/projects/wingpanel/"
 "indicator-sound-extra/ja/>\n"
@@ -39,23 +39,19 @@ msgstr "そのほかのアップデート:"
 
 #: data/sound.appdata.xml.in:14
 msgid "Use device form factor when available to assign more accurate icons"
-msgstr ""
+msgstr "可能であればよりデバイスの種類にあった形状のアイコンを表示するように修正"
 
 #: data/sound.appdata.xml.in:15
 msgid "Provide a fallback device icon when none is available"
-msgstr ""
+msgstr "デバイスアイコンが利用可能でない場合はフォールバックするように修正"
 
 #: data/sound.appdata.xml.in:16
-#, fuzzy
-#| msgid "Fix opacity flash during icon animation"
 msgid "Fix missing switch animations"
-msgstr ""
-"アイコンのアニメーション表示中に、下がっていた透明度が突然上がったりする不具"
-"合を修正"
+msgstr "スイッチ切替時にアニメーション表示されない不具合を修正"
 
 #: data/sound.appdata.xml.in:17
 msgid "Use the volume step value from GNOME Settings Daemon"
-msgstr ""
+msgstr "音量の段階切り替えに GNOME 設定デーモンで定義されている値を使用するように修正"
 
 #: data/sound.appdata.xml.in:18 data/sound.appdata.xml.in:28
 #: data/sound.appdata.xml.in:43 data/sound.appdata.xml.in:52
