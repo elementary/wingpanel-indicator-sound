@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-10-19 19:46+0000\n"
-"PO-Revision-Date: 2022-05-24 18:54+0000\n"
+"PO-Revision-Date: 2023-01-23 17:25+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <https://l10n.elementary.io/projects/wingpanel/"
 "indicator-sound-extra/pt/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.4.2\n"
+"X-Generator: Weblate 4.14.2\n"
 
 #: data/sound.appdata.xml.in:6
 msgid "Sound Indicator"
@@ -40,20 +40,21 @@ msgstr "Pequenas atualizações"
 #: data/sound.appdata.xml.in:14
 msgid "Use device form factor when available to assign more accurate icons"
 msgstr ""
+"Utilizar o fator de forma do dispositivo quando disponível para atribuir "
+"ícones mais precisos"
 
 #: data/sound.appdata.xml.in:15
 msgid "Provide a fallback device icon when none is available"
 msgstr ""
+"Fornecer um ícone de dispositivo de recurso quando nenhum estiver disponível"
 
 #: data/sound.appdata.xml.in:16
-#, fuzzy
-#| msgid "Fix opacity flash during icon animation"
 msgid "Fix missing switch animations"
-msgstr "Corrige a opacidade do flash durante a animação do ícone"
+msgstr "Corrige as animações de troca em falta"
 
 #: data/sound.appdata.xml.in:17
 msgid "Use the volume step value from GNOME Settings Daemon"
-msgstr ""
+msgstr "Usar o valor da etapa de volume do Daemon das Definições GNOME"
 
 #: data/sound.appdata.xml.in:18 data/sound.appdata.xml.in:28
 #: data/sound.appdata.xml.in:43 data/sound.appdata.xml.in:52
