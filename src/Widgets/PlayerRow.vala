@@ -29,6 +29,7 @@ public class Sound.Widgets.PlayerRow : Gtk.Box {
 
     public signal void close ();
 
+    private static Gtk.CssProvider provider;
     private Gtk.Image? background = null;
     private Gtk.Image mask;
     private Gtk.Label title_label;
@@ -168,6 +169,11 @@ public class Sound.Widgets.PlayerRow : Gtk.Box {
         artist_label.label = NOT_PLAYING;
     }
 
+    static construct {
+        provider = new Gtk.CssProvider ();
+        provider.load_from_resource ("io/elementary/wingpanel/sound/PlayerRow.css");
+    }
+
     construct {
         app_icon = new ThemedIcon ("application-default-icon");
 
@@ -225,29 +231,36 @@ public class Sound.Widgets.PlayerRow : Gtk.Box {
 
         prev_btn = new Gtk.Button.from_icon_name (
             "media-skip-backward-symbolic",
-            Gtk.IconSize.LARGE_TOOLBAR
+            Gtk.IconSize.MENU
         ) {
-            sensitive = false
+            sensitive = false,
+            valign = Gtk.Align.CENTER
         };
-        prev_btn.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
+        prev_btn.get_style_context ().add_class ("circular");
+        prev_btn.get_style_context ().add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
 
         play_btn = new Gtk.Button.from_icon_name (
             "media-playback-start-symbolic",
-            Gtk.IconSize.LARGE_TOOLBAR
+            Gtk.IconSize.MENU
         ) {
-            sensitive = true
+            sensitive = true,
+            valign = Gtk.Align.CENTER
         };
-        play_btn.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
+        play_btn.get_style_context ().add_class ("circular");
+        play_btn.get_style_context ().add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
 
         next_btn = new Gtk.Button.from_icon_name (
             "media-skip-forward-symbolic",
-            Gtk.IconSize.LARGE_TOOLBAR
+            Gtk.IconSize.MENU
         ) {
-            sensitive = false
+            sensitive = false,
+            valign = Gtk.Align.CENTER
         };
-        next_btn.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
+        next_btn.get_style_context ().add_class ("circular");
+        next_btn.get_style_context ().add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
 
-        margin_end = 6;
+        spacing = 6;
+        margin_end = 12;
         add (titles_events);
         add (prev_btn);
         add (play_btn);
