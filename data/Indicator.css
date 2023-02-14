@@ -1,0 +1,60 @@
+/*
+* Copyright 2019 elementary, Inc. (https://elementary.io)
+*
+* This program is free software; you can redistribute it and/or
+* modify it under the terms of the GNU General Public
+* License as published by the Free Software Foundation; either
+* version 2 of the License, or (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+* General Public License for more details.
+*
+* You should have received a copy of the GNU General Public
+* License along with this program; if not, write to the
+* Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+* Boston, MA 02110-1301 USA.
+*/
+
+overlay image {
+    min-width: 2rem;
+}
+
+scale slider {
+    background: none;
+    border: none;
+    box-shadow: none;
+}
+
+scale trough {
+    min-height: calc(2rem - 1px);
+    min-width: calc(2rem - 1px);
+}
+
+scale highlight {
+    background-color: @base_color;
+    border: none;
+    border-radius: 1rem;
+    box-shadow:
+        inset 0 -1px 0 0 alpha(@highlight_color, 0.2),
+        inset 0 1px 0 0 alpha(@highlight_color, 0.3),
+        inset 1px 0 0 0 alpha(@highlight_color, 0.07),
+        inset -1px 0 0 0 alpha(@highlight_color, 0.07),
+        0 2px 3px shade(@insensitive_bg_color, 0.97),
+        0 0 0 1px shade(@insensitive_bg_color, 0.85),
+        0 1px 3px @menu_separator;
+    min-width: 2rem;
+    margin: 0 calc(-0.5em - 1px) 0 calc(-0.5em - 1px);
+}
+
+scale:disabled highlight {
+    background-color: @bg_color;
+    box-shadow:
+        inset 0 -1px 0 0 alpha(@highlight_color, 0.1),
+        inset 0 1px 0 0 alpha(@highlight_color, 0.15),
+        inset 1px 0 0 0 alpha(@highlight_color, 0.035),
+        inset -1px 0 0 0 alpha(@highlight_color, 0.035),
+        0 0 0 1px shade(@insensitive_bg_color, 0.9),
+        0 1px 3px @menu_separator;
+}

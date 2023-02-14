@@ -280,7 +280,6 @@ public class Sound.Indicator : Wingpanel.Indicator {
         if (main_box == null) {
             mpris = new Widgets.PlayerList ();
 
-            volume_scale.switch_widget.active = !volume_control.mute; // don't trigger animation on first opening
             volume_scale.active = !volume_control.mute;
             volume_scale.scale_widget.set_value (volume_control.volume.volume);
             volume_scale.icon = get_volume_icon (volume_scale.scale_widget.get_value ());

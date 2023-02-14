@@ -28,7 +28,7 @@ public class DisplayWidget : Gtk.Box {
 
     construct {
         var provider = new Gtk.CssProvider ();
-        provider.load_from_resource ("io/elementary/wingpanel/sound/indicator.css");
+        provider.load_from_resource ("io/elementary/wingpanel/sound/DisplayWidget.css");
 
         var volume_icon = new Gtk.Image () {
             pixel_size = 24
