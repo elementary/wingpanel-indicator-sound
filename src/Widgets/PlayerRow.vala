@@ -191,25 +191,21 @@ public class Sound.Widgets.PlayerRow : Gtk.Box {
         overlay.add (background);
         overlay.add_overlay (mask);
 
-        var markup_attribute = new Pango.AttrList ();
-        markup_attribute.insert (Pango.attr_weight_new (Pango.Weight.BOLD));
-
         title_label = new Gtk.Label (null) {
-            attributes = markup_attribute,
             ellipsize = Pango.EllipsizeMode.END,
-            max_width_chars = 20,
-            use_markup = false,
+            max_width_chars = 16,
             valign = Gtk.Align.END,
+            width_chars = 16,
             xalign = 0
         };
 
         artist_label = new Gtk.Label (null) {
             ellipsize = Pango.EllipsizeMode.END,
-            max_width_chars = 20,
-            use_markup = false,
-            valign = Gtk.Align.START,
-            xalign = 0
+            halign = Gtk.Align.START,
+            valign = Gtk.Align.START
         };
+        artist_label.get_style_context ().add_class (Gtk.STYLE_CLASS_DIM_LABEL);
+        artist_label.get_style_context ().add_class (Granite.STYLE_CLASS_SMALL_LABEL);
 
         var titles = new Gtk.Grid () {
             column_spacing = 3
@@ -248,6 +244,7 @@ public class Sound.Widgets.PlayerRow : Gtk.Box {
         next_btn.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
 
         margin_end = 6;
+        spacing = 6;
         add (titles_events);
         add (prev_btn);
         add (play_btn);
