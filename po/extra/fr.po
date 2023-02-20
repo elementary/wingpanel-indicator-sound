@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-10-19 19:46+0000\n"
-"PO-Revision-Date: 2022-11-09 14:29+0000\n"
+"PO-Revision-Date: 2023-02-16 09:25+0000\n"
 "Last-Translator: Nathan <bonnemainsnathan@gmail.com>\n"
 "Language-Team: French <https://l10n.elementary.io/projects/wingpanel/"
 "indicator-sound-extra/fr/>\n"
@@ -40,6 +40,8 @@ msgstr "Mises à jour mineures"
 #: data/sound.appdata.xml.in:14
 msgid "Use device form factor when available to assign more accurate icons"
 msgstr ""
+"Utilisation du format de l'appareil, lorsqu'il est disponible, pour "
+"attribuer des icônes plus précises"
 
 #: data/sound.appdata.xml.in:15
 msgid "Provide a fallback device icon when none is available"
