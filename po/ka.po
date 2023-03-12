@@ -1,11 +1,12 @@
 # Cleiton Floss <cleitonfloss@tutanota.de>, 2023.
+# NorwayFun <temuri.doghonadze@gmail.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-10-19 19:46+0000\n"
 "PO-Revision-Date: 2023-03-12 21:00+0000\n"
-"Last-Translator: Cleiton Floss <cleitonfloss@tutanota.de>\n"
+"Last-Translator: NorwayFun <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://l10n.elementary.io/projects/wingpanel/"
 "wingpanel-indicator-sound/ka/>\n"
 "Language: ka\n"
@@ -23,30 +24,27 @@ msgstr "ხმის პარამეტრები…"
 #: src/Indicator.vala:568
 #, c-format
 msgid "Volume: %.0f%%"
-msgstr ""
+msgstr "ხმის დონე: %.0f%%"
 
 #: src/Indicator.vala:571
 msgid "Middle-click to unmute"
-msgstr ""
+msgstr "შუა წკაპი დადუმების გასათიშად"
 
 #: src/Indicator.vala:571
 msgid "Middle-click to mute"
-msgstr ""
+msgstr "შუა წკაპი დადუმებისთვის"
 
 #: src/Widgets/PlayerRow.vala:28
-#, fuzzy
-#| msgid "Not currently playing"
 msgid "Not playing"
-msgstr "ამჟამად არ იკვრება"
+msgstr "არ იკვრება"
 
 #: src/Widgets/PlayerRow.vala:43
 msgid "Music player"
 msgstr "მუსიკის დამკვრელი"
 
 #: src/Widgets/PlayerRow.vala:555
-#, fuzzy
 msgid "Unknown Artist"
-msgstr "უცნობი სათაური"
+msgstr "უცნობი შემსრულებელი"
 
 #~ msgid "Indicator Sound"
 #~ msgstr "ინდიკატორის ხმა"
