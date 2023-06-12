@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-19 19:46+0000\n"
+"POT-Creation-Date: 2023-06-12 19:48+0000\n"
 "PO-Revision-Date: 2021-07-31 10:55+0000\n"
 "Last-Translator: Reinaldo <reinaldoplacetas@tutanota.com>\n"
 "Language-Team: Spanish <https://l10n.elementary.io/projects/wingpanel/"
@@ -19,11 +19,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 4.4.2\n"
 
-#: data/sound.appdata.xml.in:6
+#: data/sound.metainfo.xml.in:11
 msgid "Sound Indicator"
 msgstr "Indicador de sonido"
 
-#: data/sound.appdata.xml.in:7
+#: data/sound.metainfo.xml.in:12
 msgid ""
 "Adjust speaker and microphone volume or see Now Playing information and "
 "media controls"
@@ -31,85 +31,82 @@ msgstr ""
 "Ajuste el volumen del altavoz y del micrófono o vea información de "
 "reproducción y controles multimedia"
 
-#: data/sound.appdata.xml.in:12 data/sound.appdata.xml.in:25
-#: data/sound.appdata.xml.in:38 data/sound.appdata.xml.in:49
-#: data/sound.appdata.xml.in:58
+#: data/sound.metainfo.xml.in:27
+msgid "elementary, Inc."
+msgstr "elementary, Inc."
+
+#: data/sound.metainfo.xml.in:34 data/sound.metainfo.xml.in:47
+#: data/sound.metainfo.xml.in:61 data/sound.metainfo.xml.in:73
+#: data/sound.metainfo.xml.in:83
 msgid "Minor updates"
 msgstr "Actualizaciones menores"
 
-#: data/sound.appdata.xml.in:14
+#: data/sound.metainfo.xml.in:36
 msgid "Use device form factor when available to assign more accurate icons"
 msgstr ""
 
-#: data/sound.appdata.xml.in:15
+#: data/sound.metainfo.xml.in:37
 msgid "Provide a fallback device icon when none is available"
 msgstr ""
 
-#: data/sound.appdata.xml.in:16
+#: data/sound.metainfo.xml.in:38
 #, fuzzy
 #| msgid "Fix opacity flash during icon animation"
 msgid "Fix missing switch animations"
 msgstr "Se arregló el cambio súbito de opacidad durante la animación del icono"
 
-#: data/sound.appdata.xml.in:17
+#: data/sound.metainfo.xml.in:39
 msgid "Use the volume step value from GNOME Settings Daemon"
 msgstr ""
 
-#: data/sound.appdata.xml.in:18 data/sound.appdata.xml.in:28
-#: data/sound.appdata.xml.in:43 data/sound.appdata.xml.in:52
-#: data/sound.appdata.xml.in:61 data/sound.appdata.xml.in:68
-#: data/sound.appdata.xml.in:75 data/sound.appdata.xml.in:80
+#: data/sound.metainfo.xml.in:40 data/sound.metainfo.xml.in:50
+#: data/sound.metainfo.xml.in:66 data/sound.metainfo.xml.in:76
+#: data/sound.metainfo.xml.in:86
 msgid "Updated translations"
 msgstr "Traducciones actualizadas"
 
-#: data/sound.appdata.xml.in:27
+#: data/sound.metainfo.xml.in:49
 msgid "Show more specific icons for different types of devices"
 msgstr ""
 
-#: data/sound.appdata.xml.in:34
+#: data/sound.metainfo.xml.in:57
 msgid "New features"
 msgstr "Nuevas características"
 
-#: data/sound.appdata.xml.in:36
+#: data/sound.metainfo.xml.in:59
 msgid "select specific input and output devices"
 msgstr ""
 
-#: data/sound.appdata.xml.in:40
+#: data/sound.metainfo.xml.in:63
 msgid "Hide temporary audio players when they stop"
 msgstr ""
 
-#: data/sound.appdata.xml.in:41
+#: data/sound.metainfo.xml.in:64
 msgid "Add a tooltip on hover"
 msgstr ""
 
-#: data/sound.appdata.xml.in:42
+#: data/sound.metainfo.xml.in:65
 #, fuzzy
 #| msgid "Performance improvements"
 msgid "Minor visual improvements"
 msgstr "Mejoras de rendimiento"
 
-#: data/sound.appdata.xml.in:51
+#: data/sound.metainfo.xml.in:75
 msgid "Fix duplicate default player"
 msgstr "Corregir reproductor predeterminado duplicado"
 
-#: data/sound.appdata.xml.in:60
+#: data/sound.metainfo.xml.in:85
 msgid "Fix opacity flash during icon animation"
 msgstr "Se arregló el cambio súbito de opacidad durante la animación del icono"
 
-#: data/sound.appdata.xml.in:67
-msgid "Update default music player when changed"
-msgstr "Se actualiza el reproductor de música predeterminado cuando se cambia"
+#~ msgid "Update default music player when changed"
+#~ msgstr ""
+#~ "Se actualiza el reproductor de música predeterminado cuando se cambia"
 
-#: data/sound.appdata.xml.in:73
-msgid "Correctly show \"Unknown Artist\" when artist info isn't available"
-msgstr ""
-"Se muestra correctamente «Artista desconocido» cuando la información del "
-"artista no está disponible"
+#~ msgid "Correctly show \"Unknown Artist\" when artist info isn't available"
+#~ msgstr ""
+#~ "Se muestra correctamente «Artista desconocido» cuando la información del "
+#~ "artista no está disponible"
 
-#: data/sound.appdata.xml.in:74
-msgid "Performance improvements"
-msgstr "Mejoras de rendimiento"
-
-#: data/sound.appdata.xml.in:89
-msgid "elementary, Inc."
-msgstr "elementary, Inc."
+#~ msgid "Performance improvements"
+#~ msgstr "Mejoras de rendimiento"
