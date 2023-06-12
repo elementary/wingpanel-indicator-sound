@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wingpanel-indicator-sound\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-19 19:46+0000\n"
+"POT-Creation-Date: 2023-06-12 19:48+0000\n"
 "PO-Revision-Date: 2021-07-03 19:21+0000\n"
 "Last-Translator: Ihor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: Ukrainian <https://l10n.elementary.io/projects/wingpanel/wingpanel-indicator-sound/uk/>\n"
@@ -19,20 +19,20 @@ msgstr ""
 "X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 
-#: src/Indicator.vala:296
+#: src/Indicator.vala:297
 msgid "Sound Settings…"
 msgstr "Налаштування звуку…"
 
-#: src/Indicator.vala:568
+#: src/Indicator.vala:569
 #, c-format
 msgid "Volume: %.0f%%"
 msgstr "Гучність: %.0f%%"
 
-#: src/Indicator.vala:571
+#: src/Indicator.vala:572
 msgid "Middle-click to unmute"
 msgstr "Клацніть середньою клавішею, щоб увімкнути звук"
 
-#: src/Indicator.vala:571
+#: src/Indicator.vala:572
 msgid "Middle-click to mute"
 msgstr "Клацніть середньою клавішею, щоб вимкнути звук"
 
@@ -40,11 +40,11 @@ msgstr "Клацніть середньою клавішею, щоб вимкн�
 msgid "Not playing"
 msgstr "Не відтворюється"
 
-#: src/Widgets/PlayerRow.vala:43
+#: src/Widgets/PlayerRow.vala:44
 msgid "Music player"
 msgstr "Музичний програвач"
 
-#: src/Widgets/PlayerRow.vala:555
+#: src/Widgets/PlayerRow.vala:564
 msgid "Unknown Artist"
 msgstr "Невідомий виконавець"
 

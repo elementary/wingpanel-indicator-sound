@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-19 19:46+0000\n"
+"POT-Creation-Date: 2023-06-12 19:48+0000\n"
 "PO-Revision-Date: 2021-08-23 19:43+0000\n"
 "Last-Translator: JohnDumpling <john_dumpling@protonmail.com>\n"
 "Language-Team: Slovak <https://l10n.elementary.io/projects/wingpanel/wingpanel-indicator-sound/sk/>\n"
@@ -15,20 +15,20 @@ msgstr ""
 "X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 
-#: src/Indicator.vala:296
+#: src/Indicator.vala:297
 msgid "Sound Settings…"
 msgstr "Nastavenia zvuku…"
 
-#: src/Indicator.vala:568
+#: src/Indicator.vala:569
 #, c-format
 msgid "Volume: %.0f%%"
 msgstr "Hlasitosť: %.0f%%"
 
-#: src/Indicator.vala:571
+#: src/Indicator.vala:572
 msgid "Middle-click to unmute"
 msgstr "Stlačením kolieska zrušiť stlmenie"
 
-#: src/Indicator.vala:571
+#: src/Indicator.vala:572
 msgid "Middle-click to mute"
 msgstr "Stlačením kolieska stlmiť"
 
@@ -36,11 +36,11 @@ msgstr "Stlačením kolieska stlmiť"
 msgid "Not playing"
 msgstr "Neprehráva sa"
 
-#: src/Widgets/PlayerRow.vala:43
+#: src/Widgets/PlayerRow.vala:44
 msgid "Music player"
 msgstr "Prehrávač hudby"
 
-#: src/Widgets/PlayerRow.vala:555
+#: src/Widgets/PlayerRow.vala:564
 msgid "Unknown Artist"
 msgstr "Neznámy interpret"
 
