@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-19 19:46+0000\n"
+"POT-Creation-Date: 2023-06-12 19:48+0000\n"
 "PO-Revision-Date: 2017-04-10 21:30+0000\n"
 "Last-Translator: Moo <hazap@hotmail.com>\n"
 "Language-Team: Lithuanian <https://l10n.elementary.io/projects/wingpanel/wingpanel-indicator-sound/lt/>\n"
@@ -14,20 +14,20 @@ msgstr ""
 "X-Generator: Weblate 2.13-dev\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 
-#: src/Indicator.vala:296
+#: src/Indicator.vala:297
 msgid "Sound Settings…"
 msgstr "Garso nustatymai…"
 
-#: src/Indicator.vala:568
+#: src/Indicator.vala:569
 #, c-format
 msgid "Volume: %.0f%%"
 msgstr ""
 
-#: src/Indicator.vala:571
+#: src/Indicator.vala:572
 msgid "Middle-click to unmute"
 msgstr ""
 
-#: src/Indicator.vala:571
+#: src/Indicator.vala:572
 msgid "Middle-click to mute"
 msgstr ""
 
@@ -37,11 +37,11 @@ msgstr ""
 msgid "Not playing"
 msgstr "Šiuo metu negroja"
 
-#: src/Widgets/PlayerRow.vala:43
+#: src/Widgets/PlayerRow.vala:44
 msgid "Music player"
 msgstr "Muzikos grotuvas"
 
-#: src/Widgets/PlayerRow.vala:555
+#: src/Widgets/PlayerRow.vala:564
 #, fuzzy
 msgid "Unknown Artist"
 msgstr "Nežinomas pavadinimas"

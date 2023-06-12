@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wingpanel-indicator-sound\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-19 19:46+0000\n"
+"POT-Creation-Date: 2023-06-12 19:48+0000\n"
 "PO-Revision-Date: 2018-02-09 00:12+0000\n"
 "Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://weblate.elementary.io/projects/wingpanel/wingpanel-indicator-sound/zh_TW/>\n"
@@ -19,20 +19,20 @@ msgstr ""
 "X-Generator: Weblate 2.18\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 
-#: src/Indicator.vala:296
+#: src/Indicator.vala:297
 msgid "Sound Settings…"
 msgstr "音效設定值…"
 
-#: src/Indicator.vala:568
+#: src/Indicator.vala:569
 #, c-format
 msgid "Volume: %.0f%%"
 msgstr ""
 
-#: src/Indicator.vala:571
+#: src/Indicator.vala:572
 msgid "Middle-click to unmute"
 msgstr ""
 
-#: src/Indicator.vala:571
+#: src/Indicator.vala:572
 msgid "Middle-click to mute"
 msgstr ""
 
@@ -42,11 +42,11 @@ msgstr ""
 msgid "Not playing"
 msgstr "目前沒有音效在播放"
 
-#: src/Widgets/PlayerRow.vala:43
+#: src/Widgets/PlayerRow.vala:44
 msgid "Music player"
 msgstr "音樂播放器"
 
-#: src/Widgets/PlayerRow.vala:555
+#: src/Widgets/PlayerRow.vala:564
 #, fuzzy
 msgid "Unknown Artist"
 msgstr "未知曲名"

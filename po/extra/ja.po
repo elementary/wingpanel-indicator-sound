@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-19 19:46+0000\n"
+"POT-Creation-Date: 2023-06-12 19:48+0000\n"
 "PO-Revision-Date: 2022-10-29 01:59+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementary.io/projects/wingpanel/"
@@ -19,11 +19,11 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 4.4.2\n"
 
-#: data/sound.appdata.xml.in:6
+#: data/sound.metainfo.xml.in:11
 msgid "Sound Indicator"
 msgstr "サウンドインジケーター"
 
-#: data/sound.appdata.xml.in:7
+#: data/sound.metainfo.xml.in:12
 msgid ""
 "Adjust speaker and microphone volume or see Now Playing information and "
 "media controls"
@@ -31,85 +31,83 @@ msgstr ""
 "スピーカーやマイクの音量を調整したり、現在再生中の曲の情報やメディアコント"
 "ロールを表示したりします"
 
-#: data/sound.appdata.xml.in:12 data/sound.appdata.xml.in:25
-#: data/sound.appdata.xml.in:38 data/sound.appdata.xml.in:49
-#: data/sound.appdata.xml.in:58
+#: data/sound.metainfo.xml.in:27
+msgid "elementary, Inc."
+msgstr "elementary, Inc."
+
+#: data/sound.metainfo.xml.in:34 data/sound.metainfo.xml.in:47
+#: data/sound.metainfo.xml.in:61 data/sound.metainfo.xml.in:73
+#: data/sound.metainfo.xml.in:83
 msgid "Minor updates"
 msgstr "そのほかのアップデート:"
 
-#: data/sound.appdata.xml.in:14
+#: data/sound.metainfo.xml.in:36
 msgid "Use device form factor when available to assign more accurate icons"
-msgstr "可能であればよりデバイスの種類にあった形状のアイコンを表示するように修正"
+msgstr ""
+"可能であればよりデバイスの種類にあった形状のアイコンを表示するように修正"
 
-#: data/sound.appdata.xml.in:15
+#: data/sound.metainfo.xml.in:37
 msgid "Provide a fallback device icon when none is available"
 msgstr "デバイスアイコンが利用可能でない場合はフォールバックするように修正"
 
-#: data/sound.appdata.xml.in:16
+#: data/sound.metainfo.xml.in:38
 msgid "Fix missing switch animations"
 msgstr "スイッチ切替時にアニメーション表示されない不具合を修正"
 
-#: data/sound.appdata.xml.in:17
+#: data/sound.metainfo.xml.in:39
 msgid "Use the volume step value from GNOME Settings Daemon"
-msgstr "音量の段階切り替えに GNOME 設定デーモンで定義されている値を使用するように修正"
+msgstr ""
+"音量の段階切り替えに GNOME 設定デーモンで定義されている値を使用するように修正"
 
-#: data/sound.appdata.xml.in:18 data/sound.appdata.xml.in:28
-#: data/sound.appdata.xml.in:43 data/sound.appdata.xml.in:52
-#: data/sound.appdata.xml.in:61 data/sound.appdata.xml.in:68
-#: data/sound.appdata.xml.in:75 data/sound.appdata.xml.in:80
+#: data/sound.metainfo.xml.in:40 data/sound.metainfo.xml.in:50
+#: data/sound.metainfo.xml.in:66 data/sound.metainfo.xml.in:76
+#: data/sound.metainfo.xml.in:86
 msgid "Updated translations"
 msgstr "翻訳の更新"
 
-#: data/sound.appdata.xml.in:27
+#: data/sound.metainfo.xml.in:49
 msgid "Show more specific icons for different types of devices"
 msgstr "デバイスの種類を的確に示すアイコンを表示するように修正"
 
-#: data/sound.appdata.xml.in:34
+#: data/sound.metainfo.xml.in:57
 msgid "New features"
 msgstr "新機能"
 
-#: data/sound.appdata.xml.in:36
+#: data/sound.metainfo.xml.in:59
 msgid "select specific input and output devices"
 msgstr "インジケーターから入力・出力デバイスを選択できる機能を追加"
 
-#: data/sound.appdata.xml.in:40
+#: data/sound.metainfo.xml.in:63
 msgid "Hide temporary audio players when they stop"
 msgstr "一時的なオーディオプレーヤーが停止した場合、非表示にするように変更"
 
-#: data/sound.appdata.xml.in:41
+#: data/sound.metainfo.xml.in:64
 msgid "Add a tooltip on hover"
 msgstr "ホバー時のツールチップを追加"
 
-#: data/sound.appdata.xml.in:42
+#: data/sound.metainfo.xml.in:65
 msgid "Minor visual improvements"
 msgstr "軽微な視覚上の改善"
 
-#: data/sound.appdata.xml.in:51
+#: data/sound.metainfo.xml.in:75
 msgid "Fix duplicate default player"
 msgstr "デフォルトのプレーヤーが重複して表示される不具合を修正"
 
-#: data/sound.appdata.xml.in:60
+#: data/sound.metainfo.xml.in:85
 msgid "Fix opacity flash during icon animation"
 msgstr ""
 "アイコンのアニメーション表示中に、下がっていた透明度が突然上がったりする不具"
 "合を修正"
 
-#: data/sound.appdata.xml.in:67
-msgid "Update default music player when changed"
-msgstr ""
-"デフォルトのミュージックプレーヤーが変更されたときに、表示を更新するように修"
-"正"
+#~ msgid "Update default music player when changed"
+#~ msgstr ""
+#~ "デフォルトのミュージックプレーヤーが変更されたときに、表示を更新するように"
+#~ "修正"
 
-#: data/sound.appdata.xml.in:73
-msgid "Correctly show \"Unknown Artist\" when artist info isn't available"
-msgstr ""
-"アーティスト情報が利用可能でないときに、\"不明なアーティスト\"を正しく表示す"
-"るように修正"
+#~ msgid "Correctly show \"Unknown Artist\" when artist info isn't available"
+#~ msgstr ""
+#~ "アーティスト情報が利用可能でないときに、\"不明なアーティスト\"を正しく表示"
+#~ "するように修正"
 
-#: data/sound.appdata.xml.in:74
-msgid "Performance improvements"
-msgstr "パフォーマンスの改善"
-
-#: data/sound.appdata.xml.in:89
-msgid "elementary, Inc."
-msgstr "elementary, Inc."
+#~ msgid "Performance improvements"
+#~ msgstr "パフォーマンスの改善"
