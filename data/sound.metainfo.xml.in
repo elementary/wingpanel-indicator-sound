@@ -29,6 +29,20 @@
   <update_contact>contact_at_elementary.io</update_contact>
 
   <releases>
+    <release version="7.0.0" date="2023-06-12" urgency="medium">
+      <description>
+        <p>Minor updates</p>
+        <ul>
+          <li>Use circle buttons for playback controls</li>
+          <li>Middle-clicking the microphone indicator no longer mutes monitors</li>
+          <li>Updated translations</li>
+        </ul>
+      </description>
+      <issues>
+        <issue url="https://github.com/elementary/wingpanel-indicator-sound/issues/12">Buttons jump around when skipping songs</issue>
+      </issues>
+    </release>
+
     <release version="6.0.2" date="2022-10-19" urgency="medium">
       <description>
         <p>Minor updates</p>
