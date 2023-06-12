@@ -22,7 +22,8 @@ public class Sound.Widgets.Scale : Gtk.EventBox {
     public double min { get; construct; }
     public double step { get; construct; }
     public Gtk.Scale scale_widget { get; private set; }
-    public Gtk.Switch switch_widget { get; private set; }
+
+    private static Gtk.CssProvider provider;
 
     public Scale (string icon, bool active = false, double min, double max, double step) {
         Object (
@@ -38,41 +39,41 @@ public class Sound.Widgets.Scale : Gtk.EventBox {
         set_css_name (Gtk.STYLE_CLASS_MENUITEM);
     }
 
-    construct {
-        var image = new Gtk.Image.from_icon_name (icon, Gtk.IconSize.DIALOG) {
-            pixel_size = 48
-        };
+    static construct {
+        provider = new Gtk.CssProvider ();
+        provider.load_from_resource ("io/elementary/wingpanel/sound/Indicator.css");
+    }
 
-        var image_box = new Gtk.EventBox ();
+    construct {
+        var image = new Gtk.Image.from_icon_name (icon, Gtk.IconSize.MENU);
+        image.get_style_context ().add_class (Gtk.STYLE_CLASS_DIM_LABEL);
+        image.get_style_context ().add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+
+        var image_box = new Gtk.EventBox () {
+            halign = Gtk.Align.START
+        };
         image_box.add (image);
 
         scale_widget = new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL, min, max, step) {
             draw_value = false,
-            hexpand = true,
-            width_request = 175
+            hexpand = true
         };
+        scale_widget.get_style_context ().add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
 
-        switch_widget = new Gtk.Switch () {
-            margin_start = 6,
-            valign = Gtk.Align.CENTER
-        };
+        var overlay = new Gtk.Overlay ();
+        overlay.add (scale_widget);
+        overlay.add_overlay (image_box);
 
-        var box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 6) {
-            hexpand = true,
-            margin_start = 6,
-            margin_end = 12
-        };
-        box.add (image_box);
-        box.add (scale_widget);
-        box.add (switch_widget);
-
-        add (box);
+        margin_top = 6;
+        margin_start = 12;
+        margin_end = 12;
+        add (overlay);
         add_events (Gdk.EventMask.SMOOTH_SCROLL_MASK);
         above_child = false;
 
         image_box.add_events (Gdk.EventMask.BUTTON_RELEASE_MASK);
         image_box.button_release_event.connect (() => {
-            switch_widget.activate ();
+            active = !active;
             return Gdk.EVENT_STOP;
         });
 
@@ -83,14 +84,7 @@ public class Sound.Widgets.Scale : Gtk.EventBox {
         });
 
         bind_property ("icon", image, "icon-name");
-
         bind_property ("active", scale_widget, "sensitive", BindingFlags.SYNC_CREATE);
         bind_property ("active", image, "sensitive", BindingFlags.SYNC_CREATE);
-
-        bind_property ("active", switch_widget, "active", BindingFlags.BIDIRECTIONAL, () => {
-            if (switch_widget.active != active) {
-                switch_widget.activate ();
-            }
-        }, null);
     }
 }
