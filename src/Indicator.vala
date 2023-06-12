@@ -112,7 +112,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
         volume_scale = new Widgets.Scale ("audio-volume-high-symbolic", true, 0.0, max_volume, 0.01);
 
-        mic_scale = new Widgets.Scale ("audio-input-microphone-symbolic", true, 0.0, 1.0, 0.01);
+        mic_scale = new Widgets.Scale ("indicator-microphone-symbolic", true, 0.0, 1.0, 0.01);
 
         ca_context = CanberraGtk.context_get ();
         ca_context.change_props (Canberra.PROP_APPLICATION_NAME, "indicator-sound",
@@ -179,9 +179,9 @@ public class Sound.Indicator : Wingpanel.Indicator {
         display_widget.mic_muted = volume_control.micMute;
 
         if (volume_control.micMute) {
-            mic_scale.icon = "microphone-sensitivity-muted-symbolic";
+            mic_scale.icon = "indicator-microphone-muted-symbolic";
         } else {
-            mic_scale.icon = "audio-input-microphone-symbolic";
+            mic_scale.icon = "indicator-microphone-symbolic";
         }
     }
 
@@ -535,7 +535,11 @@ public class Sound.Indicator : Wingpanel.Indicator {
             string icon;
 
             if (is_mic) {
-                icon = "audio-input-microphone-symbolic";
+                if (volume_control.mic_volume <= 0 || volume_control.mic_mute) {
+                    icon = "microphone-sensitivity-muted-symbolic";
+                } else {
+                    icon = "audio-input-microphone-symbolic";
+                }
             } else {
                 icon = get_volume_icon (volume_scale.scale_widget.get_value ());
             }

@@ -8,24 +8,24 @@
     min-width: 24px;
     opacity: 1;
     transition: none;
-    -gtk-icon-source: -gtk-icontheme("audio-input-microphone-symbolic");
+    -gtk-icon-source: -gtk-icontheme("indicator-microphone-symbolic");
 }
 
 .mic-icon.disabled {
     animation: microphone-disabled 160ms cubic-bezier(0.4, 0.0, 0.2, 1);
-    -gtk-icon-source: -gtk-icontheme("microphone-sensitivity-muted-symbolic");
+    -gtk-icon-source: -gtk-icontheme("indicator-microphone-muted-symbolic");
 }
 
 @keyframes microphone-disabled {
-    0% { -gtk-icon-source: -gtk-icontheme("audio-input-microphone-symbolic"); }
-    10% { -gtk-icon-source: -gtk-icontheme("microphone-sensitivity-muted-10-symbolic"); }
-    20% { -gtk-icon-source: -gtk-icontheme("microphone-sensitivity-muted-20-symbolic"); }
-    30% { -gtk-icon-source: -gtk-icontheme("microphone-sensitivity-muted-30-symbolic"); }
-    40% { -gtk-icon-source: -gtk-icontheme("microphone-sensitivity-muted-40-symbolic"); }
-    50% { -gtk-icon-source: -gtk-icontheme("microphone-sensitivity-muted-50-symbolic"); }
-    60% { -gtk-icon-source: -gtk-icontheme("microphone-sensitivity-muted-60-symbolic"); }
-    70% { -gtk-icon-source: -gtk-icontheme("microphone-sensitivity-muted-70-symbolic"); }
-    80% { -gtk-icon-source: -gtk-icontheme("microphone-sensitivity-muted-80-symbolic"); }
-    90% { -gtk-icon-source: -gtk-icontheme("microphone-sensitivity-muted-90-symbolic"); }
-    100% { -gtk-icon-source: -gtk-icontheme("microphone-sensitivity-muted-symbolic"); }
+    0% { -gtk-icon-source: -gtk-icontheme("indicator-microphone-symbolic"); }
+    10% { -gtk-icon-source: -gtk-icontheme("indicator-microphone-muted-10-symbolic"); }
+    20% { -gtk-icon-source: -gtk-icontheme("indicator-microphone-muted-20-symbolic"); }
+    30% { -gtk-icon-source: -gtk-icontheme("indicator-microphone-muted-30-symbolic"); }
+    40% { -gtk-icon-source: -gtk-icontheme("indicator-microphone-muted-40-symbolic"); }
+    50% { -gtk-icon-source: -gtk-icontheme("indicator-microphone-muted-50-symbolic"); }
+    60% { -gtk-icon-source: -gtk-icontheme("indicator-microphone-muted-60-symbolic"); }
+    70% { -gtk-icon-source: -gtk-icontheme("indicator-microphone-muted-70-symbolic"); }
+    80% { -gtk-icon-source: -gtk-icontheme("indicator-microphone-muted-80-symbolic"); }
+    90% { -gtk-icon-source: -gtk-icontheme("indicator-microphone-muted-90-symbolic"); }
+    100% { -gtk-icon-source: -gtk-icontheme("indicator-microphone-muted-symbolic"); }
 }
