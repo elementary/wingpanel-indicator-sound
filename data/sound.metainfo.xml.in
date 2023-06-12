@@ -92,16 +92,7 @@
       </description>
     </release>
 
-    <release version="2.1.7" date="2020-10-08" urgency="medium">
-      <description>
-        <p>Minor updates</p>
-        <ul>
-          <li>Fix opacity flash during icon animation</li>
-          <li>Updated translations</li>
-        </ul>
-      </description>
-    </release>
-
+    <release version="2.1.7" date="2020-10-08" urgency="medium" />
     <release version="2.1.6" date="2020-08-07" urgency="medium" />
     <release version="2.1.5" date="2020-04-02" urgency="medium" />
     <release version="2.1.4" date="2019-11-25" urgency="medium" />
