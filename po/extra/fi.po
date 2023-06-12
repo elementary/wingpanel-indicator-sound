@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-12 19:48+0000\n"
+"POT-Creation-Date: 2023-06-12 19:56+0000\n"
 "PO-Revision-Date: 2021-10-08 17:10+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <https://l10n.elementary.io/projects/wingpanel/"
@@ -35,64 +35,68 @@ msgstr ""
 msgid "elementary, Inc."
 msgstr ""
 
-#: data/sound.metainfo.xml.in:34 data/sound.metainfo.xml.in:47
-#: data/sound.metainfo.xml.in:61 data/sound.metainfo.xml.in:73
-#: data/sound.metainfo.xml.in:83
+#: data/sound.metainfo.xml.in:34 data/sound.metainfo.xml.in:48
+#: data/sound.metainfo.xml.in:61 data/sound.metainfo.xml.in:75
+#: data/sound.metainfo.xml.in:87
 msgid "Minor updates"
 msgstr "Pienet päivitykset"
 
 #: data/sound.metainfo.xml.in:36
-msgid "Use device form factor when available to assign more accurate icons"
+msgid "Use circle buttons for playback controls"
 msgstr ""
 
 #: data/sound.metainfo.xml.in:37
-msgid "Provide a fallback device icon when none is available"
+msgid "Middle-clicking the microphone indicator no longer mutes monitors"
 msgstr ""
 
-#: data/sound.metainfo.xml.in:38
-msgid "Fix missing switch animations"
-msgstr ""
-
-#: data/sound.metainfo.xml.in:39
-msgid "Use the volume step value from GNOME Settings Daemon"
-msgstr ""
-
-#: data/sound.metainfo.xml.in:40 data/sound.metainfo.xml.in:50
-#: data/sound.metainfo.xml.in:66 data/sound.metainfo.xml.in:76
-#: data/sound.metainfo.xml.in:86
+#: data/sound.metainfo.xml.in:38 data/sound.metainfo.xml.in:54
+#: data/sound.metainfo.xml.in:64 data/sound.metainfo.xml.in:80
+#: data/sound.metainfo.xml.in:90
 msgid "Updated translations"
 msgstr "Päivitetyt kielikäännökset"
 
-#: data/sound.metainfo.xml.in:49
-msgid "Show more specific icons for different types of devices"
+#: data/sound.metainfo.xml.in:50
+msgid "Use device form factor when available to assign more accurate icons"
 msgstr ""
 
-#: data/sound.metainfo.xml.in:57
-msgid "New features"
-msgstr "Uudet ominaisuudet"
+#: data/sound.metainfo.xml.in:51
+msgid "Provide a fallback device icon when none is available"
+msgstr ""
 
-#: data/sound.metainfo.xml.in:59
-msgid "select specific input and output devices"
+#: data/sound.metainfo.xml.in:52
+msgid "Fix missing switch animations"
+msgstr ""
+
+#: data/sound.metainfo.xml.in:53
+msgid "Use the volume step value from GNOME Settings Daemon"
 msgstr ""
 
 #: data/sound.metainfo.xml.in:63
+msgid "Show more specific icons for different types of devices"
+msgstr ""
+
+#: data/sound.metainfo.xml.in:71
+msgid "New features"
+msgstr "Uudet ominaisuudet"
+
+#: data/sound.metainfo.xml.in:73
+msgid "select specific input and output devices"
+msgstr ""
+
+#: data/sound.metainfo.xml.in:77
 msgid "Hide temporary audio players when they stop"
 msgstr ""
 
-#: data/sound.metainfo.xml.in:64
+#: data/sound.metainfo.xml.in:78
 msgid "Add a tooltip on hover"
 msgstr ""
 
-#: data/sound.metainfo.xml.in:65
+#: data/sound.metainfo.xml.in:79
 msgid "Minor visual improvements"
 msgstr ""
 
-#: data/sound.metainfo.xml.in:75
+#: data/sound.metainfo.xml.in:89
 msgid "Fix duplicate default player"
-msgstr ""
-
-#: data/sound.metainfo.xml.in:85
-msgid "Fix opacity flash during icon animation"
 msgstr ""
 
 #~ msgid "Performance improvements"
