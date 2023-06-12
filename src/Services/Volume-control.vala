@@ -516,12 +516,12 @@ public class Sound.Services.VolumeControlPulse : VolumeControl {
     }
 
     void source_info_list_callback_set_mute (PulseAudio.Context context, PulseAudio.SourceInfo? source, int eol) {
-        if (source != null)
+        if (source != null && source.monitor_of_sink == -1)
             context.set_source_mute_by_index (source.index, true, null);
     }
 
     void source_info_list_callback_unset_mute (PulseAudio.Context context, PulseAudio.SourceInfo? source, int eol) {
-        if (source != null)
+        if (source != null && source.monitor_of_sink == -1)
             context.set_source_mute_by_index (source.index, false, null);
     }
 
