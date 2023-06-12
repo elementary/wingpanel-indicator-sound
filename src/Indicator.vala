@@ -535,7 +535,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
             string icon;
 
             if (is_mic) {
-                if (volume_control.mic_volume <= 0 || volume_control.mic_mute) {
+                if (volume_control.mic_volume <= 0 || volume_control.micMute) {
                     icon = "microphone-sensitivity-muted-symbolic";
                 } else {
                     icon = "audio-input-microphone-symbolic";
