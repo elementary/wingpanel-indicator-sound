@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-06-12 19:56+0000\n"
-"PO-Revision-Date: 2022-10-21 16:57+0000\n"
+"PO-Revision-Date: 2023-06-15 03:07+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://l10n.elementary.io/projects/wingpanel/"
 "indicator-sound-extra/he/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 4.4.2\n"
+"X-Generator: Weblate 4.17\n"
 
 #: data/sound.metainfo.xml.in:11
 msgid "Sound Indicator"
@@ -43,11 +43,11 @@ msgstr "עדכונים משניים"
 
 #: data/sound.metainfo.xml.in:36
 msgid "Use circle buttons for playback controls"
-msgstr ""
+msgstr "להשתמש בכפתורי הבחירה כפקדי נגינה"
 
 #: data/sound.metainfo.xml.in:37
 msgid "Middle-clicking the microphone indicator no longer mutes monitors"
-msgstr ""
+msgstr "לחיצה אמצעית על מחוון המיקרופון לא משתיקה עוד את המסכים"
 
 #: data/sound.metainfo.xml.in:38 data/sound.metainfo.xml.in:54
 #: data/sound.metainfo.xml.in:64 data/sound.metainfo.xml.in:80
