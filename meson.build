@@ -21,10 +21,10 @@ add_project_arguments(
 
 add_project_arguments('-DG_LOG_DOMAIN="io.elementary.wingpanel.sound"', language:'c')
 
-asresources = gnome.compile_resources(
-    'as-resources', 'data/mask.gresource.xml',
-    source_dir: 'data',
-    c_name: 'as'
+gresource = gnome.compile_resources(
+    'gresource',
+    'data' / 'gresource.xml',
+    source_dir: 'data'
 )
 
 wingpanel_dep = dependency('wingpanel', version: '>=2.1.0')
@@ -56,7 +56,7 @@ shared_module(
     'src/Services/Manager.vala',
     'src/Services/Device.vala',
     'src/Services/MediaPlayer.vala',
-    asresources,
+    gresource,
     dependencies: [
         dependency('glib-2.0'),
         dependency('gio-2.0'),

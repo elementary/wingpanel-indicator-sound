@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+  <gresource prefix="/io/elementary/wingpanel/sound">
+    <file compressed="true" preprocess="xml-stripblanks">image-mask.svg</file>
+    <file alias="indicator.css" compressed="true">indicator.css</file>
+    <file compressed= "true">PlayerRow.css</file>
+  </gresource>
+  <gresource prefix="org/elementary/wingpanel/icons">
+    <file alias="16x16/devices/audio-subwoofer-symbolic.svg" compressed="true" preprocess="xml-stripblanks">16/audio-subwoofer-symbolic.svg</file>
+    <file alias="16x16/devices/audio-car-symbolic.svg" compressed="true" preprocess="xml-stripblanks">16/audio-car-symbolic.svg</file>
+
+    <file alias="16x16@2/devices/audio-subwoofer-symbolic.svg" compressed="true" preprocess="xml-stripblanks">16/audio-subwoofer-symbolic.svg</file>
+    <file alias="16x16@2/devices/audio-car-symbolicsvg" compressed="true" preprocess="xml-stripblanks">16/audio-car-symbolic.svg</file>
+
+    <file alias="24x24/status/indicator-microphone-symbolic.svg" compressed="true" preprocess="xml-stripblanks">24/microphone.svg</file>
+    <file alias="24x24/status/indicator-microphone-muted-symbolic.svg" compressed="true" preprocess="xml-stripblanks">24/muted.svg</file>
+    <file alias="24x24/status/indicator-microphone-muted-10-symbolic.svg" compressed="true" preprocess="xml-stripblanks">24/muted-10.svg</file>
+    <file alias="24x24/status/indicator-microphone-muted-20-symbolic.svg" compressed="true" preprocess="xml-stripblanks">24/muted-20.svg</file>
+    <file alias="24x24/status/indicator-microphone-muted-30-symbolic.svg" compressed="true" preprocess="xml-stripblanks">24/muted-30.svg</file>
+    <file alias="24x24/status/indicator-microphone-muted-40-symbolic.svg" compressed="true" preprocess="xml-stripblanks">24/muted-40.svg</file>
+    <file alias="24x24/status/indicator-microphone-muted-50-symbolic.svg" compressed="true" preprocess="xml-stripblanks">24/muted-50.svg</file>
+    <file alias="24x24/status/indicator-microphone-muted-60-symbolic.svg" compressed="true" preprocess="xml-stripblanks">24/muted-60.svg</file>
+    <file alias="24x24/status/indicator-microphone-muted-70-symbolic.svg" compressed="true" preprocess="xml-stripblanks">24/muted-70.svg</file>
+    <file alias="24x24/status/indicator-microphone-muted-80-symbolic.svg" compressed="true" preprocess="xml-stripblanks">24/muted-80.svg</file>
+    <file alias="24x24/status/indicator-microphone-muted-90-symbolic.svg" compressed="true" preprocess="xml-stripblanks">24/muted-90.svg</file>
+
+    <file alias="24x24@2/status/indicator-microphone-symbolic.svg" compressed="true" preprocess="xml-stripblanks">24/microphone.svg</file>
+    <file alias="24x24@2/status/indicator-microphone-muted-symbolic.svg" compressed="true" preprocess="xml-stripblanks">24/muted.svg</file>
+    <file alias="24x24@2/status/indicator-microphone-muted-10-symbolic.svg" compressed="true" preprocess="xml-stripblanks">24/muted-10.svg</file>
+    <file alias="24x24@2/status/indicator-microphone-muted-20-symbolic.svg" compressed="true" preprocess="xml-stripblanks">24/muted-20.svg</file>
+    <file alias="24x24@2/status/indicator-microphone-muted-30-symbolic.svg" compressed="true" preprocess="xml-stripblanks">24/muted-30.svg</file>
+    <file alias="24x24@2/status/indicator-microphone-muted-40-symbolic.svg" compressed="true" preprocess="xml-stripblanks">24/muted-40.svg</file>
+    <file alias="24x24@2/status/indicator-microphone-muted-50-symbolic.svg" compressed="true" preprocess="xml-stripblanks">24/muted-50.svg</file>
+    <file alias="24x24@2/status/indicator-microphone-muted-60-symbolic.svg" compressed="true" preprocess="xml-stripblanks">24/muted-60.svg</file>
+    <file alias="24x24@2/status/indicator-microphone-muted-70-symbolic.svg" compressed="true" preprocess="xml-stripblanks">24/muted-70.svg</file>
+    <file alias="24x24@2/status/indicator-microphone-muted-80-symbolic.svg" compressed="true" preprocess="xml-stripblanks">24/muted-80.svg</file>
+    <file alias="24x24@2/status/indicator-microphone-muted-90-symbolic.svg" compressed="true" preprocess="xml-stripblanks">24/muted-90.svg</file>
+
+    <file alias="48x48/status/indicator-microphone-symbolic.svg" compressed="true" preprocess="xml-stripblanks">48/microphone.svg</file>
+    <file alias="48x48/status/indicator-microphone-muted-symbolic.svg" compressed="true" preprocess="xml-stripblanks">48/muted.svg</file>
+
+    <file alias="48x48@2/status/indicator-microphone-symbolic.svg" compressed="true" preprocess="xml-stripblanks">48/microphone.svg</file>
+    <file alias="48x48@2/status/indicator-microphone-muted-symbolic.svg" compressed="true" preprocess="xml-stripblanks">48/muted.svg</file>
+  </gresource>
+</gresources>

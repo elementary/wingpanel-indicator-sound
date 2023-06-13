@@ -40,6 +40,7 @@
       </description>
       <issues>
         <issue url="https://github.com/elementary/wingpanel-indicator-sound/issues/12">Buttons jump around when skipping songs</issue>
+        <issue url="https://github.com/elementary/wingpanel-indicator-sound/issues/254">Update microphone icon</issue>
       </issues>
     </release>
 

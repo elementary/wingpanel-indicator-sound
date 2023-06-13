@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   height="24"
+   width="24"
+   version="1.1"
+   id="svg6"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs10" />
+  <path
+     id="path2"
+     style="isolation:auto;mix-blend-mode:normal;marker:none;font-variation-settings:normal;opacity:0.5;vector-effect:none;fill:#666666;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"
+     d="M 12 5 C 10.892001 5 10 5.8920011 10 7 L 10 10.037109 L 13.810547 13.849609 C 13.931358 13.591677 14 13.30464 14 13 L 14 7 C 14 5.8920011 13.107999 5 12 5 z M 7 10 L 7 11 L 8 11 L 8 13 A 3.981 3.981 0 0 0 11 16.861328 L 11 19 L 10 19 L 10 20 L 14 20 L 14 19 L 13 19 L 13 16.861328 A 3.981 3.981 0 0 0 14.392578 16.197266 L 13.681641 15.486328 C 13.202545 15.810107 12.624237 16 12 16 C 10.338002 16 9 14.661998 9 13 L 9 10.802734 L 8.1972656 10 L 7 10 z M 15 10 L 15 13 C 15 13.583066 14.832444 14.124454 14.546875 14.583984 L 15.265625 15.304688 A 3.981 3.981 0 0 0 16 13 L 16 11 L 17 11 L 17 10 L 15 10 z M 10 11.802734 L 10 13 C 10 14.107999 10.892001 15 12 15 C 12.34625 15 12.671646 14.913354 12.955078 14.759766 L 10 11.802734 z " />
+  <rect
+     style="font-variation-settings:normal;vector-effect:none;fill:#555761;fill-opacity:1;stroke:none;stroke-width:0.992001;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;marker:none;stop-color:#000000"
+     id="rect2480-1-6"
+     width="1.248"
+     height="19.799999"
+     x="-0.16605952"
+     y="7.5239558"
+     rx="0.5"
+     ry="0.5"
+     transform="rotate(-45)" />
+</svg>
