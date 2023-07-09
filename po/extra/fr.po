@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-06-12 19:56+0000\n"
-"PO-Revision-Date: 2023-02-16 09:25+0000\n"
+"PO-Revision-Date: 2023-07-07 12:07+0000\n"
 "Last-Translator: Nathan <bonnemainsnathan@gmail.com>\n"
 "Language-Team: French <https://l10n.elementary.io/projects/wingpanel/"
 "indicator-sound-extra/fr/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.14.2\n"
+"X-Generator: Weblate 4.17\n"
 
 #: data/sound.metainfo.xml.in:11
 msgid "Sound Indicator"
@@ -43,11 +43,13 @@ msgstr "Mises à jour mineures"
 
 #: data/sound.metainfo.xml.in:36
 msgid "Use circle buttons for playback controls"
-msgstr ""
+msgstr "Utilisation de boutons circulaires pour les contrôles de lecture"
 
 #: data/sound.metainfo.xml.in:37
 msgid "Middle-clicking the microphone indicator no longer mutes monitors"
 msgstr ""
+"Effectuer un clic central sur l'indicateur de micro ne coupe désormais plus "
+"le son des écrans"
 
 #: data/sound.metainfo.xml.in:38 data/sound.metainfo.xml.in:54
 #: data/sound.metainfo.xml.in:64 data/sound.metainfo.xml.in:80

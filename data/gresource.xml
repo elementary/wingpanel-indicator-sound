@@ -5,7 +5,7 @@
     <file alias="indicator.css" compressed="true">indicator.css</file>
     <file compressed= "true">PlayerRow.css</file>
   </gresource>
-  <gresource prefix="org/elementary/wingpanel/icons">
+  <gresource prefix="/org/elementary/wingpanel/icons">
     <file alias="16x16/devices/audio-subwoofer-symbolic.svg" compressed="true" preprocess="xml-stripblanks">16/audio-subwoofer-symbolic.svg</file>
     <file alias="16x16/devices/audio-car-symbolic.svg" compressed="true" preprocess="xml-stripblanks">16/audio-car-symbolic.svg</file>
 

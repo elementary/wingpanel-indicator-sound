@@ -66,6 +66,10 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
         visible = true;
 
+        // Prevent a race that skips automatic resource loading
+        // https://github.com/elementary/wingpanel-indicator-bluetooth/issues/203
+        Gtk.IconTheme.get_default ().add_resource_path ("/org/elementary/wingpanel/icons");
+
         display_widget = new DisplayWidget ();
 
         volume_control = new Services.VolumeControlPulse (); /* sub-class of Services.VolumeControl */
