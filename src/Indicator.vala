@@ -64,6 +64,8 @@ public class Sound.Indicator : Wingpanel.Indicator {
         var gnome_settings = new GLib.Settings ("org.gnome.settings-daemon.plugins.media-keys");
         gnome_settings.bind ("volume-step", this, "volume-step", SettingsBindFlags.DEFAULT);
 
+        DBus.init (this);
+
         visible = true;
 
         // Prevent a race that skips automatic resource loading
@@ -441,7 +443,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
         return false;
     }
 
-    private void handle_change (double change, bool is_mic) {
+    public void handle_change (double change, bool is_mic) {
         double v;
 
         if (is_mic) {
@@ -467,6 +469,12 @@ public class Sound.Indicator : Wingpanel.Indicator {
         }
 
         notify_change (is_mic);
+    }
+
+    public void dbus_handle_mute () {
+        volume_control.toggle_mute ();
+
+        notify_change (false);
     }
 
     public override void opened () {

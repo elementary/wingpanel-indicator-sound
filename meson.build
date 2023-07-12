@@ -42,6 +42,7 @@ config_file = configure_file(
 shared_module(
     meson.project_name(),
     config_file,
+    'src/DBus.vala',
     'src/Device.vala',
     'src/Indicator.vala',
     'src/Widgets/DisplayWidget.vala',
