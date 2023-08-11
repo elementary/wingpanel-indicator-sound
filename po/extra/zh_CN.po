@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-06-12 19:56+0000\n"
-"PO-Revision-Date: 2021-11-01 08:22+0000\n"
-"Last-Translator: Yuchen Deng <loaden@gmail.com>\n"
+"PO-Revision-Date: 2023-08-12 01:08+0000\n"
+"Last-Translator: imgradeone Yan <imgradeone@outlook.com>\n"
 "Language-Team: Chinese (Simplified) <https://l10n.elementary.io/projects/"
 "wingpanel/indicator-sound-extra/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -17,17 +17,17 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.4.2\n"
+"X-Generator: Weblate 4.17\n"
 
 #: data/sound.metainfo.xml.in:11
 msgid "Sound Indicator"
-msgstr ""
+msgstr "声音托盘图标"
 
 #: data/sound.metainfo.xml.in:12
 msgid ""
 "Adjust speaker and microphone volume or see Now Playing information and "
 "media controls"
-msgstr ""
+msgstr "调整扬声器与麦克风音量，显示“正在播放”信息与媒体控制按钮"
 
 #: data/sound.metainfo.xml.in:27
 msgid "elementary, Inc."
