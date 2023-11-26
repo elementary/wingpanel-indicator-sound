@@ -106,7 +106,7 @@ public class Sound.Widgets.PlayerList : Gtk.Box {
      * @param iface The constructed MprisClient instance
      */
     void add_iface (string name, Services.MprisClient iface) {
-        if (iface.player.desktop_entry == default_player.get_id ().replace (".desktop", "")) {
+        if ((default_player != null) && (iface.player.desktop_entry == default_player.get_id ().replace (".desktop", ""))) {
             default_widget.mpris_name = name;
             default_widget.client = iface;
             ifaces.insert (name, default_widget);
