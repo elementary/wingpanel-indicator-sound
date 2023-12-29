@@ -154,6 +154,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
         if (volume != volume_scale.scale_widget.get_value ()) {
             volume_scale.scale_widget.set_value (volume);
             display_widget.icon_name = get_volume_icon (volume);
+            display_widget.volume = volume;
         }
     }
 
