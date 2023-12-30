@@ -27,6 +27,7 @@ public class DisplayWidget : Gtk.Box {
     public signal void volume_press_event (Gdk.EventButton e);
     public signal void mic_press_event (Gdk.EventButton e);
 
+    private Gtk.Revealer volume_levelbar_revealer;
     private uint volume_timeout = 0;
 
     construct {
@@ -42,7 +43,7 @@ public class DisplayWidget : Gtk.Box {
         };
         volume_levelbar.get_style_context ().add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
 
-        var volume_levelbar_revealer = new Gtk.Revealer () {
+        volume_levelbar_revealer = new Gtk.Revealer () {
             child = volume_levelbar,
             reveal_child = false,
             transition_type = SLIDE_LEFT
@@ -119,19 +120,21 @@ public class DisplayWidget : Gtk.Box {
             }
         });
 
-        notify["volume"].connect (() => {
-            if (volume_timeout != 0) {
-                Source.remove (volume_timeout);
-                volume_timeout = 0;
-            }
+        Sound.DBus.init ();
+        Sound.DBus.get_default ().on_handle_osd.connect (show_volume_levelbar);
+    }
 
-            volume_levelbar_revealer.reveal_child = true;
+    public void show_volume_levelbar () {
+        if (volume_timeout != 0) {
+            Source.remove (volume_timeout);
+            volume_timeout = 0;
+        }
 
-            if (volume_timeout == 0) {
-                volume_timeout = Timeout.add_seconds (1, () => {
-                    volume_levelbar_revealer.reveal_child = false;
-                });
-            }
+        volume_levelbar_revealer.reveal_child = true;
+
+        volume_timeout = Timeout.add_seconds (1, () => {
+            volume_levelbar_revealer.reveal_child = false;
+            return Source.REMOVE;
         });
     }
 }
