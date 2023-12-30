@@ -134,6 +134,7 @@ public class DisplayWidget : Gtk.Box {
 
         volume_timeout = Timeout.add_seconds (1, () => {
             volume_levelbar_revealer.reveal_child = false;
+            volume_timeout = 0;
             return Source.REMOVE;
         });
     }
