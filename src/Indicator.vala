@@ -16,6 +16,7 @@
 */
 
 public class Sound.Indicator : Wingpanel.Indicator {
+    public bool is_in_session { get; construct; }
     public bool natural_scroll_touchpad { get; set; }
     public bool natural_scroll_mouse { get; set; }
     public int volume_step { get; set; }
@@ -45,8 +46,11 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
     public static GLib.Settings settings;
 
-    public Indicator () {
-        Object (code_name: Wingpanel.Indicator.SOUND);
+    public Indicator (bool is_in_session) {
+        Object (
+            code_name: Wingpanel.Indicator.SOUND,
+            is_in_session: is_in_session
+        );
     }
 
     static construct {
@@ -303,15 +307,19 @@ public class Sound.Indicator : Wingpanel.Indicator {
             };
 
             main_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
-            main_box.add (mpris);
-            main_box.add (new Gtk.Separator (Gtk.Orientation.HORIZONTAL));
+            if (is_in_session) {
+                main_box.add (mpris);
+                main_box.add (new Gtk.Separator (Gtk.Orientation.HORIZONTAL));
+            }
             main_box.add (volume_scale);
             main_box.add (output_device_manager);
-            main_box.add (new Gtk.Separator (Gtk.Orientation.HORIZONTAL));
-            main_box.add (mic_scale);
-            main_box.add (input_device_manager);
-            main_box.add (mic_separator);
-            main_box.add (settings_button);
+            if (is_in_session) {
+                main_box.add (new Gtk.Separator (Gtk.Orientation.HORIZONTAL));
+                main_box.add (mic_scale);
+                main_box.add (input_device_manager);
+                main_box.add (mic_separator);
+                main_box.add (settings_button);
+            }
 
             mic_scale.notify["active"].connect (on_mic_switch_change);
 
@@ -587,10 +595,6 @@ public class Sound.Indicator : Wingpanel.Indicator {
 public Wingpanel.Indicator? get_indicator (Module module, Wingpanel.IndicatorManager.ServerType server_type) {
     debug ("Activating Sound Indicator");
 
-    if (server_type != Wingpanel.IndicatorManager.ServerType.SESSION) {
-        return null;
-    }
-
-    var indicator = new Sound.Indicator ();
+    var indicator = new Sound.Indicator (server_type == SESSION);
     return indicator;
 }
