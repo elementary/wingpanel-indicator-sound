@@ -32,6 +32,12 @@ public class Sound.Indicator : Wingpanel.Indicator {
     private Notify.Notification? notification;
     private Services.VolumeControlPulse volume_control;
 
+    private ShellKeyGrabber? key_grabber = null;
+    private ulong key_grabber_id = 0;
+    private uint audio_raise_volume_action_id = 0;
+    private uint audio_lower_volume_action_id = 0;
+    private uint audio_mute_action_id = 0;
+
     private bool open = false;
     private bool mute_blocks_sound = false;
     private uint sound_was_blocked_timeout_id;
@@ -129,6 +135,70 @@ public class Sound.Indicator : Wingpanel.Indicator {
                                  Canberra.PROP_APPLICATION_LANGUAGE, locale,
                                  null);
         ca_context.open ();
+
+        Bus.watch_name (BusType.SESSION, "org.gnome.Shell", BusNameWatcherFlags.NONE, on_watch, on_unwatch);
+    }
+
+    private void on_watch (GLib.DBusConnection connection) {
+        connection.get_proxy.begin<ShellKeyGrabber> (
+            "org.gnome.Shell", "/org/gnome/Shell", NONE, null,
+            (obj, res) => {
+                try {
+                    key_grabber = ((GLib.DBusConnection) obj).get_proxy.end<ShellKeyGrabber> (res);
+                    setup_grabs ();
+                } catch (Error e) {
+                    critical (e.message);
+                    key_grabber = null;
+                }
+            }
+        );
+    }
+
+    private void on_unwatch (GLib.DBusConnection connection) {
+        if (key_grabber_id != 0) {
+            key_grabber.disconnect (key_grabber_id);
+            key_grabber_id = 0;
+        }
+        key_grabber = null;
+        critical ("Lost connection to org.gnome.Shell");
+    }
+
+    private void setup_grabs () requires (key_grabber != null) {
+        Accelerator[] accelerators = {
+            { "XF86AudioRaiseVolume", ActionMode.NONE, Meta.KeyBindingFlags.NONE },
+            { "XF86AudioLowerVolume", ActionMode.NONE, Meta.KeyBindingFlags.NONE },
+            { "XF86AudioMute", ActionMode.NONE, Meta.KeyBindingFlags.NONE }
+        };
+
+        uint[] action_ids;
+        try {
+            action_ids = key_grabber.grab_accelerators (accelerators);
+        } catch (Error e) {
+            critical (e.message);
+            return;
+        }
+        
+        if (action_ids.length != 3) {
+            critical ("Incorrect action_ids size");
+            return;
+        }
+
+        audio_raise_volume_action_id = action_ids[0];
+        audio_lower_volume_action_id = action_ids[1];
+        audio_mute_action_id = action_ids[2];
+
+        key_grabber_id = key_grabber.accelerator_activated.connect (on_accelerator_activated);
+    }
+
+    private void on_accelerator_activated (uint action, GLib.HashTable<string, GLib.Variant> parameters_dict) {
+        if (action == audio_raise_volume_action_id) {
+            handle_change (1.0, false);
+        } else if (action == audio_lower_volume_action_id) {
+            handle_change (-1.0, false);
+        } else if (action == audio_mute_action_id) {
+            volume_control.toggle_mute ();
+            notify_change (false);
+        }
     }
 
     ~Indicator () {

@@ -56,6 +56,7 @@ shared_module(
     'src/Services/Manager.vala',
     'src/Services/Device.vala',
     'src/Services/MediaPlayer.vala',
+    'src/Services/ShellKeyGrabber.vala',
     gresource,
     dependencies: [
         dependency('glib-2.0'),
