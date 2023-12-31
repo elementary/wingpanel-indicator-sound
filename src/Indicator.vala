@@ -34,9 +34,9 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
     private ShellKeyGrabber? key_grabber = null;
     private ulong key_grabber_id = 0;
-    private uint audio_raise_volume_action_id = 0;
-    private uint audio_lower_volume_action_id = 0;
-    private uint audio_mute_action_id = 0;
+    private GLib.GenericSet<uint> volume_up_action_ids = new GLib.GenericSet<uint> (null, null);
+    private GLib.GenericSet<uint> volume_down_action_ids = new GLib.GenericSet<uint> (null, null);
+    private GLib.GenericSet<uint> volume_mute_action_ids = new GLib.GenericSet<uint> (null, null);
 
     private bool open = false;
     private bool mute_blocks_sound = false;
@@ -164,11 +164,34 @@ public class Sound.Indicator : Wingpanel.Indicator {
     }
 
     private void setup_grabs () requires (key_grabber != null) {
-        Accelerator[] accelerators = {
-            { "XF86AudioRaiseVolume", ActionMode.NONE, Meta.KeyBindingFlags.NONE },
-            { "XF86AudioLowerVolume", ActionMode.NONE, Meta.KeyBindingFlags.NONE },
-            { "XF86AudioMute", ActionMode.NONE, Meta.KeyBindingFlags.NONE }
-        };
+        Accelerator[] accelerators = {};
+
+        var volume_up_keybindings = settings.get_strv ("volume-up");
+        for (int i = 0; i < volume_up_keybindings.length; i++) {
+            accelerators += Accelerator () {
+                name = volume_up_keybindings[i],
+                mode_flags = ActionMode.NONE,
+                grab_flags = Meta.KeyBindingFlags.NONE
+            };
+        }
+
+        var volume_down_keybindings = settings.get_strv ("volume-down");
+        for (int i = 0; i < volume_down_keybindings.length; i++) {
+            accelerators += Accelerator () {
+                name = volume_down_keybindings[i],
+                mode_flags = ActionMode.NONE,
+                grab_flags = Meta.KeyBindingFlags.NONE
+            };
+        }
+
+        var volume_mute_keybindings = settings.get_strv ("volume-mute");
+        for (int i = 0; i < volume_mute_keybindings.length; i++) {
+            accelerators += Accelerator () {
+                name = volume_mute_keybindings[i],
+                mode_flags = ActionMode.NONE,
+                grab_flags = Meta.KeyBindingFlags.IGNORE_AUTOREPEAT
+            };
+        }
 
         uint[] action_ids;
         try {
@@ -177,25 +200,26 @@ public class Sound.Indicator : Wingpanel.Indicator {
             critical (e.message);
             return;
         }
-        
-        if (action_ids.length != 3) {
-            critical ("Incorrect action_ids size");
-            return;
-        }
 
-        audio_raise_volume_action_id = action_ids[0];
-        audio_lower_volume_action_id = action_ids[1];
-        audio_mute_action_id = action_ids[2];
+        for (int i = 0; i < action_ids.length; i++) {
+            if (i < volume_up_keybindings.length) {
+                volume_up_action_ids.add (action_ids[i]);
+            } else if (i < volume_up_keybindings.length + volume_down_keybindings.length) {
+                volume_down_action_ids.add (action_ids[i]);
+            } else {
+                volume_mute_action_ids.add (action_ids[i]);
+            }
+        }
 
         key_grabber_id = key_grabber.accelerator_activated.connect (on_accelerator_activated);
     }
 
     private void on_accelerator_activated (uint action, GLib.HashTable<string, GLib.Variant> parameters_dict) {
-        if (action == audio_raise_volume_action_id) {
+        if (action in volume_up_action_ids) {
             handle_change (1.0, false);
-        } else if (action == audio_lower_volume_action_id) {
+        } else if (action in volume_down_action_ids) {
             handle_change (-1.0, false);
-        } else if (action == audio_mute_action_id) {
+        } else if (action in volume_mute_action_ids) {
             volume_control.toggle_mute ();
             notify_change (false);
         }
