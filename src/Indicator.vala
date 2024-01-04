@@ -135,6 +135,19 @@ public class Sound.Indicator : Wingpanel.Indicator {
         ca_context.open ();
 
         Bus.watch_name (BusType.SESSION, "org.gnome.Shell", BusNameWatcherFlags.NONE, on_watch, on_unwatch);
+
+        settings.changed.connect ((key) => {
+            if (key != "volume-up" &&
+                key != "volume-down" &&
+                key != "volume-mute") {
+                return;
+            }
+
+            if (key_grabber != null) {
+                ungrab_keybindings ();
+                setup_grabs ();
+            }
+        });
     }
 
     private void on_watch (GLib.DBusConnection connection) {
@@ -160,6 +173,16 @@ public class Sound.Indicator : Wingpanel.Indicator {
         key_grabber = null;
         critical ("Lost connection to org.gnome.Shell");
     }
+
+    private void ungrab_keybindings () requires (key_grabber != null) {
+        var actions = saved_action_ids.get_values ().to_array ();
+
+        try {
+            key_grabber.ungrab_accelerators (actions);
+        } catch (Error e) {
+            critical ("Couldn't ungrab accelerators: %s", e.message);
+        }
+    } 
 
     private void setup_grabs () requires (key_grabber != null) {
         Accelerator[] accelerators = {};
