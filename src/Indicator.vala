@@ -34,9 +34,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
     private ShellKeyGrabber? key_grabber = null;
     private ulong key_grabber_id = 0;
-    private GLib.GenericSet<uint> volume_up_action_ids = new GLib.GenericSet<uint> (null, null);
-    private GLib.GenericSet<uint> volume_down_action_ids = new GLib.GenericSet<uint> (null, null);
-    private GLib.GenericSet<uint> volume_mute_action_ids = new GLib.GenericSet<uint> (null, null);
+    private Gee.HashMultiMap<string, uint> saved_action_ids = new Gee.HashMultiMap<string, uint> ();
 
     private bool open = false;
     private bool mute_blocks_sound = false;
@@ -203,11 +201,11 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
         for (int i = 0; i < action_ids.length; i++) {
             if (i < volume_up_keybindings.length) {
-                volume_up_action_ids.add (action_ids[i]);
+                saved_action_ids.@set ("volume-up", action_ids[i]);
             } else if (i < volume_up_keybindings.length + volume_down_keybindings.length) {
-                volume_down_action_ids.add (action_ids[i]);
+                saved_action_ids.@set ("volume-down", action_ids[i]);
             } else {
-                volume_mute_action_ids.add (action_ids[i]);
+                saved_action_ids.@set ("volume-mute", action_ids[i]);
             }
         }
 
@@ -215,11 +213,11 @@ public class Sound.Indicator : Wingpanel.Indicator {
     }
 
     private void on_accelerator_activated (uint action, GLib.HashTable<string, GLib.Variant> parameters_dict) {
-        if (action in volume_up_action_ids) {
+        if (action in saved_action_ids["volume-up"]) {
             handle_change (1.0, false);
-        } else if (action in volume_down_action_ids) {
+        } else if (action in saved_action_ids["volume-down"]) {
             handle_change (-1.0, false);
-        } else if (action in volume_mute_action_ids) {
+        } else if (action in saved_action_ids["volume-mute"]) {
             volume_control.toggle_mute ();
             notify_change (false);
         }
