@@ -182,7 +182,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
         } catch (Error e) {
             critical ("Couldn't ungrab accelerators: %s", e.message);
         }
-    } 
+    }
 
     private void setup_grabs () requires (key_grabber != null) {
         Accelerator[] accelerators = {};
