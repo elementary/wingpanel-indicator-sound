@@ -15,5 +15,17 @@
             <default>[]</default>
             <summary>Previously used audio devices.</summary>
         </key>
+        <key type="as" name="volume-up">
+            <default><![CDATA[['XF86AudioRaiseVolume', '<Ctrl>XF86AudioRaiseVolume']]]></default>
+            <summary>Volume up</summary>
+        </key>
+        <key type="as" name="volume-down">
+            <default><![CDATA[['XF86AudioLowerVolume', '<Ctrl>XF86AudioLowerVolume']]]></default>
+            <summary>Volume down</summary>
+        </key>
+        <key type="as" name="volume-mute">
+            <default><![CDATA[['XF86AudioMute']]]></default>
+            <summary>Volume mute/unmute</summary>
+        </key>
     </schema>
 </schemalist>
