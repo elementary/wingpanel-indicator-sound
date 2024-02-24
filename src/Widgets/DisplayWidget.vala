@@ -18,6 +18,7 @@
 public class DisplayWidget : Gtk.Box {
     public bool show_mic { get; set; }
     public bool mic_muted { get; set; }
+    public double volume { get; set; }
     public string icon_name { get; set; }
 
     public signal void volume_scroll_event (Gdk.EventScroll e);
@@ -26,12 +27,25 @@ public class DisplayWidget : Gtk.Box {
     public signal void volume_press_event (Gdk.EventButton e);
     public signal void mic_press_event (Gdk.EventButton e);
 
+    private uint volume_timeout = 0;
+
     construct {
         var provider = new Gtk.CssProvider ();
         provider.load_from_resource ("io/elementary/wingpanel/sound/indicator.css");
 
         var volume_icon = new Gtk.Image () {
             pixel_size = 24
+        };
+
+        var volume_levelbar = new Gtk.LevelBar () {
+            valign = CENTER
+        };
+        volume_levelbar.get_style_context ().add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+
+        var volume_levelbar_revealer = new Gtk.Revealer () {
+            child = volume_levelbar,
+            reveal_child = false,
+            transition_type = SLIDE_LEFT
         };
 
         var mic_icon = new Gtk.Spinner () {
@@ -50,6 +64,7 @@ public class DisplayWidget : Gtk.Box {
         valign = Gtk.Align.CENTER;
         add (mic_revealer);
         add (volume_icon);
+        add (volume_levelbar_revealer);
 
         /* SMOOTH_SCROLL_MASK has no effect on this widget for reasons that are not
          * entirely clear. Only normal scroll events are received even if the SMOOTH_SCROLL_MASK
@@ -89,11 +104,33 @@ public class DisplayWidget : Gtk.Box {
             GLib.BindingFlags.BIDIRECTIONAL | GLib.BindingFlags.SYNC_CREATE
         );
 
+        bind_property (
+            "volume",
+            volume_levelbar,
+            "value",
+            SYNC_CREATE
+        );
+
         notify["mic-muted"].connect (() => {
             if (mic_muted) {
                 mic_style_context.add_class ("disabled");
             } else {
                 mic_style_context.remove_class ("disabled");
+            }
+        });
+
+        notify["volume"].connect (() => {
+            if (volume_timeout != 0) {
+                Source.remove (volume_timeout);
+                volume_timeout = 0;
+            }
+
+            volume_levelbar_revealer.reveal_child = true;
+
+            if (volume_timeout == 0) {
+                volume_timeout = Timeout.add_seconds (1, () => {
+                    volume_levelbar_revealer.reveal_child = false;
+                });
             }
         });
     }
