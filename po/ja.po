@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-06-12 19:56+0000\n"
-"PO-Revision-Date: 2024-02-18 17:57+0000\n"
+"PO-Revision-Date: 2024-03-21 01:13+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementary.io/projects/wingpanel/"
 "wingpanel-indicator-sound/ja/>\n"
@@ -31,7 +31,7 @@ msgstr "ミュートを解除するには中クリックしてください"
 
 #: src/Indicator.vala:572
 msgid "Middle-click to mute"
-msgstr "ミュートにするには中クリックしてください"
+msgstr "ミュートするには中クリックしてください"
 
 #: src/Widgets/PlayerRow.vala:28
 msgid "Not playing"
