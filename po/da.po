@@ -3,10 +3,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-12 19:56+0000\n"
+"POT-Creation-Date: 2024-05-04 04:09+0000\n"
 "PO-Revision-Date: 2020-05-26 11:11+0000\n"
 "Last-Translator: Rantyrant <diseasemonger@gmail.com>\n"
-"Language-Team: Danish <https://l10n.elementary.io/projects/wingpanel/wingpanel-indicator-sound/da/>\n"
+"Language-Team: Danish <https://l10n.elementary.io/projects/wingpanel/"
+"wingpanel-indicator-sound/da/>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -15,20 +16,20 @@ msgstr ""
 "X-Generator: Weblate 3.9.1\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 
-#: src/Indicator.vala:297
+#: src/Indicator.vala:420
 msgid "Sound Settings…"
 msgstr "Lydindstillinger…"
 
-#: src/Indicator.vala:569
+#: src/Indicator.vala:700
 #, c-format
 msgid "Volume: %.0f%%"
 msgstr ""
 
-#: src/Indicator.vala:572
+#: src/Indicator.vala:703
 msgid "Middle-click to unmute"
 msgstr ""
 
-#: src/Indicator.vala:572
+#: src/Indicator.vala:703
 msgid "Middle-click to mute"
 msgstr ""
 
