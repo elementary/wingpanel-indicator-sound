@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-12 19:56+0000\n"
+"POT-Creation-Date: 2024-05-04 04:09+0000\n"
 "PO-Revision-Date: 2023-01-23 17:25+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <https://l10n.elementary.io/projects/wingpanel/"
@@ -31,76 +31,75 @@ msgstr ""
 "Ajuste o volume do altifalante e do microfone ou veja Agora a reproduzir "
 "informações e controlos de multimédia"
 
-#: data/sound.metainfo.xml.in:27
-msgid "elementary, Inc."
-msgstr "elementary, Inc."
-
-#: data/sound.metainfo.xml.in:34 data/sound.metainfo.xml.in:48
-#: data/sound.metainfo.xml.in:61 data/sound.metainfo.xml.in:75
-#: data/sound.metainfo.xml.in:87
+#: data/sound.metainfo.xml.in:36 data/sound.metainfo.xml.in:51
+#: data/sound.metainfo.xml.in:64 data/sound.metainfo.xml.in:78
+#: data/sound.metainfo.xml.in:90
 msgid "Minor updates"
 msgstr "Pequenas atualizações"
 
-#: data/sound.metainfo.xml.in:36
+#: data/sound.metainfo.xml.in:38
 msgid "Use circle buttons for playback controls"
 msgstr ""
 
-#: data/sound.metainfo.xml.in:37
+#: data/sound.metainfo.xml.in:39
 msgid "Middle-clicking the microphone indicator no longer mutes monitors"
 msgstr ""
 
-#: data/sound.metainfo.xml.in:38 data/sound.metainfo.xml.in:54
-#: data/sound.metainfo.xml.in:64 data/sound.metainfo.xml.in:80
-#: data/sound.metainfo.xml.in:90
+#: data/sound.metainfo.xml.in:40 data/sound.metainfo.xml.in:57
+#: data/sound.metainfo.xml.in:67 data/sound.metainfo.xml.in:83
+#: data/sound.metainfo.xml.in:93
 msgid "Updated translations"
 msgstr "Traduções atualizadas"
 
-#: data/sound.metainfo.xml.in:50
+#: data/sound.metainfo.xml.in:53
 msgid "Use device form factor when available to assign more accurate icons"
 msgstr ""
 "Utilizar o fator de forma do dispositivo quando disponível para atribuir "
 "ícones mais precisos"
 
-#: data/sound.metainfo.xml.in:51
+#: data/sound.metainfo.xml.in:54
 msgid "Provide a fallback device icon when none is available"
 msgstr ""
 "Fornecer um ícone de dispositivo de recurso quando nenhum estiver disponível"
 
-#: data/sound.metainfo.xml.in:52
+#: data/sound.metainfo.xml.in:55
 msgid "Fix missing switch animations"
 msgstr "Corrige as animações de troca em falta"
 
-#: data/sound.metainfo.xml.in:53
+#: data/sound.metainfo.xml.in:56
 msgid "Use the volume step value from GNOME Settings Daemon"
 msgstr "Usar o valor da etapa de volume do Daemon das Definições GNOME"
 
-#: data/sound.metainfo.xml.in:63
+#: data/sound.metainfo.xml.in:66
 msgid "Show more specific icons for different types of devices"
 msgstr "Mostrar ícones mais específicos para diferentes tipos de dispositivos"
 
-#: data/sound.metainfo.xml.in:71
+#: data/sound.metainfo.xml.in:74
 msgid "New features"
 msgstr "Novas funcionalidades"
 
-#: data/sound.metainfo.xml.in:73
+#: data/sound.metainfo.xml.in:76
 msgid "select specific input and output devices"
 msgstr "seleciona dispositivos específicos de entrada e saída"
 
-#: data/sound.metainfo.xml.in:77
+#: data/sound.metainfo.xml.in:80
 msgid "Hide temporary audio players when they stop"
 msgstr "Oculta temporariamente leitores de áudio quando param"
 
-#: data/sound.metainfo.xml.in:78
+#: data/sound.metainfo.xml.in:81
 msgid "Add a tooltip on hover"
 msgstr "Adiciona dica ao pairar o rato"
 
-#: data/sound.metainfo.xml.in:79
+#: data/sound.metainfo.xml.in:82
 msgid "Minor visual improvements"
 msgstr "Pequenas melhorias visuais"
 
-#: data/sound.metainfo.xml.in:89
+#: data/sound.metainfo.xml.in:92
 msgid "Fix duplicate default player"
 msgstr "Corrige reprodutor predefinido duplicado"
+
+#~ msgid "elementary, Inc."
+#~ msgstr "elementary, Inc."
 
 #~ msgid "Fix opacity flash during icon animation"
 #~ msgstr "Corrige a opacidade do flash durante a animação do ícone"

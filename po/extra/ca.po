@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-12 19:56+0000\n"
+"POT-Creation-Date: 2024-05-04 04:09+0000\n"
 "PO-Revision-Date: 2023-06-15 03:07+0000\n"
 "Last-Translator: David M <rbndavid@gmail.com>\n"
 "Language-Team: Catalan <https://l10n.elementary.io/projects/wingpanel/"
@@ -31,81 +31,80 @@ msgstr ""
 "Ajusteu el volum de l'altaveu i el micròfon o vegeu la informació del que es "
 "reprodueix i els controls."
 
-#: data/sound.metainfo.xml.in:27
-msgid "elementary, Inc."
-msgstr "elementary, Inc."
-
-#: data/sound.metainfo.xml.in:34 data/sound.metainfo.xml.in:48
-#: data/sound.metainfo.xml.in:61 data/sound.metainfo.xml.in:75
-#: data/sound.metainfo.xml.in:87
+#: data/sound.metainfo.xml.in:36 data/sound.metainfo.xml.in:51
+#: data/sound.metainfo.xml.in:64 data/sound.metainfo.xml.in:78
+#: data/sound.metainfo.xml.in:90
 msgid "Minor updates"
 msgstr "Actualitzacions menors"
 
-#: data/sound.metainfo.xml.in:36
+#: data/sound.metainfo.xml.in:38
 msgid "Use circle buttons for playback controls"
 msgstr "Usa botons circulars per als controls de reproducció"
 
-#: data/sound.metainfo.xml.in:37
+#: data/sound.metainfo.xml.in:39
 msgid "Middle-clicking the microphone indicator no longer mutes monitors"
 msgstr ""
 "Si feu clic amb el botó mitjà a l'indicador del micròfon, els monitors ja no "
 "es silencien"
 
-#: data/sound.metainfo.xml.in:38 data/sound.metainfo.xml.in:54
-#: data/sound.metainfo.xml.in:64 data/sound.metainfo.xml.in:80
-#: data/sound.metainfo.xml.in:90
+#: data/sound.metainfo.xml.in:40 data/sound.metainfo.xml.in:57
+#: data/sound.metainfo.xml.in:67 data/sound.metainfo.xml.in:83
+#: data/sound.metainfo.xml.in:93
 msgid "Updated translations"
 msgstr "Traduccions actualitzades"
 
-#: data/sound.metainfo.xml.in:50
+#: data/sound.metainfo.xml.in:53
 msgid "Use device form factor when available to assign more accurate icons"
 msgstr ""
 "Ús del factor de forma del dispositiu quan estigui disponible per assignar "
 "icones més precises"
 
-#: data/sound.metainfo.xml.in:51
+#: data/sound.metainfo.xml.in:54
 msgid "Provide a fallback device icon when none is available"
 msgstr ""
 "Proporció d'una icona de dispositiu alternativa quan no n'hi hagi cap "
 "disponible"
 
-#: data/sound.metainfo.xml.in:52
+#: data/sound.metainfo.xml.in:55
 msgid "Fix missing switch animations"
 msgstr "Correcció de les animacions dels interruptors que falten"
 
-#: data/sound.metainfo.xml.in:53
+#: data/sound.metainfo.xml.in:56
 msgid "Use the volume step value from GNOME Settings Daemon"
 msgstr ""
 "Ús del valor del pas del volum des del dimoni de la configuració del GNOME"
 
-#: data/sound.metainfo.xml.in:63
+#: data/sound.metainfo.xml.in:66
 msgid "Show more specific icons for different types of devices"
 msgstr ""
 "Es mostren icones més específiques per als diferents tipus de dispositius."
 
-#: data/sound.metainfo.xml.in:71
+#: data/sound.metainfo.xml.in:74
 msgid "New features"
 msgstr "Característiques noves"
 
-#: data/sound.metainfo.xml.in:73
+#: data/sound.metainfo.xml.in:76
 msgid "select specific input and output devices"
 msgstr "seleccioneu dispositius d’entrada i sortida específics"
 
-#: data/sound.metainfo.xml.in:77
+#: data/sound.metainfo.xml.in:80
 msgid "Hide temporary audio players when they stop"
 msgstr "S'amaguen els reproductors d'àudio temporals quan s'aturen."
 
-#: data/sound.metainfo.xml.in:78
+#: data/sound.metainfo.xml.in:81
 msgid "Add a tooltip on hover"
 msgstr "Addició d'una descripció emergent en passar-hi"
 
-#: data/sound.metainfo.xml.in:79
+#: data/sound.metainfo.xml.in:82
 msgid "Minor visual improvements"
 msgstr "Millores visuals menors"
 
-#: data/sound.metainfo.xml.in:89
+#: data/sound.metainfo.xml.in:92
 msgid "Fix duplicate default player"
 msgstr "Correcció del reproductor per defecte duplicat"
+
+#~ msgid "elementary, Inc."
+#~ msgstr "elementary, Inc."
 
 #~ msgid "Fix opacity flash during icon animation"
 #~ msgstr "Correcció del flaix d’opacitat durant l’animació d’icones"
