@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-05-04 04:09+0000\n"
 "PO-Revision-Date: 2024-05-27 11:57+0000\n"
-"Last-Translator: Italo Felipe Capasso Ballesteros <edwood.grant@gmail.com>\n"
+"Last-Translator: Reinaldo <reinaldoplacetas@tutanota.com>\n"
 "Language-Team: Spanish <https://l10n.elementary.io/projects/wingpanel/"
 "indicator-sound-extra/es/>\n"
 "Language: es\n"
@@ -96,10 +96,8 @@ msgid "Add a tooltip on hover"
 msgstr "Se ha agregado información en pantalla al pasar con el cursor del ratón"
 
 #: data/sound.metainfo.xml.in:82
-#, fuzzy
-#| msgid "Performance improvements"
 msgid "Minor visual improvements"
-msgstr "Mejoras de rendimiento"
+msgstr "Mejoras visuales menores"
 
 #: data/sound.metainfo.xml.in:92
 msgid "Fix duplicate default player"
