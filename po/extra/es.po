@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-05-04 04:09+0000\n"
-"PO-Revision-Date: 2024-05-27 11:54+0000\n"
-"Last-Translator: Tomas Gonzalez Zarzar <tomasgzarzar@gmail.com>\n"
+"PO-Revision-Date: 2024-05-27 11:55+0000\n"
+"Last-Translator: Reinaldo <reinaldoplacetas@tutanota.com>\n"
 "Language-Team: Spanish <https://l10n.elementary.io/projects/wingpanel/"
 "indicator-sound-extra/es/>\n"
 "Language: es\n"
@@ -85,7 +85,7 @@ msgstr "Nuevas características"
 
 #: data/sound.metainfo.xml.in:76
 msgid "select specific input and output devices"
-msgstr ""
+msgstr "selecciona el dispositivo específico de entrada y salida"
 
 #: data/sound.metainfo.xml.in:80
 msgid "Hide temporary audio players when they stop"
