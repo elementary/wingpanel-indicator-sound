@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-05-04 04:09+0000\n"
 "PO-Revision-Date: 2024-05-27 11:48+0000\n"
-"Last-Translator: Italo Felipe Capasso Ballesteros <edwood.grant@gmail.com>\n"
+"Last-Translator: Lucas Cesa <lucascesa455@gmail.com>\n"
 "Language-Team: Spanish <https://l10n.elementary.io/projects/wingpanel/"
 "indicator-sound-extra/es/>\n"
 "Language: es\n"
@@ -55,7 +55,7 @@ msgstr "Traducciones actualizadas"
 
 #: data/sound.metainfo.xml.in:53
 msgid "Use device form factor when available to assign more accurate icons"
-msgstr ""
+msgstr "Tener en cuenta el tamaño del espacio para asignar iconos más precisos"
 
 #: data/sound.metainfo.xml.in:54
 msgid "Provide a fallback device icon when none is available"
