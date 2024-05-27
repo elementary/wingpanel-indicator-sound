@@ -85,7 +85,7 @@ msgstr "Nuevas características"
 
 #: data/sound.metainfo.xml.in:76
 msgid "select specific input and output devices"
-msgstr "selecciona el dispositivo específico de entrada y salida"
+msgstr "Se puede seleccionar dispositivos específicos para entrada y salida"
 
 #: data/sound.metainfo.xml.in:80
 msgid "Hide temporary audio players when they stop"
