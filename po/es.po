@@ -5,13 +5,14 @@
 # Rafael Bautista Martínez <iuninefrendor@gmail.com>, 2019.
 # Alvaro <alvaroaraoz_92@hotmail.com>, 2021.
 # Adolfo Jayme Barrientos <fitojb@ubuntu.com>, 2021.
+# Italo Felipe Capasso Ballesteros <edwood.grant@gmail.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: wingpanel-indicator-sound\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-05-04 04:09+0000\n"
-"PO-Revision-Date: 2021-05-04 07:38+0000\n"
-"Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
+"PO-Revision-Date: 2024-05-27 11:47+0000\n"
+"Last-Translator: Italo Felipe Capasso Ballesteros <edwood.grant@gmail.com>\n"
 "Language-Team: Spanish <https://l10n.elementary.io/projects/wingpanel/"
 "wingpanel-indicator-sound/es/>\n"
 "Language: es\n"
@@ -19,29 +20,29 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.4.2\n"
+"X-Generator: Weblate 5.5\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 
 #: src/Indicator.vala:420
 msgid "Sound Settings…"
-msgstr "Configuración de sonido…"
+msgstr "Configuración de Sonido…"
 
 #: src/Indicator.vala:700
 #, c-format
 msgid "Volume: %.0f%%"
-msgstr "Volumen: %.0f %%"
+msgstr "Volumen: %.0f%%"
 
 #: src/Indicator.vala:703
 msgid "Middle-click to unmute"
-msgstr "Pulse con el botón central del ratón para activar el sonido"
+msgstr "Haga clic con el botón central del ratón para activar el sonido"
 
 #: src/Indicator.vala:703
 msgid "Middle-click to mute"
-msgstr "Pulse con el botón central del ratón para desactivar el sonido"
+msgstr "Haga clic con el botón central del ratón para silenciar"
 
 #: src/Widgets/PlayerRow.vala:28
 msgid "Not playing"
-msgstr "No se está reproduciendo"
+msgstr "No se reproduce nada"
 
 #: src/Widgets/PlayerRow.vala:44
 msgid "Music player"
