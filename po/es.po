@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: wingpanel-indicator-sound\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-05-04 04:09+0000\n"
-"PO-Revision-Date: 2024-05-27 11:47+0000\n"
+"PO-Revision-Date: 2024-06-16 03:16+0000\n"
 "Last-Translator: Italo Felipe Capasso Ballesteros <edwood.grant@gmail.com>\n"
 "Language-Team: Spanish <https://l10n.elementary.io/projects/wingpanel/"
 "wingpanel-indicator-sound/es/>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.5\n"
+"X-Generator: Weblate 5.5.5\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 
 #: src/Indicator.vala:420
@@ -30,11 +30,11 @@ msgstr "Configuración de Sonido…"
 #: src/Indicator.vala:700
 #, c-format
 msgid "Volume: %.0f%%"
-msgstr "Volumen: %.0f%%"
+msgstr "Volumen: %.0f %%"
 
 #: src/Indicator.vala:703
 msgid "Middle-click to unmute"
-msgstr "Haga clic con el botón central del ratón para activar el sonido"
+msgstr "Haga clic con el botón central del ratón para reactivar el sonido"
 
 #: src/Indicator.vala:703
 msgid "Middle-click to mute"
