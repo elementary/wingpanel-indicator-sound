@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-05-04 04:09+0000\n"
-"PO-Revision-Date: 2023-06-15 03:07+0000\n"
+"PO-Revision-Date: 2024-07-15 07:16+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://l10n.elementary.io/projects/wingpanel/"
 "indicator-sound-extra/he/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #: data/sound.metainfo.xml.in:11
 msgid "Sound Indicator"
@@ -49,7 +49,7 @@ msgstr "לחיצה אמצעית על מחוון המיקרופון לא משתי
 #: data/sound.metainfo.xml.in:67 data/sound.metainfo.xml.in:83
 #: data/sound.metainfo.xml.in:93
 msgid "Updated translations"
-msgstr "עודכנו התרגומים"
+msgstr "תרגומים עודכנו"
 
 #: data/sound.metainfo.xml.in:53
 msgid "Use device form factor when available to assign more accurate icons"
