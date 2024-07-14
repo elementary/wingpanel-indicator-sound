@@ -1,7 +1,8 @@
 project(
     'sound',
     'vala', 'c',
-    version: '7.0.0'
+    version: '7.0.0',
+    meson_version: '>= 0.57.0'
 )
 
 gettext_name = meson.project_name() + '-indicator'
@@ -79,4 +80,6 @@ shared_module(
 subdir('data')
 subdir('po')
 
-meson.add_install_script('meson/post_install.py')
+gnome.post_install(
+    glib_compile_schemas: true
+)
