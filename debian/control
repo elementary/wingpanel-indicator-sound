@@ -1,7 +1,7 @@
 Source: wingpanel-indicator-sound
 Section: x11
 Priority: optional
-Maintainer: elementary LLC <builds@elementary.io>
+Maintainer: elementary, Inc. <builds@elementary.io>
 Build-Depends: debhelper (>= 10.5.1),
                gettext,
                gobject-introspection,
@@ -14,7 +14,7 @@ Build-Depends: debhelper (>= 10.5.1),
                libpulse-dev,
                libwingpanel-dev,
                libxml2-utils,
-               meson,
+               meson (>= 0.57.0),
                valac (>= 0.28)
 Standards-Version: 4.1.1
 Homepage: https://github.com/elementary/wingpanel-indicator-sound
