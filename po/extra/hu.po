@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-04 04:09+0000\n"
+"POT-Creation-Date: 2024-07-17 18:58+0000\n"
 "PO-Revision-Date: 2023-06-15 03:07+0000\n"
 "Last-Translator: TomiOhl <ohlslager.tom@gmail.com>\n"
 "Language-Team: Hungarian <https://l10n.elementary.io/projects/wingpanel/"
@@ -32,72 +32,71 @@ msgstr ""
 "adatainak megjelenítése és médiavezérlés"
 
 #: data/sound.metainfo.xml.in:36 data/sound.metainfo.xml.in:51
-#: data/sound.metainfo.xml.in:64 data/sound.metainfo.xml.in:78
-#: data/sound.metainfo.xml.in:90
+#: data/sound.metainfo.xml.in:66 data/sound.metainfo.xml.in:79
+#: data/sound.metainfo.xml.in:93
 msgid "Minor updates"
 msgstr "Apróbb frissítések"
 
-#: data/sound.metainfo.xml.in:38
+#: data/sound.metainfo.xml.in:38 data/sound.metainfo.xml.in:55
+#: data/sound.metainfo.xml.in:72 data/sound.metainfo.xml.in:82
+#: data/sound.metainfo.xml.in:98
+msgid "Updated translations"
+msgstr "Frissített fordítások"
+
+#: data/sound.metainfo.xml.in:53
 msgid "Use circle buttons for playback controls"
 msgstr "Kör alakú gombok használata a lejátszás vezérléséhez"
 
-#: data/sound.metainfo.xml.in:39
+#: data/sound.metainfo.xml.in:54
 msgid "Middle-clicking the microphone indicator no longer mutes monitors"
 msgstr ""
 "A mikrofon indikátorra való középső gombos kattintás nem némítja le a "
 "monitorokat"
 
-#: data/sound.metainfo.xml.in:40 data/sound.metainfo.xml.in:57
-#: data/sound.metainfo.xml.in:67 data/sound.metainfo.xml.in:83
-#: data/sound.metainfo.xml.in:93
-msgid "Updated translations"
-msgstr "Frissített fordítások"
-
-#: data/sound.metainfo.xml.in:53
+#: data/sound.metainfo.xml.in:68
 msgid "Use device form factor when available to assign more accurate icons"
 msgstr ""
 "A pontosabb ikonok hozzárendeléséhez használja az eszköz formai tényezőjét, "
 "ha az rendelkezésre áll"
 
-#: data/sound.metainfo.xml.in:54
+#: data/sound.metainfo.xml.in:69
 msgid "Provide a fallback device icon when none is available"
 msgstr "Egy alapértelmezett eszközikon, ha nem lenne elérhető"
 
-#: data/sound.metainfo.xml.in:55
+#: data/sound.metainfo.xml.in:70
 msgid "Fix missing switch animations"
 msgstr "Hiányzó ikonanimációk hozzáadva"
 
-#: data/sound.metainfo.xml.in:56
+#: data/sound.metainfo.xml.in:71
 msgid "Use the volume step value from GNOME Settings Daemon"
 msgstr "A GNOME Beállításdémon hanglépték-beállításának használata"
 
-#: data/sound.metainfo.xml.in:66
+#: data/sound.metainfo.xml.in:81
 msgid "Show more specific icons for different types of devices"
 msgstr "Még specifikusabb ikonok kijelzése különböző típusú eszközökhöz"
 
-#: data/sound.metainfo.xml.in:74
+#: data/sound.metainfo.xml.in:89
 msgid "New features"
 msgstr "Új funkciók"
 
-#: data/sound.metainfo.xml.in:76
+#: data/sound.metainfo.xml.in:91
 msgid "select specific input and output devices"
 msgstr "Különböző be- és kimeneti eszközök kiválasztása"
 
-#: data/sound.metainfo.xml.in:80
+#: data/sound.metainfo.xml.in:95
 msgid "Hide temporary audio players when they stop"
 msgstr "Ideiglenes hanglejátszók elrejtése megállítás után"
 
-#: data/sound.metainfo.xml.in:81
+#: data/sound.metainfo.xml.in:96
 msgid "Add a tooltip on hover"
 msgstr "Címke megjelenítése rámutatáskor"
 
-#: data/sound.metainfo.xml.in:82
+#: data/sound.metainfo.xml.in:97
 msgid "Minor visual improvements"
 msgstr "Kisebb vizuális javítások"
 
-#: data/sound.metainfo.xml.in:92
-msgid "Fix duplicate default player"
-msgstr "Duplikált alapértelmezett lejátszó javítva"
+#~ msgid "Fix duplicate default player"
+#~ msgstr "Duplikált alapértelmezett lejátszó javítva"
 
 #~ msgid "elementary, Inc."
 #~ msgstr "elementary, Inc."

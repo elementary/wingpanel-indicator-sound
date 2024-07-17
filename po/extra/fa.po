@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-04 04:09+0000\n"
+"POT-Creation-Date: 2024-07-17 18:58+0000\n"
 "PO-Revision-Date: 2022-04-14 22:06+0000\n"
 "Last-Translator: Pikhosh <pikhosh@gmail.com>\n"
 "Language-Team: Persian <https://l10n.elementary.io/projects/wingpanel/"
@@ -30,65 +30,61 @@ msgid ""
 msgstr ""
 
 #: data/sound.metainfo.xml.in:36 data/sound.metainfo.xml.in:51
-#: data/sound.metainfo.xml.in:64 data/sound.metainfo.xml.in:78
-#: data/sound.metainfo.xml.in:90
+#: data/sound.metainfo.xml.in:66 data/sound.metainfo.xml.in:79
+#: data/sound.metainfo.xml.in:93
 msgid "Minor updates"
 msgstr ""
 
-#: data/sound.metainfo.xml.in:38
-msgid "Use circle buttons for playback controls"
-msgstr ""
-
-#: data/sound.metainfo.xml.in:39
-msgid "Middle-clicking the microphone indicator no longer mutes monitors"
-msgstr ""
-
-#: data/sound.metainfo.xml.in:40 data/sound.metainfo.xml.in:57
-#: data/sound.metainfo.xml.in:67 data/sound.metainfo.xml.in:83
-#: data/sound.metainfo.xml.in:93
+#: data/sound.metainfo.xml.in:38 data/sound.metainfo.xml.in:55
+#: data/sound.metainfo.xml.in:72 data/sound.metainfo.xml.in:82
+#: data/sound.metainfo.xml.in:98
 msgid "Updated translations"
 msgstr "ترجمه های بروز شده"
 
 #: data/sound.metainfo.xml.in:53
-msgid "Use device form factor when available to assign more accurate icons"
+msgid "Use circle buttons for playback controls"
 msgstr ""
 
 #: data/sound.metainfo.xml.in:54
+msgid "Middle-clicking the microphone indicator no longer mutes monitors"
+msgstr ""
+
+#: data/sound.metainfo.xml.in:68
+msgid "Use device form factor when available to assign more accurate icons"
+msgstr ""
+
+#: data/sound.metainfo.xml.in:69
 msgid "Provide a fallback device icon when none is available"
 msgstr ""
 
-#: data/sound.metainfo.xml.in:55
+#: data/sound.metainfo.xml.in:70
 msgid "Fix missing switch animations"
 msgstr ""
 
-#: data/sound.metainfo.xml.in:56
+#: data/sound.metainfo.xml.in:71
 msgid "Use the volume step value from GNOME Settings Daemon"
 msgstr ""
 
-#: data/sound.metainfo.xml.in:66
+#: data/sound.metainfo.xml.in:81
 msgid "Show more specific icons for different types of devices"
 msgstr ""
 
-#: data/sound.metainfo.xml.in:74
+#: data/sound.metainfo.xml.in:89
 msgid "New features"
 msgstr ""
 
-#: data/sound.metainfo.xml.in:76
+#: data/sound.metainfo.xml.in:91
 msgid "select specific input and output devices"
 msgstr ""
 
-#: data/sound.metainfo.xml.in:80
+#: data/sound.metainfo.xml.in:95
 msgid "Hide temporary audio players when they stop"
 msgstr ""
 
-#: data/sound.metainfo.xml.in:81
+#: data/sound.metainfo.xml.in:96
 msgid "Add a tooltip on hover"
 msgstr ""
 
-#: data/sound.metainfo.xml.in:82
+#: data/sound.metainfo.xml.in:97
 msgid "Minor visual improvements"
-msgstr ""
-
-#: data/sound.metainfo.xml.in:92
-msgid "Fix duplicate default player"
 msgstr ""
