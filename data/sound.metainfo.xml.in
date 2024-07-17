@@ -31,6 +31,21 @@
   <update_contact>contact_at_elementary.io</update_contact>
 
   <releases>
+    <release version="8.0.0" date="2024-07-17" urgency="medium">
+      <description>
+        <p>Minor updates</p>
+        <ul>
+          <li>Updated translations</li>
+        </ul>
+      </description>
+      <issues>
+        <issue url="https://github.com/elementary/wingpanel-indicator-sound/issues/9">Suppress confirmation notifications while open</issue>
+        <issue url="https://github.com/elementary/wingpanel-indicator-sound/issues/13">Move confirmation notifications to their relevant indicators</issue>
+        <issue url="https://github.com/elementary/wingpanel-indicator-sound/issues/99">Wingpanel disappears after clicking the sound icon</issue>
+        <issue url="https://github.com/elementary/wingpanel-indicator-sound/issues/112">Show on Greeter</issue>
+      </issues>
+    </release>
+
     <release version="7.0.0" date="2023-07-05" urgency="medium">
       <description>
         <p>Minor updates</p>
@@ -85,16 +100,7 @@
       </description>
     </release>
 
-    <release version="2.1.8" date="2020-12-23" urgency="medium">
-      <description>
-        <p>Minor updates</p>
-        <ul>
-          <li>Fix duplicate default player</li>
-          <li>Updated translations</li>
-        </ul>
-      </description>
-    </release>
-
+    <release version="2.1.8" date="2020-12-23" urgency="medium" />
     <release version="2.1.7" date="2020-10-08" urgency="medium" />
     <release version="2.1.6" date="2020-08-07" urgency="medium" />
     <release version="2.1.5" date="2020-04-02" urgency="medium" />
