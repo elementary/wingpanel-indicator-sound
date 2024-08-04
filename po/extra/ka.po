@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-17 18:58+0000\n"
-"PO-Revision-Date: 2023-04-15 00:59+0000\n"
+"PO-Revision-Date: 2024-08-05 08:16+0000\n"
 "Last-Translator: NorwayFun <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://l10n.elementary.io/projects/wingpanel/"
 "indicator-sound-extra/ka/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.16.4\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #: data/sound.metainfo.xml.in:11
 msgid "Sound Indicator"
@@ -33,7 +33,7 @@ msgstr ""
 #: data/sound.metainfo.xml.in:66 data/sound.metainfo.xml.in:79
 #: data/sound.metainfo.xml.in:93
 msgid "Minor updates"
-msgstr ""
+msgstr "მცირე განახლებები"
 
 #: data/sound.metainfo.xml.in:38 data/sound.metainfo.xml.in:55
 #: data/sound.metainfo.xml.in:72 data/sound.metainfo.xml.in:82
