@@ -226,8 +226,7 @@ public class Sound.Widgets.PlayerRow : Gtk.Box {
         titles_events.add (titles);
 
         prev_btn = new Gtk.Button.from_icon_name (
-            "media-skip-backward-symbolic",
-            Gtk.IconSize.MENU
+            "media-skip-backward-symbolic"
         ) {
             sensitive = false,
             valign = Gtk.Align.CENTER
@@ -236,8 +235,7 @@ public class Sound.Widgets.PlayerRow : Gtk.Box {
         prev_btn.get_style_context ().add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
 
         play_btn = new Gtk.Button.from_icon_name (
-            "media-playback-start-symbolic",
-            Gtk.IconSize.MENU
+            "media-playback-start-symbolic"
         ) {
             sensitive = true,
             valign = Gtk.Align.CENTER
@@ -246,8 +244,7 @@ public class Sound.Widgets.PlayerRow : Gtk.Box {
         play_btn.get_style_context ().add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
 
         next_btn = new Gtk.Button.from_icon_name (
-            "media-skip-forward-symbolic",
-            Gtk.IconSize.MENU
+            "media-skip-forward-symbolic"
         ) {
             sensitive = false,
             valign = Gtk.Align.CENTER
@@ -594,17 +591,11 @@ public class Sound.Widgets.PlayerRow : Gtk.Box {
         if (playing != "") {
             switch (playing) {
                 case "playing":
-                    ((Gtk.Image) play_btn.image).set_from_icon_name (
-                        "media-playback-pause-symbolic",
-                        Gtk.IconSize.LARGE_TOOLBAR
-                    );
+                    ((Gtk.Image) play_btn.image).icon_name = "media-playback-pause-symbolic";
                     break;
                 default:
                     /* Stopped, Paused */
-                    ((Gtk.Image) play_btn.image).set_from_icon_name (
-                        "media-playback-start-symbolic",
-                        Gtk.IconSize.LARGE_TOOLBAR
-                    );
+                    ((Gtk.Image) play_btn.image).icon_name = "media-playback-start-symbolic";
                     break;
             }
         }
