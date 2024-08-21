@@ -1,4 +1,3 @@
-// -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*-
  * Copyright 2021 elementary, Inc. (https://elementary.io)
  *
@@ -20,19 +19,17 @@
  * Authored by: Sean Davis <sean@bluesabre.org>
  */
 
-public class DeviceItem : Gtk.ListBoxRow {
+public class Sound.DeviceItem : Gtk.ListBoxRow {
     public signal void activated ();
 
+    public Sound.Device device { get; construct; }
+    public Gtk.ListBoxRow? row { get; construct; }
+
+    private bool is_priority;
     private Gtk.RadioButton radio_button;
 
-    public Gtk.ListBoxRow row { get; construct; }
-    public string display_name { get; construct; }
-    public string icon_name { get; construct; }
-    public bool is_priority { get; set construct; }
-    public bool is_default { get; construct; }
-
-    public DeviceItem (string display_name, bool is_default, bool is_priority, string icon_name, Gtk.ListBoxRow? row) {
-        Object (display_name: display_name, is_default: is_default, is_priority: is_priority, icon_name: icon_name, row: row);
+    public DeviceItem (Device device, Gtk.ListBoxRow? row) {
+        Object (device: device, row: row);
     }
 
     class construct {
@@ -40,30 +37,34 @@ public class DeviceItem : Gtk.ListBoxRow {
     }
 
     construct {
-        var label = new Gtk.Label (display_name) {
-            ellipsize = Pango.EllipsizeMode.MIDDLE
+        var label = new Gtk.Label (device.display_name) {
+            halign = START,
+            hexpand = true,
+            ellipsize = MIDDLE
         };
+
+        var image = new Gtk.Image.from_icon_name (device.icon_name + "-symbolic", MENU) {
+            use_fallback = true
+        };
+
+        var box = new Gtk.Box (HORIZONTAL, 6);
+        box.add (label);
+        box.add (image);
+
         radio_button = new Gtk.RadioButton (null) {
-            active = is_default,
+            child = box,
+            active = device.is_default,
             hexpand = true,
             xalign = 0
         };
-        radio_button.add (label);
 
         if (row != null) {
             var item = (DeviceItem) row;
             radio_button.set_group (item.radio_button.get_group ());
         }
 
-        var img_type = new Gtk.Image.from_icon_name (icon_name + "-symbolic", Gtk.IconSize.MENU) {
-            use_fallback = true
-        };
+        child = radio_button;
 
-        var box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 8);
-        box.add (radio_button);
-        box.add (img_type);
-
-        add (box);
         show_all ();
         selectable = false;
         no_show_all = true;
@@ -75,17 +76,17 @@ public class DeviceItem : Gtk.ListBoxRow {
             update_visible (radio_button.active);
         });
 
-        update_visible (is_default);
+        is_priority = device.is_priority;
+        update_visible (device.is_default);
     }
 
     public void set_default () {
         radio_button.active = true;
         is_priority = true;
-        update_visible (true);
+        visible = true;
     }
 
-    public void update_visible (bool is_default) {
+    private void update_visible (bool is_default) {
         visible = is_priority || is_default;
     }
-
 }
