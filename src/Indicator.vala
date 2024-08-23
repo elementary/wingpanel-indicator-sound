@@ -78,6 +78,15 @@ public class Sound.Indicator : Wingpanel.Indicator {
         // https://github.com/elementary/wingpanel-indicator-bluetooth/issues/203
         Gtk.IconTheme.get_default ().add_resource_path ("/org/elementary/wingpanel/icons");
 
+        var provider = new Gtk.CssProvider ();
+        provider.load_from_resource ("io/elementary/wingpanel/sound/indicator.css");
+
+        Gtk.StyleContext.add_provider_for_screen (
+            Gdk.Screen.get_default (),
+            provider,
+            Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+        );
+
         display_widget = new DisplayWidget ();
 
         volume_control = new Services.VolumeControlPulse (); /* sub-class of Services.VolumeControl */
