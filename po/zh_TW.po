@@ -2,22 +2,22 @@
 # Copyright (c) 2015 Rosetta Contributors and Canonical Ltd 2015
 # This file is distributed under the same license as the wingpanel-indicator-sound package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2015.
-#
+# Kisaragi Hiu <mail@kisaragi-hiu.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: wingpanel-indicator-sound\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-17 18:58+0000\n"
-"PO-Revision-Date: 2018-02-09 00:12+0000\n"
-"Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
-"Language-Team: Chinese (Traditional) <https://weblate.elementary.io/projects/"
-"wingpanel/wingpanel-indicator-sound/zh_TW/>\n"
+"PO-Revision-Date: 2024-09-05 16:16+0000\n"
+"Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
+"Language-Team: Chinese (Traditional) <https://l10n.elementary.io/projects/"
+"wingpanel/wingpanel-indicator-sound/zh_Hant/>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2.18\n"
+"X-Generator: Weblate 5.6.2\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 
 #: src/Indicator.vala:420
@@ -27,30 +27,27 @@ msgstr "音效設定值…"
 #: src/Indicator.vala:700
 #, c-format
 msgid "Volume: %.0f%%"
-msgstr ""
+msgstr "音量：%.0f%%"
 
 #: src/Indicator.vala:703
 msgid "Middle-click to unmute"
-msgstr ""
+msgstr "中鍵點擊來解除靜音"
 
 #: src/Indicator.vala:703
 msgid "Middle-click to mute"
-msgstr ""
+msgstr "中鍵點擊來靜音"
 
 #: src/Widgets/PlayerRow.vala:28
-#, fuzzy
-#| msgid "Not currently playing"
 msgid "Not playing"
-msgstr "目前沒有音效在播放"
+msgstr "未在播放中"
 
 #: src/Widgets/PlayerRow.vala:44
 msgid "Music player"
 msgstr "音樂播放器"
 
 #: src/Widgets/PlayerRow.vala:564
-#, fuzzy
 msgid "Unknown Artist"
-msgstr "未知曲名"
+msgstr "未知藝人"
 
 #~ msgid "Indicator Sound"
 #~ msgstr "指示器音效"
