@@ -8,80 +8,83 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-17 18:58+0000\n"
-"PO-Revision-Date: 2019-11-07 11:39-0800\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2024-09-05 16:16+0000\n"
+"Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
+"Language-Team: Chinese (Traditional) <https://l10n.elementary.io/projects/"
+"wingpanel/indicator-sound-extra/zh_Hant/>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ASCII\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #: data/sound.metainfo.xml.in:11
 msgid "Sound Indicator"
-msgstr ""
+msgstr "音效指示器"
 
 #: data/sound.metainfo.xml.in:12
 msgid ""
 "Adjust speaker and microphone volume or see Now Playing information and "
 "media controls"
-msgstr ""
+msgstr "調整喇叭和麥克風音量，或檢視目前播放媒體的資訊以及媒體控制"
 
 #: data/sound.metainfo.xml.in:36 data/sound.metainfo.xml.in:51
 #: data/sound.metainfo.xml.in:66 data/sound.metainfo.xml.in:79
 #: data/sound.metainfo.xml.in:93
 msgid "Minor updates"
-msgstr ""
+msgstr "小型更新"
 
 #: data/sound.metainfo.xml.in:38 data/sound.metainfo.xml.in:55
 #: data/sound.metainfo.xml.in:72 data/sound.metainfo.xml.in:82
 #: data/sound.metainfo.xml.in:98
 msgid "Updated translations"
-msgstr ""
+msgstr "翻譯更新"
 
 #: data/sound.metainfo.xml.in:53
 msgid "Use circle buttons for playback controls"
-msgstr ""
+msgstr "為播放控制使用圓形按鈕"
 
 #: data/sound.metainfo.xml.in:54
 msgid "Middle-clicking the microphone indicator no longer mutes monitors"
-msgstr ""
+msgstr "中鍵點擊麥克風指示器現在不會將喇叭靜音"
 
 #: data/sound.metainfo.xml.in:68
 msgid "Use device form factor when available to assign more accurate icons"
-msgstr ""
+msgstr "可能的話依裝置種類來選擇更精確的圖示"
 
 #: data/sound.metainfo.xml.in:69
 msgid "Provide a fallback device icon when none is available"
-msgstr ""
+msgstr "沒有其他可用的裝置圖示的時候提供備用的裝置圖示"
 
 #: data/sound.metainfo.xml.in:70
 msgid "Fix missing switch animations"
-msgstr ""
+msgstr "修正切換時沒有動畫的問題"
 
 #: data/sound.metainfo.xml.in:71
 msgid "Use the volume step value from GNOME Settings Daemon"
-msgstr ""
+msgstr "使用來自 GNOME 設定值伺服程式的音量段階值"
 
 #: data/sound.metainfo.xml.in:81
 msgid "Show more specific icons for different types of devices"
-msgstr ""
+msgstr "為不同種類的裝置使用更精確的圖示"
 
 #: data/sound.metainfo.xml.in:89
 msgid "New features"
-msgstr ""
+msgstr "新功能"
 
 #: data/sound.metainfo.xml.in:91
 msgid "select specific input and output devices"
-msgstr ""
+msgstr "新增選擇輸入及輸出裝置的功能"
 
 #: data/sound.metainfo.xml.in:95
 msgid "Hide temporary audio players when they stop"
-msgstr ""
+msgstr "暫時音效播放來源停止時隱藏它們"
 
 #: data/sound.metainfo.xml.in:96
 msgid "Add a tooltip on hover"
-msgstr ""
+msgstr "新增滑鼠停駐時的工具提示"
 
 #: data/sound.metainfo.xml.in:97
 msgid "Minor visual improvements"
-msgstr ""
+msgstr "微幅視覺改善"
