@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-17 18:58+0000\n"
-"PO-Revision-Date: 2024-08-05 08:16+0000\n"
+"PO-Revision-Date: 2024-09-13 00:01+0000\n"
 "Last-Translator: NorwayFun <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://l10n.elementary.io/projects/wingpanel/"
 "indicator-sound-extra/ka/>\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: data/sound.metainfo.xml.in:11
 msgid "Sound Indicator"
-msgstr ""
+msgstr "ხმის მაჩვენებელი"
 
 #: data/sound.metainfo.xml.in:12
 msgid ""
@@ -71,7 +71,7 @@ msgstr ""
 
 #: data/sound.metainfo.xml.in:89
 msgid "New features"
-msgstr ""
+msgstr "ახალი თვისებები"
 
 #: data/sound.metainfo.xml.in:91
 msgid "select specific input and output devices"
@@ -87,7 +87,7 @@ msgstr ""
 
 #: data/sound.metainfo.xml.in:97
 msgid "Minor visual improvements"
-msgstr ""
+msgstr "მცირე ვიზუალური გაუმჯობესებები"
 
 #~ msgid "elementary, Inc."
 #~ msgstr "elementary, Inc."
