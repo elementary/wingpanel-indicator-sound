@@ -3,7 +3,6 @@
   <gresource prefix="/io/elementary/wingpanel/sound">
     <file compressed="true" preprocess="xml-stripblanks">image-mask.svg</file>
     <file alias="indicator.css" compressed="true">indicator.css</file>
-    <file compressed= "true">PlayerRow.css</file>
   </gresource>
   <gresource prefix="/org/elementary/wingpanel/icons">
     <file alias="16x16/devices/audio-subwoofer-symbolic.svg" compressed="true" preprocess="xml-stripblanks">16/audio-subwoofer-symbolic.svg</file>

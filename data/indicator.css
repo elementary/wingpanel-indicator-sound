@@ -29,3 +29,18 @@
     90% { -gtk-icon-source: -gtk-icontheme("indicator-microphone-muted-90-symbolic"); }
     100% { -gtk-icon-source: -gtk-icontheme("indicator-microphone-muted-symbolic"); }
 }
+
+player-row .image-button.circular {
+    border: none;
+    box-shadow: none;
+    min-height: 2.1666rem; /* 26px */
+    min-width: 2.1666rem; /* 26px */
+}
+
+player-row .image-button:not(:focus).circular {
+    background: alpha(@text_color, 0.1);
+}
+
+player-row .image-button:disabled.circular {
+    background: @insensitive_bg_color;
+}
