@@ -5,7 +5,7 @@
  * Authored by: Sean Davis <sean@bluesabre.org>
  */
 
-public class Sound.DeviceItem : Gtk.ListBoxRow {
+public class Sound.Widgets.DeviceItem : Gtk.ListBoxRow {
     public signal void activated ();
 
     public Sound.Device device { get; construct; }
