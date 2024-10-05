@@ -60,11 +60,7 @@ public class Sound.Widgets.DeviceManagerWidget : Gtk.Box {
         }
 
         Gtk.ListBoxRow? row = device_list.get_row_at_index (0);
-        var device_item = new DeviceItem (device.display_name,
-                                          device.is_default,
-                                          device.is_priority,
-                                          device.icon_name,
-                                          row);
+        var device_item = new DeviceItem (device, row);
         device_list.add (device_item);
 
         device_item.activated.connect (() => {
