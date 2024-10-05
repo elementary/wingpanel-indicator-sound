@@ -27,9 +27,6 @@ public class DisplayWidget : Gtk.Box {
     public signal void mic_press_event (Gdk.EventButton e);
 
     construct {
-        var provider = new Gtk.CssProvider ();
-        provider.load_from_resource ("io/elementary/wingpanel/sound/indicator.css");
-
         var volume_icon = new Gtk.Image () {
             pixel_size = 24
         };
@@ -39,7 +36,6 @@ public class DisplayWidget : Gtk.Box {
         };
 
         var mic_style_context = mic_icon.get_style_context ();
-        mic_style_context.add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
         mic_style_context.add_class ("mic-icon");
 
         var mic_revealer = new Gtk.Revealer () {

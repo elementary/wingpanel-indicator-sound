@@ -29,7 +29,6 @@ public class Sound.Widgets.PlayerRow : Gtk.Box {
 
     public signal void close ();
 
-    private static Gtk.CssProvider provider;
     private Gtk.Image? background = null;
     private Gtk.Image mask;
     private Gtk.Label title_label;
@@ -169,9 +168,8 @@ public class Sound.Widgets.PlayerRow : Gtk.Box {
         artist_label.label = NOT_PLAYING;
     }
 
-    static construct {
-        provider = new Gtk.CssProvider ();
-        provider.load_from_resource ("io/elementary/wingpanel/sound/PlayerRow.css");
+    class construct {
+        set_css_name ("player-row");
     }
 
     construct {
@@ -232,7 +230,6 @@ public class Sound.Widgets.PlayerRow : Gtk.Box {
             valign = Gtk.Align.CENTER
         };
         prev_btn.get_style_context ().add_class ("circular");
-        prev_btn.get_style_context ().add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
 
         play_btn = new Gtk.Button.from_icon_name (
             "media-playback-start-symbolic"
@@ -241,7 +238,6 @@ public class Sound.Widgets.PlayerRow : Gtk.Box {
             valign = Gtk.Align.CENTER
         };
         play_btn.get_style_context ().add_class ("circular");
-        play_btn.get_style_context ().add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
 
         next_btn = new Gtk.Button.from_icon_name (
             "media-skip-forward-symbolic"
@@ -250,7 +246,6 @@ public class Sound.Widgets.PlayerRow : Gtk.Box {
             valign = Gtk.Align.CENTER
         };
         next_btn.get_style_context ().add_class ("circular");
-        next_btn.get_style_context ().add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
 
         spacing = 6;
         margin_end = 12;
