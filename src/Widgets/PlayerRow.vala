@@ -482,6 +482,15 @@ public class Sound.Widgets.PlayerRow : Gtk.Box {
 
         if (uri.has_prefix ("file://")) {
             string fname = uri.split ("file://")[1];
+
+            /**
+            * If a MPRIS source is Google Chrome, we can see strange file uri "file:///tmp/.com.google.Chrome.{Hash}",
+            * being stored in runtime directory, and we should handle it properly to display albumArt.
+            */
+            if (fname.has_prefix ("/tmp/.com.google.Chrome")) {
+                fname = GLib.Environment.get_user_runtime_dir () + "/.flatpak/com.google.Chrome" + fname;
+            }
+
             try {
                 var pbuf = new Gdk.Pixbuf.from_file_at_size (fname, ICON_SIZE * scale, ICON_SIZE * scale);
                 background.gicon = mask_pixbuf (pbuf, scale);
