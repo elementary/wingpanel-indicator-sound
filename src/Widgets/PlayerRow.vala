@@ -496,10 +496,10 @@ public class Sound.Widgets.PlayerRow : Gtk.Box {
             * To be reviewed in future.
             */
             if (! FileUtils.test (fname, FileTest.EXISTS)) {
-                Regex tempAppFolderRegex = /^(\/tmp\/\.)(?P<appName>([a-zA-Z]*[.]){2}([a-zA-Z]*)).*$/;
-                MatchInfo info;
-                if(tempAppFolderRegex.match(fname, 0, out info)) {
-                    var appName = info.fetch_named("appName");
+                Regex temp_regex = @/^(\/tmp\/\.)(?P<appName>([a-zA-Z]*[.]){2}([a-zA-Z]*)).*$/;
+                MatchInfo regex_match;
+                if (temp_regex.match (fname, 0, out info)) {
+                    var app_name = info.fetch_named ("appName");
 
                     fname = Path.build_path (Path.DIR_SEPARATOR_S, GLib.Environment.get_user_runtime_dir (), ".flatpak", appName, fname);
                 }
