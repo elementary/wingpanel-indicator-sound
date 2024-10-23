@@ -496,7 +496,8 @@ public class Sound.Widgets.PlayerRow : Gtk.Box {
             * To be reviewed in future.
             */
             if (! FileUtils.test (fname, FileTest.EXISTS)) {
-                Regex temp_regex = /^(\/tmp\/\.)(?P<appName>([a-zA-Z]*[.]){2}([a-zA-Z]*)).*$/;
+                string folder_pattern = "^(/tmp/.)(?<appName>([a-zA-Z]*[.]){2}([a-zA-Z]*)).*$";
+                Regex temp_regex = new Regex (folder_pattern);
                 MatchInfo regex_match;
                 if (temp_regex.match (fname, 0, out regex_match)) {
                     var app_name = regex_match.fetch_named ("appName");
