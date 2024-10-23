@@ -482,6 +482,30 @@ public class Sound.Widgets.PlayerRow : Gtk.Box {
 
         if (uri.has_prefix ("file://")) {
             string fname = uri.split ("file://")[1];
+
+            /**
+            * For some MPRIS sources, e.g. flatpak based Chromium, we can see strange file uri like "file:///tmp/.com.google.Chrome.{Hash}",
+            * but files being stored in users runtime directory, and we should handle it properly to display albumArt.
+            * According to MPRIS spec (https://specifications.freedesktop.org/mpris-spec/latest/#Bus-Name-Policy)
+            * we wont get actual app name, because chrome developers set it to `chromium` as DBUS name,
+            * e.g. 'org.mpris.MediaPlayer2.chromium.instance33959'. But it has no connection to actual app name and files folder.
+            *
+            * Tested version of Chrom(e/ium): 129.0.6668.100
+            * One of possible solutions: to use RegExp.
+            *
+            * To be reviewed in future.
+            */
+            if (! FileUtils.test (fname, FileTest.EXISTS)) {
+                string folder_pattern = "^(/tmp/.)(?<appName>([a-zA-Z]*[.]){2}([a-zA-Z]*)).*$";
+                Regex temp_regex = new Regex (folder_pattern);
+                MatchInfo regex_match;
+                if (temp_regex.match (fname, 0, out regex_match)) {
+                    var app_name = regex_match.fetch_named ("appName");
+
+                    fname = Path.build_path (Path.DIR_SEPARATOR_S, GLib.Environment.get_user_runtime_dir (), ".flatpak", app_name, fname);
+                }
+            }
+
             try {
                 var pbuf = new Gdk.Pixbuf.from_file_at_size (fname, ICON_SIZE * scale, ICON_SIZE * scale);
                 background.gicon = mask_pixbuf (pbuf, scale);
