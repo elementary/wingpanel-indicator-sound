@@ -24,6 +24,8 @@ public class Sound.Widgets.Scale : Gtk.EventBox {
     public Gtk.Scale scale_widget { get; private set; }
     public Gtk.Switch switch_widget { get; private set; }
 
+    private Gtk.GestureMultiPress click_gesture;
+
     public Scale (string icon, bool active = false, double min, double max, double step) {
         Object (
             active: active,
@@ -70,10 +72,9 @@ public class Sound.Widgets.Scale : Gtk.EventBox {
         add_events (Gdk.EventMask.SMOOTH_SCROLL_MASK);
         above_child = false;
 
-        image_box.add_events (Gdk.EventMask.BUTTON_RELEASE_MASK);
-        image_box.button_release_event.connect (() => {
+        click_gesture = new Gtk.GestureMultiPress (image_box);
+        click_gesture.released.connect (() => {
             switch_widget.activate ();
-            return Gdk.EVENT_STOP;
         });
 
         scale_widget.scroll_event.connect ((e) => {
