@@ -21,9 +21,11 @@
  */
 
 public class Sound.Widgets.DeviceManagerWidget : Gtk.Box {
-    private Gtk.ListBox device_list;
-    private Gtk.ScrolledWindow scrolled_box;
     public bool is_input_manager;
+
+    private Gtk.ListBox device_list;
+    private Gtk.Revealer devices_revealer;
+    private Gtk.ScrolledWindow scrolled_box;
 
     private unowned PulseAudioManager pam;
 
@@ -40,15 +42,18 @@ public class Sound.Widgets.DeviceManagerWidget : Gtk.Box {
         };
 
         scrolled_box = new Gtk.ScrolledWindow (null, null) {
+            child = device_list,
             hscrollbar_policy = Gtk.PolicyType.NEVER,
             propagate_natural_height = true,
             max_content_height = 256,
-            no_show_all = true,
             margin_bottom = 3
         };
-        scrolled_box.add (device_list);
 
-        add (scrolled_box);
+        devices_revealer = new Gtk.Revealer () {
+            child = scrolled_box
+        };
+
+        add (devices_revealer);
 
         update_showable ();
     }
@@ -117,22 +122,8 @@ public class Sound.Widgets.DeviceManagerWidget : Gtk.Box {
         Sound.Indicator.settings.set_value ("preferred-devices", dictionary);
     }
 
-    private uint n_visible_items () {
-        uint n = 0;
-        foreach (unowned var device in device_list.get_children ()) {
-            if (device.visible) {
-                n++;
-            }
-        }
-        return n;
-    }
-
     private void update_showable () {
-        if (n_visible_items () <= 1) {
-            scrolled_box.hide ();
-        } else {
-            scrolled_box.show ();
-        }
+        devices_revealer.reveal_child = device_list.get_row_at_index (1) != null;
     }
 
     private void default_output_changed () {
