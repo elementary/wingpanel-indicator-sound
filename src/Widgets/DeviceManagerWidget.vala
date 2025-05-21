@@ -25,7 +25,6 @@ public class Sound.Widgets.DeviceManagerWidget : Gtk.Box {
 
     private Gtk.ListBox device_list;
     private Gtk.Revealer devices_revealer;
-    private Gtk.ScrolledWindow scrolled_box;
 
     private unowned PulseAudioManager pam;
 
@@ -41,7 +40,7 @@ public class Sound.Widgets.DeviceManagerWidget : Gtk.Box {
             visible = true
         };
 
-        scrolled_box = new Gtk.ScrolledWindow (null, null) {
+        var scrolled_box = new Gtk.ScrolledWindow (null, null) {
             child = device_list,
             hscrollbar_policy = Gtk.PolicyType.NEVER,
             propagate_natural_height = true,
