@@ -73,5 +73,14 @@ public class Sound.Widgets.Scale : Gtk.EventBox {
 
         bind_property ("active", scale_widget, "sensitive", BindingFlags.SYNC_CREATE);
         bind_property ("active", toggle, "active", BIDIRECTIONAL | SYNC_CREATE);
+        bind_property ("active", toggle, "tooltip-text", SYNC_CREATE, (binding, srcval, ref targetval) => {
+            if ((bool) srcval) {
+                targetval.set_string (_("Mute"));
+            } else {
+                targetval.set_string (_("Unmute"));
+            }
+
+            return true;
+	    }, null);
     }
 }
