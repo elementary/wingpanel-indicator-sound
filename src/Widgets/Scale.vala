@@ -81,6 +81,6 @@ public class Sound.Widgets.Scale : Gtk.EventBox {
             }
 
             return true;
-	    }, null);
+        }, null);
     }
 }
