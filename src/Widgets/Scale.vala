@@ -22,9 +22,6 @@ public class Sound.Widgets.Scale : Gtk.EventBox {
     public double min { get; construct; }
     public double step { get; construct; }
     public Gtk.Scale scale_widget { get; private set; }
-    public Gtk.Switch switch_widget { get; private set; }
-
-    private Gtk.GestureMultiPress click_gesture;
 
     public Scale (string icon, bool active = false, double min, double max, double step) {
         Object (
@@ -41,12 +38,10 @@ public class Sound.Widgets.Scale : Gtk.EventBox {
     }
 
     construct {
-        var image = new Gtk.Image.from_icon_name (icon, Gtk.IconSize.DIALOG) {
-            pixel_size = 48
-        };
+        var image = new Gtk.Image.from_icon_name (icon, BUTTON);
 
-        var image_box = new Gtk.EventBox ();
-        image_box.add (image);
+        var toggle = new Gtk.ToggleButton ();
+        toggle.image = image;
 
         scale_widget = new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL, min, max, step) {
             draw_value = false,
@@ -54,28 +49,19 @@ public class Sound.Widgets.Scale : Gtk.EventBox {
             width_request = 175
         };
 
-        switch_widget = new Gtk.Switch () {
-            margin_start = 6,
-            valign = Gtk.Align.CENTER
-        };
-
-        var box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 6) {
+        var box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 12) {
             hexpand = true,
+            margin_top = 6,
             margin_start = 6,
+            margin_bottom = 6,
             margin_end = 12
         };
-        box.add (image_box);
+        box.add (toggle);
         box.add (scale_widget);
-        box.add (switch_widget);
 
         add (box);
         add_events (Gdk.EventMask.SMOOTH_SCROLL_MASK);
         above_child = false;
-
-        click_gesture = new Gtk.GestureMultiPress (image_box);
-        click_gesture.released.connect (() => {
-            switch_widget.activate ();
-        });
 
         scale_widget.scroll_event.connect ((e) => {
             /* Re-emit the signal on the eventbox instead of using native handler */
@@ -86,12 +72,6 @@ public class Sound.Widgets.Scale : Gtk.EventBox {
         bind_property ("icon", image, "icon-name");
 
         bind_property ("active", scale_widget, "sensitive", BindingFlags.SYNC_CREATE);
-        bind_property ("active", image, "sensitive", BindingFlags.SYNC_CREATE);
-
-        bind_property ("active", switch_widget, "active", BindingFlags.BIDIRECTIONAL, () => {
-            if (switch_widget.active != active) {
-                switch_widget.activate ();
-            }
-        }, null);
+        bind_property ("active", toggle, "active", BIDIRECTIONAL | SYNC_CREATE);
     }
 }
