@@ -399,7 +399,7 @@ public class Sound.Widgets.PlayerRow : Gtk.Box {
         });
     }
 
-    private bool raise_player (Gdk.EventButton event) {
+    private bool raise_player () {
         try {
             close ();
             if (client != null && client.player.can_raise) {
