@@ -102,10 +102,10 @@ public class Sound.Indicator : Wingpanel.Indicator {
         volume_control.notify["mute"].connect (update_tooltip);
 
         output_device_manager = new Widgets.DeviceManagerWidget () {
-            is_input_manager = false
+            direction = OUTPUT
         };
         input_device_manager = new Widgets.DeviceManagerWidget () {
-            is_input_manager = true
+            direction = INPUT
         };
 
         Notify.init ("wingpanel-indicator-sound");

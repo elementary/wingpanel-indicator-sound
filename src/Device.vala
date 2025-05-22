@@ -31,7 +31,7 @@ public class Sound.Device : GLib.Object {
     public signal void defaulted ();
 
     // info from card and ports
-    public bool input { get; set; default = true; }
+    public PulseAudio.Direction direction { get; set; default = INPUT; }
     public string id { get; construct; }
     public uint32 card_index { get; construct; }
     public string port_name { get; construct; }
