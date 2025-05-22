@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-17 18:58+0000\n"
+"POT-Creation-Date: 2025-05-22 14:03+0000\n"
 "PO-Revision-Date: 2020-02-22 19:08+0000\n"
 "Last-Translator: gkkulik <g.kulik@o2.pl>\n"
 "Language-Team: Silesian <https://l10n.elementary.io/projects/wingpanel/"
@@ -15,20 +15,20 @@ msgstr ""
 "|| n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-#: src/Indicator.vala:420
+#: src/Indicator.vala:428
 msgid "Sound Settings…"
 msgstr "Sztelōnki źwiynku…"
 
-#: src/Indicator.vala:700
+#: src/Indicator.vala:708
 #, c-format
 msgid "Volume: %.0f%%"
 msgstr ""
 
-#: src/Indicator.vala:703
+#: src/Indicator.vala:711
 msgid "Middle-click to unmute"
 msgstr ""
 
-#: src/Indicator.vala:703
+#: src/Indicator.vala:711
 msgid "Middle-click to mute"
 msgstr ""
 
@@ -38,13 +38,21 @@ msgstr ""
 msgid "Not playing"
 msgstr "Teroz nic niy gro"
 
-#: src/Widgets/PlayerRow.vala:44
+#: src/Widgets/PlayerRow.vala:43
 msgid "Music player"
 msgstr "Ôdgrowocz muzyki"
 
-#: src/Widgets/PlayerRow.vala:564
+#: src/Widgets/PlayerRow.vala:580
 msgid "Unknown Artist"
 msgstr "Niyznōmy artysta"
+
+#: src/Widgets/Scale.vala:78
+msgid "Mute"
+msgstr ""
+
+#: src/Widgets/Scale.vala:80
+msgid "Unmute"
+msgstr ""
 
 #~ msgid "Indicator Sound"
 #~ msgstr "Klang skaźnika"

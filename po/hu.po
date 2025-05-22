@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-17 18:58+0000\n"
+"POT-Creation-Date: 2025-05-22 14:03+0000\n"
 "PO-Revision-Date: 2021-08-23 19:43+0000\n"
 "Last-Translator: TomiOhl <ohlslager.tom@gmail.com>\n"
 "Language-Team: Hungarian <https://l10n.elementary.io/projects/wingpanel/"
@@ -17,20 +17,20 @@ msgstr ""
 "X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 
-#: src/Indicator.vala:420
+#: src/Indicator.vala:428
 msgid "Sound Settings…"
 msgstr "Hangbeállítások…"
 
-#: src/Indicator.vala:700
+#: src/Indicator.vala:708
 #, c-format
 msgid "Volume: %.0f%%"
 msgstr "Hangerő: %.0f%%"
 
-#: src/Indicator.vala:703
+#: src/Indicator.vala:711
 msgid "Middle-click to unmute"
 msgstr "Középső kattintás a némítás feloldásához"
 
-#: src/Indicator.vala:703
+#: src/Indicator.vala:711
 msgid "Middle-click to mute"
 msgstr "Középső kattintás a némításhoz"
 
@@ -38,13 +38,21 @@ msgstr "Középső kattintás a némításhoz"
 msgid "Not playing"
 msgstr "Nincs lejátszás"
 
-#: src/Widgets/PlayerRow.vala:44
+#: src/Widgets/PlayerRow.vala:43
 msgid "Music player"
 msgstr "Zenelejátszó"
 
-#: src/Widgets/PlayerRow.vala:564
+#: src/Widgets/PlayerRow.vala:580
 msgid "Unknown Artist"
 msgstr "Ismeretlen előadó"
+
+#: src/Widgets/Scale.vala:78
+msgid "Mute"
+msgstr ""
+
+#: src/Widgets/Scale.vala:80
+msgid "Unmute"
+msgstr ""
 
 #~ msgid "Indicator Sound"
 #~ msgstr "Hang kijelző"

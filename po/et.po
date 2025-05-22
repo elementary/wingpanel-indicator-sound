@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wingpanel-indicator-sound\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-17 18:58+0000\n"
+"POT-Creation-Date: 2025-05-22 14:03+0000\n"
 "PO-Revision-Date: 2015-09-22 17:46+0000\n"
 "Last-Translator: Kristjan Vool <tictac7x@gmail.com>\n"
 "Language-Team: Estonian <et@li.org>\n"
@@ -18,20 +18,20 @@ msgstr ""
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 "X-Generator: Launchpad (build 18335)\n"
 
-#: src/Indicator.vala:420
+#: src/Indicator.vala:428
 msgid "Sound Settings…"
 msgstr "Heliseaded…"
 
-#: src/Indicator.vala:700
+#: src/Indicator.vala:708
 #, c-format
 msgid "Volume: %.0f%%"
 msgstr ""
 
-#: src/Indicator.vala:703
+#: src/Indicator.vala:711
 msgid "Middle-click to unmute"
 msgstr ""
 
-#: src/Indicator.vala:703
+#: src/Indicator.vala:711
 msgid "Middle-click to mute"
 msgstr ""
 
@@ -41,14 +41,22 @@ msgstr ""
 msgid "Not playing"
 msgstr "Praegu ei esitata"
 
-#: src/Widgets/PlayerRow.vala:44
+#: src/Widgets/PlayerRow.vala:43
 msgid "Music player"
 msgstr "Muusika mängija"
 
-#: src/Widgets/PlayerRow.vala:564
+#: src/Widgets/PlayerRow.vala:580
 #, fuzzy
 msgid "Unknown Artist"
 msgstr "Tundmatu pealkiri"
+
+#: src/Widgets/Scale.vala:78
+msgid "Mute"
+msgstr ""
+
+#: src/Widgets/Scale.vala:80
+msgid "Unmute"
+msgstr ""
 
 #~ msgid "Indicator Sound"
 #~ msgstr "Heliindikaator"

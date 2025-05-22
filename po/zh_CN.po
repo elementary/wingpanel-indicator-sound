@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wingpanel-indicator-sound\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-17 18:58+0000\n"
+"POT-Creation-Date: 2025-05-22 14:03+0000\n"
 "PO-Revision-Date: 2021-03-20 18:05+0000\n"
 "Last-Translator: imgradeone Yan <imgradeone@outlook.com>\n"
 "Language-Team: Chinese (Simplified) <https://l10n.elementary.io/projects/"
@@ -21,20 +21,20 @@ msgstr ""
 "X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 
-#: src/Indicator.vala:420
+#: src/Indicator.vala:428
 msgid "Sound Settings…"
 msgstr "声音设置…"
 
-#: src/Indicator.vala:700
+#: src/Indicator.vala:708
 #, c-format
 msgid "Volume: %.0f%%"
 msgstr "音量：%.0f%%"
 
-#: src/Indicator.vala:703
+#: src/Indicator.vala:711
 msgid "Middle-click to unmute"
 msgstr "中键单击以取消静音"
 
-#: src/Indicator.vala:703
+#: src/Indicator.vala:711
 msgid "Middle-click to mute"
 msgstr "中键单击以静音"
 
@@ -42,13 +42,21 @@ msgstr "中键单击以静音"
 msgid "Not playing"
 msgstr "未播放"
 
-#: src/Widgets/PlayerRow.vala:44
+#: src/Widgets/PlayerRow.vala:43
 msgid "Music player"
 msgstr "音乐播放器"
 
-#: src/Widgets/PlayerRow.vala:564
+#: src/Widgets/PlayerRow.vala:580
 msgid "Unknown Artist"
 msgstr "未知艺术家"
+
+#: src/Widgets/Scale.vala:78
+msgid "Mute"
+msgstr ""
+
+#: src/Widgets/Scale.vala:80
+msgid "Unmute"
+msgstr ""
 
 #~ msgid "Indicator Sound"
 #~ msgstr "指示声音"
