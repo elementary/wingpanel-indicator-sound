@@ -21,7 +21,7 @@
  */
 
 public class Sound.Widgets.DeviceManagerWidget : Gtk.Box {
-    public bool is_input_manager;
+    public PulseAudio.Direction direction { get; set; }
 
     private Gtk.ListBox device_list;
     private Gtk.Revealer devices_revealer;
@@ -59,7 +59,7 @@ public class Sound.Widgets.DeviceManagerWidget : Gtk.Box {
 
     private void add_device (Device device) {
         // Avoid Built-in Analog input - output devices
-        if (device.input != is_input_manager || device.port_name == "analog-output" || device.port_name == "analog-input") {
+        if (device.direction != direction || device.port_name == "analog-output" || device.port_name == "analog-input") {
             return;
         }
 
