@@ -16,10 +16,10 @@
 */
 
 public class Sound.Widgets.Scale : Gtk.EventBox {
-    public bool active { get; construct set; default = true; }
     public Gtk.Adjustment adjustment { get; construct; }
     public string icon { get; construct set; }
 
+    public bool active { get; set; default = true; }
     public Gtk.Scale scale_widget { get; private set; }
 
     public Scale (string icon, Gtk.Adjustment adjustment) {
