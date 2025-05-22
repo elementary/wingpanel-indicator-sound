@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-17 18:58+0000\n"
+"POT-Creation-Date: 2025-05-22 14:03+0000\n"
 "PO-Revision-Date: 2024-07-15 07:16+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://l10n.elementary.io/projects/wingpanel/"
@@ -31,64 +31,64 @@ msgstr ""
 "כוונון עצמת הרמקולים והמיקרופון או הצגת הפרטים על מה שמתנגן לרבות האפשרות "
 "לפקד על המדיה"
 
-#: data/sound.metainfo.xml.in:36 data/sound.metainfo.xml.in:51
-#: data/sound.metainfo.xml.in:66 data/sound.metainfo.xml.in:79
-#: data/sound.metainfo.xml.in:93
+#: data/sound.metainfo.xml.in:36 data/sound.metainfo.xml.in:48
+#: data/sound.metainfo.xml.in:63 data/sound.metainfo.xml.in:78
+#: data/sound.metainfo.xml.in:91 data/sound.metainfo.xml.in:105
 msgid "Minor updates"
 msgstr "עדכונים משניים"
 
-#: data/sound.metainfo.xml.in:38 data/sound.metainfo.xml.in:55
-#: data/sound.metainfo.xml.in:72 data/sound.metainfo.xml.in:82
-#: data/sound.metainfo.xml.in:98
+#: data/sound.metainfo.xml.in:38 data/sound.metainfo.xml.in:50
+#: data/sound.metainfo.xml.in:67 data/sound.metainfo.xml.in:84
+#: data/sound.metainfo.xml.in:94 data/sound.metainfo.xml.in:110
 msgid "Updated translations"
 msgstr "תרגומים עודכנו"
 
-#: data/sound.metainfo.xml.in:53
+#: data/sound.metainfo.xml.in:65
 msgid "Use circle buttons for playback controls"
 msgstr "להשתמש בכפתורי הבחירה כפקדי נגינה"
 
-#: data/sound.metainfo.xml.in:54
+#: data/sound.metainfo.xml.in:66
 msgid "Middle-clicking the microphone indicator no longer mutes monitors"
 msgstr "לחיצה אמצעית על מחוון המיקרופון לא משתיקה עוד את המסכים"
 
-#: data/sound.metainfo.xml.in:68
+#: data/sound.metainfo.xml.in:80
 msgid "Use device form factor when available to assign more accurate icons"
 msgstr ""
 "נעשה שימוש במתווה החיצוני של המוצר כשאפשר כדי להקצות סמלים מדויקים יותר"
 
-#: data/sound.metainfo.xml.in:69
+#: data/sound.metainfo.xml.in:81
 msgid "Provide a fallback device icon when none is available"
 msgstr "אספקת סמל התקן נסיגה כשאין שום סמל אחר זמין"
 
-#: data/sound.metainfo.xml.in:70
+#: data/sound.metainfo.xml.in:82
 msgid "Fix missing switch animations"
 msgstr "הנפשות החלפה חסרות תוקנות"
 
-#: data/sound.metainfo.xml.in:71
+#: data/sound.metainfo.xml.in:83
 msgid "Use the volume step value from GNOME Settings Daemon"
 msgstr "להשתמש בערך צעד של עוצמת השמע מסוכן ההגדרות של GNOME"
 
-#: data/sound.metainfo.xml.in:81
+#: data/sound.metainfo.xml.in:93
 msgid "Show more specific icons for different types of devices"
 msgstr "הצגת סמלים יותר מדויקים לסוגים שונים של התקנים"
 
-#: data/sound.metainfo.xml.in:89
+#: data/sound.metainfo.xml.in:101
 msgid "New features"
 msgstr "יכולות חדשות"
 
-#: data/sound.metainfo.xml.in:91
+#: data/sound.metainfo.xml.in:103
 msgid "select specific input and output devices"
 msgstr "בחירה בהתקני קלט ופלט מסוימים"
 
-#: data/sound.metainfo.xml.in:95
+#: data/sound.metainfo.xml.in:107
 msgid "Hide temporary audio players when they stop"
 msgstr "נגני שמע זמניים יוסתרו כשהם נעצרים"
 
-#: data/sound.metainfo.xml.in:96
+#: data/sound.metainfo.xml.in:108
 msgid "Add a tooltip on hover"
 msgstr "נוספה חלונית עצה בעת מעבר עם העכבר"
 
-#: data/sound.metainfo.xml.in:97
+#: data/sound.metainfo.xml.in:109
 msgid "Minor visual improvements"
 msgstr "שיפורים חזותיים קלים"
 
