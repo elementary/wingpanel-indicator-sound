@@ -15,16 +15,16 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-public class DisplayWidget : Gtk.Box {
+public class Sound.DisplayWidget : Gtk.Box {
+    public signal void volume_press_event ();
+    public signal void mic_press_event ();
+
     public bool show_mic { get; set; }
     public bool mic_muted { get; set; }
     public string icon_name { get; set; }
 
     public signal void volume_scroll_event (Gdk.EventScroll e);
     public signal void mic_scroll_event (Gdk.EventScroll e);
-
-    public signal void volume_press_event (Gdk.EventButton e);
-    public signal void mic_press_event (Gdk.EventButton e);
 
     construct {
         var volume_icon = new Gtk.Image () {
@@ -62,11 +62,15 @@ public class DisplayWidget : Gtk.Box {
         });
 
         button_press_event.connect ((e) => {
+            if (e.button != Gdk.BUTTON_MIDDLE) {
+                return Gdk.EVENT_PROPAGATE;
+            }
+
             /* Determine whether scrolling on mic icon or not */
             if (show_mic && e.x < 24 + mic_icon.margin_end) {
-                mic_press_event (e);
+                mic_press_event ();
             } else {
-                volume_press_event (e);
+                volume_press_event ();
             }
 
             return Gdk.EVENT_PROPAGATE;
