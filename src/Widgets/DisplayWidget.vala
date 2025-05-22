@@ -37,6 +37,7 @@ public class Sound.DisplayWidget : Gtk.Box {
         var volume_event_box = new Gtk.EventBox () {
             child = volume_icon
         };
+        volume_event_box.events = SCROLL_MASK | SMOOTH_SCROLL_MASK | BUTTON_PRESS_MASK | BUTTON_RELEASE_MASK;
 
         var mic_icon = new Gtk.Spinner () {
             margin_end = 18
@@ -46,6 +47,7 @@ public class Sound.DisplayWidget : Gtk.Box {
         var mic_event_box = new Gtk.EventBox () {
             child = mic_icon
         };
+        mic_event_box.events = SCROLL_MASK | SMOOTH_SCROLL_MASK | BUTTON_PRESS_MASK | BUTTON_RELEASE_MASK;
 
         var mic_revealer = new Gtk.Revealer () {
             child = mic_event_box,
@@ -59,14 +61,13 @@ public class Sound.DisplayWidget : Gtk.Box {
         /* SMOOTH_SCROLL_MASK has no effect on this widget for reasons that are not
          * entirely clear. Only normal scroll events are received even if the SMOOTH_SCROLL_MASK
          * is set. */
-        scroll_event.connect ((e) => {
-            /* Determine whether scrolling on mic icon or not */
-            if (show_mic && e.x < mic_icon.get_allocated_width () + mic_icon.margin_end) {
-                mic_scroll_event (e);
-            } else {
-                volume_scroll_event (e);
-            }
+        mic_event_box.scroll_event.connect ((e) => {
+            mic_scroll_event (e);
+            return Gdk.EVENT_STOP;
+        });
 
+        volume_event_box.scroll_event.connect ((e) => {
+            volume_scroll_event (e);
             return Gdk.EVENT_STOP;
         });
 
