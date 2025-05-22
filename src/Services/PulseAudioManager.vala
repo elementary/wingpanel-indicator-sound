@@ -74,13 +74,18 @@ public class Sound.PulseAudioManager : GLib.Object {
     public async void set_default_device (Device device) {
         debug ("\n");
         debug ("set_default_device: %s", device.id);
-        debug ("\t%s", device.input? "input" : "output");
+        debug ("\t%s", device.direction.to_string ());
         // #1 Set card profile
         // Some sinks / sources are only available under certain card profiles,
         // for example to switch between onboard speakers to hdmi
         // the profile has to be switched from analog stereo to digital stereo.
         // Attempt to find profiles that support both selected input and output
-        var other_device = device.input? default_output : default_input;
+        var other_device = default_input;
+        var card_name = "card-sink-name";
+        if (device.direction == OUTPUT) {
+            other_device = default_output;
+            card_name = "card-source-name";
+        }
 
         var profile_name = device.get_matching_profile (other_device);
         // otherwise fall back to supporting this device only
@@ -94,37 +99,37 @@ public class Sound.PulseAudioManager : GLib.Object {
             yield set_card_profile_by_index (device.card_index, profile_name);
             // wait for new card sink to appear
             debug ("wait for card sink / source");
-            yield wait_for_update (device, device.input? "card-source-name" : "card-sink-name");
+            yield wait_for_update (device, card_name);
         }
 
         // #2 Set sink / source port
         // Speakers and headphones can be different ports on the same sink
-        if (!device.input && device.port_name != device.card_sink_port_name) {
+        if (device.direction == OUTPUT && device.port_name != device.card_sink_port_name) {
             debug ("set sink port: %s > %s", device.card_sink_port_name, device.port_name);
             // set sink port (enables switching between headphones and speakers for example)
             yield set_sink_port_by_name (device.card_sink_name, device.port_name);
         }
 
-        if (device.input && device.port_name != device.card_source_port_name) {
+        if (device.direction == INPUT && device.port_name != device.card_source_port_name) {
             debug ("set source port: %s > %s", device.card_source_port_name, device.port_name);
             yield set_source_port_by_name (device.card_source_name, device.port_name);
         }
 
         // #3 Wait for sink / source to appear for this device
-        if (!device.input && device.sink_name == null ||
-            device.input && device.source_name == null) {
+        if (device.direction == OUTPUT && device.sink_name == null ||
+            device.direction == INPUT && device.source_name == null) {
             debug ("wait for sink / source");
-            yield wait_for_update (device, device.input? "source-name" : "sink-name");
+            yield wait_for_update (device, card_name);
         }
 
         // #4 Set sink / source
         // To for example switch between onboard speakers and bluetooth audio devices
-        if (!device.input && device.sink_name != default_sink_name) {
+        if (device.direction == OUTPUT && device.sink_name != default_sink_name) {
             debug ("set sink: %s > %s", default_sink_name, device.sink_name);
             yield set_default_sink (device.sink_name);
         }
 
-        if (device.input && device.source_name != default_source_name) {
+        if (device.direction == INPUT && device.source_name != default_source_name) {
             debug ("set source: %s > %s", default_source_name, device.source_name);
             yield set_default_source (device.source_name);
         }
@@ -539,7 +544,7 @@ public class Sound.PulseAudioManager : GLib.Object {
             }
 
             device.card_active_profile_name = card_active_profile_name;
-            device.input = is_input;
+            device.direction = port.direction;
             device.is_priority = port.priority == (is_input? highest_input_priority : highest_output_priority);
             // Any connected device previously selected in 7 days is also considered priority and will be displayed
             if (id in preferred_device_map.keys && preferred_device_map[id] > preferred_expiry) {
