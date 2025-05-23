@@ -16,6 +16,8 @@
 */
 
 public class Sound.Widgets.Scale : Gtk.EventBox {
+    public signal void slider_dropped ();
+
     public Gtk.Adjustment adjustment { get; construct; }
     public string icon { get; construct set; }
 
@@ -58,6 +60,11 @@ public class Sound.Widgets.Scale : Gtk.EventBox {
         add (box);
         add_events (Gdk.EventMask.SMOOTH_SCROLL_MASK);
         above_child = false;
+
+        scale_widget.button_release_event.connect (() => {
+            slider_dropped ();
+            return Gdk.EVENT_PROPAGATE;
+        });
 
         scale_widget.scroll_event.connect ((e) => {
             /* Re-emit the signal on the eventbox instead of using native handler */
