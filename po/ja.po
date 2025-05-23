@@ -1,19 +1,19 @@
-# Ryo Nakano <ryonakaknock3@gmail.com>, 2019, 2020, 2021, 2024.
+# Ryo Nakano <ryonakaknock3@gmail.com>, 2019, 2020, 2021, 2024, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-05-22 14:03+0000\n"
-"PO-Revision-Date: 2024-03-21 01:13+0000\n"
+"PO-Revision-Date: 2025-05-24 08:55+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
-"Language-Team: Japanese <https://l10n.elementary.io/projects/wingpanel/"
+"Language-Team: Japanese <https://l10n.elementaryos.org/projects/wingpanel/"
 "wingpanel-indicator-sound/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.0.2\n"
+"X-Generator: Weblate 5.11.4\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 
 #: src/Indicator.vala:428
@@ -47,11 +47,11 @@ msgstr "不明なアーティスト"
 
 #: src/Widgets/Scale.vala:78
 msgid "Mute"
-msgstr ""
+msgstr "ミュート"
 
 #: src/Widgets/Scale.vala:80
 msgid "Unmute"
-msgstr ""
+msgstr "ミュート解除"
 
 #~ msgid "Indicator Sound"
 #~ msgstr "サウンドの通知"
