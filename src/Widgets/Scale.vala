@@ -19,15 +19,12 @@ public class Sound.Widgets.Scale : Gtk.EventBox {
     public signal void slider_dropped ();
 
     public Gtk.Adjustment adjustment { get; construct; }
-    public string icon { get; construct set; }
+    public string icon { get; set; }
 
     public bool active { get; set; default = true; }
 
-    public Scale (string icon, Gtk.Adjustment adjustment) {
-        Object (
-            icon: icon,
-            adjustment: adjustment
-        );
+    public Scale (Gtk.Adjustment adjustment) {
+        Object (adjustment: adjustment);
     }
 
     class construct {
@@ -35,7 +32,7 @@ public class Sound.Widgets.Scale : Gtk.EventBox {
     }
 
     construct {
-        var image = new Gtk.Image.from_icon_name (icon, BUTTON);
+        var image = new Gtk.Image ();
 
         var toggle = new Gtk.ToggleButton ();
         toggle.image = image;
