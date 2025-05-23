@@ -26,9 +26,6 @@ public class Sound.DisplayWidget : Gtk.Box {
     public signal void volume_scroll_event (Gdk.EventScroll e);
     public signal void mic_scroll_event (Gdk.EventScroll e);
 
-    private Gtk.GestureMultiPress mic_gesture_click;
-    private Gtk.GestureMultiPress volume_gesture_click;
-
     construct {
         var volume_icon = new Gtk.Image () {
             pixel_size = 24
@@ -71,7 +68,7 @@ public class Sound.DisplayWidget : Gtk.Box {
             return Gdk.EVENT_STOP;
         });
 
-        mic_gesture_click = new Gtk.GestureMultiPress (mic_event_box) {
+        var mic_gesture_click = new Gtk.GestureClick () {
             button = Gdk.BUTTON_MIDDLE
         };
         mic_gesture_click.pressed.connect (() => {
@@ -80,7 +77,9 @@ public class Sound.DisplayWidget : Gtk.Box {
             mic_gesture_click.reset ();
         });
 
-        volume_gesture_click = new Gtk.GestureMultiPress (volume_event_box) {
+        mic_event_box.add_controller (mic_gesture_click);
+
+        var volume_gesture_click = new Gtk.GestureClick () {
             button = Gdk.BUTTON_MIDDLE
         };
         volume_gesture_click.pressed.connect (() => {
@@ -88,6 +87,8 @@ public class Sound.DisplayWidget : Gtk.Box {
             volume_gesture_click.set_state (CLAIMED);
             volume_gesture_click.reset ();
         });
+
+        volume_event_box.add_controller (volume_gesture_click);
 
         bind_property (
             "icon-name",
