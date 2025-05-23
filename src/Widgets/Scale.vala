@@ -16,20 +16,16 @@
 */
 
 public class Sound.Widgets.Scale : Gtk.EventBox {
-    public string icon { get; set; }
-    public bool active { get; construct set; }
-    public double max { get; construct; }
-    public double min { get; construct; }
-    public double step { get; construct; }
+    public Gtk.Adjustment adjustment { get; construct; }
+    public string icon { get; construct set; }
+
+    public bool active { get; set; default = true; }
     public Gtk.Scale scale_widget { get; private set; }
 
-    public Scale (string icon, bool active = false, double min, double max, double step) {
+    public Scale (string icon, Gtk.Adjustment adjustment) {
         Object (
-            active: active,
             icon: icon,
-            max: max,
-            min: min,
-            step: step
+            adjustment: adjustment
         );
     }
 
@@ -43,7 +39,7 @@ public class Sound.Widgets.Scale : Gtk.EventBox {
         var toggle = new Gtk.ToggleButton ();
         toggle.image = image;
 
-        scale_widget = new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL, min, max, step) {
+        scale_widget = new Gtk.Scale (HORIZONTAL, adjustment) {
             draw_value = false,
             hexpand = true,
             width_request = 175

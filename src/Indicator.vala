@@ -23,6 +23,8 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
     private DisplayWidget display_widget;
     private Gtk.Box main_box;
+    private Gtk.Adjustment volume_adjustment;
+    private Gtk.Adjustment mic_adjustment;
     private Widgets.PlayerList mpris;
     private Widgets.Scale volume_scale;
     private Widgets.Scale mic_scale;
@@ -122,9 +124,12 @@ public class Sound.Indicator : Wingpanel.Indicator {
         display_widget.volume_scroll_event.connect_after (on_volume_icon_scroll_event);
         display_widget.mic_scroll_event.connect_after (on_mic_icon_scroll_event);
 
-        volume_scale = new Widgets.Scale ("audio-volume-high-symbolic", true, 0.0, max_volume, 0.01);
+        volume_adjustment = new Gtk.Adjustment (0, 0, max_volume, 0.01, 0, 0);
+        mic_adjustment = new Gtk.Adjustment (0, 0, 1, 0.01, 0, 0);
 
-        mic_scale = new Widgets.Scale ("indicator-microphone-symbolic", true, 0.0, 1.0, 0.01);
+        volume_scale = new Widgets.Scale ("audio-volume-high-symbolic", volume_adjustment);
+
+        mic_scale = new Widgets.Scale ("indicator-microphone-symbolic", mic_adjustment);
 
         ca_context = CanberraGtk.context_get ();
         ca_context.change_props (Canberra.PROP_APPLICATION_NAME, "indicator-sound",
@@ -270,8 +275,8 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
     private void on_volume_change () {
         double volume = volume_control.volume.volume / max_volume;
-        if (volume != volume_scale.scale_widget.get_value ()) {
-            volume_scale.scale_widget.set_value (volume);
+        if (volume != volume_adjustment.get_value ()) {
+            volume_adjustment.set_value (volume);
             display_widget.icon_name = get_volume_icon (volume);
         }
     }
@@ -279,8 +284,8 @@ public class Sound.Indicator : Wingpanel.Indicator {
     private void on_mic_volume_change () {
         var volume = volume_control.mic_volume;
 
-        if (volume != mic_scale.scale_widget.get_value ()) {
-            mic_scale.scale_widget.set_value (volume);
+        if (volume != mic_adjustment.get_value ()) {
+            mic_adjustment.set_value (volume);
         }
     }
 
@@ -404,8 +409,8 @@ public class Sound.Indicator : Wingpanel.Indicator {
             mpris = new Widgets.PlayerList ();
 
             volume_scale.active = !volume_control.mute;
-            volume_scale.scale_widget.set_value (volume_control.volume.volume);
-            volume_scale.icon = get_volume_icon (volume_scale.scale_widget.get_value ());
+            volume_adjustment.set_value (volume_control.volume.volume);
+            volume_scale.icon = get_volume_icon (volume_adjustment.get_value ());
 
             set_max_volume ();
 
@@ -437,8 +442,8 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
             mic_scale.notify["active"].connect (on_mic_switch_change);
 
-            mic_scale.scale_widget.value_changed.connect (() => {
-                volume_control.mic_volume = mic_scale.scale_widget.get_value ();
+            mic_adjustment.value_changed.connect (() => {
+                volume_control.mic_volume = mic_adjustment.get_value ();
             });
 
             mic_scale.scale_widget.button_release_event.connect (() => {
@@ -485,14 +490,14 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
             volume_scale.notify["active"].connect (on_volume_switch_change);
 
-            volume_scale.scale_widget.value_changed.connect (() => {
-                var val = volume_scale.scale_widget.get_value () * max_volume;
+            volume_adjustment.value_changed.connect (() => {
+                var val = volume_adjustment.get_value () * max_volume;
                 var vol = new Services.VolumeControl.Volume () {
                     volume = val.clamp (0.0, max_volume),
                     reason = Services.VolumeControl.VolumeReasons.USER_KEYPRESS
                 };
                 volume_control.volume = vol;
-                volume_scale.icon = get_volume_icon (volume_scale.scale_widget.get_value ());
+                volume_scale.icon = get_volume_icon (volume_adjustment.get_value ());
             });
         }
 
@@ -667,7 +672,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
                     icon = "audio-input-microphone-symbolic";
                 }
             } else {
-                icon = get_volume_icon (volume_scale.scale_widget.get_value ());
+                icon = get_volume_icon (volume_adjustment.get_value ());
             }
 
             notification.update ("indicator-sound", "", icon);
