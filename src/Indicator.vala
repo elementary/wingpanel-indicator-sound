@@ -28,8 +28,6 @@ public class Sound.Indicator : Wingpanel.Indicator {
     private Widgets.PlayerList mpris;
     private Widgets.Scale volume_scale;
     private Widgets.Scale mic_scale;
-    private Widgets.DeviceManagerWidget output_device_manager;
-    private Widgets.DeviceManagerWidget input_device_manager;
     private Gtk.Separator mic_separator;
     private Notify.Notification? notification;
     private Services.VolumeControlPulse volume_control;
@@ -103,13 +101,6 @@ public class Sound.Indicator : Wingpanel.Indicator {
         volume_control.notify["volume"].connect (update_tooltip);
         volume_control.notify["mute"].connect (update_tooltip);
 
-        output_device_manager = new Widgets.DeviceManagerWidget () {
-            direction = OUTPUT
-        };
-        input_device_manager = new Widgets.DeviceManagerWidget () {
-            direction = INPUT
-        };
-
         Notify.init ("wingpanel-indicator-sound");
 
         settings.notify["max-volume"].connect (set_max_volume);
@@ -127,9 +118,13 @@ public class Sound.Indicator : Wingpanel.Indicator {
         volume_adjustment = new Gtk.Adjustment (0, 0, max_volume, 0.01, 0, 0);
         mic_adjustment = new Gtk.Adjustment (0, 0, 1, 0.01, 0, 0);
 
-        volume_scale = new Widgets.Scale ("audio-volume-high-symbolic", volume_adjustment);
+        volume_scale = new Widgets.Scale ("audio-volume-high-symbolic", volume_adjustment) {
+            direction = OUTPUT
+        };
 
-        mic_scale = new Widgets.Scale ("indicator-microphone-symbolic", mic_adjustment);
+        mic_scale = new Widgets.Scale ("indicator-microphone-symbolic", mic_adjustment) {
+            direction = INPUT
+        };
 
         ca_context = CanberraGtk.context_get ();
         ca_context.change_props (Canberra.PROP_APPLICATION_NAME, "indicator-sound",
@@ -357,16 +352,12 @@ public class Sound.Indicator : Wingpanel.Indicator {
             mic_scale.show_all ();
             mic_separator.no_show_all = false;
             mic_separator.show ();
-            input_device_manager.no_show_all = false;
-            input_device_manager.show ();
             display_widget.show_mic = true;
         } else {
             mic_scale.no_show_all = true;
             mic_scale.hide ();
             mic_separator.no_show_all = true;
             mic_separator.hide ();
-            input_device_manager.no_show_all = true;
-            input_device_manager.hide ();
             display_widget.show_mic = false;
         }
     }
@@ -431,11 +422,9 @@ public class Sound.Indicator : Wingpanel.Indicator {
                 main_box.add (new Gtk.Separator (Gtk.Orientation.HORIZONTAL));
             }
             main_box.add (volume_scale);
-            main_box.add (output_device_manager);
             if (is_in_session) {
                 main_box.add (new Gtk.Separator (Gtk.Orientation.HORIZONTAL));
                 main_box.add (mic_scale);
-                main_box.add (input_device_manager);
                 main_box.add (mic_separator);
                 main_box.add (settings_button);
             }
