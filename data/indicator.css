@@ -30,7 +30,7 @@
     100% { -gtk-icon-source: -gtk-icontheme("indicator-microphone-muted-symbolic"); }
 }
 
-menuitem .image-button,
+device-manager .image-button,
 player-row .image-button {
     background: alpha(@text_color, 0.1);
     border: none;
@@ -39,18 +39,18 @@ player-row .image-button {
     min-width: 2.1666rem; /* 26px */
 }
 
-menuitem .image-button.toggle,
+device-manager .image-button.toggle,
 player-row .image-button.toggle {
     border-radius: 1em;
 }
 
-menuitem .image-button:checked,
+device-manager .image-button:checked,
 player-row .image-button:checked {
     background: @selected_bg_color;
     color: @selected_fg_color;
 }
 
-menuitem .image-button:disabled,
+device-manager .image-button:disabled,
 player-row .image-button:disabled {
     background: @insensitive_bg_color;
 }

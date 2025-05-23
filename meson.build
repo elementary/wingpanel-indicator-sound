@@ -49,7 +49,6 @@ shared_module(
     'src/Widgets/Scale.vala',
     'src/Widgets/PlayerRow.vala',
     'src/Widgets/PlayerList.vala',
-    'src/Widgets/DeviceManagerWidget.vala',
     'src/Widgets/DeviceItem.vala',
     'src/Services/PulseAudioManager.vala',
     'src/Services/MprisClient.vala',
