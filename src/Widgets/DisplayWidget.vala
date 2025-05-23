@@ -15,7 +15,10 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-public class DisplayWidget : Gtk.Box {
+public class Sound.DisplayWidget : Gtk.Box {
+    public signal void volume_press_event ();
+    public signal void mic_press_event ();
+
     public bool show_mic { get; set; }
     public bool mic_muted { get; set; }
     public string icon_name { get; set; }
@@ -23,53 +26,67 @@ public class DisplayWidget : Gtk.Box {
     public signal void volume_scroll_event (Gdk.EventScroll e);
     public signal void mic_scroll_event (Gdk.EventScroll e);
 
-    public signal void volume_press_event (Gdk.EventButton e);
-    public signal void mic_press_event (Gdk.EventButton e);
+    private Gtk.GestureMultiPress mic_gesture_click;
+    private Gtk.GestureMultiPress volume_gesture_click;
 
     construct {
         var volume_icon = new Gtk.Image () {
             pixel_size = 24
         };
 
+        var volume_event_box = new Gtk.EventBox () {
+            child = volume_icon
+        };
+        volume_event_box.events = SCROLL_MASK | SMOOTH_SCROLL_MASK | BUTTON_PRESS_MASK | BUTTON_RELEASE_MASK;
+
         var mic_icon = new Gtk.Spinner () {
             margin_end = 18
         };
+        mic_icon.get_style_context ().add_class ("mic-icon");
 
-        var mic_style_context = mic_icon.get_style_context ();
-        mic_style_context.add_class ("mic-icon");
+        var mic_event_box = new Gtk.EventBox () {
+            child = mic_icon
+        };
+        mic_event_box.events = SCROLL_MASK | SMOOTH_SCROLL_MASK | BUTTON_PRESS_MASK | BUTTON_RELEASE_MASK;
 
         var mic_revealer = new Gtk.Revealer () {
-            transition_type = Gtk.RevealerTransitionType.SLIDE_LEFT
+            child = mic_event_box,
+            transition_type = SLIDE_LEFT
         };
-        mic_revealer.add (mic_icon);
 
         valign = Gtk.Align.CENTER;
         add (mic_revealer);
-        add (volume_icon);
+        add (volume_event_box);
 
         /* SMOOTH_SCROLL_MASK has no effect on this widget for reasons that are not
          * entirely clear. Only normal scroll events are received even if the SMOOTH_SCROLL_MASK
          * is set. */
-        scroll_event.connect ((e) => {
-            /* Determine whether scrolling on mic icon or not */
-            if (show_mic && e.x < mic_icon.get_allocated_width () + mic_icon.margin_end) {
-                mic_scroll_event (e);
-            } else {
-                volume_scroll_event (e);
-            }
-
+        mic_event_box.scroll_event.connect ((e) => {
+            mic_scroll_event (e);
             return Gdk.EVENT_STOP;
         });
 
-        button_press_event.connect ((e) => {
-            /* Determine whether scrolling on mic icon or not */
-            if (show_mic && e.x < 24 + mic_icon.margin_end) {
-                mic_press_event (e);
-            } else {
-                volume_press_event (e);
-            }
+        volume_event_box.scroll_event.connect ((e) => {
+            volume_scroll_event (e);
+            return Gdk.EVENT_STOP;
+        });
 
-            return Gdk.EVENT_PROPAGATE;
+        mic_gesture_click = new Gtk.GestureMultiPress (mic_event_box) {
+            button = Gdk.BUTTON_MIDDLE
+        };
+        mic_gesture_click.pressed.connect (() => {
+            mic_press_event ();
+            mic_gesture_click.set_state (CLAIMED);
+            mic_gesture_click.reset ();
+        });
+
+        volume_gesture_click = new Gtk.GestureMultiPress (volume_event_box) {
+            button = Gdk.BUTTON_MIDDLE
+        };
+        volume_gesture_click.pressed.connect (() => {
+            volume_press_event ();
+            volume_gesture_click.set_state (CLAIMED);
+            volume_gesture_click.reset ();
         });
 
         bind_property (
@@ -87,9 +104,9 @@ public class DisplayWidget : Gtk.Box {
 
         notify["mic-muted"].connect (() => {
             if (mic_muted) {
-                mic_style_context.add_class ("disabled");
+                mic_icon.get_style_context ().add_class ("disabled");
             } else {
-                mic_style_context.remove_class ("disabled");
+                mic_icon.get_style_context ().remove_class ("disabled");
             }
         });
     }
