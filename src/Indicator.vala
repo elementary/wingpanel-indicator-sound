@@ -116,17 +116,8 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
         var locale = Intl.setlocale (LocaleCategory.MESSAGES, null);
 
-        display_widget.volume_press_event.connect ((e) => {
-            if (e.button == Gdk.BUTTON_MIDDLE) {
-                volume_control.toggle_mute ();
-            }
-        });
-
-        display_widget.mic_press_event.connect ((e) => {
-            if (e.button == Gdk.BUTTON_MIDDLE) {
-                volume_control.toggle_mic_mute ();
-            }
-        });
+        display_widget.volume_press_event.connect (volume_control.toggle_mute);
+        display_widget.mic_press_event.connect (volume_control.toggle_mic_mute);
 
         display_widget.icon_name = get_volume_icon (volume_control.volume.volume);
 
