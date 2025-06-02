@@ -2,22 +2,23 @@
 # Copyright (c) 2015 Rosetta Contributors and Canonical Ltd 2015
 # This file is distributed under the same license as the wingpanel-indicator-sound package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2015.
-# Kisaragi Hiu <mail@kisaragi-hiu.com>, 2024.
+# Kisaragi Hiu <mail@kisaragi-hiu.com>, 2024, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: wingpanel-indicator-sound\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-05-22 14:03+0000\n"
-"PO-Revision-Date: 2024-09-05 16:16+0000\n"
+"PO-Revision-Date: 2025-06-03 03:55+0000\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
-"Language-Team: Chinese (Traditional) <https://l10n.elementary.io/projects/"
-"wingpanel/wingpanel-indicator-sound/zh_Hant/>\n"
+"Language-Team: Chinese (Traditional Han script) <https://"
+"l10n.elementaryos.org/projects/wingpanel/wingpanel-indicator-sound/zh_Hant/>"
+"\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Weblate 5.11.4\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 
 #: src/Indicator.vala:428
@@ -51,11 +52,11 @@ msgstr "未知藝人"
 
 #: src/Widgets/Scale.vala:78
 msgid "Mute"
-msgstr ""
+msgstr "靜音"
 
 #: src/Widgets/Scale.vala:80
 msgid "Unmute"
-msgstr ""
+msgstr "解除靜音"
 
 #~ msgid "Indicator Sound"
 #~ msgstr "指示器音效"
