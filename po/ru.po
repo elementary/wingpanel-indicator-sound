@@ -6,14 +6,15 @@
 # DartDeaDia <jorydit@gmail.com>, 2021.
 # DartDeaDia <dartdeadia@protonmail.com>, 2021.
 # кубик круглый <megarainbow29@gmail.com>, 2023.
+# lenemter <lenemter@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: wingpanel-indicator-sound\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-05-22 14:03+0000\n"
-"PO-Revision-Date: 2023-01-29 12:25+0000\n"
-"Last-Translator: кубик круглый <megarainbow29@gmail.com>\n"
-"Language-Team: Russian <https://l10n.elementary.io/projects/wingpanel/"
+"PO-Revision-Date: 2025-06-06 11:55+0000\n"
+"Last-Translator: lenemter <lenemter@gmail.com>\n"
+"Language-Team: Russian <https://l10n.elementaryos.org/projects/wingpanel/"
 "wingpanel-indicator-sound/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +22,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.14.2\n"
+"X-Generator: Weblate 5.11.4\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 
 #: src/Indicator.vala:428
@@ -55,11 +56,11 @@ msgstr "Неизвестный исполнитель"
 
 #: src/Widgets/Scale.vala:78
 msgid "Mute"
-msgstr ""
+msgstr "Выключить звук"
 
 #: src/Widgets/Scale.vala:80
 msgid "Unmute"
-msgstr ""
+msgstr "Включить звук"
 
 #~ msgid "Indicator Sound"
 #~ msgstr "Индикатор звука"
