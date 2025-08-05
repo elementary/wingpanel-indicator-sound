@@ -28,7 +28,7 @@ gresource = gnome.compile_resources(
     source_dir: 'data'
 )
 
-wingpanel_dep = dependency('wingpanel', version: '>=2.1.0')
+wingpanel_dep = dependency('wingpanel-8', version: '>=2.1.0')
 wingpanel_indicatorsdir = wingpanel_dep.get_pkgconfig_variable('indicatorsdir', define_variable: ['libdir', libdir])
 
 config_data = configuration_data()
@@ -63,13 +63,13 @@ shared_module(
         dependency('glib-2.0'),
         dependency('gio-2.0'),
         dependency('gobject-2.0'),
-        dependency('granite', version: '>=6.0.0'),
-        dependency('gtk+-3.0'),
+        dependency('granite-7', version: '>=6.0.0'),
+        dependency('gtk4'),
         dependency('libpulse'),
         dependency('libpulse-mainloop-glib'),
         dependency('libnotify'),
         dependency('libcanberra'),
-        dependency('libcanberra-gtk3'),
+        # dependency('libcanberra-gtk4'),
         meson.get_compiler('vala').find_library('libpulse-ext', dirs: join_paths(meson.source_root(), 'vapi')),
         wingpanel_dep
     ],

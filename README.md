@@ -8,13 +8,13 @@
 You'll need the following dependencies:
 
     libcanberra-gtk-dev
-    libcanberra-gtk3-dev
-    libgranite-dev
+    libcanberra-gtk4-dev
+    libgranite-7-dev
     libglib2.0-dev
-    libgtk-3-dev
+    libgtk-4-dev
     libnotify-dev
     libpulse-dev
-    libwingpanel-dev
+    libwingpanel-8-dev
     meson (>= 0.57.0)
     valac (>= 0.26)
 
