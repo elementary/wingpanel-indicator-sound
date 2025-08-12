@@ -78,7 +78,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
         // Prevent a race that skips automatic resource loading
         // https://github.com/elementary/wingpanel-indicator-bluetooth/issues/203
-        Gtk.IconTheme.get_default ().add_resource_path ("/org/elementary/wingpanel/icons");
+        Gtk.IconTheme.get_for_display (Gdk.Display.get_default ()).add_resource_path ("/org/elementary/wingpanel/icons");
 
         var provider = new Gtk.CssProvider ();
         provider.load_from_resource ("io/elementary/wingpanel/sound/indicator.css");
@@ -121,8 +121,8 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
         display_widget.icon_name = get_volume_icon (volume_control.volume.volume);
 
-        display_widget.volume_scroll_event.connect_after (on_volume_icon_scroll_event);
-        display_widget.mic_scroll_event.connect_after (on_mic_icon_scroll_event);
+        // display_widget.volume_scroll_event.connect_after (on_volume_icon_scroll_event);
+        // display_widget.mic_scroll_event.connect_after (on_mic_icon_scroll_event);
 
         volume_adjustment = new Gtk.Adjustment (0, 0, max_volume, 0.01, 0, 0);
         mic_adjustment = new Gtk.Adjustment (0, 0, 1, 0.01, 0, 0);
@@ -353,20 +353,14 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
     private void update_mic_visibility () {
         if (volume_control.is_listening) {
-            mic_scale.no_show_all = false;
-            mic_scale.show_all ();
-            mic_separator.no_show_all = false;
-            mic_separator.show ();
-            input_device_manager.no_show_all = false;
-            input_device_manager.show ();
+            mic_scale.visible = true;
+            mic_separator.visible = true;
+            input_device_manager.visible = true;
             display_widget.show_mic = true;
         } else {
-            mic_scale.no_show_all = true;
-            mic_scale.hide ();
-            mic_separator.no_show_all = true;
-            mic_separator.hide ();
-            input_device_manager.no_show_all = true;
-            input_device_manager.hide ();
+            mic_scale.visible = false;
+            mic_separator.visible = false;
+            input_device_manager.visible = false;
             display_widget.show_mic = false;
         }
     }
@@ -420,24 +414,24 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
             update_mic_visibility ();
 
-            var settings_button = new Gtk.ModelButton () {
+            var settings_button = new Wingpanel.PopoverMenuItem () {
                 text = _("Sound Settings…"),
                 margin_top = 3
             };
 
             main_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
             if (is_in_session) {
-                main_box.add (mpris);
-                main_box.add (new Gtk.Separator (Gtk.Orientation.HORIZONTAL));
+                main_box.append (mpris);
+                main_box.append (new Gtk.Separator (Gtk.Orientation.HORIZONTAL));
             }
-            main_box.add (volume_scale);
-            main_box.add (output_device_manager);
+            main_box.append (volume_scale);
+            main_box.append (output_device_manager);
             if (is_in_session) {
-                main_box.add (new Gtk.Separator (Gtk.Orientation.HORIZONTAL));
-                main_box.add (mic_scale);
-                main_box.add (input_device_manager);
-                main_box.add (mic_separator);
-                main_box.add (settings_button);
+                main_box.append (new Gtk.Separator (Gtk.Orientation.HORIZONTAL));
+                main_box.append (mic_scale);
+                main_box.append (input_device_manager);
+                main_box.append (mic_separator);
+                main_box.append (settings_button);
             }
 
             mic_scale.notify["active"].connect (on_mic_switch_change);
@@ -446,14 +440,14 @@ public class Sound.Indicator : Wingpanel.Indicator {
                 volume_control.mic_volume = mic_adjustment.get_value ();
             });
 
-            mic_scale.scroll_event.connect_after ((e) => {
-                double dir = 0.0;
-                if (handle_scroll_event (e, out dir)) {
-                    handle_change (dir, true);
-                }
+            // mic_scale.scroll_event.connect_after ((e) => {
+            //     double dir = 0.0;
+            //     if (handle_scroll_event (e, out dir)) {
+            //         handle_change (dir, true);
+            //     }
 
-                return true;
-            });
+            //     return true;
+            // });
 
             mpris.close.connect (() => {
                 close ();
@@ -471,14 +465,14 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
             volume_scale.slider_dropped.connect (play_volume_change_sound);
 
-            volume_scale.scroll_event.connect_after ((e) => {
-                double dir = 0.0;
-                if (handle_scroll_event (e, out dir)) {
-                    handle_change (dir, false);
-                }
+            // volume_scale.scroll_event.connect_after ((e) => {
+            //     double dir = 0.0;
+            //     if (handle_scroll_event (e, out dir)) {
+            //         handle_change (dir, false);
+            //     }
 
-                return true;
-            });
+            //     return true;
+            // });
 
             volume_scale.notify["active"].connect (on_volume_switch_change);
 

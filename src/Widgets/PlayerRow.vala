@@ -60,7 +60,7 @@ public class Sound.Widgets.PlayerRow : Gtk.Box {
                 var icon = value.get_icon ();
                 if (icon != null) {
                     app_icon = icon;
-                    background.set_from_gicon (app_icon, Gtk.IconSize.DIALOG);
+                    background.gicon = app_icon;
                 }
             }
         }
@@ -98,7 +98,7 @@ public class Sound.Widgets.PlayerRow : Gtk.Box {
                     });
                 }
             } else {
-                ((Gtk.Image) play_btn.image).icon_name = "media-playback-start-symbolic";
+                play_btn.icon_name = "media-playback-start-symbolic";
                 prev_btn.sensitive = false;
                 next_btn.sensitive = false;
                 Sound.Indicator.settings.set_strv (
@@ -133,7 +133,7 @@ public class Sound.Widgets.PlayerRow : Gtk.Box {
         mp_client = media_player_client;
 
         app_icon = new ThemedIcon (icon);
-        background.set_from_gicon (app_icon, Gtk.IconSize.DIALOG);
+        background.gicon = app_icon;
         title_label.label = name;
         artist_label.label = NOT_PLAYING;
 
@@ -182,17 +182,17 @@ public class Sound.Widgets.PlayerRow : Gtk.Box {
         };
 
         mask = new Gtk.Image.from_resource ("/io/elementary/wingpanel/sound/image-mask.svg") {
-            no_show_all = true,
+            visible = false,
             pixel_size = 48
         };
 
         var overlay = new Gtk.Overlay () {
+            child = background,
             can_focus = true,
             margin_bottom = 2,
             margin_end = 4,
             margin_start = 4
         };
-        overlay.add (background);
         overlay.add_overlay (mask);
 
         title_label = new Gtk.Label (null) {
@@ -208,8 +208,8 @@ public class Sound.Widgets.PlayerRow : Gtk.Box {
             halign = Gtk.Align.START,
             valign = Gtk.Align.START
         };
-        artist_label.get_style_context ().add_class (Gtk.STYLE_CLASS_DIM_LABEL);
-        artist_label.get_style_context ().add_class (Granite.STYLE_CLASS_SMALL_LABEL);
+        artist_label.add_css_class (Granite.STYLE_CLASS_DIM_LABEL);
+        artist_label.add_css_class (Granite.STYLE_CLASS_SMALL_LABEL);
 
         var titles = new Gtk.Grid () {
             column_spacing = 3
@@ -218,18 +218,13 @@ public class Sound.Widgets.PlayerRow : Gtk.Box {
         titles.attach (title_label, 1, 0);
         titles.attach (artist_label, 1, 1);
 
-        var titles_events = new Gtk.EventBox () {
-            hexpand = true
-        };
-        titles_events.add (titles);
-
         prev_btn = new Gtk.Button.from_icon_name (
             "media-skip-backward-symbolic"
         ) {
             sensitive = false,
             valign = Gtk.Align.CENTER
         };
-        prev_btn.get_style_context ().add_class ("circular");
+        prev_btn.add_css_class (Granite.STYLE_CLASS_CIRCULAR);
 
         play_btn = new Gtk.Button.from_icon_name (
             "media-playback-start-symbolic"
@@ -237,7 +232,7 @@ public class Sound.Widgets.PlayerRow : Gtk.Box {
             sensitive = true,
             valign = Gtk.Align.CENTER
         };
-        play_btn.get_style_context ().add_class ("circular");
+        play_btn.add_css_class (Granite.STYLE_CLASS_CIRCULAR);
 
         next_btn = new Gtk.Button.from_icon_name (
             "media-skip-forward-symbolic"
@@ -245,14 +240,14 @@ public class Sound.Widgets.PlayerRow : Gtk.Box {
             sensitive = false,
             valign = Gtk.Align.CENTER
         };
-        next_btn.get_style_context ().add_class ("circular");
+        next_btn.add_css_class (Granite.STYLE_CLASS_CIRCULAR);
 
         spacing = 6;
         margin_end = 12;
-        add (titles_events);
-        add (prev_btn);
-        add (play_btn);
-        add (next_btn);
+        append (titles);
+        append (prev_btn);
+        append (play_btn);
+        append (next_btn);
 
         if (client != null) {
             connect_to_client ();
@@ -261,7 +256,7 @@ public class Sound.Widgets.PlayerRow : Gtk.Box {
             update_controls ();
         }
 
-        titles_events.button_press_event.connect (raise_player);
+        // titles_events.button_press_event.connect (raise_player);
 
         prev_btn.clicked.connect (() => {
             Idle.add (() => {
@@ -435,9 +430,9 @@ public class Sound.Widgets.PlayerRow : Gtk.Box {
      */
     private void update_play_status () {
         if (client.player.playback_status == "Playing") {
-            ((Gtk.Image) play_btn.image).icon_name = "media-playback-pause-symbolic";
+            play_btn.icon_name = "media-playback-pause-symbolic";
         } else {
-            ((Gtk.Image) play_btn.image).icon_name = "media-playback-start-symbolic";
+            play_btn.icon_name = "media-playback-start-symbolic";
         }
 
         /**
@@ -446,11 +441,9 @@ public class Sound.Widgets.PlayerRow : Gtk.Box {
          * browsers, but in theory any app could have temporary MPRIS playback.
          */
         if (client.player.playback_status == "Stopped" && app_info == null) {
-            no_show_all = true;
-            hide ();
+            visible = false;
         } else {
-            no_show_all = false;
-            show ();
+            visible = true;
         }
     }
 
@@ -471,12 +464,9 @@ public class Sound.Widgets.PlayerRow : Gtk.Box {
      * Utility, handle updating the album art
      */
     private void update_art (string uri) {
-        var scale = get_style_context ().get_scale ();
         if (!uri.has_prefix ("file://") && !uri.has_prefix ("http")) {
             background.gicon = app_icon;
-            background.get_style_context ().set_scale (scale);
-            mask.no_show_all = true;
-            mask.hide ();
+            mask.visible = false;
             return;
         }
 
@@ -507,14 +497,13 @@ public class Sound.Widgets.PlayerRow : Gtk.Box {
             }
 
             try {
-                var pbuf = new Gdk.Pixbuf.from_file_at_size (fname, ICON_SIZE * scale, ICON_SIZE * scale);
-                background.gicon = mask_pixbuf (pbuf, scale);
+                var pbuf = new Gdk.Pixbuf.from_file_at_size (fname, ICON_SIZE * scale_factor, ICON_SIZE * scale_factor);
+                background.gicon = mask_pixbuf (pbuf, scale_factor);
                 background.get_style_context ().set_scale (1);
-                mask.no_show_all = false;
-                mask.show ();
+                mask.visible = true;
             } catch (Error e) {
                 warning (e.message);
-                //background.set_from_gicon (app_icon, Gtk.IconSize.DIALOG);
+                //background.set_from_gicon (app_icon);
             }
         } else {
             load_remote_art_cancel.cancel ();
@@ -524,22 +513,19 @@ public class Sound.Widgets.PlayerRow : Gtk.Box {
     }
 
     private async void load_remote_art (string uri) {
-        var scale = get_style_context ().get_scale ();
         GLib.File file = GLib.File.new_for_uri (uri);
         try {
             GLib.InputStream stream = yield file.read_async (Priority.DEFAULT, load_remote_art_cancel);
             Gdk.Pixbuf pixbuf = yield new Gdk.Pixbuf.from_stream_async (stream, load_remote_art_cancel);
             if (pixbuf != null) {
-                background.gicon = mask_pixbuf (pixbuf, scale);
+                background.gicon = mask_pixbuf (pixbuf, scale_factor);
                 background.get_style_context ().set_scale (1);
-                mask.no_show_all = false;
-                mask.show ();
+                mask.visible = true;
             }
         } catch (Error e) {
             background.gicon = app_icon;
-            background.get_style_context ().set_scale (scale);
-            mask.no_show_all = true;
-            mask.hide ();
+            background.get_style_context ().set_scale (scale_factor);
+            mask.visible = false;
         }
     }
 
@@ -557,9 +543,8 @@ public class Sound.Widgets.PlayerRow : Gtk.Box {
         } else {
             last_art_url = "";
             background.pixel_size = ICON_SIZE;
-            background.set_from_gicon (app_icon, Gtk.IconSize.DIALOG);
-            mask.no_show_all = true;
-            mask.hide ();
+            background.gicon = app_icon;
+            mask.visible = false;
         }
 
         string title;
@@ -610,11 +595,11 @@ public class Sound.Widgets.PlayerRow : Gtk.Box {
         if (playing != "") {
             switch (playing) {
                 case "playing":
-                    ((Gtk.Image) play_btn.image).icon_name = "media-playback-pause-symbolic";
+                    play_btn.icon_name = "media-playback-pause-symbolic";
                     break;
                 default:
                     /* Stopped, Paused */
-                    ((Gtk.Image) play_btn.image).icon_name = "media-playback-start-symbolic";
+                    play_btn.icon_name = "media-playback-start-symbolic";
                     break;
             }
         }
