@@ -12,7 +12,7 @@ public class Sound.Widgets.DeviceItem : Gtk.ListBoxRow {
     public Gtk.ListBoxRow? row { get; construct; }
 
     private bool is_priority;
-    private Gtk.RadioButton radio_button;
+    private Gtk.CheckButton radio_button;
 
     public DeviceItem (Device device, Gtk.ListBoxRow? row) {
         Object (device: device, row: row);
@@ -37,7 +37,7 @@ public class Sound.Widgets.DeviceItem : Gtk.ListBoxRow {
         box.add (label);
         box.add (image);
 
-        radio_button = new Gtk.RadioButton (null) {
+        radio_button = new Gtk.CheckButton (null) {
             child = box,
             active = device.is_default,
             hexpand = true,

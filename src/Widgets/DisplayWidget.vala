@@ -23,8 +23,8 @@ public class Sound.DisplayWidget : Gtk.Box {
     public bool mic_muted { get; set; }
     public string icon_name { get; set; }
 
-    public signal void volume_scroll_event (Gdk.EventScroll e);
-    public signal void mic_scroll_event (Gdk.EventScroll e);
+    // public signal void volume_scroll_event (Gdk.EventScroll e);
+    // public signal void mic_scroll_event (Gdk.EventScroll e);
 
     construct {
         var volume_icon = new Gtk.Image () {
@@ -59,12 +59,12 @@ public class Sound.DisplayWidget : Gtk.Box {
          * entirely clear. Only normal scroll events are received even if the SMOOTH_SCROLL_MASK
          * is set. */
         mic_event_box.scroll_event.connect ((e) => {
-            mic_scroll_event (e);
+            // mic_scroll_event (e);
             return Gdk.EVENT_STOP;
         });
 
         volume_event_box.scroll_event.connect ((e) => {
-            volume_scroll_event (e);
+            // volume_scroll_event (e);
             return Gdk.EVENT_STOP;
         });
 

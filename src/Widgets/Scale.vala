@@ -15,7 +15,7 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-public class Sound.Widgets.Scale : Gtk.EventBox {
+public class Sound.Widgets.Scale : Granite.Bin {
     public signal void slider_dropped ();
 
     public Gtk.Adjustment adjustment { get; construct; }

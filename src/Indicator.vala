@@ -337,19 +337,19 @@ public class Sound.Indicator : Wingpanel.Indicator {
         display_widget.icon_name = get_volume_icon (volume_control.volume.volume);
     }
 
-    private void on_volume_icon_scroll_event (Gdk.EventScroll e) {
-        double dir = 0.0;
-        if (handle_scroll_event (e, out dir)) {
-            handle_change (dir, false);
-        }
-    }
+    // private void on_volume_icon_scroll_event (Gdk.EventScroll e) {
+    //     double dir = 0.0;
+    //     if (handle_scroll_event (e, out dir)) {
+    //         handle_change (dir, false);
+    //     }
+    // }
 
-    private void on_mic_icon_scroll_event (Gdk.EventScroll e) {
-        double dir = 0.0;
-        if (handle_scroll_event (e, out dir)) {
-            handle_change (dir, true);
-        }
-    }
+    // private void on_mic_icon_scroll_event (Gdk.EventScroll e) {
+    //     double dir = 0.0;
+    //     if (handle_scroll_event (e, out dir)) {
+    //         handle_change (dir, true);
+    //     }
+    // }
 
     private void update_mic_visibility () {
         if (volume_control.is_listening) {
@@ -504,61 +504,61 @@ public class Sound.Indicator : Wingpanel.Indicator {
      * In the case of diagonal scrolling, it ignores the event unless movement in one direction
      * is more than twice the movement in the other direction.
      */
-    private bool handle_scroll_event (Gdk.EventScroll e, out double dir) {
-        dir = 0.0;
-        bool natural_scroll;
-        var event_source = e.get_source_device ().input_source;
-        if (event_source == Gdk.InputSource.MOUSE) {
-            natural_scroll = natural_scroll_mouse;
-        } else if (event_source == Gdk.InputSource.TOUCHPAD) {
-            natural_scroll = natural_scroll_touchpad;
-        } else {
-            natural_scroll = false;
-        }
+    // private bool handle_scroll_event (Gdk.EventScroll e, out double dir) {
+    //     dir = 0.0;
+    //     bool natural_scroll;
+    //     var event_source = e.get_source_device ().input_source;
+    //     if (event_source == Gdk.InputSource.MOUSE) {
+    //         natural_scroll = natural_scroll_mouse;
+    //     } else if (event_source == Gdk.InputSource.TOUCHPAD) {
+    //         natural_scroll = natural_scroll_touchpad;
+    //     } else {
+    //         natural_scroll = false;
+    //     }
 
-        switch (e.direction) {
-            case Gdk.ScrollDirection.SMOOTH:
-                    var abs_x = double.max (e.delta_x.abs (), 0.0001);
-                    var abs_y = double.max (e.delta_y.abs (), 0.0001);
+    //     switch (e.direction) {
+    //         case Gdk.ScrollDirection.SMOOTH:
+    //                 var abs_x = double.max (e.delta_x.abs (), 0.0001);
+    //                 var abs_y = double.max (e.delta_y.abs (), 0.0001);
 
-                    if (abs_y / abs_x > 2.0) {
-                        total_y_delta += e.delta_y;
-                    } else if (abs_x / abs_y > 2.0) {
-                        total_x_delta += e.delta_x;
-                    }
+    //                 if (abs_y / abs_x > 2.0) {
+    //                     total_y_delta += e.delta_y;
+    //                 } else if (abs_x / abs_y > 2.0) {
+    //                     total_x_delta += e.delta_x;
+    //                 }
 
-                break;
+    //             break;
 
-            case Gdk.ScrollDirection.UP:
-                total_y_delta = -1.0;
-                break;
-            case Gdk.ScrollDirection.DOWN:
-                total_y_delta = 1.0;
-                break;
-            case Gdk.ScrollDirection.LEFT:
-                total_x_delta = -1.0;
-                break;
-            case Gdk.ScrollDirection.RIGHT:
-                total_x_delta = 1.0;
-                break;
-            default:
-                break;
-        }
+    //         case Gdk.ScrollDirection.UP:
+    //             total_y_delta = -1.0;
+    //             break;
+    //         case Gdk.ScrollDirection.DOWN:
+    //             total_y_delta = 1.0;
+    //             break;
+    //         case Gdk.ScrollDirection.LEFT:
+    //             total_x_delta = -1.0;
+    //             break;
+    //         case Gdk.ScrollDirection.RIGHT:
+    //             total_x_delta = 1.0;
+    //             break;
+    //         default:
+    //             break;
+    //     }
 
-        if (total_y_delta.abs () > 0.5) {
-            dir = natural_scroll ? total_y_delta : -total_y_delta;
-        } else if (total_x_delta.abs () > 0.5) {
-            dir = natural_scroll ? -total_x_delta : total_x_delta;
-        }
+    //     if (total_y_delta.abs () > 0.5) {
+    //         dir = natural_scroll ? total_y_delta : -total_y_delta;
+    //     } else if (total_x_delta.abs () > 0.5) {
+    //         dir = natural_scroll ? -total_x_delta : total_x_delta;
+    //     }
 
-        if (dir.abs () > 0.0) {
-            total_y_delta = 0.0;
-            total_x_delta = 0.0;
-            return true;
-        }
+    //     if (dir.abs () > 0.0) {
+    //         total_y_delta = 0.0;
+    //         total_x_delta = 0.0;
+    //         return true;
+    //     }
 
-        return false;
-    }
+    //     return false;
+    // }
 
     private void handle_change (double change, bool is_mic) {
         double v;
