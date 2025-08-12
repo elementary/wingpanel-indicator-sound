@@ -15,7 +15,7 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-public class Sound.Widgets.Scale : Gtk.EventBox {
+public class Sound.Widgets.Scale : Granite.Bin {
     public signal void slider_dropped ();
 
     public Gtk.Adjustment adjustment { get; construct; }
@@ -28,14 +28,11 @@ public class Sound.Widgets.Scale : Gtk.EventBox {
     }
 
     class construct {
-        set_css_name (Gtk.STYLE_CLASS_MENUITEM);
+        set_css_name ("modelbutton");
     }
 
     construct {
-        var image = new Gtk.Image ();
-
         var toggle = new Gtk.ToggleButton ();
-        toggle.image = image;
 
         var scale_widget = new Gtk.Scale (HORIZONTAL, adjustment) {
             draw_value = false,
@@ -50,25 +47,24 @@ public class Sound.Widgets.Scale : Gtk.EventBox {
             margin_bottom = 6,
             margin_end = 12
         };
-        box.add (toggle);
-        box.add (scale_widget);
+        box.append (toggle);
+        box.append (scale_widget);
 
-        add (box);
-        add_events (Gdk.EventMask.SMOOTH_SCROLL_MASK);
-        above_child = false;
+        child = box;
+        // above_child = false;
 
-        scale_widget.button_release_event.connect (() => {
-            slider_dropped ();
-            return Gdk.EVENT_PROPAGATE;
-        });
+        // scale_widget.button_release_event.connect (() => {
+        //     slider_dropped ();
+        //     return Gdk.EVENT_PROPAGATE;
+        // });
 
-        scale_widget.scroll_event.connect ((e) => {
-            /* Re-emit the signal on the eventbox instead of using native handler */
-            scroll_event (e);
-            return Gdk.EVENT_STOP;
-        });
+        // scale_widget.scroll_event.connect ((e) => {
+        //     /* Re-emit the signal on the eventbox instead of using native handler */
+        //     scroll_event (e);
+        //     return Gdk.EVENT_STOP;
+        // });
 
-        bind_property ("icon", image, "icon-name");
+        bind_property ("icon", toggle, "icon-name");
 
         bind_property ("active", scale_widget, "sensitive", BindingFlags.SYNC_CREATE);
         bind_property ("active", toggle, "active", BIDIRECTIONAL | SYNC_CREATE);

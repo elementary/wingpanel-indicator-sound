@@ -44,8 +44,7 @@ public class Sound.Widgets.PlayerList : Gtk.Box {
                 close ();
             });
 
-            bluetooth_widget.show_all ();
-            pack_start (bluetooth_widget, false, false, 0);
+            prepend (bluetooth_widget);
         });
 
         object_manager.media_player_removed.connect ((media_player) => {
@@ -66,7 +65,6 @@ public class Sound.Widgets.PlayerList : Gtk.Box {
 
         orientation = Gtk.Orientation.VERTICAL;
         margin_bottom = 3;
-        show_all ();
     }
 
     public void update_default_player () {
@@ -84,8 +82,7 @@ public class Sound.Widgets.PlayerList : Gtk.Box {
                 close ();
             });
 
-            default_widget.show_all ();
-            pack_start (default_widget, false, false, 0);
+            prepend (default_widget);
         }
     }
 
@@ -110,11 +107,9 @@ public class Sound.Widgets.PlayerList : Gtk.Box {
             default_widget.mpris_name = name;
             default_widget.client = iface;
             ifaces.insert (name, default_widget);
-            default_widget.no_show_all = false;
             default_widget.visible = true;
         } else {
             if (default_widget.mpris_name == "") {
-                default_widget.no_show_all = true;
                 default_widget.visible = false;
             }
 
@@ -122,8 +117,8 @@ public class Sound.Widgets.PlayerList : Gtk.Box {
             widg.close.connect (() => {
                 close ();
             });
-            widg.show_all ();
-            pack_start (widg, false, false, 0);
+
+            prepend (widg);
             ifaces.insert (name, widg);
         }
     }
@@ -146,12 +141,9 @@ public class Sound.Widgets.PlayerList : Gtk.Box {
         ifaces.remove (name);
 
         if (ifaces.length != 0 && default_widget.mpris_name == "") {
-            default_widget.no_show_all = true;
             default_widget.visible = false;
         } else {
-            default_widget.no_show_all = false;
             default_widget.visible = true;
-            show_all ();
         }
     }
 

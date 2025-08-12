@@ -12,14 +12,14 @@ public class Sound.Widgets.DeviceItem : Gtk.ListBoxRow {
     public Gtk.ListBoxRow? row { get; construct; }
 
     private bool is_priority;
-    private Gtk.RadioButton radio_button;
+    private Gtk.CheckButton radio_button;
 
     public DeviceItem (Device device, Gtk.ListBoxRow? row) {
         Object (device: device, row: row);
     }
 
     class construct {
-        set_css_name (Gtk.STYLE_CLASS_MENUITEM);
+        set_css_name ("modelbutton");
     }
 
     construct {
@@ -29,31 +29,30 @@ public class Sound.Widgets.DeviceItem : Gtk.ListBoxRow {
             ellipsize = MIDDLE
         };
 
-        var image = new Gtk.Image.from_icon_name (device.icon_name + "-symbolic", MENU) {
+        var image = new Gtk.Image.from_icon_name (device.icon_name + "-symbolic") {
             use_fallback = true
         };
 
         var box = new Gtk.Box (HORIZONTAL, 6);
-        box.add (label);
-        box.add (image);
+        box.append (label);
+        box.append (image);
 
-        radio_button = new Gtk.RadioButton (null) {
+        radio_button = new Gtk.CheckButton () {
             child = box,
             active = device.is_default,
             hexpand = true,
-            xalign = 0
+            // xalign = 0
         };
 
         if (row != null) {
             var item = (DeviceItem) row;
-            radio_button.set_group (item.radio_button.get_group ());
+            radio_button.set_group (item.radio_button);
         }
 
         child = radio_button;
 
-        show_all ();
         selectable = false;
-        no_show_all = true;
+        visible = false;
 
         radio_button.toggled.connect (() => {
             if (radio_button.active) {
