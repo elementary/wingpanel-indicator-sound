@@ -23,12 +23,14 @@ public class Sound.Widgets.Scale : Gtk.EventBox {
 
     public bool active { get; set; default = true; }
 
+    private Gtk.GestureMultiPress gesture_click;
+
     public Scale (Gtk.Adjustment adjustment) {
         Object (adjustment: adjustment);
     }
 
     class construct {
-        set_css_name (Gtk.STYLE_CLASS_MENUITEM);
+        set_css_name ("device-scale");
     }
 
     construct {
@@ -53,13 +55,13 @@ public class Sound.Widgets.Scale : Gtk.EventBox {
         box.add (toggle);
         box.add (scale_widget);
 
-        add (box);
+        child = box;
         add_events (Gdk.EventMask.SMOOTH_SCROLL_MASK);
         above_child = false;
 
-        scale_widget.button_release_event.connect (() => {
+        gesture_click = new Gtk.GestureMultiPress (scale_widget);
+        gesture_click.released.connect (() => {
             slider_dropped ();
-            return Gdk.EVENT_PROPAGATE;
         });
 
         scale_widget.scroll_event.connect ((e) => {
