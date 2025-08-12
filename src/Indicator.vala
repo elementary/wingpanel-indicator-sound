@@ -83,8 +83,8 @@ public class Sound.Indicator : Wingpanel.Indicator {
         var provider = new Gtk.CssProvider ();
         provider.load_from_resource ("io/elementary/wingpanel/sound/indicator.css");
 
-        Gtk.StyleContext.add_provider_for_screen (
-            Gdk.Screen.get_default (),
+        Gtk.StyleContext.add_provider_for_display (
+            Gdk.Display.get_default (),
             provider,
             Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
         );
