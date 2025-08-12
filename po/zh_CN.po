@@ -4,21 +4,23 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2015.
 # colindemian <colindemian@outlook.com>, 2020.
 # imgradeone Yan <imgradeone@outlook.com>, 2021.
+# JieXu <xujie0739@qq.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: wingpanel-indicator-sound\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-05-22 14:03+0000\n"
-"PO-Revision-Date: 2021-03-20 18:05+0000\n"
-"Last-Translator: imgradeone Yan <imgradeone@outlook.com>\n"
-"Language-Team: Chinese (Simplified) <https://l10n.elementary.io/projects/"
-"wingpanel/wingpanel-indicator-sound/zh_Hans/>\n"
+"PO-Revision-Date: 2025-08-10 04:55+0000\n"
+"Last-Translator: JieXu <xujie0739@qq.com>\n"
+"Language-Team: Chinese (Simplified Han script) <https://"
+"l10n.elementaryos.org/projects/wingpanel/wingpanel-indicator-sound/zh_Hans/>"
+"\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.4.2\n"
+"X-Generator: Weblate 5.11.4\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 
 #: src/Indicator.vala:428
@@ -52,11 +54,11 @@ msgstr "未知艺术家"
 
 #: src/Widgets/Scale.vala:78
 msgid "Mute"
-msgstr ""
+msgstr "静音"
 
 #: src/Widgets/Scale.vala:80
 msgid "Unmute"
-msgstr ""
+msgstr "解除静音"
 
 #~ msgid "Indicator Sound"
 #~ msgstr "指示声音"

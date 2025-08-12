@@ -1,12 +1,13 @@
 # DarkKnightComes <darkknightcomes@gmail.com>, 2021.
+# Marcin Serwin <marcin@serwin.dev>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-05-22 14:03+0000\n"
-"PO-Revision-Date: 2021-09-27 14:35+0000\n"
-"Last-Translator: DarkKnightComes <darkknightcomes@gmail.com>\n"
-"Language-Team: Polish <https://l10n.elementary.io/projects/wingpanel/"
+"PO-Revision-Date: 2025-07-07 18:55+0000\n"
+"Last-Translator: Marcin Serwin <marcin@serwin.dev>\n"
+"Language-Team: Polish <https://l10n.elementaryos.org/projects/wingpanel/"
 "wingpanel-indicator-sound/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -14,7 +15,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.4.2\n"
+"X-Generator: Weblate 5.11.4\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 
 #: src/Indicator.vala:428
@@ -48,11 +49,11 @@ msgstr "Nieznany wykonawca"
 
 #: src/Widgets/Scale.vala:78
 msgid "Mute"
-msgstr ""
+msgstr "Wycisz"
 
 #: src/Widgets/Scale.vala:80
 msgid "Unmute"
-msgstr ""
+msgstr "Odcisz"
 
 #~ msgid "Indicator Sound"
 #~ msgstr "Wskaźnik dźwięku"

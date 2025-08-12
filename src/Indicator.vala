@@ -127,9 +127,9 @@ public class Sound.Indicator : Wingpanel.Indicator {
         volume_adjustment = new Gtk.Adjustment (0, 0, max_volume, 0.01, 0, 0);
         mic_adjustment = new Gtk.Adjustment (0, 0, 1, 0.01, 0, 0);
 
-        volume_scale = new Widgets.Scale ("audio-volume-high-symbolic", volume_adjustment);
+        volume_scale = new Widgets.Scale (volume_adjustment);
 
-        mic_scale = new Widgets.Scale ("indicator-microphone-symbolic", mic_adjustment);
+        mic_scale = new Widgets.Scale (mic_adjustment);
 
         ca_context = CanberraGtk.context_get ();
         ca_context.change_props (Canberra.PROP_APPLICATION_NAME, "indicator-sound",
@@ -446,11 +446,6 @@ public class Sound.Indicator : Wingpanel.Indicator {
                 volume_control.mic_volume = mic_adjustment.get_value ();
             });
 
-            mic_scale.scale_widget.button_release_event.connect (() => {
-                notify_change (true);
-                return false;
-            });
-
             mic_scale.scroll_event.connect_after ((e) => {
                 double dir = 0.0;
                 if (handle_scroll_event (e, out dir)) {
@@ -474,10 +469,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
                 }
             });
 
-            volume_scale.scale_widget.button_release_event.connect ((e) => {
-                notify_change (false);
-                return false;
-            });
+            volume_scale.slider_dropped.connect (play_volume_change_sound);
 
             volume_scale.scroll_event.connect_after ((e) => {
                 double dir = 0.0;
@@ -643,16 +635,20 @@ public class Sound.Indicator : Wingpanel.Indicator {
             /* If open or no notification shown, just play sound */
             /* TODO: Should this be suppressed if mic is on? */
             if (!notification_showing) {
-                Canberra.Proplist props;
-                Canberra.Proplist.create (out props);
-                props.sets (Canberra.PROP_CANBERRA_CACHE_CONTROL, "volatile");
-                props.sets (Canberra.PROP_EVENT_ID, "audio-volume-change");
-                ca_context.play_full (0, props);
+                play_volume_change_sound ();
             }
 
             notify_timeout_id = 0;
             return false;
         });
+    }
+
+    private void play_volume_change_sound () {
+        Canberra.Proplist props;
+        Canberra.Proplist.create (out props);
+        props.sets (Canberra.PROP_CANBERRA_CACHE_CONTROL, "volatile");
+        props.sets (Canberra.PROP_EVENT_ID, "audio-volume-change");
+        ca_context.play_full (0, props);
     }
 
     /* This also plays a sound. TODO Is there a way of suppressing this if mic is on? */
