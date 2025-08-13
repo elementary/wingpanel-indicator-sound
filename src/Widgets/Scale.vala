@@ -1,18 +1,6 @@
 /*
-* Copyright 2015-2021 elementary, Inc. (https://elementary.io)
-*
-* This program is free software; you can redistribute it and/or
-* modify it under the terms of the GNU General Public
-* License as published by the Free Software Foundation; either
-* version 2 of the License, or (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-* General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with this program.  If not, see <http://www.gnu.org/licenses/>.
+* SPDX-License-Identifier: GPL-2.0-or-later
+* SPDX-FileCopyrightText: 2015-2025 elementary, Inc. (https://elementary.io)
 */
 
 public class Sound.Widgets.Scale : Gtk.EventBox {
@@ -23,12 +11,14 @@ public class Sound.Widgets.Scale : Gtk.EventBox {
 
     public bool active { get; set; default = true; }
 
+    private Gtk.GestureMultiPress gesture_click;
+
     public Scale (Gtk.Adjustment adjustment) {
         Object (adjustment: adjustment);
     }
 
     class construct {
-        set_css_name (Gtk.STYLE_CLASS_MENUITEM);
+        set_css_name ("device-scale");
     }
 
     construct {
@@ -53,13 +43,13 @@ public class Sound.Widgets.Scale : Gtk.EventBox {
         box.add (toggle);
         box.add (scale_widget);
 
-        add (box);
+        child = box;
         add_events (Gdk.EventMask.SMOOTH_SCROLL_MASK);
         above_child = false;
 
-        scale_widget.button_release_event.connect (() => {
+        gesture_click = new Gtk.GestureMultiPress (scale_widget);
+        gesture_click.released.connect (() => {
             slider_dropped ();
-            return Gdk.EVENT_PROPAGATE;
         });
 
         scale_widget.scroll_event.connect ((e) => {
