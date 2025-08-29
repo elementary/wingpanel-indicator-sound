@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-05-22 14:03+0000\n"
-"PO-Revision-Date: 2025-05-24 08:55+0000\n"
+"PO-Revision-Date: 2025-08-30 22:55+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementaryos.org/projects/wingpanel/"
 "wingpanel-indicator-sound/ja/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 
 #: src/Indicator.vala:428
 msgid "Sound Settings…"
-msgstr "サウンドの設定…"
+msgstr "サウンド設定…"
 
 #: src/Indicator.vala:708
 #, c-format
