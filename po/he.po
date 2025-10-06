@@ -1,12 +1,12 @@
-# Yaron Shahrabani <sh.yaron@gmail.com>, 2020, 2021.
+# Yaron Shahrabani <sh.yaron@gmail.com>, 2020, 2021, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-05-22 14:03+0000\n"
-"PO-Revision-Date: 2021-02-26 13:35+0000\n"
+"PO-Revision-Date: 2025-10-06 12:55+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
-"Language-Team: Hebrew <https://l10n.elementary.io/projects/wingpanel/"
+"Language-Team: Hebrew <https://l10n.elementaryos.org/projects/wingpanel/"
 "wingpanel-indicator-sound/he/>\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && "
 "n % 10 == 0) ? 2 : 3));\n"
-"X-Generator: Weblate 4.4.2\n"
+"X-Generator: Weblate 5.11.4\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 
 #: src/Indicator.vala:428
@@ -48,11 +48,11 @@ msgstr "אמן לא ידוע"
 
 #: src/Widgets/Scale.vala:78
 msgid "Mute"
-msgstr ""
+msgstr "השתקה"
 
 #: src/Widgets/Scale.vala:80
 msgid "Unmute"
-msgstr ""
+msgstr "ביטול השתקה"
 
 #~ msgid "Indicator Sound"
 #~ msgstr "מחוון צליל"
