@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-22 14:03+0000\n"
+"POT-Creation-Date: 2025-10-06 15:46+0000\n"
 "PO-Revision-Date: 2017-12-22 00:09+0000\n"
 "Last-Translator: Marcio <marcio.pelegrini@gmail.com>\n"
 "Language-Team: French (Canada) <https://weblate.elementary.io/projects/"
@@ -15,43 +15,43 @@ msgstr ""
 "X-Generator: Weblate 2.18\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 
-#: src/Indicator.vala:428
+#: src/Indicator.vala:424
 msgid "Sound Settings…"
 msgstr "Paramètres du son…"
 
-#: src/Indicator.vala:708
+#: src/Indicator.vala:700
 #, c-format
 msgid "Volume: %.0f%%"
 msgstr ""
 
-#: src/Indicator.vala:711
+#: src/Indicator.vala:703
 msgid "Middle-click to unmute"
 msgstr ""
 
-#: src/Indicator.vala:711
+#: src/Indicator.vala:703
 msgid "Middle-click to mute"
 msgstr ""
 
-#: src/Widgets/PlayerRow.vala:28
+#: src/Widgets/PlayerRow.vala:16
 #, fuzzy
 #| msgid "Not currently playing"
 msgid "Not playing"
 msgstr "Aucune lecture"
 
-#: src/Widgets/PlayerRow.vala:43
+#: src/Widgets/PlayerRow.vala:31
 msgid "Music player"
 msgstr "Lecteur de musique"
 
-#: src/Widgets/PlayerRow.vala:580
+#: src/Widgets/PlayerRow.vala:566
 #, fuzzy
 msgid "Unknown Artist"
 msgstr "Titre inconnu"
 
-#: src/Widgets/Scale.vala:78
+#: src/Widgets/Scale.vala:67
 msgid "Mute"
 msgstr ""
 
-#: src/Widgets/Scale.vala:80
+#: src/Widgets/Scale.vala:69
 msgid "Unmute"
 msgstr ""
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wingpanel-indicator-sound\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-22 14:03+0000\n"
+"POT-Creation-Date: 2025-10-06 15:46+0000\n"
 "PO-Revision-Date: 2022-08-17 02:20+0000\n"
 "Last-Translator: Jung-Kyu Park <bagjunggyu@gmail.com>\n"
 "Language-Team: Korean <https://l10n.elementary.io/projects/wingpanel/"
@@ -20,40 +20,40 @@ msgstr ""
 "X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 
-#: src/Indicator.vala:428
+#: src/Indicator.vala:424
 msgid "Sound Settings…"
 msgstr "소리 설정…"
 
-#: src/Indicator.vala:708
+#: src/Indicator.vala:700
 #, c-format
 msgid "Volume: %.0f%%"
 msgstr "볼륨: %.0f%%"
 
-#: src/Indicator.vala:711
+#: src/Indicator.vala:703
 msgid "Middle-click to unmute"
 msgstr "마우스 가운데 버튼 클릭으로 음소거 해제"
 
-#: src/Indicator.vala:711
+#: src/Indicator.vala:703
 msgid "Middle-click to mute"
 msgstr "마우스 가운데 버튼 클릭으로 음소거"
 
-#: src/Widgets/PlayerRow.vala:28
+#: src/Widgets/PlayerRow.vala:16
 msgid "Not playing"
 msgstr "지금은 연주하고 있지 않습니다"
 
-#: src/Widgets/PlayerRow.vala:43
+#: src/Widgets/PlayerRow.vala:31
 msgid "Music player"
 msgstr "뮤직 플레이어"
 
-#: src/Widgets/PlayerRow.vala:580
+#: src/Widgets/PlayerRow.vala:566
 msgid "Unknown Artist"
 msgstr "알 수 없는 아티스트"
 
-#: src/Widgets/Scale.vala:78
+#: src/Widgets/Scale.vala:67
 msgid "Mute"
 msgstr ""
 
-#: src/Widgets/Scale.vala:80
+#: src/Widgets/Scale.vala:69
 msgid "Unmute"
 msgstr ""
 

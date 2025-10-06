@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sound-indicator\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-22 14:03+0000\n"
+"POT-Creation-Date: 2025-10-06 15:46+0000\n"
 "PO-Revision-Date: 2018-02-12 18:28-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -17,39 +17,39 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/Indicator.vala:428
+#: src/Indicator.vala:424
 msgid "Sound Settings…"
 msgstr ""
 
-#: src/Indicator.vala:708
+#: src/Indicator.vala:700
 #, c-format
 msgid "Volume: %.0f%%"
 msgstr ""
 
-#: src/Indicator.vala:711
+#: src/Indicator.vala:703
 msgid "Middle-click to unmute"
 msgstr ""
 
-#: src/Indicator.vala:711
+#: src/Indicator.vala:703
 msgid "Middle-click to mute"
 msgstr ""
 
-#: src/Widgets/PlayerRow.vala:28
+#: src/Widgets/PlayerRow.vala:16
 msgid "Not playing"
 msgstr ""
 
-#: src/Widgets/PlayerRow.vala:43
+#: src/Widgets/PlayerRow.vala:31
 msgid "Music player"
 msgstr ""
 
-#: src/Widgets/PlayerRow.vala:580
+#: src/Widgets/PlayerRow.vala:566
 msgid "Unknown Artist"
 msgstr ""
 
-#: src/Widgets/Scale.vala:78
+#: src/Widgets/Scale.vala:67
 msgid "Mute"
 msgstr ""
 
-#: src/Widgets/Scale.vala:80
+#: src/Widgets/Scale.vala:69
 msgid "Unmute"
 msgstr ""

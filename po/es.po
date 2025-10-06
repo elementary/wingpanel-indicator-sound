@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wingpanel-indicator-sound\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-22 14:03+0000\n"
+"POT-Creation-Date: 2025-10-06 15:46+0000\n"
 "PO-Revision-Date: 2025-05-28 00:55+0000\n"
 "Last-Translator: Italo Felipe Capasso Ballesteros <italo@gp-mail.com>\n"
 "Language-Team: Spanish <https://l10n.elementaryos.org/projects/wingpanel/"
@@ -24,40 +24,40 @@ msgstr ""
 "X-Generator: Weblate 5.11.4\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 
-#: src/Indicator.vala:428
+#: src/Indicator.vala:424
 msgid "Sound Settings…"
 msgstr "Configuración de Sonido…"
 
-#: src/Indicator.vala:708
+#: src/Indicator.vala:700
 #, c-format
 msgid "Volume: %.0f%%"
 msgstr "Volumen: %.0f %%"
 
-#: src/Indicator.vala:711
+#: src/Indicator.vala:703
 msgid "Middle-click to unmute"
 msgstr "Haga clic con el botón central del ratón para reactivar el sonido"
 
-#: src/Indicator.vala:711
+#: src/Indicator.vala:703
 msgid "Middle-click to mute"
 msgstr "Haga clic con el botón central del ratón para silenciar"
 
-#: src/Widgets/PlayerRow.vala:28
+#: src/Widgets/PlayerRow.vala:16
 msgid "Not playing"
 msgstr "No se reproduce nada"
 
-#: src/Widgets/PlayerRow.vala:43
+#: src/Widgets/PlayerRow.vala:31
 msgid "Music player"
 msgstr "Reproductor de música"
 
-#: src/Widgets/PlayerRow.vala:580
+#: src/Widgets/PlayerRow.vala:566
 msgid "Unknown Artist"
 msgstr "Artista desconocido"
 
-#: src/Widgets/Scale.vala:78
+#: src/Widgets/Scale.vala:67
 msgid "Mute"
 msgstr "Desactivar audio"
 
-#: src/Widgets/Scale.vala:80
+#: src/Widgets/Scale.vala:69
 msgid "Unmute"
 msgstr "Reactivar audio"
 
