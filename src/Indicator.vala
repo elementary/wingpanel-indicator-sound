@@ -196,7 +196,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
         for (int i = 0; i < volume_up_keybindings.length; i++) {
             accelerators += Accelerator () {
                 name = volume_up_keybindings[i],
-                mode_flags = ActionMode.NONE,
+                mode_flags = ActionMode.LOGIN_SCREEN,
                 grab_flags = Meta.KeyBindingFlags.NONE
             };
         }
@@ -205,7 +205,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
         for (int i = 0; i < volume_down_keybindings.length; i++) {
             accelerators += Accelerator () {
                 name = volume_down_keybindings[i],
-                mode_flags = ActionMode.NONE,
+                mode_flags = ActionMode.LOGIN_SCREEN,
                 grab_flags = Meta.KeyBindingFlags.NONE
             };
         }
@@ -214,7 +214,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
         for (int i = 0; i < volume_mute_keybindings.length; i++) {
             accelerators += Accelerator () {
                 name = volume_mute_keybindings[i],
-                mode_flags = ActionMode.NONE,
+                mode_flags = ActionMode.LOGIN_SCREEN,
                 grab_flags = Meta.KeyBindingFlags.IGNORE_AUTOREPEAT
             };
         }
