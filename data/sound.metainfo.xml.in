@@ -31,6 +31,19 @@
   <update_contact>contact_at_elementary.io</update_contact>
 
   <releases>
+    <release version="8.0.2" date="2025-10-06" urgency="medium">
+      <description>
+        <p>Minor updates</p>
+        <ul>
+          <li>Use a toggle button for muting devices instead of a switch</li>
+          <li>Updated translations</li>
+        </ul>
+      </description>
+      <issues>
+        <issue url="https://github.com/elementary/greeter/issues/829">Media keys aren't recognized</issue>
+      </issues>
+    </release>
+
     <release version="8.0.1" date="2025-03-10" urgency="medium">
       <description>
         <p>Minor updates</p>

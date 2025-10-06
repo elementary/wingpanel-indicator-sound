@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sound-indicator\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-22 14:03+0000\n"
+"POT-Creation-Date: 2025-10-06 15:46+0000\n"
 "PO-Revision-Date: 2021-08-01 17:35+0000\n"
 "Last-Translator: elSolus <tumbleweed@tuta.io>\n"
 "Language-Team: Punjabi <https://l10n.elementary.io/projects/wingpanel/"
@@ -20,39 +20,39 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Weblate 4.4.2\n"
 
-#: src/Indicator.vala:428
+#: src/Indicator.vala:424
 msgid "Sound Settings…"
 msgstr "ਸਾਊਂਡ ਸੈਟਿੰਗਾਂ…"
 
-#: src/Indicator.vala:708
+#: src/Indicator.vala:700
 #, c-format
 msgid "Volume: %.0f%%"
 msgstr "ਆਵਾਜ਼: %.0f%%"
 
-#: src/Indicator.vala:711
+#: src/Indicator.vala:703
 msgid "Middle-click to unmute"
 msgstr "ਚੁੱਪ ਤੋੜਨ ਲਈ ਵਿਚਕਾਰਲੀ-ਕਲਿੱਕ"
 
-#: src/Indicator.vala:711
+#: src/Indicator.vala:703
 msgid "Middle-click to mute"
 msgstr "ਚੁੱਪ ਕਰਾਉਣ ਲਈ ਵਿਚਕਾਰਲੀ-ਕਲਿੱਕ"
 
-#: src/Widgets/PlayerRow.vala:28
+#: src/Widgets/PlayerRow.vala:16
 msgid "Not playing"
 msgstr "ਚਲਾ ਨਹੀਂ ਰਿਹਾ"
 
-#: src/Widgets/PlayerRow.vala:43
+#: src/Widgets/PlayerRow.vala:31
 msgid "Music player"
 msgstr "ਸੰਗੀਤ ਪਲੇਅਰ"
 
-#: src/Widgets/PlayerRow.vala:580
+#: src/Widgets/PlayerRow.vala:566
 msgid "Unknown Artist"
 msgstr "ਅਣਜਾਣ ਕਲਾਕਾਰ"
 
-#: src/Widgets/Scale.vala:78
+#: src/Widgets/Scale.vala:67
 msgid "Mute"
 msgstr ""
 
-#: src/Widgets/Scale.vala:80
+#: src/Widgets/Scale.vala:69
 msgid "Unmute"
 msgstr ""

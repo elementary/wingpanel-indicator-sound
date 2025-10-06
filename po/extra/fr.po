@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-22 14:03+0000\n"
+"POT-Creation-Date: 2025-10-06 15:46+0000\n"
 "PO-Revision-Date: 2023-07-07 12:07+0000\n"
 "Last-Translator: Nathan <bonnemainsnathan@gmail.com>\n"
 "Language-Team: French <https://l10n.elementary.io/projects/wingpanel/"
@@ -31,70 +31,76 @@ msgstr ""
 "Ajuster le volume de lecture et d'enregistrement ou voir et contrôler les "
 "médias en-cours"
 
-#: data/sound.metainfo.xml.in:36 data/sound.metainfo.xml.in:48
-#: data/sound.metainfo.xml.in:63 data/sound.metainfo.xml.in:78
-#: data/sound.metainfo.xml.in:91 data/sound.metainfo.xml.in:105
+#: data/sound.metainfo.xml.in:36 data/sound.metainfo.xml.in:49
+#: data/sound.metainfo.xml.in:61 data/sound.metainfo.xml.in:76
+#: data/sound.metainfo.xml.in:91 data/sound.metainfo.xml.in:104
+#: data/sound.metainfo.xml.in:118
 msgid "Minor updates"
 msgstr "Mises à jour mineures"
 
-#: data/sound.metainfo.xml.in:38 data/sound.metainfo.xml.in:50
-#: data/sound.metainfo.xml.in:67 data/sound.metainfo.xml.in:84
-#: data/sound.metainfo.xml.in:94 data/sound.metainfo.xml.in:110
+#: data/sound.metainfo.xml.in:38
+msgid "Use a toggle button for muting devices instead of a switch"
+msgstr ""
+
+#: data/sound.metainfo.xml.in:39 data/sound.metainfo.xml.in:51
+#: data/sound.metainfo.xml.in:63 data/sound.metainfo.xml.in:80
+#: data/sound.metainfo.xml.in:97 data/sound.metainfo.xml.in:107
+#: data/sound.metainfo.xml.in:123
 msgid "Updated translations"
 msgstr "Mise à jour des traductions"
 
-#: data/sound.metainfo.xml.in:65
+#: data/sound.metainfo.xml.in:78
 msgid "Use circle buttons for playback controls"
 msgstr "Utilisation de boutons circulaires pour les contrôles de lecture"
 
-#: data/sound.metainfo.xml.in:66
+#: data/sound.metainfo.xml.in:79
 msgid "Middle-clicking the microphone indicator no longer mutes monitors"
 msgstr ""
 "Effectuer un clic central sur l'indicateur de micro ne coupe désormais plus "
 "le son des écrans"
 
-#: data/sound.metainfo.xml.in:80
+#: data/sound.metainfo.xml.in:93
 msgid "Use device form factor when available to assign more accurate icons"
 msgstr ""
 "Utilisation du format de l'appareil, lorsqu'il est disponible, pour "
 "attribuer des icônes plus précises"
 
-#: data/sound.metainfo.xml.in:81
+#: data/sound.metainfo.xml.in:94
 msgid "Provide a fallback device icon when none is available"
 msgstr ""
 "Utilisation d'une icône de périphérique par défaut lorsqu'aucune icône n'est "
 "disponible"
 
-#: data/sound.metainfo.xml.in:82
+#: data/sound.metainfo.xml.in:95
 msgid "Fix missing switch animations"
 msgstr "Correction des animations manquantes pour les boutons"
 
-#: data/sound.metainfo.xml.in:83
+#: data/sound.metainfo.xml.in:96
 msgid "Use the volume step value from GNOME Settings Daemon"
 msgstr "Utilisation de la valeur du pas du démon des paramètres de GNOME"
 
-#: data/sound.metainfo.xml.in:93
+#: data/sound.metainfo.xml.in:106
 msgid "Show more specific icons for different types of devices"
 msgstr ""
 "Affichage d'icônes plus spécifiques pour les différents types d'appareils"
 
-#: data/sound.metainfo.xml.in:101
+#: data/sound.metainfo.xml.in:114
 msgid "New features"
 msgstr "Nouvelles fonctionnalités"
 
-#: data/sound.metainfo.xml.in:103
+#: data/sound.metainfo.xml.in:116
 msgid "select specific input and output devices"
 msgstr "Sélectionnez des périphériques d'entrée et de sortie spécifiques"
 
-#: data/sound.metainfo.xml.in:107
+#: data/sound.metainfo.xml.in:120
 msgid "Hide temporary audio players when they stop"
 msgstr "Les lecteurs audio temporaires sont masqués lorsqu'il sont arrêtés"
 
-#: data/sound.metainfo.xml.in:108
+#: data/sound.metainfo.xml.in:121
 msgid "Add a tooltip on hover"
 msgstr "Ajout d'une infobulle au survol"
 
-#: data/sound.metainfo.xml.in:109
+#: data/sound.metainfo.xml.in:122
 msgid "Minor visual improvements"
 msgstr "Améliorations visuelles mineures"
 
