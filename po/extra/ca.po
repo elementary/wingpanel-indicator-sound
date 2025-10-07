@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-10-06 15:46+0000\n"
-"PO-Revision-Date: 2023-06-15 03:07+0000\n"
+"PO-Revision-Date: 2025-10-07 17:55+0000\n"
 "Last-Translator: David M <rbndavid@gmail.com>\n"
-"Language-Team: Catalan <https://l10n.elementary.io/projects/wingpanel/"
+"Language-Team: Catalan <https://l10n.elementaryos.org/projects/wingpanel/"
 "indicator-sound-extra/ca/>\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.11.4\n"
 
 #: data/sound.metainfo.xml.in:11
 msgid "Sound Indicator"
@@ -41,6 +41,8 @@ msgstr "Actualitzacions menors"
 #: data/sound.metainfo.xml.in:38
 msgid "Use a toggle button for muting devices instead of a switch"
 msgstr ""
+"Usa un botó d'activació / desactivació per silenciar dispositius en lloc "
+"d'un interruptor"
 
 #: data/sound.metainfo.xml.in:39 data/sound.metainfo.xml.in:51
 #: data/sound.metainfo.xml.in:63 data/sound.metainfo.xml.in:80
