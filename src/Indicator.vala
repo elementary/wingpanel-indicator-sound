@@ -139,12 +139,24 @@ public class Sound.Indicator : Wingpanel.Indicator {
                                  null);
         ca_context.open ();
 
-        Bus.watch_name (BusType.SESSION, "org.gnome.Shell", BusNameWatcherFlags.NONE, on_watch, on_unwatch);
+        Bus.get_proxy.begin<ShellKeyGrabber> (
+            BusType.SESSION, "org.gnome.Shell", "/org/gnome/Shell", NONE, null,
+            (obj, res) => {
+                try {
+                    key_grabber = Bus.get_proxy.end<ShellKeyGrabber> (res);
+                    setup_grabs ();
+                } catch (Error e) {
+                    critical (e.message);
+                    key_grabber = null;
+                }
+            }
+        );
 
         settings.changed.connect ((key) => {
             if (key != "volume-up" &&
                 key != "volume-down" &&
-                key != "volume-mute") {
+                key != "volume-mute"
+            ) {
                 return;
             }
 
@@ -153,30 +165,6 @@ public class Sound.Indicator : Wingpanel.Indicator {
                 setup_grabs ();
             }
         });
-    }
-
-    private void on_watch (GLib.DBusConnection connection) {
-        connection.get_proxy.begin<ShellKeyGrabber> (
-            "org.gnome.Shell", "/org/gnome/Shell", NONE, null,
-            (obj, res) => {
-                try {
-                    key_grabber = ((GLib.DBusConnection) obj).get_proxy.end<ShellKeyGrabber> (res);
-                    setup_grabs ();
-                } catch (Error e) {
-                    critical (e.message);
-                    key_grabber = null;
-                }
-            }
-        );
-    }
-
-    private void on_unwatch (GLib.DBusConnection connection) {
-        if (key_grabber_id != 0) {
-            key_grabber.disconnect (key_grabber_id);
-            key_grabber_id = 0;
-        }
-        key_grabber = null;
-        critical ("Lost connection to org.gnome.Shell");
     }
 
     private void ungrab_keybindings () requires (key_grabber != null) {
