@@ -1,3 +1,9 @@
+wingpanel-indicator-sound (8.0.2) jammy; urgency=medium
+
+  * Release 8.0.2 (#309)
+
+ -- elementary, Inc. <builds@elementary.io>  Fri, 10 Oct 2025 17:25:11 +0000
+
 wingpanel-indicator-sound (8.0.1) jammy; urgency=medium
 
   * Release 8.0.1 (#287)
