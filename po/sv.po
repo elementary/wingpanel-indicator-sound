@@ -2,21 +2,23 @@
 # Copyright (c) 2015 Rosetta Contributors and Canonical Ltd 2015
 # This file is distributed under the same license as the wingpanel-indicator-sound package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2015.
-#
+# Daniel Nylander <po@danielnylander.se>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: wingpanel-indicator-sound\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-10-06 15:46+0000\n"
-"PO-Revision-Date: 2016-08-03 09:12+0000\n"
-"Last-Translator: Mikael Nyberg <mikanybe@gmail.com>\n"
-"Language-Team: Swedish <sv@li.org>\n"
+"PO-Revision-Date: 2025-10-22 05:31+0000\n"
+"Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
+"Language-Team: Swedish <https://l10n.elementaryos.org/projects/wingpanel/"
+"wingpanel-indicator-sound/sv/>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.11.4\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
-"X-Generator: Launchpad (build 18335)\n"
 
 #: src/Indicator.vala:424
 msgid "Sound Settings…"
@@ -25,38 +27,35 @@ msgstr "Ljudinställingar…"
 #: src/Indicator.vala:700
 #, c-format
 msgid "Volume: %.0f%%"
-msgstr ""
+msgstr "Volym: %.0f%%"
 
 #: src/Indicator.vala:703
 msgid "Middle-click to unmute"
-msgstr ""
+msgstr "Mellanklick för att aktivera ljudet"
 
 #: src/Indicator.vala:703
 msgid "Middle-click to mute"
-msgstr ""
+msgstr "Mellanklick för att inaktivera ljudet"
 
 #: src/Widgets/PlayerRow.vala:16
-#, fuzzy
-#| msgid "Not currently playing"
 msgid "Not playing"
-msgstr "Ingenting spelas"
+msgstr "Spelar inte"
 
 #: src/Widgets/PlayerRow.vala:31
 msgid "Music player"
 msgstr "Musikspelare"
 
 #: src/Widgets/PlayerRow.vala:566
-#, fuzzy
 msgid "Unknown Artist"
-msgstr "Okänd titel"
+msgstr "Okänd artist"
 
 #: src/Widgets/Scale.vala:67
 msgid "Mute"
-msgstr ""
+msgstr "Tyst"
 
 #: src/Widgets/Scale.vala:69
 msgid "Unmute"
-msgstr ""
+msgstr "Aktivera ljud"
 
 #~ msgid "Indicator Sound"
 #~ msgstr "Ljudindikator"
