@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-10-06 15:46+0000\n"
-"PO-Revision-Date: 2025-10-22 09:58+0000\n"
+"PO-Revision-Date: 2025-10-31 12:55+0000\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <https://l10n.elementaryos.org/projects/wingpanel/"
 "indicator-sound-extra/sv/>\n"
@@ -40,8 +40,7 @@ msgstr "Mindre uppdateringar"
 
 #: data/sound.metainfo.xml.in:38
 msgid "Use a toggle button for muting devices instead of a switch"
-msgstr ""
-"Använd en vippknapp för att stänga av enheter i stället för en strömbrytare"
+msgstr "Använd en växlingsknapp för att tysta enheter i stället för en brytare"
 
 #: data/sound.metainfo.xml.in:39 data/sound.metainfo.xml.in:51
 #: data/sound.metainfo.xml.in:63 data/sound.metainfo.xml.in:80
@@ -56,7 +55,7 @@ msgstr "Använd cirkelknappar för uppspelningskontroller"
 
 #: data/sound.metainfo.xml.in:79
 msgid "Middle-clicking the microphone indicator no longer mutes monitors"
-msgstr "Om du mittklickar på mikrofonindikatorn stängs inte längre monitorer av"
+msgstr "Om du mittenklickar på mikrofonindikatorn tystar inte längre skärmar"
 
 #: data/sound.metainfo.xml.in:93
 msgid "Use device form factor when available to assign more accurate icons"
@@ -74,7 +73,7 @@ msgstr "Fixa saknade växlingsanimationer"
 
 #: data/sound.metainfo.xml.in:96
 msgid "Use the volume step value from GNOME Settings Daemon"
-msgstr "Använd volymstegvärdet från GNOME Settings Daemon"
+msgstr "Använd volymstegsvärdet från GNOME Settings Daemon"
 
 #: data/sound.metainfo.xml.in:106
 msgid "Show more specific icons for different types of devices"
@@ -86,15 +85,15 @@ msgstr "Nya funktioner"
 
 #: data/sound.metainfo.xml.in:116
 msgid "select specific input and output devices"
-msgstr "välja specifika in- och utmatningsenheter"
+msgstr "välj specifika in- och utgångsenheter"
 
 #: data/sound.metainfo.xml.in:120
 msgid "Hide temporary audio players when they stop"
-msgstr "Dölj tillfälliga ljudspelare när de stoppas"
+msgstr "Dölj tillfälliga ljudspelare när de stoppar"
 
 #: data/sound.metainfo.xml.in:121
 msgid "Add a tooltip on hover"
-msgstr "Lägg till en tooltip när du håller muspekaren över skärmen"
+msgstr "Lägg till ett verktygstips vid hovring"
 
 #: data/sound.metainfo.xml.in:122
 msgid "Minor visual improvements"
