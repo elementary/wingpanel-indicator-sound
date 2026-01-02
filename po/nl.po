@@ -1,20 +1,21 @@
 # Jaimie85 <alsemgeest@gmail.com>, 2020.
 # Niels Van Laerhoven <niels1995@gmail.com>, 2022.
+# Bas Ernst <50556177+ErnstBas@users.noreply.github.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-10-06 15:46+0000\n"
-"PO-Revision-Date: 2022-01-13 21:09+0000\n"
-"Last-Translator: Niels Van Laerhoven <niels1995@gmail.com>\n"
-"Language-Team: Dutch <https://l10n.elementary.io/projects/wingpanel/"
+"PO-Revision-Date: 2026-01-03 14:55+0000\n"
+"Last-Translator: Bas Ernst <50556177+ErnstBas@users.noreply.github.com>\n"
+"Language-Team: Dutch <https://l10n.elementaryos.org/projects/wingpanel/"
 "wingpanel-indicator-sound/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.4.2\n"
+"X-Generator: Weblate 5.11.4\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 
 #: src/Indicator.vala:424
@@ -48,11 +49,11 @@ msgstr "Onbekende artiest"
 
 #: src/Widgets/Scale.vala:67
 msgid "Mute"
-msgstr ""
+msgstr "Dempen"
 
 #: src/Widgets/Scale.vala:69
 msgid "Unmute"
-msgstr ""
+msgstr "Dempen opheffen"
 
 #~ msgid "Indicator Sound"
 #~ msgstr "Geluid indicator"
