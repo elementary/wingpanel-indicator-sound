@@ -1,12 +1,12 @@
-# Jernej Virag <jernej@virag.si>, 2020.
+# Jernej Virag <jernej@virag.si>, 2020, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-10-06 15:46+0000\n"
-"PO-Revision-Date: 2020-01-08 00:07+0000\n"
+"PO-Revision-Date: 2026-01-19 15:55+0000\n"
 "Last-Translator: Jernej Virag <jernej@virag.si>\n"
-"Language-Team: Slovenian <https://l10n.elementary.io/projects/wingpanel/"
+"Language-Team: Slovenian <https://l10n.elementaryos.org/projects/wingpanel/"
 "wingpanel-indicator-sound/sl/>\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 5.11.4\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 
 #: src/Indicator.vala:424
@@ -24,21 +24,19 @@ msgstr "Nastavitve zvoka…"
 #: src/Indicator.vala:700
 #, c-format
 msgid "Volume: %.0f%%"
-msgstr ""
+msgstr "Glasnost: %.0f%%"
 
 #: src/Indicator.vala:703
 msgid "Middle-click to unmute"
-msgstr ""
+msgstr "Srednji klik za vklop zvoka"
 
 #: src/Indicator.vala:703
 msgid "Middle-click to mute"
-msgstr ""
+msgstr "Srednji klik za izklop zvoka"
 
 #: src/Widgets/PlayerRow.vala:16
-#, fuzzy
-#| msgid "Not currently playing"
 msgid "Not playing"
-msgstr "Trenutno ni predvajanja"
+msgstr "Ni predvajanja"
 
 #: src/Widgets/PlayerRow.vala:31
 msgid "Music player"
@@ -50,11 +48,11 @@ msgstr "Neznan izvajalec"
 
 #: src/Widgets/Scale.vala:67
 msgid "Mute"
-msgstr ""
+msgstr "Izklop zvoka"
 
 #: src/Widgets/Scale.vala:69
 msgid "Unmute"
-msgstr ""
+msgstr "Vklop zvoka"
 
 #~ msgid "Indicator Sound"
 #~ msgstr "Indikator zvoka"
