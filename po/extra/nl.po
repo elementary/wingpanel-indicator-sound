@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-06 15:46+0000\n"
+"POT-Creation-Date: 2026-01-22 17:26+0000\n"
 "PO-Revision-Date: 2026-01-03 14:55+0000\n"
 "Last-Translator: Bas Ernst <50556177+ErnstBas@users.noreply.github.com>\n"
 "Language-Team: Dutch <https://l10n.elementaryos.org/projects/wingpanel/"
@@ -31,73 +31,73 @@ msgstr ""
 "Pas het volume van de speakers en microfoon aan, zie informatie over het "
 "huidige nummer en bedien media"
 
-#: data/sound.metainfo.xml.in:36 data/sound.metainfo.xml.in:49
-#: data/sound.metainfo.xml.in:61 data/sound.metainfo.xml.in:76
-#: data/sound.metainfo.xml.in:91 data/sound.metainfo.xml.in:104
-#: data/sound.metainfo.xml.in:118
+#: data/sound.metainfo.xml.in:36 data/sound.metainfo.xml.in:48
+#: data/sound.metainfo.xml.in:61 data/sound.metainfo.xml.in:73
+#: data/sound.metainfo.xml.in:88 data/sound.metainfo.xml.in:103
+#: data/sound.metainfo.xml.in:116 data/sound.metainfo.xml.in:130
 msgid "Minor updates"
 msgstr "Kleine updates"
 
-#: data/sound.metainfo.xml.in:38
+#: data/sound.metainfo.xml.in:38 data/sound.metainfo.xml.in:51
+#: data/sound.metainfo.xml.in:63 data/sound.metainfo.xml.in:75
+#: data/sound.metainfo.xml.in:92 data/sound.metainfo.xml.in:109
+#: data/sound.metainfo.xml.in:119 data/sound.metainfo.xml.in:135
+msgid "Updated translations"
+msgstr "Bijgewerkte vertalingen"
+
+#: data/sound.metainfo.xml.in:50
 msgid "Use a toggle button for muting devices instead of a switch"
 msgstr ""
 "Gebruik een schakelknop om apparaten te dempen in plaats van een schakelaar"
 
-#: data/sound.metainfo.xml.in:39 data/sound.metainfo.xml.in:51
-#: data/sound.metainfo.xml.in:63 data/sound.metainfo.xml.in:80
-#: data/sound.metainfo.xml.in:97 data/sound.metainfo.xml.in:107
-#: data/sound.metainfo.xml.in:123
-msgid "Updated translations"
-msgstr "Bijgewerkte vertalingen"
-
-#: data/sound.metainfo.xml.in:78
+#: data/sound.metainfo.xml.in:90
 msgid "Use circle buttons for playback controls"
 msgstr "Gebruik ronde knoppen voor de afspeelbediening"
 
-#: data/sound.metainfo.xml.in:79
+#: data/sound.metainfo.xml.in:91
 msgid "Middle-clicking the microphone indicator no longer mutes monitors"
 msgstr ""
 "Met de middelste muisknop klikken op de microfoonindicator dempt niet langer "
 "de monitors"
 
-#: data/sound.metainfo.xml.in:93
+#: data/sound.metainfo.xml.in:105
 msgid "Use device form factor when available to assign more accurate icons"
 msgstr "Gebruik apparaat vormfactor om accuratere iconen toe te wijzen"
 
-#: data/sound.metainfo.xml.in:94
+#: data/sound.metainfo.xml.in:106
 msgid "Provide a fallback device icon when none is available"
 msgstr ""
 "Geef alternatief pictogram op voor het apparaat als er geen beschikbaar is"
 
-#: data/sound.metainfo.xml.in:95
+#: data/sound.metainfo.xml.in:107
 msgid "Fix missing switch animations"
 msgstr "Herstel ontbrekende schakelanimaties"
 
-#: data/sound.metainfo.xml.in:96
+#: data/sound.metainfo.xml.in:108
 msgid "Use the volume step value from GNOME Settings Daemon"
 msgstr "Gebruik de volumestapwaarde van de GNOME-instellingendaemon"
 
-#: data/sound.metainfo.xml.in:106
+#: data/sound.metainfo.xml.in:118
 msgid "Show more specific icons for different types of devices"
 msgstr "Toon meer specifieke pictogrammen voor verschillende typen apparaten"
 
-#: data/sound.metainfo.xml.in:114
+#: data/sound.metainfo.xml.in:126
 msgid "New features"
 msgstr "Nieuwe functies"
 
-#: data/sound.metainfo.xml.in:116
+#: data/sound.metainfo.xml.in:128
 msgid "select specific input and output devices"
 msgstr "Selecteer specifieke invoer- en uitvoerapparaten"
 
-#: data/sound.metainfo.xml.in:120
+#: data/sound.metainfo.xml.in:132
 msgid "Hide temporary audio players when they stop"
 msgstr "Verberg tijdelijke audiospelers als ze stoppen"
 
-#: data/sound.metainfo.xml.in:121
+#: data/sound.metainfo.xml.in:133
 msgid "Add a tooltip on hover"
 msgstr "Voeg een tooltip toe als de muis er overheen gaat"
 
-#: data/sound.metainfo.xml.in:122
+#: data/sound.metainfo.xml.in:134
 msgid "Minor visual improvements"
 msgstr "Kleine visuele verbeteringen"
 

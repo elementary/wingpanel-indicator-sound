@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-06 15:46+0000\n"
+"POT-Creation-Date: 2026-01-22 17:26+0000\n"
 "PO-Revision-Date: 2025-10-16 13:55+0000\n"
 "Last-Translator: TomiOhl <ohlslager.tom@gmail.com>\n"
 "Language-Team: Hungarian <https://l10n.elementaryos.org/projects/wingpanel/"
@@ -31,73 +31,73 @@ msgstr ""
 "Hangszórók és mikrofonok hangerejének kezelése, éppen játszott szám "
 "adatainak megjelenítése és médiavezérlés"
 
-#: data/sound.metainfo.xml.in:36 data/sound.metainfo.xml.in:49
-#: data/sound.metainfo.xml.in:61 data/sound.metainfo.xml.in:76
-#: data/sound.metainfo.xml.in:91 data/sound.metainfo.xml.in:104
-#: data/sound.metainfo.xml.in:118
+#: data/sound.metainfo.xml.in:36 data/sound.metainfo.xml.in:48
+#: data/sound.metainfo.xml.in:61 data/sound.metainfo.xml.in:73
+#: data/sound.metainfo.xml.in:88 data/sound.metainfo.xml.in:103
+#: data/sound.metainfo.xml.in:116 data/sound.metainfo.xml.in:130
 msgid "Minor updates"
 msgstr "Apróbb frissítések"
 
-#: data/sound.metainfo.xml.in:38
-msgid "Use a toggle button for muting devices instead of a switch"
-msgstr "Kapcsológomb használata eszközök némítására csúszka helyett"
-
-#: data/sound.metainfo.xml.in:39 data/sound.metainfo.xml.in:51
-#: data/sound.metainfo.xml.in:63 data/sound.metainfo.xml.in:80
-#: data/sound.metainfo.xml.in:97 data/sound.metainfo.xml.in:107
-#: data/sound.metainfo.xml.in:123
+#: data/sound.metainfo.xml.in:38 data/sound.metainfo.xml.in:51
+#: data/sound.metainfo.xml.in:63 data/sound.metainfo.xml.in:75
+#: data/sound.metainfo.xml.in:92 data/sound.metainfo.xml.in:109
+#: data/sound.metainfo.xml.in:119 data/sound.metainfo.xml.in:135
 msgid "Updated translations"
 msgstr "Frissített fordítások"
 
-#: data/sound.metainfo.xml.in:78
+#: data/sound.metainfo.xml.in:50
+msgid "Use a toggle button for muting devices instead of a switch"
+msgstr "Kapcsológomb használata eszközök némítására csúszka helyett"
+
+#: data/sound.metainfo.xml.in:90
 msgid "Use circle buttons for playback controls"
 msgstr "Kör alakú gombok használata a lejátszás vezérléséhez"
 
-#: data/sound.metainfo.xml.in:79
+#: data/sound.metainfo.xml.in:91
 msgid "Middle-clicking the microphone indicator no longer mutes monitors"
 msgstr ""
 "A mikrofon indikátorra való középső gombos kattintás nem némítja le a "
 "monitorokat"
 
-#: data/sound.metainfo.xml.in:93
+#: data/sound.metainfo.xml.in:105
 msgid "Use device form factor when available to assign more accurate icons"
 msgstr ""
 "A pontosabb ikonok hozzárendeléséhez használja az eszköz formai tényezőjét, "
 "ha az rendelkezésre áll"
 
-#: data/sound.metainfo.xml.in:94
+#: data/sound.metainfo.xml.in:106
 msgid "Provide a fallback device icon when none is available"
 msgstr "Egy alapértelmezett eszközikon, ha nem lenne elérhető"
 
-#: data/sound.metainfo.xml.in:95
+#: data/sound.metainfo.xml.in:107
 msgid "Fix missing switch animations"
 msgstr "Hiányzó ikonanimációk hozzáadva"
 
-#: data/sound.metainfo.xml.in:96
+#: data/sound.metainfo.xml.in:108
 msgid "Use the volume step value from GNOME Settings Daemon"
 msgstr "A GNOME Beállításdémon hanglépték-beállításának használata"
 
-#: data/sound.metainfo.xml.in:106
+#: data/sound.metainfo.xml.in:118
 msgid "Show more specific icons for different types of devices"
 msgstr "Még specifikusabb ikonok kijelzése különböző típusú eszközökhöz"
 
-#: data/sound.metainfo.xml.in:114
+#: data/sound.metainfo.xml.in:126
 msgid "New features"
 msgstr "Új funkciók"
 
-#: data/sound.metainfo.xml.in:116
+#: data/sound.metainfo.xml.in:128
 msgid "select specific input and output devices"
 msgstr "Különböző be- és kimeneti eszközök kiválasztása"
 
-#: data/sound.metainfo.xml.in:120
+#: data/sound.metainfo.xml.in:132
 msgid "Hide temporary audio players when they stop"
 msgstr "Ideiglenes hanglejátszók elrejtése megállítás után"
 
-#: data/sound.metainfo.xml.in:121
+#: data/sound.metainfo.xml.in:133
 msgid "Add a tooltip on hover"
 msgstr "Címke megjelenítése rámutatáskor"
 
-#: data/sound.metainfo.xml.in:122
+#: data/sound.metainfo.xml.in:134
 msgid "Minor visual improvements"
 msgstr "Kisebb vizuális javítások"
 

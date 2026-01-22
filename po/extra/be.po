@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-06 15:46+0000\n"
+"POT-Creation-Date: 2026-01-22 17:26+0000\n"
 "PO-Revision-Date: 2025-07-27 22:55+0000\n"
 "Last-Translator: lenify <lenify@tutanota.com>\n"
 "Language-Team: Belarusian <https://l10n.elementaryos.org/projects/wingpanel/"
@@ -30,68 +30,68 @@ msgid ""
 "media controls"
 msgstr ""
 
-#: data/sound.metainfo.xml.in:36 data/sound.metainfo.xml.in:49
-#: data/sound.metainfo.xml.in:61 data/sound.metainfo.xml.in:76
-#: data/sound.metainfo.xml.in:91 data/sound.metainfo.xml.in:104
-#: data/sound.metainfo.xml.in:118
+#: data/sound.metainfo.xml.in:36 data/sound.metainfo.xml.in:48
+#: data/sound.metainfo.xml.in:61 data/sound.metainfo.xml.in:73
+#: data/sound.metainfo.xml.in:88 data/sound.metainfo.xml.in:103
+#: data/sound.metainfo.xml.in:116 data/sound.metainfo.xml.in:130
 msgid "Minor updates"
 msgstr "Нязначныя абнаўленні"
 
-#: data/sound.metainfo.xml.in:38
-msgid "Use a toggle button for muting devices instead of a switch"
-msgstr ""
-
-#: data/sound.metainfo.xml.in:39 data/sound.metainfo.xml.in:51
-#: data/sound.metainfo.xml.in:63 data/sound.metainfo.xml.in:80
-#: data/sound.metainfo.xml.in:97 data/sound.metainfo.xml.in:107
-#: data/sound.metainfo.xml.in:123
+#: data/sound.metainfo.xml.in:38 data/sound.metainfo.xml.in:51
+#: data/sound.metainfo.xml.in:63 data/sound.metainfo.xml.in:75
+#: data/sound.metainfo.xml.in:92 data/sound.metainfo.xml.in:109
+#: data/sound.metainfo.xml.in:119 data/sound.metainfo.xml.in:135
 msgid "Updated translations"
 msgstr ""
 
-#: data/sound.metainfo.xml.in:78
+#: data/sound.metainfo.xml.in:50
+msgid "Use a toggle button for muting devices instead of a switch"
+msgstr ""
+
+#: data/sound.metainfo.xml.in:90
 msgid "Use circle buttons for playback controls"
 msgstr ""
 
-#: data/sound.metainfo.xml.in:79
+#: data/sound.metainfo.xml.in:91
 msgid "Middle-clicking the microphone indicator no longer mutes monitors"
 msgstr ""
 
-#: data/sound.metainfo.xml.in:93
+#: data/sound.metainfo.xml.in:105
 msgid "Use device form factor when available to assign more accurate icons"
 msgstr ""
 
-#: data/sound.metainfo.xml.in:94
+#: data/sound.metainfo.xml.in:106
 msgid "Provide a fallback device icon when none is available"
 msgstr ""
 
-#: data/sound.metainfo.xml.in:95
+#: data/sound.metainfo.xml.in:107
 msgid "Fix missing switch animations"
 msgstr ""
 
-#: data/sound.metainfo.xml.in:96
+#: data/sound.metainfo.xml.in:108
 msgid "Use the volume step value from GNOME Settings Daemon"
 msgstr ""
 
-#: data/sound.metainfo.xml.in:106
+#: data/sound.metainfo.xml.in:118
 msgid "Show more specific icons for different types of devices"
 msgstr ""
 
-#: data/sound.metainfo.xml.in:114
+#: data/sound.metainfo.xml.in:126
 msgid "New features"
 msgstr ""
 
-#: data/sound.metainfo.xml.in:116
+#: data/sound.metainfo.xml.in:128
 msgid "select specific input and output devices"
 msgstr ""
 
-#: data/sound.metainfo.xml.in:120
+#: data/sound.metainfo.xml.in:132
 msgid "Hide temporary audio players when they stop"
 msgstr ""
 
-#: data/sound.metainfo.xml.in:121
+#: data/sound.metainfo.xml.in:133
 msgid "Add a tooltip on hover"
 msgstr ""
 
-#: data/sound.metainfo.xml.in:122
+#: data/sound.metainfo.xml.in:134
 msgid "Minor visual improvements"
 msgstr ""
