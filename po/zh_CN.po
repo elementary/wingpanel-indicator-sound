@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wingpanel-indicator-sound\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-06 15:46+0000\n"
+"POT-Creation-Date: 2026-01-22 17:26+0000\n"
 "PO-Revision-Date: 2025-08-10 04:55+0000\n"
 "Last-Translator: JieXu <xujie0739@qq.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://"
@@ -23,20 +23,20 @@ msgstr ""
 "X-Generator: Weblate 5.11.4\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:45+0000\n"
 
-#: src/Indicator.vala:424
+#: src/Indicator.vala:415
 msgid "Sound Settings…"
 msgstr "声音设置…"
 
-#: src/Indicator.vala:700
+#: src/Indicator.vala:691
 #, c-format
 msgid "Volume: %.0f%%"
 msgstr "音量：%.0f%%"
 
-#: src/Indicator.vala:703
+#: src/Indicator.vala:694
 msgid "Middle-click to unmute"
 msgstr "中键单击以取消静音"
 
-#: src/Indicator.vala:703
+#: src/Indicator.vala:694
 msgid "Middle-click to mute"
 msgstr "中键单击以静音"
 
