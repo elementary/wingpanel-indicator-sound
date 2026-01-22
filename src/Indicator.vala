@@ -112,8 +112,6 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
         Notify.init ("wingpanel-indicator-sound");
 
-        settings.notify["max-volume"].connect (set_max_volume);
-
         var locale = Intl.setlocale (LocaleCategory.MESSAGES, null);
 
         display_widget.volume_press_event.connect (volume_control.toggle_mute);
@@ -153,16 +151,21 @@ public class Sound.Indicator : Wingpanel.Indicator {
         );
 
         settings.changed.connect ((key) => {
-            if (key != "volume-up" &&
-                key != "volume-down" &&
-                key != "volume-mute"
-            ) {
-                return;
-            }
+            switch (key) {
+                case "volume-up":
+                case "volume-down":
+                case "volume-mute":
+                    if (key_grabber != null) {
+                        ungrab_keybindings ();
+                        setup_grabs ();
+                    }
 
-            if (key_grabber != null) {
-                ungrab_keybindings ();
-                setup_grabs ();
+                    break;
+                case "max-volume":
+                    set_max_volume ();
+                    break;
+                default:
+                    break;
             }
         });
     }
