@@ -14,7 +14,7 @@ You'll need the following dependencies:
     libgtk-4-dev
     libnotify-dev
     libpulse-dev
-    libwingpanel-8-dev
+    libwingpanel-9-dev
     meson (>= 0.57.0)
     valac (>= 0.26)
 

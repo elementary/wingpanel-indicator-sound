@@ -28,7 +28,7 @@ gresource = gnome.compile_resources(
     source_dir: 'data'
 )
 
-wingpanel_dep = dependency('wingpanel-8', version: '>=2.1.0')
+wingpanel_dep = dependency('wingpanel-9', version: '>=2.1.0')
 wingpanel_indicatorsdir = wingpanel_dep.get_pkgconfig_variable('indicatorsdir', define_variable: ['libdir', libdir])
 
 config_data = configuration_data()
