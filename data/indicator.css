@@ -8,6 +8,7 @@
     min-width: 24px;
     opacity: 1;
     transition: none;
+    padding-left: 0;
     -gtk-icon-source: -gtk-icontheme("indicator-microphone-symbolic");
 }
 
