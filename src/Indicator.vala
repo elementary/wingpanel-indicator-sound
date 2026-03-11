@@ -25,7 +25,6 @@ public class Sound.Indicator : Wingpanel.Indicator {
     private Gtk.Box main_box;
     private Gtk.Adjustment volume_adjustment;
     private Gtk.Adjustment mic_adjustment;
-    private Gtk.Revealer input_controls_revealer;
     private Widgets.PlayerList mpris;
     private Widgets.Scale volume_scale;
     private Widgets.Scale mic_scale;
@@ -398,7 +397,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
             input_controls_box.add (input_device_manager);
             input_controls_box.add (new Gtk.Separator (HORIZONTAL));
 
-            input_controls_revealer = new Gtk.Revealer () {
+            var input_controls_revealer = new Gtk.Revealer () {
                 child = input_controls_box
             };
 
