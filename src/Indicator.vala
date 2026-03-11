@@ -25,12 +25,12 @@ public class Sound.Indicator : Wingpanel.Indicator {
     private Gtk.Box main_box;
     private Gtk.Adjustment volume_adjustment;
     private Gtk.Adjustment mic_adjustment;
+    private Gtk.Revealer input_controls_revealer;
     private Widgets.PlayerList mpris;
     private Widgets.Scale volume_scale;
     private Widgets.Scale mic_scale;
     private Widgets.DeviceManagerWidget output_device_manager;
     private Widgets.DeviceManagerWidget input_device_manager;
-    private Gtk.Separator mic_separator;
     private Notify.Notification? notification;
     private Services.VolumeControlPulse volume_control;
 
@@ -97,7 +97,6 @@ public class Sound.Indicator : Wingpanel.Indicator {
         volume_control.notify["mute"].connect (on_mute_change);
         volume_control.notify["micMute"].connect (on_mic_mute_change);
         volume_control.notify["is-playing"].connect (on_is_playing_change);
-        volume_control.notify["is-listening"].connect (update_mic_visibility);
 
         // Tooltip-related
         volume_control.notify["volume"].connect (update_tooltip);
@@ -168,6 +167,8 @@ public class Sound.Indicator : Wingpanel.Indicator {
                     break;
             }
         });
+
+        volume_control.bind_property ("is-listening", display_widget, "show-mic", SYNC_CREATE);
     }
 
     private void ungrab_keybindings () requires (key_grabber != null) {
@@ -342,26 +343,6 @@ public class Sound.Indicator : Wingpanel.Indicator {
         }
     }
 
-    private void update_mic_visibility () {
-        if (volume_control.is_listening) {
-            mic_scale.no_show_all = false;
-            mic_scale.show_all ();
-            mic_separator.no_show_all = false;
-            mic_separator.show ();
-            input_device_manager.no_show_all = false;
-            input_device_manager.show ();
-            display_widget.show_mic = true;
-        } else {
-            mic_scale.no_show_all = true;
-            mic_scale.hide ();
-            mic_separator.no_show_all = true;
-            mic_separator.hide ();
-            input_device_manager.no_show_all = true;
-            input_device_manager.hide ();
-            display_widget.show_mic = false;
-        }
-    }
-
     private unowned string get_volume_icon (double volume) {
         if (volume <= 0 || this.volume_control.mute) {
             return this.mute_blocks_sound ? "audio-volume-muted-blocking-symbolic" : "audio-volume-muted-symbolic";
@@ -407,13 +388,18 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
             mic_scale.active = !volume_control.micMute;
 
-            mic_separator = new Gtk.Separator (Gtk.Orientation.HORIZONTAL);
-
-            update_mic_visibility ();
-
             var settings_button = new Gtk.ModelButton () {
                 text = _("Sound Settings…"),
                 margin_top = 3
+            };
+
+            var input_controls_box = new Gtk.Box (VERTICAL, 0);
+            input_controls_box.add (mic_scale);
+            input_controls_box.add (input_device_manager);
+            input_controls_box.add (new Gtk.Separator (HORIZONTAL));
+
+            input_controls_revealer = new Gtk.Revealer () {
+                child = input_controls_box
             };
 
             main_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
@@ -425,9 +411,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
             main_box.add (output_device_manager);
             if (is_in_session) {
                 main_box.add (new Gtk.Separator (Gtk.Orientation.HORIZONTAL));
-                main_box.add (mic_scale);
-                main_box.add (input_device_manager);
-                main_box.add (mic_separator);
+                main_box.add (input_controls_revealer);
                 main_box.add (settings_button);
             }
 
@@ -482,6 +466,8 @@ public class Sound.Indicator : Wingpanel.Indicator {
                 volume_control.volume = vol;
                 volume_scale.icon = get_volume_icon (volume_adjustment.get_value ());
             });
+
+            volume_control.bind_property ("is-listening", input_controls_revealer, "reveal-child", SYNC_CREATE);
         }
 
         return main_box;
