@@ -1,20 +1,8 @@
 /*
- * Copyright 2014 Ikey Doherty <ikey.doherty@gmail.com>
- *           2016-2018 elementary, Inc. (https://elementary.io)
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
+* SPDX-License-Identifier: GPL-2.0-or-later
+* SPDX-FileCopyrightText: 2014 Ikey Doherty <ikey.doherty@gmail.com>
+*                         2016-2025 elementary, Inc. (https://elementary.io)
+*/
 
 const int ICON_SIZE = 48;
 
@@ -189,6 +177,7 @@ public class Sound.Widgets.PlayerRow : Gtk.Box {
         var overlay = new Gtk.Overlay () {
             child = background,
             can_focus = true,
+            child = background,
             margin_bottom = 2,
             margin_end = 4,
             margin_start = 4
@@ -196,17 +185,17 @@ public class Sound.Widgets.PlayerRow : Gtk.Box {
         overlay.add_overlay (mask);
 
         title_label = new Gtk.Label (null) {
-            ellipsize = Pango.EllipsizeMode.END,
+            ellipsize = END,
             max_width_chars = 16,
-            valign = Gtk.Align.END,
+            valign = END,
             width_chars = 16,
             xalign = 0
         };
 
         artist_label = new Gtk.Label (null) {
-            ellipsize = Pango.EllipsizeMode.END,
-            halign = Gtk.Align.START,
-            valign = Gtk.Align.START
+            ellipsize = END,
+            halign = START,
+            valign = START
         };
         artist_label.add_css_class (Granite.STYLE_CLASS_DIM_LABEL);
         artist_label.add_css_class (Granite.STYLE_CLASS_SMALL_LABEL);
@@ -222,7 +211,7 @@ public class Sound.Widgets.PlayerRow : Gtk.Box {
             "media-skip-backward-symbolic"
         ) {
             sensitive = false,
-            valign = Gtk.Align.CENTER
+            valign = CENTER
         };
         prev_btn.add_css_class (Granite.STYLE_CLASS_CIRCULAR);
 
@@ -230,7 +219,7 @@ public class Sound.Widgets.PlayerRow : Gtk.Box {
             "media-playback-start-symbolic"
         ) {
             sensitive = true,
-            valign = Gtk.Align.CENTER
+            valign = CENTER
         };
         play_btn.add_css_class (Granite.STYLE_CLASS_CIRCULAR);
 
@@ -238,7 +227,7 @@ public class Sound.Widgets.PlayerRow : Gtk.Box {
             "media-skip-forward-symbolic"
         ) {
             sensitive = false,
-            valign = Gtk.Align.CENTER
+            valign = CENTER
         };
         next_btn.add_css_class (Granite.STYLE_CLASS_CIRCULAR);
 
@@ -466,7 +455,7 @@ public class Sound.Widgets.PlayerRow : Gtk.Box {
     private void update_art (string uri) {
         if (!uri.has_prefix ("file://") && !uri.has_prefix ("http")) {
             background.gicon = app_icon;
-            mask.visible = false;
+            background.get_style_context ().set_scale (scale_factor);
             return;
         }
 
@@ -497,13 +486,12 @@ public class Sound.Widgets.PlayerRow : Gtk.Box {
             }
 
             try {
-                var pbuf = new Gdk.Pixbuf.from_file_at_size (fname, ICON_SIZE * scale_factor, ICON_SIZE * scale_factor);
-                background.gicon = mask_pixbuf (pbuf, scale_factor);
+                background.gicon = new FileIcon (File.new_for_path (fname));
                 background.get_style_context ().set_scale (1);
                 mask.visible = true;
             } catch (Error e) {
                 warning (e.message);
-                //background.set_from_gicon (app_icon);
+                //background.gicon = app_icon;
             }
         } else {
             load_remote_art_cancel.cancel ();
@@ -513,12 +501,12 @@ public class Sound.Widgets.PlayerRow : Gtk.Box {
     }
 
     private async void load_remote_art (string uri) {
-        GLib.File file = GLib.File.new_for_uri (uri);
+        var file = GLib.File.new_for_uri (uri);
         try {
-            GLib.InputStream stream = yield file.read_async (Priority.DEFAULT, load_remote_art_cancel);
-            Gdk.Pixbuf pixbuf = yield new Gdk.Pixbuf.from_stream_async (stream, load_remote_art_cancel);
+            var stream = yield file.read_async (Priority.DEFAULT, load_remote_art_cancel);
+            var pixbuf = yield new Gdk.Pixbuf.from_stream_async (stream, load_remote_art_cancel);
             if (pixbuf != null) {
-                background.gicon = mask_pixbuf (pixbuf, scale_factor);
+                background.gicon = pixbuf;
                 background.get_style_context ().set_scale (1);
                 mask.visible = true;
             }
@@ -567,28 +555,6 @@ public class Sound.Widgets.PlayerRow : Gtk.Box {
                 artist_label.label = NOT_PLAYING;
             }
         }
-    }
-
-    private static Gdk.Pixbuf? mask_pixbuf (Gdk.Pixbuf pixbuf, int scale) {
-        var size = ICON_SIZE * scale;
-        var mask_offset = 4 * scale;
-        var mask_size_offset = mask_offset * 2;
-        var mask_size = ICON_SIZE * scale;
-        var offset_x = mask_offset;
-        var offset_y = mask_offset + scale;
-        size = size - mask_size_offset;
-
-        var input = pixbuf.scale_simple (size, size, Gdk.InterpType.BILINEAR);
-        var surface = new Cairo.ImageSurface (Cairo.Format.ARGB32, mask_size, mask_size);
-        var cr = new Cairo.Context (surface);
-
-        Granite.Drawing.Utilities.cairo_rounded_rectangle (cr, offset_x, offset_y, size, size, mask_offset);
-        cr.clip ();
-
-        Gdk.cairo_set_source_pixbuf (cr, input, offset_x, offset_y);
-        cr.paint ();
-
-        return Gdk.pixbuf_get_from_surface (surface, 0, 0, mask_size, mask_size);
     }
 
     public void update_play (string playing, string title, string artist) {

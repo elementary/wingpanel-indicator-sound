@@ -1,18 +1,6 @@
 /*
-* Copyright 2015-2021 elementary, Inc. (https://elementary.io)
-*
-* This program is free software; you can redistribute it and/or
-* modify it under the terms of the GNU General Public
-* License as published by the Free Software Foundation; either
-* version 2 of the License, or (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-* General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with this program.  If not, see <http://www.gnu.org/licenses/>.
+* SPDX-License-Identifier: GPL-2.0-or-later
+* SPDX-FileCopyrightText: 2015-2025 elementary, Inc. (https://elementary.io)
 */
 
 public class Sound.Widgets.Scale : Granite.Bin {
@@ -28,7 +16,7 @@ public class Sound.Widgets.Scale : Granite.Bin {
     }
 
     class construct {
-        set_css_name ("modelbutton");
+        set_css_name ("device-scale");
     }
 
     construct {
@@ -51,18 +39,19 @@ public class Sound.Widgets.Scale : Granite.Bin {
         box.append (scale_widget);
 
         child = box;
-        // above_child = false;
 
-        // scale_widget.button_release_event.connect (() => {
-        //     slider_dropped ();
-        //     return Gdk.EVENT_PROPAGATE;
-        // });
+        var gesture_click = new Gtk.GestureClick ();
+        gesture_click.released.connect (() => {
+            slider_dropped ();
+        });
 
         // scale_widget.scroll_event.connect ((e) => {
         //     /* Re-emit the signal on the eventbox instead of using native handler */
         //     scroll_event (e);
         //     return Gdk.EVENT_STOP;
         // });
+
+        scale_widget.add_controller (gesture_click);
 
         bind_property ("icon", toggle, "icon-name");
 

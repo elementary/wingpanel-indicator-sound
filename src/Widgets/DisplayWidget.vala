@@ -31,10 +31,9 @@ public class Sound.DisplayWidget : Gtk.Box {
             pixel_size = 24
         };
 
-        var mic_icon = new Gtk.Spinner () {
-            margin_end = 18
-        };
+        var mic_icon = new Gtk.Spinner ();
         mic_icon.add_css_class ("mic-icon");
+        mic_icon.add_css_class ("composited-indicator");
 
         var mic_revealer = new Gtk.Revealer () {
             child = mic_icon,

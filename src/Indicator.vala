@@ -112,8 +112,6 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
         Notify.init ("wingpanel-indicator-sound");
 
-        settings.notify["max-volume"].connect (set_max_volume);
-
         var locale = Intl.setlocale (LocaleCategory.MESSAGES, null);
 
         display_widget.volume_press_event.connect (volume_control.toggle_mute);
@@ -139,28 +137,11 @@ public class Sound.Indicator : Wingpanel.Indicator {
                                  null);
         ca_context.open ();
 
-        Bus.watch_name (BusType.SESSION, "org.gnome.Shell", BusNameWatcherFlags.NONE, on_watch, on_unwatch);
-
-        settings.changed.connect ((key) => {
-            if (key != "volume-up" &&
-                key != "volume-down" &&
-                key != "volume-mute") {
-                return;
-            }
-
-            if (key_grabber != null) {
-                ungrab_keybindings ();
-                setup_grabs ();
-            }
-        });
-    }
-
-    private void on_watch (GLib.DBusConnection connection) {
-        connection.get_proxy.begin<ShellKeyGrabber> (
-            "org.gnome.Shell", "/org/gnome/Shell", NONE, null,
+        Bus.get_proxy.begin<ShellKeyGrabber> (
+            BusType.SESSION, "org.gnome.Shell", "/org/gnome/Shell", NONE, null,
             (obj, res) => {
                 try {
-                    key_grabber = ((GLib.DBusConnection) obj).get_proxy.end<ShellKeyGrabber> (res);
+                    key_grabber = Bus.get_proxy.end<ShellKeyGrabber> (res);
                     setup_grabs ();
                 } catch (Error e) {
                     critical (e.message);
@@ -168,15 +149,25 @@ public class Sound.Indicator : Wingpanel.Indicator {
                 }
             }
         );
-    }
 
-    private void on_unwatch (GLib.DBusConnection connection) {
-        if (key_grabber_id != 0) {
-            key_grabber.disconnect (key_grabber_id);
-            key_grabber_id = 0;
-        }
-        key_grabber = null;
-        critical ("Lost connection to org.gnome.Shell");
+        settings.changed.connect ((key) => {
+            switch (key) {
+                case "volume-up":
+                case "volume-down":
+                case "volume-mute":
+                    if (key_grabber != null) {
+                        ungrab_keybindings ();
+                        setup_grabs ();
+                    }
+
+                    break;
+                case "max-volume":
+                    set_max_volume ();
+                    break;
+                default:
+                    break;
+            }
+        });
     }
 
     private void ungrab_keybindings () requires (key_grabber != null) {
@@ -196,7 +187,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
         for (int i = 0; i < volume_up_keybindings.length; i++) {
             accelerators += Accelerator () {
                 name = volume_up_keybindings[i],
-                mode_flags = ActionMode.NONE,
+                mode_flags = ActionMode.LOGIN_SCREEN,
                 grab_flags = Meta.KeyBindingFlags.NONE
             };
         }
@@ -205,7 +196,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
         for (int i = 0; i < volume_down_keybindings.length; i++) {
             accelerators += Accelerator () {
                 name = volume_down_keybindings[i],
-                mode_flags = ActionMode.NONE,
+                mode_flags = ActionMode.LOGIN_SCREEN,
                 grab_flags = Meta.KeyBindingFlags.NONE
             };
         }
@@ -214,7 +205,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
         for (int i = 0; i < volume_mute_keybindings.length; i++) {
             accelerators += Accelerator () {
                 name = volume_mute_keybindings[i],
-                mode_flags = ActionMode.NONE,
+                mode_flags = ActionMode.LOGIN_SCREEN,
                 grab_flags = Meta.KeyBindingFlags.IGNORE_AUTOREPEAT
             };
         }
