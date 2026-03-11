@@ -129,7 +129,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
         mic_scale = new Widgets.Scale (mic_adjustment);
 
-        ca_context = CanberraGtk.context_get ();
+        ca_context = CanberraGtk4.context_get ();
         ca_context.change_props (Canberra.PROP_APPLICATION_NAME, "indicator-sound",
                                  Canberra.PROP_APPLICATION_ID, "wingpanel-indicator-sound",
                                  Canberra.PROP_APPLICATION_NAME, "start-here",

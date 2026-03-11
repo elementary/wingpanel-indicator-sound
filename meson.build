@@ -43,6 +43,7 @@ config_file = configure_file(
 shared_module(
     meson.project_name(),
     config_file,
+    'src/CanberraGtk4.vala',
     'src/Device.vala',
     'src/Indicator.vala',
     'src/Widgets/DisplayWidget.vala',
@@ -65,6 +66,8 @@ shared_module(
         dependency('gobject-2.0'),
         dependency('granite-7', version: '>=6.0.0'),
         dependency('gtk4'),
+        dependency('gtk4-wayland'),
+        dependency('gtk4-x11'),
         dependency('libpulse'),
         dependency('libpulse-mainloop-glib'),
         dependency('libnotify'),
