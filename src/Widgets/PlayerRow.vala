@@ -175,7 +175,6 @@ public class Sound.Widgets.PlayerRow : Gtk.Box {
         };
 
         var overlay = new Gtk.Overlay () {
-            child = background,
             can_focus = true,
             child = background,
             margin_bottom = 2,
