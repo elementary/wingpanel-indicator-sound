@@ -39,6 +39,10 @@ public class Sound.DisplayWidget : Gtk.Box {
         };
         volume_event_box.events = SCROLL_MASK | SMOOTH_SCROLL_MASK | BUTTON_PRESS_MASK | BUTTON_RELEASE_MASK;
 
+        var volume_style_context = volume_icon.get_style_context ();
+        volume_style_context.add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+        volume_style_context.add_class ("volume-icon");
+
         var mic_icon = new Gtk.Spinner ();
         mic_icon.get_style_context ().add_class ("mic-icon");
         mic_icon.get_style_context ().add_class ("composited-indicator");
