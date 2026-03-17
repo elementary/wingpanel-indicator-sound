@@ -23,8 +23,8 @@ public class Sound.DisplayWidget : Gtk.Box {
     public bool mic_muted { get; set; }
     public string icon_name { get; set; }
 
-    // public signal void volume_scroll_event (Gdk.EventScroll e);
-    // public signal void mic_scroll_event (Gdk.EventScroll e);
+    public signal void volume_scroll_event (Gdk.ScrollEvent e);
+    public signal void mic_scroll_event (Gdk.ScrollEvent e);
 
     construct {
         var volume_icon = new Gtk.Image () {
@@ -44,18 +44,28 @@ public class Sound.DisplayWidget : Gtk.Box {
         append (mic_revealer);
         append (volume_icon);
 
-        /* SMOOTH_SCROLL_MASK has no effect on this widget for reasons that are not
-         * entirely clear. Only normal scroll events are received even if the SMOOTH_SCROLL_MASK
-         * is set. */
-        // mic_event_box.scroll_event.connect ((e) => {
-        //     mic_scroll_event (e);
-        //     return Gdk.EVENT_STOP;
-        // });
+        var mic_scroll_controller = new Gtk.EventControllerLegacy ();
+        mic_scroll_controller.event.connect ((e) => {
+            if (e.get_event_type () != Gdk.EventType.SCROLL) {
+                return Gdk.EVENT_PROPAGATE;
+            }
 
-        // volume_event_box.scroll_event.connect ((e) => {
-        //     volume_scroll_event (e);
-        //     return Gdk.EVENT_STOP;
-        // });
+            mic_scroll_event ((Gdk.ScrollEvent) e);
+            return Gdk.EVENT_STOP;
+        });
+
+        var volume_scroll_controller = new Gtk.EventControllerLegacy ();
+        volume_scroll_controller.event.connect ((e) => {
+            if (e.get_event_type () != Gdk.EventType.SCROLL) {
+                return Gdk.EVENT_PROPAGATE;
+            }
+
+            volume_scroll_event ((Gdk.ScrollEvent) e);
+            return Gdk.EVENT_STOP;
+        });
+
+        mic_icon.add_controller (mic_scroll_controller);
+        volume_icon.add_controller (volume_scroll_controller);
 
         var mic_gesture_click = new Gtk.GestureClick () {
             button = Gdk.BUTTON_MIDDLE

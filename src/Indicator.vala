@@ -119,8 +119,8 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
         display_widget.icon_name = get_volume_icon (volume_control.volume.volume);
 
-        // display_widget.volume_scroll_event.connect_after (on_volume_icon_scroll_event);
-        // display_widget.mic_scroll_event.connect_after (on_mic_icon_scroll_event);
+        display_widget.volume_scroll_event.connect_after (on_volume_icon_scroll_event);
+        display_widget.mic_scroll_event.connect_after (on_mic_icon_scroll_event);
 
         volume_adjustment = new Gtk.Adjustment (0, 0, max_volume, 0.01, 0, 0);
         mic_adjustment = new Gtk.Adjustment (0, 0, 1, 0.01, 0, 0);
@@ -328,19 +328,19 @@ public class Sound.Indicator : Wingpanel.Indicator {
         display_widget.icon_name = get_volume_icon (volume_control.volume.volume);
     }
 
-    // private void on_volume_icon_scroll_event (Gdk.EventScroll e) {
-    //     double dir = 0.0;
-    //     if (handle_scroll_event (e, out dir)) {
-    //         handle_change (dir, false);
-    //     }
-    // }
+    private void on_volume_icon_scroll_event (Gdk.ScrollEvent e) {
+        double dir = 0.0;
+        if (handle_scroll_event (e, out dir)) {
+            handle_change (dir, false);
+        }
+    }
 
-    // private void on_mic_icon_scroll_event (Gdk.EventScroll e) {
-    //     double dir = 0.0;
-    //     if (handle_scroll_event (e, out dir)) {
-    //         handle_change (dir, true);
-    //     }
-    // }
+    private void on_mic_icon_scroll_event (Gdk.ScrollEvent e) {
+        double dir = 0.0;
+        if (handle_scroll_event (e, out dir)) {
+            handle_change (dir, true);
+        }
+    }
 
     private void update_mic_visibility () {
         if (volume_control.is_listening) {
@@ -431,14 +431,21 @@ public class Sound.Indicator : Wingpanel.Indicator {
                 volume_control.mic_volume = mic_adjustment.get_value ();
             });
 
-            // mic_scale.scroll_event.connect_after ((e) => {
-            //     double dir = 0.0;
-            //     if (handle_scroll_event (e, out dir)) {
-            //         handle_change (dir, true);
-            //     }
+            var mic_scroll_controller = new Gtk.EventControllerLegacy ();
+            mic_scroll_controller.event.connect_after ((e) => {
+                if (e.get_event_type () != Gdk.EventType.SCROLL) {
+                    return Gdk.EVENT_PROPAGATE;
+                }
 
-            //     return true;
-            // });
+                double dir = 0.0;
+                if (handle_scroll_event ((Gdk.ScrollEvent) e, out dir)) {
+                    handle_change (dir, true);
+                }
+
+                return Gdk.EVENT_STOP;
+            });
+
+            mic_scale.add_controller (mic_scroll_controller);
 
             mpris.close.connect (() => {
                 close ();
@@ -456,14 +463,21 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
             volume_scale.slider_dropped.connect (play_volume_change_sound);
 
-            // volume_scale.scroll_event.connect_after ((e) => {
-            //     double dir = 0.0;
-            //     if (handle_scroll_event (e, out dir)) {
-            //         handle_change (dir, false);
-            //     }
+            var volume_scroll_controller = new Gtk.EventControllerLegacy ();
+            volume_scroll_controller.event.connect_after ((e) => {
+                if (e.get_event_type () != Gdk.EventType.SCROLL) {
+                    return Gdk.EVENT_PROPAGATE;
+                }
 
-            //     return true;
-            // });
+                double dir = 0.0;
+                if (handle_scroll_event ((Gdk.ScrollEvent) e, out dir)) {
+                    handle_change (dir, false);
+                }
+
+                return Gdk.EVENT_STOP;
+            });
+
+            volume_scale.add_controller (volume_scroll_controller);
 
             volume_scale.notify["active"].connect (on_volume_switch_change);
 
@@ -489,61 +503,64 @@ public class Sound.Indicator : Wingpanel.Indicator {
      * In the case of diagonal scrolling, it ignores the event unless movement in one direction
      * is more than twice the movement in the other direction.
      */
-    // private bool handle_scroll_event (Gdk.EventScroll e, out double dir) {
-    //     dir = 0.0;
-    //     bool natural_scroll;
-    //     var event_source = e.get_source_device ().input_source;
-    //     if (event_source == Gdk.InputSource.MOUSE) {
-    //         natural_scroll = natural_scroll_mouse;
-    //     } else if (event_source == Gdk.InputSource.TOUCHPAD) {
-    //         natural_scroll = natural_scroll_touchpad;
-    //     } else {
-    //         natural_scroll = false;
-    //     }
+    private bool handle_scroll_event (Gdk.ScrollEvent e, out double dir) {
+        dir = 0.0;
+        bool natural_scroll;
+        var event_source = e.get_device ().get_source ();
 
-    //     switch (e.direction) {
-    //         case Gdk.ScrollDirection.SMOOTH:
-    //                 var abs_x = double.max (e.delta_x.abs (), 0.0001);
-    //                 var abs_y = double.max (e.delta_y.abs (), 0.0001);
+        if (event_source == Gdk.InputSource.MOUSE) {
+            natural_scroll = natural_scroll_mouse;
+        } else if (event_source == Gdk.InputSource.TOUCHPAD) {
+            natural_scroll = natural_scroll_touchpad;
+        } else {
+            natural_scroll = false;
+        }
 
-    //                 if (abs_y / abs_x > 2.0) {
-    //                     total_y_delta += e.delta_y;
-    //                 } else if (abs_x / abs_y > 2.0) {
-    //                     total_x_delta += e.delta_x;
-    //                 }
+        switch (e.get_direction ()) {
+            case Gdk.ScrollDirection.SMOOTH:
+                double dx, dy;
+                e.get_deltas (out dx, out dy);
 
-    //             break;
+                var abs_x = double.max (dx.abs (), 0.0001);
+                var abs_y = double.max (dy.abs (), 0.0001);
 
-    //         case Gdk.ScrollDirection.UP:
-    //             total_y_delta = -1.0;
-    //             break;
-    //         case Gdk.ScrollDirection.DOWN:
-    //             total_y_delta = 1.0;
-    //             break;
-    //         case Gdk.ScrollDirection.LEFT:
-    //             total_x_delta = -1.0;
-    //             break;
-    //         case Gdk.ScrollDirection.RIGHT:
-    //             total_x_delta = 1.0;
-    //             break;
-    //         default:
-    //             break;
-    //     }
+                if (abs_y / abs_x > 2.0) {
+                    total_y_delta += dy;
+                } else if (abs_x / abs_y > 2.0) {
+                    total_x_delta += dx;
+                }
 
-    //     if (total_y_delta.abs () > 0.5) {
-    //         dir = natural_scroll ? total_y_delta : -total_y_delta;
-    //     } else if (total_x_delta.abs () > 0.5) {
-    //         dir = natural_scroll ? -total_x_delta : total_x_delta;
-    //     }
+                break;
+            case Gdk.ScrollDirection.UP:
+                total_y_delta = -1.0;
+                break;
+            case Gdk.ScrollDirection.DOWN:
+                total_y_delta = 1.0;
+                break;
+            case Gdk.ScrollDirection.LEFT:
+                total_x_delta = -1.0;
+                break;
+            case Gdk.ScrollDirection.RIGHT:
+                total_x_delta = 1.0;
+                break;
+            default:
+                break;
+        }
 
-    //     if (dir.abs () > 0.0) {
-    //         total_y_delta = 0.0;
-    //         total_x_delta = 0.0;
-    //         return true;
-    //     }
+        if (total_y_delta.abs () > 0.5) {
+            dir = natural_scroll ? total_y_delta : -total_y_delta;
+        } else if (total_x_delta.abs () > 0.5) {
+            dir = natural_scroll ? -total_x_delta : total_x_delta;
+        }
 
-    //     return false;
-    // }
+        if (dir.abs () > 0.0) {
+            total_y_delta = 0.0;
+            total_x_delta = 0.0;
+            return true;
+        }
+
+        return false;
+    }
 
     private void handle_change (double change, bool is_mic) {
         double v;

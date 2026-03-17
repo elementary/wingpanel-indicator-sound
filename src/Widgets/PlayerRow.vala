@@ -484,14 +484,9 @@ public class Sound.Widgets.PlayerRow : Gtk.Box {
                 }
             }
 
-            try {
-                background.gicon = new FileIcon (File.new_for_path (fname));
-                background.get_style_context ().set_scale (1);
-                mask.visible = true;
-            } catch (Error e) {
-                warning (e.message);
-                //background.gicon = app_icon;
-            }
+            background.gicon = new FileIcon (File.new_for_path (fname));
+            background.get_style_context ().set_scale (1);
+            mask.visible = true;
         } else {
             load_remote_art_cancel.cancel ();
             load_remote_art_cancel.reset ();
