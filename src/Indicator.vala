@@ -431,21 +431,12 @@ public class Sound.Indicator : Wingpanel.Indicator {
                 volume_control.mic_volume = mic_adjustment.get_value ();
             });
 
-            var mic_scroll_controller = new Gtk.EventControllerLegacy ();
-            mic_scroll_controller.event.connect_after ((e) => {
-                if (e.get_event_type () != Gdk.EventType.SCROLL) {
-                    return Gdk.EVENT_PROPAGATE;
-                }
-
+            mic_scale.scroll_event.connect_after ((e) => {
                 double dir = 0.0;
-                if (handle_scroll_event ((Gdk.ScrollEvent) e, out dir)) {
+                if (handle_scroll_event (e, out dir)) {
                     handle_change (dir, true);
                 }
-
-                return Gdk.EVENT_STOP;
             });
-
-            mic_scale.add_controller (mic_scroll_controller);
 
             mpris.close.connect (() => {
                 close ();
@@ -463,21 +454,12 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
             volume_scale.slider_dropped.connect (play_volume_change_sound);
 
-            var volume_scroll_controller = new Gtk.EventControllerLegacy ();
-            volume_scroll_controller.event.connect_after ((e) => {
-                if (e.get_event_type () != Gdk.EventType.SCROLL) {
-                    return Gdk.EVENT_PROPAGATE;
-                }
-
+            volume_scale.scroll_event.connect_after ((e) => {
                 double dir = 0.0;
-                if (handle_scroll_event ((Gdk.ScrollEvent) e, out dir)) {
+                if (handle_scroll_event (e, out dir)) {
                     handle_change (dir, false);
                 }
-
-                return Gdk.EVENT_STOP;
             });
-
-            volume_scale.add_controller (volume_scroll_controller);
 
             volume_scale.notify["active"].connect (on_volume_switch_change);
 

@@ -4,6 +4,7 @@
 */
 
 public class Sound.Widgets.Scale : Granite.Bin {
+    public signal void scroll_event (Gdk.ScrollEvent e);
     public signal void slider_dropped ();
 
     public Gtk.Adjustment adjustment { get; construct; }
@@ -45,13 +46,19 @@ public class Sound.Widgets.Scale : Granite.Bin {
             slider_dropped ();
         });
 
-        // scale_widget.scroll_event.connect ((e) => {
-        //     /* Re-emit the signal on the eventbox instead of using native handler */
-        //     scroll_event (e);
-        //     return Gdk.EVENT_STOP;
-        // });
+        var scroll_controller = new Gtk.EventControllerLegacy ();
+        scroll_controller.event.connect_after ((e) => {
+            if (e.get_event_type () != Gdk.EventType.SCROLL) {
+                return Gdk.EVENT_PROPAGATE;
+            }
+
+            scroll_event ((Gdk.ScrollEvent) e);
+
+            return Gdk.EVENT_STOP;
+        });
 
         scale_widget.add_controller (gesture_click);
+        scale_widget.add_controller (scroll_controller);
 
         bind_property ("icon", toggle, "icon-name");
 
