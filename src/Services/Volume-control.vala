@@ -233,7 +233,9 @@ public class Sound.Services.VolumeControlPulse : VolumeControl {
             this.notify_property ("micMute");
         }
 
-        var listening = (i.state == PulseAudio.SourceState.RUNNING);
+        // If there is no input device, SourceInfo will correspond to the playback device, which we want to ignore.
+        // In that scenario, monitor_of_sink != INVALID_INDEX and monitor_of_sink_name is set.
+        var listening = i.state == PulseAudio.SourceState.RUNNING && i.monitor_of_sink == PulseAudio.INVALID_INDEX;
         if (_is_listening != listening) {
             _is_listening = listening;
             this.notify_property ("is-listening");
