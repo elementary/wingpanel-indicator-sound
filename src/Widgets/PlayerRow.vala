@@ -244,7 +244,12 @@ public class Sound.Widgets.PlayerRow : Gtk.Box {
             update_controls ();
         }
 
-        // titles_events.button_press_event.connect (raise_player);
+        var gesture_click = new Gtk.GestureClick () {
+            button = Gdk.BUTTON_PRIMARY
+        };
+        gesture_click.released.connect (raise_player);
+
+        titles.add_controller (gesture_click);
 
         prev_btn.clicked.connect (() => {
             Idle.add (() => {
@@ -382,7 +387,7 @@ public class Sound.Widgets.PlayerRow : Gtk.Box {
         });
     }
 
-    private bool raise_player () {
+    private void raise_player (Gtk.GestureClick gesture, int n_press, double x, double y) {
         try {
             close ();
             if (client != null && client.player.can_raise) {
@@ -410,7 +415,8 @@ public class Sound.Widgets.PlayerRow : Gtk.Box {
             warning ("Could not launch player");
         }
 
-        return Gdk.EVENT_STOP;
+        gesture.set_state (CLAIMED);
+        gesture.reset ();
     }
 
     /**

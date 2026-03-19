@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class Sound.Widgets.PlayerList : Gtk.Box {
+public class Sound.Widgets.PlayerList : Granite.Bin {
     public signal void close ();
 
     public Sound.Services.ObjectManager object_manager;
@@ -27,8 +27,15 @@ public class Sound.Widgets.PlayerList : Gtk.Box {
     private HashTable<string,PlayerRow> ifaces;
     private Services.DBusImpl impl;
 
+    private Gtk.ListBox listbox;
+
     construct {
         ifaces = new HashTable<string,PlayerRow> (str_hash, str_equal);
+
+        listbox = new Gtk.ListBox ();
+
+        child = listbox;
+        margin_bottom = 3;
 
         Idle.add (() => {
             setup_dbus ();
@@ -44,11 +51,12 @@ public class Sound.Widgets.PlayerList : Gtk.Box {
                 close ();
             });
 
-            prepend (bluetooth_widget);
+            listbox.prepend (bluetooth_widget);
         });
 
         object_manager.media_player_removed.connect ((media_player) => {
             debug ("Media player %s removed", media_player.name);
+            listbox.remove (bluetooth_widget);
             bluetooth_widget.destroy ();
         });
 
@@ -62,9 +70,6 @@ public class Sound.Widgets.PlayerList : Gtk.Box {
                 }
             }
         });
-
-        orientation = Gtk.Orientation.VERTICAL;
-        margin_bottom = 3;
     }
 
     public void update_default_player () {
@@ -73,6 +78,7 @@ public class Sound.Widgets.PlayerList : Gtk.Box {
             default_player = new_player;
 
             if (default_widget != null) {
+                listbox.remove (default_widget);
                 default_widget.destroy ();
             }
 
@@ -82,7 +88,7 @@ public class Sound.Widgets.PlayerList : Gtk.Box {
                 close ();
             });
 
-            prepend (default_widget);
+            listbox.prepend (default_widget);
         }
     }
 
@@ -102,7 +108,7 @@ public class Sound.Widgets.PlayerList : Gtk.Box {
      * @param name DBUS name (object path)
      * @param iface The constructed MprisClient instance
      */
-    void add_iface (string name, Services.MprisClient iface) {
+    private void add_iface (string name, Services.MprisClient iface) {
         if ((default_player != null) && (iface.player.desktop_entry == default_player.get_id ().replace (".desktop", ""))) {
             default_widget.mpris_name = name;
             default_widget.client = iface;
@@ -118,7 +124,7 @@ public class Sound.Widgets.PlayerList : Gtk.Box {
                 close ();
             });
 
-            prepend (widg);
+            listbox.append (widg);
             ifaces.insert (name, widg);
         }
     }
@@ -128,13 +134,14 @@ public class Sound.Widgets.PlayerList : Gtk.Box {
      *
      * @param name DBUS name to remove handler for
      */
-    void destroy_iface (string name) {
+    private void destroy_iface (string name) {
         if (default_widget.mpris_name == name) {
             default_widget.client = null;
         } else {
             var widg = ifaces[name];
             if (widg != null) {
-                remove (widg);
+                listbox.remove (widg);
+                widg.destroy ();
             }
         }
 
