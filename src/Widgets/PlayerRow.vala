@@ -17,8 +17,7 @@ public class Sound.Widgets.PlayerRow : Gtk.Box {
 
     public signal void close ();
 
-    private Gtk.Image? background = null;
-    private Gtk.Image mask;
+    private Gtk.Image background;
     private Gtk.Label title_label;
     private Gtk.Label artist_label;
     private Gtk.Button prev_btn;
@@ -169,20 +168,6 @@ public class Sound.Widgets.PlayerRow : Gtk.Box {
             pixel_size = ICON_SIZE
         };
 
-        mask = new Gtk.Image.from_resource ("/io/elementary/wingpanel/sound/image-mask.svg") {
-            visible = false,
-            pixel_size = 48
-        };
-
-        var overlay = new Gtk.Overlay () {
-            can_focus = true,
-            child = background,
-            margin_bottom = 2,
-            margin_end = 4,
-            margin_start = 4
-        };
-        overlay.add_overlay (mask);
-
         title_label = new Gtk.Label (null) {
             ellipsize = END,
             max_width_chars = 16,
@@ -202,7 +187,7 @@ public class Sound.Widgets.PlayerRow : Gtk.Box {
         var titles = new Gtk.Grid () {
             column_spacing = 3
         };
-        titles.attach (overlay, 0, 0, 1, 2);
+        titles.attach (background, 0, 0, 1, 2);
         titles.attach (title_label, 1, 0);
         titles.attach (artist_label, 1, 1);
 
@@ -492,7 +477,7 @@ public class Sound.Widgets.PlayerRow : Gtk.Box {
 
             background.gicon = new FileIcon (File.new_for_path (fname));
             background.get_style_context ().set_scale (1);
-            mask.visible = true;
+            background.add_css_class (Granite.CssClass.CARD);
         } else {
             load_remote_art_cancel.cancel ();
             load_remote_art_cancel.reset ();
@@ -508,12 +493,12 @@ public class Sound.Widgets.PlayerRow : Gtk.Box {
             if (pixbuf != null) {
                 background.gicon = pixbuf;
                 background.get_style_context ().set_scale (1);
-                mask.visible = true;
+                background.add_css_class (Granite.CssClass.CARD);
             }
         } catch (Error e) {
             background.gicon = app_icon;
             background.get_style_context ().set_scale (scale_factor);
-            mask.visible = false;
+            background.remove_css_class (Granite.CssClass.CARD);
         }
     }
 
@@ -532,7 +517,7 @@ public class Sound.Widgets.PlayerRow : Gtk.Box {
             last_art_url = "";
             background.pixel_size = ICON_SIZE;
             background.gicon = app_icon;
-            mask.visible = false;
+            background.remove_css_class (Granite.CssClass.CARD);
         }
 
         string title;
