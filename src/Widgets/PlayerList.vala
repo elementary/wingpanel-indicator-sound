@@ -57,7 +57,6 @@ public class Sound.Widgets.PlayerList : Granite.Bin {
         object_manager.media_player_removed.connect ((media_player) => {
             debug ("Media player %s removed", media_player.name);
             listbox.remove (bluetooth_widget);
-            bluetooth_widget.destroy ();
         });
 
         object_manager.media_player_status_changed.connect ((status, title, artist) => {
@@ -79,7 +78,6 @@ public class Sound.Widgets.PlayerList : Granite.Bin {
 
             if (default_widget != null) {
                 listbox.remove (default_widget);
-                default_widget.destroy ();
             }
 
             default_widget = new PlayerRow.default (new_player);
@@ -141,7 +139,6 @@ public class Sound.Widgets.PlayerList : Granite.Bin {
             var widg = ifaces[name];
             if (widg != null) {
                 listbox.remove (widg);
-                widg.destroy ();
             }
         }
 
