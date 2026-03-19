@@ -196,8 +196,8 @@ public class Sound.Widgets.PlayerRow : Gtk.Box {
             halign = START,
             valign = START
         };
-        artist_label.add_css_class (Granite.STYLE_CLASS_DIM_LABEL);
-        artist_label.add_css_class (Granite.STYLE_CLASS_SMALL_LABEL);
+        artist_label.add_css_class (Granite.CssClass.DIM);
+        artist_label.add_css_class (Granite.CssClass.SMALL);
 
         var titles = new Gtk.Grid () {
             column_spacing = 3
@@ -212,7 +212,7 @@ public class Sound.Widgets.PlayerRow : Gtk.Box {
             sensitive = false,
             valign = CENTER
         };
-        prev_btn.add_css_class (Granite.STYLE_CLASS_CIRCULAR);
+        prev_btn.add_css_class (Granite.CssClass.CIRCULAR);
 
         play_btn = new Gtk.Button.from_icon_name (
             "media-playback-start-symbolic"
@@ -220,7 +220,7 @@ public class Sound.Widgets.PlayerRow : Gtk.Box {
             sensitive = true,
             valign = CENTER
         };
-        play_btn.add_css_class (Granite.STYLE_CLASS_CIRCULAR);
+        play_btn.add_css_class (Granite.CssClass.CIRCULAR);
 
         next_btn = new Gtk.Button.from_icon_name (
             "media-skip-forward-symbolic"
@@ -228,7 +228,7 @@ public class Sound.Widgets.PlayerRow : Gtk.Box {
             sensitive = false,
             valign = CENTER
         };
-        next_btn.add_css_class (Granite.STYLE_CLASS_CIRCULAR);
+        next_btn.add_css_class (Granite.CssClass.CIRCULAR);
 
         spacing = 6;
         margin_end = 12;
