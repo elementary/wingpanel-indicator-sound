@@ -40,8 +40,7 @@ public class Sound.Widgets.DeviceItem : Gtk.ListBoxRow {
         radio_button = new Gtk.CheckButton () {
             child = box,
             active = device.is_default,
-            hexpand = true,
-            // xalign = 0
+            hexpand = true
         };
 
         if (row != null) {

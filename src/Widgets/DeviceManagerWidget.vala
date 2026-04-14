@@ -37,6 +37,7 @@ public class Sound.Widgets.DeviceManagerWidget : Gtk.Box {
 
         device_list = new Gtk.ListBox () {
             activate_on_single_click = true,
+            hexpand = true,
             visible = true
         };
 
