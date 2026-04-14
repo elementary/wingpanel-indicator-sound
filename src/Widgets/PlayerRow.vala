@@ -238,7 +238,7 @@ public class Sound.Widgets.PlayerRow : Gtk.Box {
 
         prev_btn.clicked.connect (() => {
             Idle.add (() => {
-                if (Thread.supported () == false) {
+                if (!Thread.supported ()) {
                     warning ("Threading is not supported. DBus timeout could be blocking UI");
                     try {
                         if (mp_client == null && client.player.can_go_previous) {
@@ -271,7 +271,7 @@ public class Sound.Widgets.PlayerRow : Gtk.Box {
 
         play_btn.clicked.connect (() => {
             Idle.add (() => {
-                if (Thread.supported () == false) {
+                if (!Thread.supported ()) {
                     warning ("Threading is not supported. DBus timeout could be blocking UI");
                     try {
                         if (mp_client == null) {
