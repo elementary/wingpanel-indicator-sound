@@ -463,8 +463,11 @@ public class Sound.PulseAudioManager : GLib.Object {
                 device.card_sink_name = sink.name;
                 debug ("\t\t\tdevice.card_sink_name: %s", device.card_sink_name);
 
-                if (sink.active_port != null && device.port_name == sink.active_port.name) {
+                if (sink.active_port != null) {
                     device.card_sink_port_name = sink.active_port.name;
+                }
+
+                if (sink.active_port != null && device.port_name == sink.active_port.name) {
                     device.sink_name = sink.name;
                     debug ("\t\t\tdevice.sink_name: %s", device.card_sink_name);
                     device.sink_index = (int)sink.index;
