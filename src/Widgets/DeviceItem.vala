@@ -23,6 +23,11 @@ public class Sound.Widgets.DeviceItem : Gtk.ListBoxRow {
     }
 
     construct {
+        // Add "radio-list" CSS class
+        Gtk.StyleContext context;
+        context = get_style_context ();
+        context.add_class ("radio-list");
+
         var label = new Gtk.Label (device.display_name) {
             halign = START,
             hexpand = true,

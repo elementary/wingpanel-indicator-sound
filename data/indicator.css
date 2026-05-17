@@ -55,3 +55,15 @@ device-scale .image-button:disabled,
 player-row .image-button:disabled {
     background: @insensitive_bg_color;
 }
+
+/* Default menuitem padding is 6px.
+   Reduce it on the item and increase it on the radio button to ease toggling.
+   Leave 1 pixel padding to not select when the mouse is "on the border" of items to avoid miss-clicks. */
+menuitem.radio-list {
+    padding-top: 1px;
+    padding-bottom: 1px;
+}
+menuitem.radio-list radiobutton {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
