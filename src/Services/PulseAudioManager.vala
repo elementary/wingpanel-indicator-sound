@@ -80,11 +80,13 @@ public class Sound.PulseAudioManager : GLib.Object {
         // for example to switch between onboard speakers to hdmi
         // the profile has to be switched from analog stereo to digital stereo.
         // Attempt to find profiles that support both selected input and output
-        var other_device = default_input;
-        var card_name = "card-sink-name";
+        var other_device = default_output;
+        var direction_name = "source-name";
+        var card_direction_name = "card-source-name";
         if (device.direction == OUTPUT) {
-            other_device = default_output;
-            card_name = "card-source-name";
+            other_device = default_input;
+            direction_name = "sink-name";
+            card_direction_name = "card-sink-name";
         }
 
         var profile_name = device.get_matching_profile (other_device);
@@ -99,7 +101,7 @@ public class Sound.PulseAudioManager : GLib.Object {
             yield set_card_profile_by_index (device.card_index, profile_name);
             // wait for new card sink to appear
             debug ("wait for card sink / source");
-            yield wait_for_update (device, card_name);
+            yield wait_for_update (device, card_direction_name);
         }
 
         // #2 Set sink / source port
@@ -119,7 +121,7 @@ public class Sound.PulseAudioManager : GLib.Object {
         if (device.direction == OUTPUT && device.sink_name == null ||
             device.direction == INPUT && device.source_name == null) {
             debug ("wait for sink / source");
-            yield wait_for_update (device, card_name);
+            yield wait_for_update (device, direction_name);
         }
 
         // #4 Set sink / source
