@@ -55,6 +55,12 @@ public class Sound.Widgets.DeviceManagerWidget : Gtk.Box {
         add (devices_revealer);
 
         update_showable ();
+
+        device_list.row_activated.connect ((row) => {
+            var device = ((DeviceItem) row).device;
+            pam.set_default_device.begin (device);
+            update_preferred_devices (device);
+        });
     }
 
     private void add_device (Device device) {
