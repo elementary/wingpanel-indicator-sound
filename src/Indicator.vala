@@ -77,13 +77,13 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
         // Prevent a race that skips automatic resource loading
         // https://github.com/elementary/wingpanel-indicator-bluetooth/issues/203
-        Gtk.IconTheme.get_default ().add_resource_path ("/org/elementary/wingpanel/icons");
+        Gtk.IconTheme.get_for_display (Gdk.Display.get_default ()).add_resource_path ("/org/elementary/wingpanel/icons");
 
         var provider = new Gtk.CssProvider ();
         provider.load_from_resource ("io/elementary/wingpanel/sound/indicator.css");
 
-        Gtk.StyleContext.add_provider_for_screen (
-            Gdk.Screen.get_default (),
+        Gtk.StyleContext.add_provider_for_display (
+            Gdk.Display.get_default (),
             provider,
             Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
         );
@@ -127,7 +127,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
         mic_scale = new Widgets.Scale (mic_adjustment);
 
-        ca_context = CanberraGtk.context_get ();
+        ca_context = CanberraGtk4.context_get ();
         ca_context.change_props (Canberra.PROP_APPLICATION_NAME, "indicator-sound",
                                  Canberra.PROP_APPLICATION_ID, "wingpanel-indicator-sound",
                                  Canberra.PROP_APPLICATION_NAME, "start-here",
@@ -328,14 +328,14 @@ public class Sound.Indicator : Wingpanel.Indicator {
         display_widget.icon_name = get_volume_icon (volume_control.volume.volume);
     }
 
-    private void on_volume_icon_scroll_event (Gdk.EventScroll e) {
+    private void on_volume_icon_scroll_event (Gdk.ScrollEvent e) {
         double dir = 0.0;
         if (handle_scroll_event (e, out dir)) {
             handle_change (dir, false);
         }
     }
 
-    private void on_mic_icon_scroll_event (Gdk.EventScroll e) {
+    private void on_mic_icon_scroll_event (Gdk.ScrollEvent e) {
         double dir = 0.0;
         if (handle_scroll_event (e, out dir)) {
             handle_change (dir, true);
@@ -387,15 +387,15 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
             mic_scale.active = !volume_control.micMute;
 
-            var settings_button = new Gtk.ModelButton () {
+            var settings_button = new Wingpanel.PopoverMenuItem () {
                 text = _("Sound Settings…"),
                 margin_top = 3
             };
 
             var input_controls_box = new Gtk.Box (VERTICAL, 0);
-            input_controls_box.add (mic_scale);
-            input_controls_box.add (input_device_manager);
-            input_controls_box.add (new Gtk.Separator (HORIZONTAL));
+            input_controls_box.append (mic_scale);
+            input_controls_box.append (input_device_manager);
+            input_controls_box.append (new Gtk.Separator (HORIZONTAL));
 
             var input_controls_revealer = new Gtk.Revealer () {
                 child = input_controls_box
@@ -403,15 +403,15 @@ public class Sound.Indicator : Wingpanel.Indicator {
 
             main_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
             if (is_in_session) {
-                main_box.add (mpris);
-                main_box.add (new Gtk.Separator (Gtk.Orientation.HORIZONTAL));
+                main_box.append (mpris);
+                main_box.append (new Gtk.Separator (Gtk.Orientation.HORIZONTAL));
             }
-            main_box.add (volume_scale);
-            main_box.add (output_device_manager);
+            main_box.append (volume_scale);
+            main_box.append (output_device_manager);
             if (is_in_session) {
-                main_box.add (new Gtk.Separator (Gtk.Orientation.HORIZONTAL));
-                main_box.add (input_controls_revealer);
-                main_box.add (settings_button);
+                main_box.append (new Gtk.Separator (Gtk.Orientation.HORIZONTAL));
+                main_box.append (input_controls_revealer);
+                main_box.append (settings_button);
             }
 
             mic_scale.notify["active"].connect (on_mic_switch_change);
@@ -425,8 +425,6 @@ public class Sound.Indicator : Wingpanel.Indicator {
                 if (handle_scroll_event (e, out dir)) {
                     handle_change (dir, true);
                 }
-
-                return true;
             });
 
             mpris.close.connect (() => {
@@ -450,8 +448,6 @@ public class Sound.Indicator : Wingpanel.Indicator {
                 if (handle_scroll_event (e, out dir)) {
                     handle_change (dir, false);
                 }
-
-                return true;
             });
 
             volume_scale.notify["active"].connect (on_volume_switch_change);
@@ -480,10 +476,11 @@ public class Sound.Indicator : Wingpanel.Indicator {
      * In the case of diagonal scrolling, it ignores the event unless movement in one direction
      * is more than twice the movement in the other direction.
      */
-    private bool handle_scroll_event (Gdk.EventScroll e, out double dir) {
+    private bool handle_scroll_event (Gdk.ScrollEvent e, out double dir) {
         dir = 0.0;
         bool natural_scroll;
-        var event_source = e.get_source_device ().input_source;
+        var event_source = e.get_device ().get_source ();
+
         if (event_source == Gdk.InputSource.MOUSE) {
             natural_scroll = natural_scroll_mouse;
         } else if (event_source == Gdk.InputSource.TOUCHPAD) {
@@ -492,19 +489,21 @@ public class Sound.Indicator : Wingpanel.Indicator {
             natural_scroll = false;
         }
 
-        switch (e.direction) {
+        switch (e.get_direction ()) {
             case Gdk.ScrollDirection.SMOOTH:
-                    var abs_x = double.max (e.delta_x.abs (), 0.0001);
-                    var abs_y = double.max (e.delta_y.abs (), 0.0001);
+                double dx, dy;
+                e.get_deltas (out dx, out dy);
 
-                    if (abs_y / abs_x > 2.0) {
-                        total_y_delta += e.delta_y;
-                    } else if (abs_x / abs_y > 2.0) {
-                        total_x_delta += e.delta_x;
-                    }
+                var abs_x = double.max (dx.abs (), 0.0001);
+                var abs_y = double.max (dy.abs (), 0.0001);
+
+                if (abs_y / abs_x > 2.0) {
+                    total_y_delta += dy;
+                } else if (abs_x / abs_y > 2.0) {
+                    total_x_delta += dx;
+                }
 
                 break;
-
             case Gdk.ScrollDirection.UP:
                 total_y_delta = -1.0;
                 break;

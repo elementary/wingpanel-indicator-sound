@@ -37,10 +37,11 @@ public class Sound.Widgets.DeviceManagerWidget : Gtk.Box {
 
         device_list = new Gtk.ListBox () {
             activate_on_single_click = true,
+            hexpand = true,
             visible = true
         };
 
-        var scrolled_box = new Gtk.ScrolledWindow (null, null) {
+        var scrolled_box = new Gtk.ScrolledWindow () {
             child = device_list,
             hscrollbar_policy = Gtk.PolicyType.NEVER,
             propagate_natural_height = true,
@@ -52,7 +53,7 @@ public class Sound.Widgets.DeviceManagerWidget : Gtk.Box {
             child = scrolled_box
         };
 
-        add (devices_revealer);
+        append (devices_revealer);
 
         update_showable ();
 
@@ -71,7 +72,7 @@ public class Sound.Widgets.DeviceManagerWidget : Gtk.Box {
 
         Gtk.ListBoxRow? row = device_list.get_row_at_index (0);
         var device_item = new DeviceItem (device, row);
-        device_list.add (device_item);
+        device_list.append (device_item);
 
         device_item.activated.connect (() => {
             pam.set_default_device.begin (device);
@@ -80,7 +81,6 @@ public class Sound.Widgets.DeviceManagerWidget : Gtk.Box {
 
         device.removed.connect (() => {
             device_list.remove (device_item);
-            device_list.show_all ();
             update_showable ();
         });
 
