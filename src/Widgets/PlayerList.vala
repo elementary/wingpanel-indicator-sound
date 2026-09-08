@@ -114,7 +114,7 @@ public class Sound.Widgets.PlayerList : Granite.Bin {
             ifaces.insert (name, default_widget);
             default_widget.visible = true;
         } else {
-            if (default_widget.mpris_name == "") {
+            if (default_widget != null && default_widget.mpris_name == "") {
                 default_widget.visible = false;
             }
 
@@ -145,10 +145,12 @@ public class Sound.Widgets.PlayerList : Granite.Bin {
 
         ifaces.remove (name);
 
-        if (ifaces.length != 0 && default_widget.mpris_name == "") {
-            default_widget.visible = false;
-        } else {
-            default_widget.visible = true;
+        if (default_widget != null) {
+            if (ifaces.length != 0 && default_widget.mpris_name == "") {
+                default_widget.visible = false;
+            } else {
+                default_widget.visible = true;
+            }
         }
     }
 
