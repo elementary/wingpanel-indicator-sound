@@ -697,7 +697,7 @@ public class Sound.Indicator : Wingpanel.Indicator {
     }
 }
 
-public Wingpanel.Indicator? get_indicator (Module module, Wingpanel.IndicatorManager.ServerType server_type) {
+public Wingpanel.Indicator? get_indicator (Module module, Wingpanel.ServerType server_type) {
     debug ("Activating Sound Indicator");
 
     var indicator = new Sound.Indicator (server_type == SESSION);
